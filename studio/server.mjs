@@ -133,6 +133,10 @@ export function createApp({ dir, agentAdapter } = {}) {
   const app = express();
   app.use(express.json());
 
+  // Serves the studio's own UI (studio/public/) — distinct from `targetDir`,
+  // which is the mockups directory being edited, never served wholesale.
+  app.use(express.static(path.join(__dirname, 'public')));
+
   app.get('/api/pages', async (req, res) => {
     try {
       const pages = await listPages(targetDir);
