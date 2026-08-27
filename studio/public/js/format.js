@@ -66,27 +66,45 @@ export function flattenGrouped(groupedPages) {
 const LEFT_UNCHANGED = ' The page was left unchanged.';
 
 /**
- * A chat-facing message for a failed edit request, based on the API error
- * shape ({ status, code, message, reason } — see ApiError in api.js). Every
- * branch keeps the "page was left unchanged" reassurance, since the server
- * never writes the file unless the whole request succeeds.
+ * A chat-facing message for a failed edit request. Accepts two shapes:
+ *   - an ApiError-like object with an HTTP status ({ status, code, message,
+ *     reason }), for failures that happen before the /api/edit response
+ *     starts streaming (bad request body, invalid path, missing file), and
+ *   - a code-only object with no status ({ code, message, reason }), for a
+ *     terminal {type:'error', ...} event read off the NDJSON stream \u2014
+ *     streaming fixes the HTTP status at 200, so these errors carry no
+ *     status of their own.
+ * Recognized codes are matched first, regardless of which shape carried
+ * them, so the same wording (auth_not_configured, agent_error,
+ * validation_failed) applies whether the error came from a stream event or
+ * a pre-stream JSON response. Every branch keeps the "page was left
+ * unchanged" reassurance, since the server never writes the file unless the
+ * whole request succeeds.
  */
 export function describeEditError(err) {
-  // fetch() itself throwing (offline, DNS failure, timeout) yields a plain
-  // error with no HTTP status — distinguish that from a server-returned error.
+  if (err) {
+    if (err.code === 'auth_not_configured') {
+      return (
+        'No Claude token found \u2014 create a .env file in the repo root with ' +
+        `CLAUDE_CODE_OAUTH_TOKEN (see README) and restart the server.${LEFT_UNCHANGED}`
+      );
+    }
+    if (err.code === 'agent_error') {
+      // The server's message is already sanitized (see describeAgentError in
+      // server.mjs) and safe to show verbatim.
+      return `Agent error: ${err.message || 'the agent failed.'}${LEFT_UNCHANGED}`;
+    }
+    if (err.code === 'validation_failed') {
+      const reason = err.reason ? ` (${err.reason})` : '';
+      return `The edit failed${reason}.${LEFT_UNCHANGED} Try rephrasing the instruction.`;
+    }
+  }
+
+  // fetch() itself throwing (offline, DNS failure, timeout), or the stream
+  // ending without a terminal event (connection dropped mid-edit), yields a
+  // plain error with no HTTP status and none of the codes above.
   if (!err || typeof err.status !== 'number') {
     return `Could not reach the server (network error or timeout).${LEFT_UNCHANGED} Try again.`;
-  }
-  if (err.status === 401 && err.code === 'auth_not_configured') {
-    return (
-      'No Claude token found \u2014 create a .env file in the repo root with ' +
-      `CLAUDE_CODE_OAUTH_TOKEN (see README) and restart the server.${LEFT_UNCHANGED}`
-    );
-  }
-  if (err.status === 502 && err.code === 'agent_error') {
-    // The server's message is already sanitized (see describeAgentError in
-    // server.mjs) and safe to show verbatim.
-    return `Agent error: ${err.message || 'the agent failed.'}${LEFT_UNCHANGED}`;
   }
   if (err.status === 502) {
     const reason = err.reason ? ` (${err.reason})` : '';
@@ -99,6 +117,55 @@ export function describeEditError(err) {
     return `That page no longer exists on disk.${LEFT_UNCHANGED}`;
   }
   return `Something went wrong applying that edit.${LEFT_UNCHANGED}`;
+}
+
+/**
+ * Incrementally buffers NDJSON text arriving in arbitrary chunk boundaries
+ * (a single JSON line can be split across two chunks) and yields complete,
+ * parsed events one line at a time. No DOM/network dependency -- directly
+ * unit-testable by feeding it chunk strings.
+ */
+export function createNdjsonLineBuffer() {
+  let buffer = '';
+
+  function push(chunkText) {
+    buffer += chunkText;
+    const lines = buffer.split('\n');
+    buffer = lines.pop() ?? '';
+    return lines.filter((line) => line.length > 0).map((line) => JSON.parse(line));
+  }
+
+  /** Parses any content left after the stream has closed (a final line with no trailing newline). */
+  function flush() {
+    const remaining = buffer.trim();
+    buffer = '';
+    return remaining.length > 0 ? [JSON.parse(remaining)] : [];
+  }
+
+  return { push, flush };
+}
+
+/** Formats a duration as "Ns" under a minute, else "Mm Ss". */
+export function formatElapsed(elapsedMs) {
+  const totalSeconds = Math.max(0, Math.round(elapsedMs / 1000));
+  if (totalSeconds < 60) return `${totalSeconds}s`;
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}m ${seconds}s`;
+}
+
+/**
+ * The live "Working\u2026" status line shown while an edit streams progress,
+ * built from a 'progress' or 'heartbeat' event ({ elapsedMs, chars? }).
+ * chars is only present on 'progress' events -- 'heartbeat' events prove
+ * the connection is alive during an otherwise-quiet turn.
+ */
+export function formatEditProgress({ elapsedMs, chars }) {
+  const elapsed = formatElapsed(elapsedMs);
+  if (typeof chars === 'number') {
+    return `Working\u2026 ${elapsed} \u00b7 ${chars.toLocaleString()} characters written so far`;
+  }
+  return `Working\u2026 ${elapsed}`;
 }
 
 /** An inline message for a failed save-as-new request, based on the API error shape. */

@@ -6,11 +6,14 @@ import { test } from 'node:test';
 
 import {
   baseNameOf,
+  createNdjsonLineBuffer,
   describeEditError,
   describeSaveError,
   firstPage,
   flattenGrouped,
   folderKey,
+  formatEditProgress,
+  formatElapsed,
   nextVariantName,
   pageFromSearch,
   searchWithPage,
@@ -106,6 +109,69 @@ test('describeEditError gives a network-specific message when there is no HTTP s
   const message = describeEditError(new TypeError('Failed to fetch'));
   assert.match(message, /could not reach the server/i);
   assert.match(message, /left unchanged/i);
+});
+
+test('describeEditError treats a code-only shape (no HTTP status) the same as its status-carrying equivalent', () => {
+  // Errors that arrive as a terminal NDJSON stream event carry no HTTP
+  // status \u2014 streaming fixes the status at 200 \u2014 so the dispatch must
+  // key off `code` first, not require `status` alongside it.
+  const authMessage = describeEditError({ code: 'auth_not_configured' });
+  assert.match(authMessage, /\.env/i);
+  assert.match(authMessage, /README/i);
+
+  const agentMessage = describeEditError({ code: 'agent_error', message: 'boom' });
+  assert.equal(agentMessage, describeEditError({ status: 502, code: 'agent_error', message: 'boom' }));
+
+  const validationMessage = describeEditError({ code: 'validation_failed', reason: 'not_html' });
+  assert.match(validationMessage, /\(not_html\)/);
+  assert.match(validationMessage, /rephrasing/);
+});
+
+test('describeEditError treats a truncated stream (no terminal event, no status, no code) as a network failure', () => {
+  const message = describeEditError({});
+  assert.match(message, /could not reach the server/i);
+  assert.match(message, /left unchanged/i);
+});
+
+test('createNdjsonLineBuffer parses complete lines and buffers a line split across chunk boundaries', () => {
+  const buffer = createNdjsonLineBuffer();
+
+  // A line arriving in one chunk parses immediately.
+  assert.deepEqual(buffer.push('{"type":"started"}\n'), [{ type: 'started' }]);
+
+  // A line split across two chunks yields nothing until the second chunk
+  // completes it, and any trailing partial line stays buffered.
+  const first = buffer.push('{"type":"progress",');
+  assert.deepEqual(first, []);
+  const second = buffer.push('"chars":5}\n{"type":"do');
+  assert.deepEqual(second, [{ type: 'progress', chars: 5 }]);
+
+  const third = buffer.push('ne","summary":"ok"}\n');
+  assert.deepEqual(third, [{ type: 'done', summary: 'ok' }]);
+
+  // flush() is a no-op once every line has already ended in a newline.
+  assert.deepEqual(buffer.flush(), []);
+});
+
+test('createNdjsonLineBuffer.flush parses a final line with no trailing newline', () => {
+  const buffer = createNdjsonLineBuffer();
+  assert.deepEqual(buffer.push('{"type":"started"}\n{"type":"done","summary":"ok"}'), [{ type: 'started' }]);
+  assert.deepEqual(buffer.flush(), [{ type: 'done', summary: 'ok' }]);
+  // A second flush with nothing left buffered is a no-op.
+  assert.deepEqual(buffer.flush(), []);
+});
+
+test('formatElapsed renders seconds under a minute and minutes+seconds at/after 60s', () => {
+  assert.equal(formatElapsed(0), '0s');
+  assert.equal(formatElapsed(42_000), '42s');
+  assert.equal(formatElapsed(59_000), '59s');
+  assert.equal(formatElapsed(60_000), '1m 0s');
+  assert.equal(formatElapsed(125_000), '2m 5s');
+});
+
+test('formatEditProgress renders the live working status line, with and without a character count', () => {
+  assert.equal(formatEditProgress({ elapsedMs: 42_000, chars: 12340 }), 'Working\u2026 42s \u00b7 12,340 characters written so far');
+  assert.equal(formatEditProgress({ elapsedMs: 12_000 }), 'Working\u2026 12s');
 });
 
 test('describeSaveError distinguishes name conflicts, invalid names, and generic errors', () => {

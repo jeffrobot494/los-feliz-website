@@ -137,6 +137,10 @@ disk never diverge. There is no in-app undo — this repo is version-controlled,
 diff` and `git checkout -- <file>` are the recovery path. Use "Save as new page" first if
 you want to keep the original and iterate on a copy instead.
 
+While an edit is running, the chat pane now shows live progress (elapsed time and a
+running character count) instead of a static "working" state, so you can tell a healthy
+1-2 minute rewrite from a stall.
+
 ### Pane controls
 
 - **Preview (center).** The maximize button expands the preview to fill the window,

@@ -28,6 +28,20 @@ export async function makeSampleWorkspace(fileName = 'sample-page.html') {
   return { dir, fileName, content };
 }
 
+/**
+ * Reads a fetch() Response body as NDJSON (one JSON object per line) and
+ * returns the parsed events in order. Used for the streaming /api/edit
+ * response; res.text() waits for the full body, which is fine in tests
+ * since there's no real multi-minute agent call behind a fake adapter.
+ */
+export async function readNdjsonEvents(res) {
+  const text = await res.text();
+  return text
+    .split('\n')
+    .filter((line) => line.length > 0)
+    .map((line) => JSON.parse(line));
+}
+
 /** Starts an Express app on an ephemeral port; returns the base URL and a stop() closer. */
 export async function startApp(app) {
   return new Promise((resolve, reject) => {
