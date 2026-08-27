@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los Feliz Animal Rescue — Homepage Mockup v1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LOS FELIZ ANIMAL RESCUE — Homepage mockup
+   All design tokens live here. Change a value once, it updates
+   everywhere. Fonts and colors are meant to be swapped easily.
+   ============================================================ */
+:root{
+  /* Typography — both free via Google Fonts */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Palette */
+  --ink:        #24201C;
+  --ink-soft:   #5A5148;
+  --cream:      #FBF7F1;
+  --surface:    #FFFFFF;
+  --sand:       #EFE4D4;
+  --line:       #E2D7C7;
+  --clay:       #B4491F;   /* primary action — Donate */
+  --clay-deep:  #8F3915;
+  --green:      #2F5D50;   /* secondary — wildlife / nature */
+  --green-soft: #E4EDE9;
+  --gold:       #C9852B;
+
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow: 0 1px 2px rgba(36,32,28,.05), 0 8px 24px rgba(36,32,28,.06);
+  --maxw: 1180px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--cream); color:var(--ink);
+  font-family:var(--font-body); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; line-height:1.12; letter-spacing:-.015em; margin:0}
+h1{font-size:clamp(2.4rem,5.2vw,4rem)}
+h2{font-size:clamp(1.8rem,3.2vw,2.6rem)}
+h3{font-size:1.22rem; letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:24px}
+.eyebrow{
+  font-size:.78rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--clay); font-family:var(--font-body);
+}
+.lede{font-size:1.14rem; color:var(--ink-soft); max-width:62ch}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; justify-content:center;
+  font-family:var(--font-body); font-weight:600; font-size:1rem;
+  padding:.82rem 1.4rem; border-radius:999px; text-decoration:none;
+  border:1.5px solid transparent; cursor:pointer; transition:.18s ease;
+}
+.btn-primary{background:var(--clay); color:#fff}
+.btn-primary:hover{background:var(--clay-deep)}
+.btn-outline{border-color:var(--ink); color:var(--ink); background:transparent}
+.btn-outline:hover{background:var(--ink); color:var(--cream)}
+.btn-light{background:rgba(255,255,255,.94); color:var(--ink)}
+.btn-light:hover{background:#fff}
+.btn-sm{padding:.6rem 1.05rem; font-size:.92rem}
+
+/* ---------- Photo placeholders ----------
+   Stand-ins for real photography. The caption tells the rescue
+   exactly what shot belongs in each slot. */
+.photo{
+  position:relative; overflow:hidden; border-radius:var(--radius);
+  background:
+    radial-gradient(120% 100% at 20% 10%, rgba(255,255,255,.5), transparent 55%),
+    linear-gradient(150deg, var(--sand), #DCC7AC 45%, #C8B49B);
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  min-height:180px; isolation:isolate;
+}
+.photo::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:radial-gradient(rgba(36,32,28,.045) 1px, transparent 1px);
+  background-size:5px 5px;
+}
+.photo--green{background:
+    radial-gradient(120% 100% at 20% 10%, rgba(255,255,255,.42), transparent 55%),
+    linear-gradient(150deg, #CFE0D8, #A9C5B9 50%, #7FA697);}
+.photo img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; z-index:1; border-radius:inherit;
+}
+.photo.has-img .photo-note{display:none}
+.photo.has-img::after{opacity:0}
+.photo-note{
+  position:relative; z-index:2; max-width:26ch; padding:1rem;
+  font-size:.76rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:rgba(36,32,28,.62); line-height:1.5;
+}
+.photo-note span{display:block; font-weight:700; color:rgba(36,32,28,.78); margin-bottom:.35rem}
+
+/* ---------- Header ---------- */
+.alertbar{
+  background:var(--green); color:#EDF5F1; font-size:.94rem;
+  padding:.65rem 0;
+}
+.alertbar .wrap{display:flex; align-items:center; gap:.85rem; flex-wrap:wrap; justify-content:center; text-align:center}
+.alertbar strong{color:#fff}
+.alertbar a{color:#fff; text-underline-offset:3px}
+
+header.site{
+  position:sticky; top:0; z-index:40; background:rgba(251,247,241,.92);
+  backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid var(--line);
+}
+.nav{display:flex; align-items:center; gap:1.5rem; height:78px}
+.brand{display:flex; align-items:center; gap:.7rem; text-decoration:none; margin-right:auto}
+.brand-mark{width:42px; height:42px; flex:none}
+.brand-txt{display:flex; flex-direction:column; line-height:1.05}
+.brand-txt b{font-family:var(--font-display); font-size:1.06rem; font-weight:700; letter-spacing:-.01em}
+.brand-txt small{font-size:.68rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-soft)}
+.nav-links{display:flex; gap:1.6rem; align-items:center}
+.nav-links a{
+  text-decoration:none; font-weight:500; font-size:.99rem; padding:.4rem 0;
+  border-bottom:2px solid transparent;
+}
+.nav-links a:hover{border-color:var(--clay)}
+.hamburger{display:none; background:none; border:0; padding:.5rem; cursor:pointer}
+
+/* ---------- Hero ---------- */
+.hero{position:relative; padding:0}
+.hero-photo{
+  min-height:min(74vh,620px); border-radius:0;
+  background:
+    radial-gradient(90% 70% at 65% 25%, rgba(255,255,255,.35), transparent 60%),
+    linear-gradient(160deg, #D9C4A8 0%, #C0A181 45%, #8E7259 100%);
+}
+.hero-photo{align-items:flex-end; justify-content:flex-end}
+.hero-photo .photo-note{
+  max-width:36ch; text-align:right; padding:1.4rem 1.8rem;
+  color:rgba(36,32,28,.55); font-size:.68rem;
+}
+.hero-photo .photo-note span{color:rgba(36,32,28,.7)}
+.hero-split{padding:60px 0 68px; background:var(--cream)}
+.hero-grid{display:grid; grid-template-columns:1.05fr .92fr; gap:3.5rem; align-items:center}
+.hero-split .hero-copy{max-width:none; color:var(--ink)}
+.hero-split .hero-copy h1{color:var(--ink)}
+.hero-split .hero-copy p{color:var(--ink-soft); font-size:1.14rem; max-width:46ch}
+.hero-split .hero-badge{background:var(--sand); border-color:var(--line); color:var(--clay-deep)}
+.hero-media .photo{aspect-ratio:4/5; min-height:0; border-radius:var(--radius-lg); box-shadow:0 18px 44px rgba(36,32,28,.16)}
+.hero-credit{margin-top:.9rem; font-size:.88rem; color:var(--ink-soft); text-align:center}
+.hero-inner{
+  position:absolute; inset:0; display:flex; align-items:center;
+  background:linear-gradient(90deg, rgba(28,24,20,.78) 0%, rgba(28,24,20,.55) 45%, rgba(28,24,20,.12) 100%);
+}
+.hero-copy{max-width:34rem; color:#fff}
+.hero-copy h1{color:#fff; margin:.9rem 0 1rem}
+.hero-copy p{color:rgba(255,255,255,.9); font-size:1.14rem}
+.hero-badge{
+  display:inline-flex; align-items:center; gap:.55rem; background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.34); color:#fff; padding:.4rem .9rem; border-radius:999px;
+  font-size:.8rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+}
+.hero-cta{display:flex; gap:.75rem; margin-top:1.7rem; flex-wrap:wrap}
+
+/* ---------- Sections ---------- */
+section{padding:76px 0}
+.section-head{margin-bottom:2.2rem; max-width:60ch}
+.section-head h2{margin:.55rem 0 .7rem}
+
+/* Pathways */
+.paths{display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem}
+.path{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
+  padding:1.9rem 1.6rem 1.7rem; box-shadow:var(--shadow); display:flex; flex-direction:column;
+  transition:.2s ease;
+}
+.path:hover{transform:translateY(-3px); box-shadow:0 14px 34px rgba(36,32,28,.10)}
+.path-icon{
+  width:52px; height:52px; border-radius:14px; display:grid; place-items:center;
+  background:var(--sand); margin-bottom:1.1rem;
+}
+.path--green .path-icon{background:var(--green-soft)}
+.path h3{margin-bottom:.5rem}
+.path p{color:var(--ink-soft); font-size:.98rem; flex:1}
+.path a.more{
+  margin-top:1.1rem; font-weight:600; text-decoration:none; color:var(--clay);
+  display:inline-flex; align-items:center; gap:.4rem; font-size:.97rem;
+}
+.path a.more:hover{gap:.65rem}
+
+/* Animal cards */
+.animals{display:grid; grid-template-columns:repeat(4,1fr); gap:1.15rem}
+.animal{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
+.animal .photo{border-radius:0; min-height:210px}
+.animal-body{padding:1rem 1.1rem 1.2rem}
+.animal-body h3{font-size:1.15rem}
+.animal-meta{font-size:.9rem; color:var(--ink-soft); margin-top:.2rem}
+.tag{
+  display:inline-block; margin-top:.7rem; font-size:.74rem; font-weight:700;
+  letter-spacing:.07em; text-transform:uppercase; padding:.25rem .6rem;
+  border-radius:6px; background:var(--green-soft); color:var(--green);
+}
+.tag--gold{background:#F7ECD8; color:var(--gold)}
+
+/* Impact */
+.impact{background:var(--ink); color:var(--cream)}
+.impact .eyebrow{color:#E8B77A}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:2rem}
+.stat b{
+  display:block; font-family:var(--font-display); font-size:clamp(2.2rem,4vw,3.1rem);
+  font-weight:700; line-height:1; color:#fff;
+}
+.stat span{display:block; margin-top:.5rem; color:rgba(251,247,241,.72); font-size:.95rem}
+
+/* Split (wildlife) */
+.split{display:grid; grid-template-columns:1.05fr 1fr; gap:3rem; align-items:center}
+.split .photo{min-height:390px}
+.chips{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.4rem}
+.chip{
+  text-decoration:none; font-size:.93rem; font-weight:500; padding:.5rem 1rem;
+  border:1px solid var(--line); border-radius:999px; background:var(--surface);
+}
+.chip:hover{border-color:var(--green); color:var(--green)}
+
+/* News */
+.news{display:grid; grid-template-columns:repeat(3,1fr); gap:1.3rem}
+.post .photo{min-height:190px; margin-bottom:1rem}
+.post-cat{font-size:.76rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--clay)}
+.post h3{margin:.45rem 0 .5rem}
+.post p{color:var(--ink-soft); font-size:.97rem}
+.post-date{display:block; margin-top:.7rem; font-size:.87rem; color:#8C8175}
+
+/* Sensitive-image treatment note */
+.veil{position:relative}
+.veil .photo{filter:blur(7px)}
+.veil-msg{
+  position:absolute; inset:0; display:grid; place-content:center; text-align:center; gap:.6rem;
+  background:rgba(36,32,28,.42); border-radius:var(--radius); color:#fff; padding:1rem;
+  font-size:.9rem;
+}
+.veil-msg b{font-size:.95rem}
+
+/* CTA band */
+.cta-band{background:var(--sand)}
+.cta-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:3rem; align-items:center}
+.signup{display:flex; gap:.6rem; margin-top:1.3rem; flex-wrap:wrap}
+.signup input{
+  flex:1; min-width:220px; padding:.85rem 1.1rem; border-radius:999px;
+  border:1.5px solid var(--line); background:#fff; font:inherit; font-size:1rem;
+}
+.donate-card{
+  background:var(--surface); border-radius:var(--radius-lg); padding:2rem;
+  box-shadow:var(--shadow); border:1px solid var(--line);
+}
+.amounts{display:flex; gap:.55rem; margin:1.1rem 0 1.2rem; flex-wrap:wrap}
+.amt{
+  flex:1; min-width:74px; text-align:center; padding:.75rem .5rem; border-radius:12px;
+  border:1.5px solid var(--line); font-weight:600; background:#fff; cursor:pointer; font:inherit; font-weight:600;
+}
+.amt.is-on{border-color:var(--clay); background:#FCF0EA; color:var(--clay)}
+
+/* Footer */
+footer.site{background:var(--ink); color:rgba(251,247,241,.78); padding:64px 0 32px; font-size:.95rem}
+.foot-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:2.5rem}
+footer.site h4{font-family:var(--font-body); font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:#fff; margin:0 0 .9rem}
+footer.site ul{list-style:none; margin:0; padding:0; display:grid; gap:.5rem}
+footer.site a{text-decoration:none}
+footer.site a:hover{color:#fff; text-decoration:underline; text-underline-offset:3px}
+.foot-bottom{
+  margin-top:3rem; padding-top:1.5rem; border-top:1px solid rgba(251,247,241,.16);
+  display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.87rem; color:rgba(251,247,241,.55);
+}
+
+/* ---------- Review annotations (toggle) ---------- */
+.note{
+  display:none; margin-top:1rem; background:#FFF8E8; border:1px dashed #D9B46A;
+  color:#6B531E; border-radius:10px; padding:.7rem .9rem; font-size:.86rem; line-height:1.5;
+}
+.note b{color:#4E3C13}
+body.notes-on .note{display:block}
+body.notes-on section{outline:1px dashed rgba(180,73,31,.22); outline-offset:-10px}
+.notes-toggle{
+  position:fixed; right:18px; bottom:18px; z-index:80;
+  background:var(--ink); color:#fff; border:0; border-radius:999px;
+  padding:.75rem 1.15rem; font:inherit; font-size:.9rem; font-weight:600; cursor:pointer;
+  box-shadow:0 8px 24px rgba(36,32,28,.28);
+}
+.mockup-flag{
+  background:var(--green); color:#fff; text-align:center; font-size:.82rem;
+  padding:.5rem 1rem; letter-spacing:.04em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:960px){
+  .paths,.news,.animals,.stats{grid-template-columns:repeat(2,1fr)}
+  .split,.cta-grid,.hero-grid{grid-template-columns:1fr; gap:2rem}
+  .hero-media{order:-1}
+  .hero-media .photo{aspect-ratio:1/1}
+  .foot-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+  .hamburger{display:block; order:3}
+  .hero-photo{align-items:flex-end; justify-content:flex-end}
+.hero-photo .photo-note{
+  max-width:36ch; text-align:right; padding:1.4rem 1.8rem;
+  color:rgba(36,32,28,.55); font-size:.68rem;
+}
+.hero-photo .photo-note span{color:rgba(36,32,28,.7)}
+.hero-inner{background:linear-gradient(180deg, rgba(28,24,20,.35), rgba(28,24,20,.82))}
+  section{padding:56px 0}
+}
+@media (max-width:600px){
+  .paths,.news,.animals{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr); gap:1.75rem}
+  .foot-grid{grid-template-columns:1fr}
+  .paths{margin-top:0}
+  .hero-photo{min-height:78vh}
+  .nav{height:64px; gap:.75rem}
+  .brand-mark{width:36px;height:36px}
+  .brand-txt b{font-size:.92rem; line-height:1.15}
+  .brand-txt small{display:none}
+  h1{font-size:2.05rem}
+  h2{font-size:1.62rem}
+  .lede,.hero-split .hero-copy p{font-size:1.04rem}
+  .hero-photo .photo-note{display:none}
+  .mockup-flag{font-size:.74rem}
+}
+</style>
+</head>
+<body>
+
+<div class="mockup-flag">Design mockup — Los Feliz Animal Rescue homepage, v2. Photos are LFAR's own animals, loaded live from Petfinder &mdash; an internet connection is needed to see them. Resize the window for the mobile layout.</div>
+
+<!-- ============ URGENT ALERT BAND (editor-toggled) ============ -->
+<div class="alertbar">
+  <div class="wrap">
+    <span><strong>Urgent:</strong> We're seeking emergency foster homes for a litter of five kittens found in Griffith Park.</span>
+    <a href="#">Can you help? &rarr;</a>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" fill="#B4491F"/>
+        <ellipse cx="17" cy="18.5" rx="3.6" ry="5" fill="#FBF7F1"/>
+        <ellipse cx="26.5" cy="15.5" rx="3.4" ry="4.8" fill="#FBF7F1"/>
+        <ellipse cx="34" cy="21" rx="3.3" ry="4.4" fill="#FBF7F1"/>
+        <path d="M25 24c4.6 0 9 3.6 9 7.6 0 3.4-3.1 5-6.3 5-1.6 0-2 .6-3.2.6s-1.7-.6-3.3-.6c-3.2 0-6.2-1.6-6.2-5 0-4 4.4-7.6 10-7.6z" fill="#FBF7F1"/>
+      </svg>
+      <span class="brand-txt">
+        <b>Los Feliz Animal Rescue</b>
+        <small>Est. 2021 &middot; Los Angeles</small>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#adopt">Adopt</a>
+      <a href="#involved">Get Involved</a>
+      <a href="#resources">Resources</a>
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#donate">Donate</a>
+    <button class="hamburger" aria-label="Open menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#24201C" stroke-width="2" stroke-linecap="round">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero-split">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="hero-badge">Five years in the neighborhood</span>
+      <h1>Every animal in Los Feliz deserves someone in their corner.</h1>
+      <p>We're a volunteer-run rescue on your block &mdash; finding homes for dogs and cats, caring for community cats, and helping neighbors with the wildlife and lost pets they find along the way.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#adopt">Meet our animals</a>
+        <a class="btn btn-outline" href="#donate">Donate</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="photo has-img">
+        <img src="https://dbw3zep4prcju.cloudfront.net/animal/6b0118c3-b5b9-4f9c-9a49-201c5d068b18/image/d4c4ec53-ebeb-42c1-9bc9-9345b03c1763.jpg" alt="Snoopy, an adult pit bull terrier and cane corso mix available for adoption" style="object-position:center 20%">
+      </div>
+      <p class="hero-credit">Snoopy is looking for a home right now.</p>
+    </div>
+  </div>
+  <div class="wrap"><div class="note"><b>Why the hero changed:</b> the first version used a full-bleed cinematic photo with text laid over it. LFAR's real photo library is phone snapshots &mdash; mostly vertical, mixed lighting, no clear space for text. A split hero uses those photos at their natural shape and keeps the headline perfectly legible, so the homepage still looks good on the day a volunteer uploads a phone picture. If LFAR can commit to one professionally shot wide image, the full-bleed version is worth revisiting.</div></div>
+</section>
+
+<!-- ============ THREE PATHWAYS ============ -->
+<section id="involved" style="padding-top:56px">
+  <div class="wrap">
+    <div class="paths">
+
+      <article class="path">
+        <div class="path-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B4491F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 22l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>
+          </svg>
+        </div>
+        <h3>Adopt</h3>
+        <p>Browse the dogs and cats looking for homes right now, and see exactly what the adoption process involves before you apply.</p>
+        <a class="more" href="#adopt">See adoptable animals &rarr;</a>
+      </article>
+
+      <article class="path path--green">
+        <div class="path-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2F5D50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>
+          </svg>
+        </div>
+        <h3>Foster or volunteer</h3>
+        <p>Fostering is the single most useful thing you can do for us — we cover the supplies and vet care. Volunteers help with transport, events, and TNR.</p>
+        <a class="more" href="#involved">Find your role &rarr;</a>
+      </article>
+
+      <article class="path">
+        <div class="path-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B4491F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="8" width="20" height="13" rx="2"/><path d="M2 12h20M12 8v13"/>
+            <path d="M12 8S9.5 3.5 7 4.6C4.9 5.5 5.6 8 7.6 8H12zM12 8s2.5-4.5 5-3.4C19.1 5.5 18.4 8 16.4 8H12z"/>
+          </svg>
+        </div>
+        <h3>Give</h3>
+        <p>Nearly every dollar goes straight to veterinary bills. Give once or monthly, or send supplies from our wish list.</p>
+        <a class="more" href="#donate">Ways to give &rarr;</a>
+      </article>
+
+    </div>
+    <div class="note"><b>Why three:</b> Santé D'Or's homepage works because it asks visitors to make exactly one choice. Everything else on this page sits below these three cards. If a fourth pathway gets added later, this row breaks — better to keep it at three and let the nav carry the rest.</div>
+  </div>
+</section>
+
+<!-- ============ ADOPTABLE ANIMALS ============ -->
+<section id="adopt" style="padding-top:24px">
+  <div class="wrap">
+    <div class="section-head" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:2rem;flex-wrap:wrap">
+      <div>
+        <span class="eyebrow">Looking for a home</span>
+        <h2>Meet the animals</h2>
+        <p class="lede">Updated automatically from our Petfinder listings, so this section is never out of date.</p>
+      </div>
+      <a class="btn btn-outline btn-sm" href="#">View all adoptable animals</a>
+    </div>
+
+    <div class="animals">
+      <article class="animal">
+        <div class="photo has-img"><img src="https://dbw3zep4prcju.cloudfront.net/animal/daf3fdc1-3318-4b14-90e6-ab6834bb813b/image/76f87215-cb62-4bf2-a48d-17d2b348c2d9.jpg" alt="Dusty, a young shorthair cat" loading="lazy" style="object-position:center 28%"></div>
+        <div class="animal-body">
+          <h3>Dusty</h3>
+          <p class="animal-meta">American Shorthair &middot; Young &middot; Male</p>
+          <span class="tag">Available now</span>
+        </div>
+      </article>
+      <article class="animal">
+        <div class="photo has-img"><img src="https://dbw3zep4prcju.cloudfront.net/animal/1a8ebd99-b06f-4f1c-9973-bcc4534d9c2b/image/3571710b-1690-43c2-bffe-88906c33182b.jpg" alt="Misty, a young domestic shorthair cat" loading="lazy" style="object-position:center 32%"></div>
+        <div class="animal-body">
+          <h3>Misty</h3>
+          <p class="animal-meta">Domestic Shorthair &middot; Young &middot; Female</p>
+          <span class="tag">Available now</span>
+        </div>
+      </article>
+      <article class="animal">
+        <div class="photo has-img"><img src="https://dbw3zep4prcju.cloudfront.net/animal/542c6b79-b61e-4dc7-b94e-7883a8f5b25d/image/a574a028-6e77-4338-9b4e-e52a676ddb3b.jpg" alt="Squid, a young shorthair cat" loading="lazy" style="object-position:center 30%"></div>
+        <div class="animal-body">
+          <h3>Squid</h3>
+          <p class="animal-meta">American Shorthair &middot; Young &middot; Female</p>
+          <span class="tag">Available now</span>
+        </div>
+      </article>
+      <article class="animal">
+        <div class="photo has-img"><img src="https://dbw3zep4prcju.cloudfront.net/animal/8cee92b8-51c3-42b8-a869-f069720cf34b/image/6c50753f-4c3f-4df2-8e07-7315d90c462b.jpg" alt="Freddie, available for adoption" loading="lazy" style="object-position:center 26%"></div>
+        <div class="animal-body">
+          <h3>Freddie</h3>
+          <p class="animal-meta">Domestic Shorthair &middot; Young &middot; Male</p>
+          <span class="tag">Available now</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="note"><b>These are real animals.</b> Dusty, Misty, Squid and Freddie are pulled live from LFAR's actual Petfinder listings, so this row shows what the section really looks like today. In the built site it's a Petfinder embed &mdash; nobody at LFAR hand-enters it. The "Available now" tags are illustrative: the tag system can surface bonded pairs, animals in foster, or good-with-kids, driven by Petfinder's own attributes. Worth confirming which widget the account supports (scoping question #7).</div>
+  </div>
+</section>
+
+<!-- ============ IMPACT ============ -->
+<section class="impact">
+  <div class="wrap">
+    <span class="eyebrow">Five years of work</span>
+    <h2 style="color:#fff;margin-top:.55rem">Small rescue. Stubbornly good numbers.</h2>
+    <div class="stats">
+      <div class="stat"><b>396</b><span>animals helped since 2021</span></div>
+      <div class="stat"><b>140+</b><span>community cats spayed or neutered</span></div>
+      <div class="stat"><b>62</b><span>active foster homes and volunteers</span></div>
+      <div class="stat"><b>91&cent;</b><span>of every dollar goes to animal care</span></div>
+    </div>
+    <div style="margin-top:2.2rem">
+      <a class="btn btn-light" href="#about">Read our story</a>
+    </div>
+    <div class="note"><b>Needs confirming:</b> every number here is a placeholder. These four stats are the most persuasive thing on the page for a first-time donor, so they're worth getting exactly right — and worth keeping current after launch (they'll be an editable block, not hard-coded).</div>
+  </div>
+</section>
+
+<!-- ============ WILDLIFE / COMMUNITY CATS ============ -->
+<section id="resources">
+  <div class="wrap">
+    <div class="split">
+      <div class="photo photo--green has-img">
+        <img src="https://dbw3zep4prcju.cloudfront.net/animal/f29ff02c-1204-4498-a7dc-d918a282a70f/image/4b3f851a-ca95-4ee9-bef5-78095a405029.jpg" alt="Sailor and Reign, two bonded kittens" loading="lazy" style="object-position:center 30%">
+      </div>
+      <div>
+        <span class="eyebrow">Beyond adoption</span>
+        <h2 style="margin:.55rem 0 .9rem">We help the animals nobody else shows up for.</h2>
+        <p class="lede">Found an injured hawk? A litter under your porch? A dog with no collar wandering Hillhurst? Most of what we do never involves an adoption at all — and you don't have to be a foster or a donor to ask us for help.</p>
+        <div class="chips">
+          <a class="chip" href="#">Lost &amp; found animals</a>
+          <a class="chip" href="#">TNR &amp; community cats</a>
+          <a class="chip" href="#">Wildlife resources</a>
+          <a class="chip" href="#">Low-cost vet care</a>
+          <a class="chip" href="#">Other rescues</a>
+        </div>
+      </div>
+    </div>
+    <div class="note"><b>Why this exists on the homepage:</b> the current site buries the wildlife and TNR work, which is a large share of what LFAR actually does. This section gives it a front-door and doubles as the entry point to the whole Resources tree.</div>
+  </div>
+</section>
+
+<!-- ============ NEWS / HAPPY TAILS ============ -->
+<section id="news" style="background:var(--surface);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:2rem;flex-wrap:wrap">
+      <div>
+        <span class="eyebrow">From the rescue</span>
+        <h2>News &amp; happy tails</h2>
+      </div>
+      <a class="btn btn-outline btn-sm" href="#">All updates</a>
+    </div>
+
+    <div class="news">
+      <article class="post">
+        <div class="photo has-img"><img src="https://dbw3zep4prcju.cloudfront.net/animal/c73d1a0c-8d17-4928-9ec4-f254e76da214/image/3e74d4e8-8269-43b1-9d3f-58d95839e228.jpg" alt="Crystal, a young shorthair cat" loading="lazy" style="object-position:center 30%"></div>
+        <span class="post-cat">Happy Tails</span>
+        <h3>Ruby's first year on the couch</h3>
+        <p>She came to us in February with a broken leg and a deep distrust of people. Her adopter sent us this.</p>
+        <span class="post-date">August 18, 2026</span>
+      </article>
+
+      <article class="post">
+        <div class="photo has-img"><img src="https://dbw3zep4prcju.cloudfront.net/animal/93578230-ceaf-40ca-84fb-6e0a16b253a8/image/9f786a4a-e978-4105-b1c4-e69735aecee1.jpg" alt="River, a young shorthair cat" loading="lazy" style="object-position:center 25%"></div>
+        <span class="post-cat">Events</span>
+        <h3>Fifth anniversary block party &mdash; October 4</h3>
+        <p>Five years, one street, and a lot of dogs. Join us on Rowena for our anniversary celebration.</p>
+        <span class="post-date">August 11, 2026</span>
+      </article>
+
+      <article class="post">
+        <div class="veil">
+          <div class="photo has-img"><img src="https://dbw3zep4prcju.cloudfront.net/animal/1a8ebd99-b06f-4f1c-9973-bcc4534d9c2b/image/3571710b-1690-43c2-bffe-88906c33182b.jpg" alt="Rescue update photograph" loading="lazy" style="object-position:center 30%"></div>
+          <div class="veil-msg">
+            <b>Sensitive image</b>
+            <span>This post shows an animal's condition at intake.</span>
+            <span style="text-decoration:underline">Tap to view</span>
+          </div>
+        </div>
+        <span class="post-cat">Rescue Updates</span>
+        <h3>The Franklin Avenue rescue: what happened next</h3>
+        <p>Seven animals, one very long weekend, and an update on where each of them is now.</p>
+        <span class="post-date">August 2, 2026</span>
+      </article>
+    </div>
+
+    <div class="note"><b>Sensitive imagery (third card):</b> this is the click-to-reveal treatment for intake and rescue photos. The editor ticks one box on the post; the image is blurred with a short reason until the reader chooses to see it. It works the same way on the post itself. Worth Melody's reaction — some rescues want the hard photo visible, because it's what moves people to donate.</div>
+  </div>
+</section>
+
+<!-- ============ DONATE + NEWSLETTER ============ -->
+<section class="cta-band" id="donate">
+  <div class="wrap cta-grid">
+    <div>
+      <span class="eyebrow">Stay close to the work</span>
+      <h2 style="margin:.55rem 0 .8rem">A short email, once a month.</h2>
+      <p class="lede">Adoptable animals, urgent foster needs, and the occasional happy ending. No fundraising avalanche.</p>
+      <form class="signup" onsubmit="return false">
+        <input type="email" placeholder="you@email.com" aria-label="Email address">
+        <button class="btn btn-primary" type="submit">Sign up</button>
+      </form>
+      <p style="font-size:.86rem;color:var(--ink-soft);margin-top:.8rem">Mailchimp embed &middot; unsubscribe anytime</p>
+    </div>
+
+    <div class="donate-card">
+      <h3 style="font-size:1.5rem">Give to the vet fund</h3>
+      <p style="color:var(--ink-soft);margin-top:.5rem">$45 covers a spay. $150 covers a broken leg's first x-ray.</p>
+      <div class="amounts">
+        <button class="amt" type="button">$25</button>
+        <button class="amt is-on" type="button">$45</button>
+        <button class="amt" type="button">$150</button>
+        <button class="amt" type="button">Other</button>
+      </div>
+      <a class="btn btn-primary" style="width:100%" href="#">Donate now</a>
+      <p style="font-size:.86rem;color:var(--ink-soft);margin-top:.9rem;text-align:center">Donorbox embed &middot; LFAR is a registered 501(c)(3)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#" style="margin-bottom:1rem">
+          <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="23" fill="#FBF7F1"/>
+            <ellipse cx="17" cy="18.5" rx="3.6" ry="5" fill="#24201C"/>
+            <ellipse cx="26.5" cy="15.5" rx="3.4" ry="4.8" fill="#24201C"/>
+            <ellipse cx="34" cy="21" rx="3.3" ry="4.4" fill="#24201C"/>
+            <path d="M25 24c4.6 0 9 3.6 9 7.6 0 3.4-3.1 5-6.3 5-1.6 0-2 .6-3.2.6s-1.7-.6-3.3-.6c-3.2 0-6.2-1.6-6.2-5 0-4 4.4-7.6 10-7.6z" fill="#24201C"/>
+          </svg>
+          <span class="brand-txt" style="color:#fff">
+            <b>Los Feliz Animal Rescue</b>
+            <small style="color:rgba(251,247,241,.6)">Est. 2021 &middot; Los Angeles</small>
+          </span>
+        </a>
+        <p style="max-width:34ch">A volunteer-run rescue serving Los Feliz, Silver Lake, and the surrounding neighborhoods.</p>
+        <p style="margin-top:1rem">hello@losfelizanimalrescue.org</p>
+      </div>
+      <div>
+        <h4>Adopt</h4>
+        <ul>
+          <li><a href="#">Adoptable animals</a></li>
+          <li><a href="#">Adoption process</a></li>
+          <li><a href="#">Apply to adopt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="#">Foster</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Wish list</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Lost &amp; found</a></li>
+          <li><a href="#">TNR &amp; community cats</a></li>
+          <li><a href="#">Wildlife</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Los Feliz Animal Rescue &middot; 501(c)(3) &middot; EIN 00-0000000</span>
+      <span>Privacy policy &middot; Accessibility</span>
+    </div>
+  </div>
+</footer>
+
+<button class="notes-toggle" id="notesBtn">Show design notes</button>
+
+<script>
+  var body = document.body, btn = document.getElementById('notesBtn');
+  btn.addEventListener('click', function(){
+    body.classList.toggle('notes-on');
+    btn.textContent = body.classList.contains('notes-on') ? 'Hide design notes' : 'Show design notes';
+  });
+  // Donation amount selector (mockup only)
+  document.querySelectorAll('.amt').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.amt').forEach(function(x){x.classList.remove('is-on')});
+      b.classList.add('is-on');
+    });
+  });
+  // Sensitive-image reveal demo
+  document.querySelectorAll('.veil').forEach(function(v){
+    v.addEventListener('click', function(){
+      v.querySelector('.photo').style.filter = 'none';
+      v.querySelector('.veil-msg').style.display = 'none';
+    });
+  });
+</script>
+</body>
+</html>

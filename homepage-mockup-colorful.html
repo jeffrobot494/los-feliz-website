@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los Feliz Animal Rescue — Colorful Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700;800&family=Caveat+Brush&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   LOS FELIZ ANIMAL RESCUE — "Colorful" direction
+   Inspired by Austin Pets Alive!: saturated color-blocked
+   bands, circular photo cutouts, chunky rounded type.
+   Every color and font is a token below.
+   ========================================================== */
+:root{
+  --font-display:"Fredoka", "Trebuchet MS", sans-serif;
+  --font-body:"Nunito Sans", system-ui, -apple-system, sans-serif;
+  --font-brush:"Caveat Brush", "Comic Sans MS", cursive;
+
+  --lime:#8CC63E;
+  --lime-dk:#4E7A1C;
+  --lime-soft:#EAF5D8;
+  --orange:#E9591F;
+  --orange-btn:#D2480F;
+  --orange-soft:#FDEBE2;
+  --sky:#0E93C7;
+  --sky-dk:#0A7099;
+  --sky-soft:#E1F2FA;
+  --navy:#123A6D;
+  --navy-dk:#0C2A50;
+  --cream:#FBF7F0;
+  --ink:#17273A;
+  --ink-soft:#4E6076;
+  --line:#DDE4EC;
+
+  --r:16px; --r-lg:26px;
+  --maxw:1180px;
+  --pattern:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27160%27%20height%3D%27160%27%20viewBox%3D%270%200%20160%20160%27%3E%3Cg%20fill%3D%27%23123A6D%27%20fill-opacity%3D%270.045%27%3E%3Cellipse%20cx%3D%2726%27%20cy%3D%2726%27%20rx%3D%275%27%20ry%3D%277%27%2F%3E%3Cellipse%20cx%3D%2740%27%20cy%3D%2719%27%20rx%3D%275%27%20ry%3D%277%27%2F%3E%3Cellipse%20cx%3D%2754%27%20cy%3D%2726%27%20rx%3D%275%27%20ry%3D%277%27%2F%3E%3Cpath%20d%3D%27M40%2036c7.5%200%2014%205.4%2014%2011.5%200%205.2-4.8%207.3-9.6%207.3-2.4%200-3%20.9-4.9%20.9s-2.5-.9-4.9-.9C29.8%2054.8%2025%2052.7%2025%2047.5%2025%2041.4%2032%2036%2040%2036z%27%2F%3E%3Crect%20x%3D%2798%27%20y%3D%27104%27%20width%3D%2734%27%20height%3D%2711%27%20rx%3D%275.5%27%2F%3E%3Ccircle%20cx%3D%27100%27%20cy%3D%27102%27%20r%3D%276.5%27%2F%3E%3Ccircle%20cx%3D%27100%27%20cy%3D%27117%27%20r%3D%276.5%27%2F%3E%3Ccircle%20cx%3D%27130%27%20cy%3D%27102%27%20r%3D%276.5%27%2F%3E%3Ccircle%20cx%3D%27130%27%20cy%3D%27117%27%20r%3D%276.5%27%2F%3E%3Ccircle%20cx%3D%27118%27%20cy%3D%2736%27%20r%3D%2715%27%20fill%3D%27none%27%20stroke%3D%27%23123A6D%27%20stroke-opacity%3D%270.05%27%20stroke-width%3D%274%27%2F%3E%3Cpath%20d%3D%27M106%2028c7%204%2010%206%2010%208s-3%204-10%208%27%20fill%3D%27none%27%20stroke%3D%27%23123A6D%27%20stroke-opacity%3D%270.05%27%20stroke-width%3D%273%27%2F%3E%3Cellipse%20cx%3D%2730%27%20cy%3D%27128%27%20rx%3D%274%27%20ry%3D%275.5%27%2F%3E%3Cellipse%20cx%3D%2741%27%20cy%3D%27122%27%20rx%3D%274%27%20ry%3D%275.5%27%2F%3E%3Cellipse%20cx%3D%2752%27%20cy%3D%27128%27%20rx%3D%274%27%20ry%3D%275.5%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--cream); color:var(--ink);
+  font-family:var(--font-body); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3,h4{font-family:var(--font-display); font-weight:600; line-height:1.1; margin:0; letter-spacing:-.005em}
+h1{font-size:clamp(2.5rem,5vw,3.9rem); font-weight:700}
+h2{font-size:clamp(1.9rem,3.3vw,2.8rem); font-weight:700}
+h3{font-size:1.4rem}
+.wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:24px}
+section{padding:76px 0; position:relative}
+.brush{font-family:var(--font-brush); font-weight:400; letter-spacing:.01em}
+.eyebrow{font-size:.8rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase}
+.lede{font-size:1.14rem; max-width:60ch}
+
+/* patterned backgrounds — faint paws and bones, APA-style */
+.patterned::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:var(--pattern); background-size:160px 160px;
+}
+.patterned > *{position:relative; z-index:1}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  font-family:var(--font-display); font-weight:600; font-size:1.02rem;
+  padding:.8rem 1.6rem; border-radius:999px; text-decoration:none; cursor:pointer;
+  border:2.5px solid transparent; transition:.16s ease; white-space:nowrap;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-orange{background:var(--orange-btn); color:#fff}
+.btn-orange:hover{background:#B93D0B}
+.btn-sky{background:var(--sky); color:#fff}
+.btn-lime{background:var(--lime); color:var(--navy)}
+.btn-navy{background:var(--navy); color:#fff}
+.btn-ghost-w{border-color:#fff; color:#fff}
+.btn-ghost-w:hover{background:#fff; color:var(--navy)}
+.btn-ghost-n{border-color:var(--navy); color:var(--navy)}
+.btn-ghost-n:hover{background:var(--navy); color:#fff}
+.btn-sm{padding:.55rem 1.15rem; font-size:.94rem}
+
+/* ---------- Circular photo cutouts ---------- */
+.circ{border-radius:50%; overflow:hidden; aspect-ratio:1/1; position:relative; background:var(--lime-soft)}
+.circ img{width:100%; height:100%; object-fit:cover}
+.disc{border-radius:50%; display:grid; place-items:center; position:relative}
+
+/* ---------- Utility bar + header ---------- */
+.utility{background:var(--navy); color:#C9DCF2; font-size:.85rem; font-weight:600}
+.utility .wrap{display:flex; gap:1.4rem; justify-content:flex-end; align-items:center; height:38px; flex-wrap:wrap}
+.utility a{text-decoration:none}
+.utility a:hover{color:#fff}
+
+header.site{position:sticky; top:0; z-index:50; background:#fff; box-shadow:0 2px 0 rgba(18,58,109,.08)}
+.nav{display:flex; align-items:center; gap:1.4rem; height:84px}
+.brand{display:flex; align-items:center; gap:.7rem; text-decoration:none; margin-right:auto}
+.brand-mark{width:52px; height:52px; flex:none}
+.brand-txt b{display:block; font-family:var(--font-display); font-weight:700; font-size:1.16rem; color:var(--orange); line-height:1.05}
+.brand-txt small{display:block; font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lime-dk)}
+.nav-links{display:flex; gap:1.5rem; align-items:center}
+.nav-links a{
+  text-decoration:none; font-family:var(--font-display); font-weight:500; font-size:1.05rem;
+  color:var(--orange-btn); padding:.3rem 0; border-bottom:3px solid transparent;
+}
+.nav-links a:hover{border-color:var(--lime)}
+.hamburger{display:none; background:none; border:0; padding:.5rem; cursor:pointer}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--navy); color:#fff; padding:64px 0 72px; overflow:hidden}
+.hero .wrap{display:grid; grid-template-columns:1.02fr .98fr; gap:3rem; align-items:center}
+.hero h1{color:#fff}
+.hero h1 em{font-style:normal; color:var(--lime)}
+.hero p{color:#D5E3F5; font-size:1.16rem; margin:1.1rem 0 0; max-width:44ch}
+.hero-cta{display:flex; gap:.8rem; margin-top:1.9rem; flex-wrap:wrap}
+.hero-kicker{
+  display:inline-block; background:var(--lime); color:var(--navy);
+  padding:.34rem 1rem; border-radius:999px; margin-bottom:1.1rem;
+}
+.hero-art{position:relative; justify-self:center; width:min(100%,460px)}
+.hero-disc{background:var(--lime); border-radius:50%; aspect-ratio:1/1; padding:22px}
+.hero-disc .circ{background:#fff}
+.starburst{position:absolute; right:-10px; top:-6px; width:138px; height:138px; transform:rotate(-12deg); filter:drop-shadow(0 6px 14px rgba(12,42,80,.35))}
+.hero-name{
+  position:absolute; left:50%; transform:translateX(-50%); bottom:-14px;
+  background:#fff; color:var(--navy); font-family:var(--font-display); font-weight:600;
+  padding:.4rem 1.1rem; border-radius:999px; font-size:.95rem; white-space:nowrap;
+  box-shadow:0 6px 18px rgba(12,42,80,.28);
+}
+
+/* ---------- Donate strip ---------- */
+.give{background:var(--lime); padding:26px 0}
+.give .wrap{display:flex; align-items:center; gap:1.6rem; flex-wrap:wrap; justify-content:center}
+.give h2{font-size:clamp(1.3rem,2.2vw,1.85rem); color:var(--navy); margin-right:auto}
+.give-opts{display:flex; align-items:center; gap:0}
+.give-opts button{
+  background:none; border:0; font:inherit; font-family:var(--font-display); font-weight:600;
+  color:var(--navy); padding:.4rem 1rem; cursor:pointer; border-right:2px solid rgba(18,58,109,.28);
+  white-space:nowrap;
+  font-size:1.02rem;
+}
+.give-opts button:last-child{border-right:0}
+.give-opts button.on{background:var(--navy); color:#fff; border-radius:999px; border-right-color:transparent}
+.give-amt{display:flex; align-items:stretch; border-radius:10px; overflow:hidden}
+.give-amt span{background:#fff; display:grid; place-items:center; padding:0 .6rem 0 .9rem; font-weight:800; color:var(--ink-soft)}
+.give-amt input{border:0; padding:.7rem .4rem; width:92px; font:inherit; font-size:1.15rem; font-weight:700; color:var(--ink)}
+.give-amt button{background:var(--sky); border:0; color:#fff; padding:0 1.05rem; cursor:pointer; font-size:1.3rem}
+
+/* ---------- Pathways ---------- */
+.paths{display:grid; grid-template-columns:repeat(3,1fr); gap:2.4rem; margin-top:2.6rem}
+.path-icon{width:96px; height:96px; margin-bottom:1.1rem}
+.path h3{margin-bottom:.45rem}
+.path p{color:var(--ink-soft); font-size:1rem}
+.path a.more{
+  display:inline-block; margin-top:.9rem; font-family:var(--font-display); font-weight:600;
+  color:var(--sky-dk); text-decoration:none; border-bottom:2px solid var(--sky-dk); padding-bottom:1px;
+}
+.path a.more:hover{color:var(--orange-btn); border-color:var(--orange-btn)}
+
+/* ---------- Featured pets ---------- */
+.pets{background:#F2EFE8}
+.pets-head{text-align:center; margin-bottom:2.4rem}
+.pets-head .brush{color:var(--orange); font-size:clamp(2.6rem,4.6vw,3.6rem); line-height:1}
+.pets-head p{color:var(--ink-soft); margin-top:.5rem}
+.petgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem}
+.pet{background:#fff; border-radius:var(--r); overflow:hidden; display:flex; flex-direction:column;
+     box-shadow:0 2px 0 rgba(18,58,109,.10)}
+.pet .shot{aspect-ratio:1/1; position:relative; overflow:hidden}
+.pet .shot img{width:100%; height:100%; object-fit:cover}
+.pet-body{padding:1.05rem 1.15rem 1.2rem; flex:1}
+.pet-body h3{color:var(--orange); font-size:1.5rem}
+.pet-body p{font-size:.95rem; color:var(--ink-soft); margin-top:.2rem}
+.pet-pill{
+  display:inline-block; margin-top:.7rem; background:var(--lime-soft); color:var(--lime-dk);
+  font-weight:800; font-size:.74rem; letter-spacing:.08em; text-transform:uppercase;
+  padding:.28rem .7rem; border-radius:999px;
+}
+.pet .learn{
+  display:block; background:var(--sky); color:#fff; text-align:center; text-decoration:none;
+  font-family:var(--font-display); font-weight:600; padding:.75rem;
+}
+.pet .learn:hover{background:var(--navy)}
+.pets-foot{text-align:center; margin-top:2.2rem}
+
+/* ---------- Impact ---------- */
+.impact{background:var(--orange); color:#fff}
+.impact h2{color:#fff}
+.impact .eyebrow{color:#fff}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1.6rem; margin-top:2.4rem}
+.stat b{display:block; font-family:var(--font-display); font-weight:700; font-size:clamp(2.6rem,4.6vw,3.6rem); line-height:1; color:#fff}
+.stat span{display:block; margin-top:.5rem; font-size:.98rem; color:rgba(255,255,255,.94)}
+.stat i{display:block; width:44px; height:5px; background:var(--lime); border-radius:99px; margin-bottom:.9rem}
+
+/* ---------- Beyond adoption ---------- */
+.beyond{background:var(--sky); color:#fff}
+.beyond .wrap{display:grid; grid-template-columns:.9fr 1.1fr; gap:3rem; align-items:center}
+.beyond h2{color:#fff}
+.beyond p{color:#fff; margin-top:1rem}
+.beyond .disc-wrap{background:rgba(255,255,255,.24); border-radius:50%; padding:18px; width:min(100%,360px); justify-self:center}
+.chips{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.5rem}
+.chip{
+  background:#fff; color:var(--sky-dk); text-decoration:none; font-family:var(--font-display);
+  font-weight:600; padding:.5rem 1.05rem; border-radius:999px; font-size:.98rem;
+}
+.chip:hover{background:var(--navy); color:#fff}
+
+/* ---------- News ---------- */
+.news-head{display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap; margin-bottom:2.2rem}
+.newsgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem}
+.post{background:#fff; border-radius:var(--r); overflow:hidden; box-shadow:0 2px 0 rgba(18,58,109,.10)}
+.post .shot{aspect-ratio:3/2; overflow:hidden; position:relative}
+.post .shot img{width:100%; height:100%; object-fit:cover}
+.post-body{padding:1.1rem 1.2rem 1.4rem}
+.cat{
+  display:inline-block; font-size:.72rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+  padding:.25rem .68rem; border-radius:999px; margin-bottom:.6rem;
+}
+.cat-lime{background:var(--lime); color:var(--navy)}
+.cat-sky{background:var(--sky-soft); color:var(--sky-dk)}
+.cat-orange{background:var(--orange-soft); color:var(--orange-btn)}
+.post h3{font-size:1.24rem; margin-bottom:.4rem}
+.post p{font-size:.96rem; color:var(--ink-soft)}
+.post time{display:block; margin-top:.8rem; font-size:.86rem; color:#8494A6; font-weight:600}
+.veil{position:relative}
+.veil .shot img{filter:blur(9px)}
+.veil-msg{
+  position:absolute; inset:0; z-index:2; display:grid; place-content:center; gap:.4rem; text-align:center;
+  background:rgba(18,58,109,.55); color:#fff; padding:1rem; font-size:.92rem; cursor:pointer;
+}
+.veil-msg b{font-family:var(--font-display); font-size:1.02rem}
+.veil-msg u{font-size:.88rem}
+
+/* ---------- Signup + donate ---------- */
+.wrapup{background:var(--navy); color:#fff}
+.wrapup .wrap{display:grid; grid-template-columns:1.05fr .95fr; gap:3rem; align-items:center}
+.wrapup h2{color:#fff}
+.wrapup .eyebrow{color:var(--lime)}
+.wrapup p{color:#D5E3F5; margin-top:.9rem}
+.signup{display:flex; gap:.6rem; margin-top:1.4rem; flex-wrap:wrap}
+.signup input{
+  flex:1; min-width:220px; border:0; border-radius:999px; padding:.85rem 1.2rem; font:inherit; font-size:1rem;
+}
+.donatecard{background:#fff; color:var(--ink); border-radius:var(--r-lg); padding:2rem; text-align:center}
+.donatecard h3{color:var(--orange); font-size:1.7rem}
+.donatecard p{color:var(--ink-soft); margin-top:.5rem; font-size:.98rem}
+.amounts{display:flex; gap:.55rem; margin:1.2rem 0}
+.amt{
+  flex:1; border:2.5px solid var(--line); background:#fff; border-radius:12px; padding:.7rem .3rem;
+  font:inherit; font-family:var(--font-display); font-weight:600; cursor:pointer; color:var(--ink);
+}
+.amt.on{border-color:var(--orange); background:var(--orange-soft); color:var(--orange-btn)}
+
+/* ---------- Footer ---------- */
+footer.site{background:var(--navy-dk); color:#B7CBE4; padding:64px 0 30px; font-size:.96rem}
+.foot-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:2.5rem}
+footer.site h4{font-family:var(--font-display); font-size:1.05rem; color:var(--lime); margin:0 0 .9rem}
+footer.site ul{list-style:none; margin:0; padding:0; display:grid; gap:.5rem}
+footer.site a{text-decoration:none}
+footer.site a:hover{color:#fff}
+.foot-bottom{
+  margin-top:3rem; padding-top:1.4rem; border-top:1px solid rgba(183,203,228,.22);
+  display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.86rem; color:#8FA9C8;
+}
+
+/* ---------- Alert band ---------- */
+.alertbar{background:var(--orange); color:#fff; font-weight:600; padding:.7rem 0}
+.alertbar .wrap{display:flex; gap:.8rem; justify-content:center; align-items:center; flex-wrap:wrap; text-align:center}
+.alertbar a{color:#fff; text-underline-offset:3px}
+
+/* ---------- Review notes ---------- */
+.note{
+  display:none; margin-top:1.3rem; background:#FFFBEB; border:2px dashed #E3B44C; color:#6B531E;
+  border-radius:12px; padding:.85rem 1rem; font-size:.88rem; line-height:1.55;
+}
+.note b{color:#4A3812}
+body.notes-on .note{display:block}
+.notes-toggle{
+  position:fixed; right:18px; bottom:18px; z-index:80; background:var(--navy); color:#fff; border:0;
+  border-radius:999px; padding:.8rem 1.2rem; font:inherit; font-family:var(--font-display); font-weight:600;
+  cursor:pointer; box-shadow:0 10px 26px rgba(12,42,80,.35);
+}
+.flag{background:var(--lime); color:var(--navy); text-align:center; font-size:.86rem; font-weight:700; padding:.55rem 1rem}
+
+/* ---------- Responsive ---------- */
+@media (max-width:960px){
+  .hero .wrap,.beyond .wrap,.wrapup .wrap{grid-template-columns:1fr; gap:2.2rem}
+  .hero-art{order:-1; width:min(100%,360px)}
+  .paths,.petgrid,.newsgrid,.stats{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+  .hamburger{display:block; order:3}
+  .give h2{margin-right:0; width:100%; text-align:center}
+  section{padding:56px 0}
+}
+@media (max-width:600px){
+  .paths,.petgrid,.newsgrid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr); gap:1.8rem}
+  .foot-grid{grid-template-columns:1fr}
+  .nav{height:70px; gap:.7rem}
+  .brand-mark{width:42px; height:42px}
+  .brand-txt b{font-size:1rem}
+  .brand-txt small{display:none}
+  h1{font-size:2.15rem}
+  h2{font-size:1.72rem}
+  .starburst{width:96px; height:96px}
+  .utility{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="flag">Design mockup &mdash; "Colorful" direction, inspired by Austin Pets Alive! &middot; Photos are LFAR's real animals, loaded live from Petfinder</div>
+
+<!-- ============ UTILITY BAR ============ -->
+<div class="utility">
+  <div class="wrap">
+    <a href="#">Los Feliz &middot; Silver Lake &middot; Atwater</a>
+    <a href="#">hello@losfelizanimalrescue.org</a>
+    <a href="#">Volunteer Login</a>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" fill="#8CC63E"/>
+        <ellipse cx="17" cy="18.5" rx="3.6" ry="5" fill="#E9591F"/>
+        <ellipse cx="26.5" cy="15.5" rx="3.4" ry="4.8" fill="#E9591F"/>
+        <ellipse cx="34" cy="21" rx="3.3" ry="4.4" fill="#E9591F"/>
+        <path d="M25 24c4.6 0 9 3.6 9 7.6 0 3.4-3.1 5-6.3 5-1.6 0-2 .6-3.2.6s-1.7-.6-3.3-.6c-3.2 0-6.2-1.6-6.2-5 0-4 4.4-7.6 10-7.6z" fill="#E9591F"/>
+      </svg>
+      <span class="brand-txt">
+        <b>los feliz animal rescue</b>
+        <small>Helping neighbors help animals</small>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#adopt">Adopt</a>
+      <a href="#involved">Foster</a>
+      <a href="#involved">Volunteer</a>
+      <a href="#resources">Pet Help</a>
+      <a href="#news">News</a>
+    </nav>
+    <a class="btn btn-sky btn-sm" href="#give">Give Now</a>
+    <button class="hamburger" aria-label="Open menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E9591F" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ URGENT ALERT ============ -->
+<div class="alertbar">
+  <div class="wrap">
+    <span><strong>Urgent:</strong> emergency foster homes needed for five kittens found in Griffith Park.</span>
+    <a href="#">Can you help? &rarr;</a>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <span class="hero-kicker eyebrow">Five years in the neighborhood</span>
+      <h1>Helping <em>neighbors</em> help animals since 2021.</h1>
+      <p>Adopt, foster, volunteer, or just ask us for help &mdash; we're the volunteer-run rescue on your block, and we've helped nearly 400 animals so far.</p>
+      <div class="hero-cta">
+        <a class="btn btn-orange" href="#adopt">Meet our pets</a>
+        <a class="btn btn-ghost-w" href="#give">Give now</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="hero-disc">
+        <div class="circ">
+          <img src="https://dbw3zep4prcju.cloudfront.net/animal/6b0118c3-b5b9-4f9c-9a49-201c5d068b18/image/d4c4ec53-ebeb-42c1-9bc9-9345b03c1763.jpg" alt="Snoopy, an adult pit bull terrier and cane corso mix available for adoption" style="object-position:center 18%">
+        </div>
+      </div>
+      <svg class="starburst" viewBox="0 0 120 120" aria-hidden="true">
+        <path fill="#E9591F" d="M60 2l6.6 9.3 10.6-5.1 3.2 11.2 11.6-.6-.6 11.6 11.2 3.2-5.1 10.6L106.8 48l-8.6 7.8 7.5 8.9-10.2 5.6 4.5 10.7-11.3 1.9.9 11.5-11.4-1.4-2.9 11.2-10.3-5-6.2 9.8-8-8.3-8.9 7.4-5.2-10.3-11 3.6-1.7-11.4-11.5 1.2 2-11.3-11-3.4 5.4-10.2L9.1 48l8.9-7.4-7.1-9.1 10.4-5.2L17.1 15.5l11.4-1.5-.5-11.6 11.3 2.7L43.6 4.2l7.7 8.7z"/>
+        <text x="60" y="52" text-anchor="middle" fill="#fff" font-family="Fredoka, sans-serif" font-weight="700" font-size="19">5 YEARS</text>
+        <text x="60" y="72" text-anchor="middle" fill="#fff" font-family="Fredoka, sans-serif" font-weight="700" font-size="15">OF RESCUE</text>
+      </svg>
+      <span class="hero-name">Snoopy &middot; adoptable now</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GIVE STRIP ============ -->
+<div class="give" id="give">
+  <div class="wrap">
+    <h2>Donate to keep Los Feliz animals safe</h2>
+    <div class="give-opts">
+      <button class="on" type="button">Give Once</button>
+      <button type="button">Give Monthly</button>
+      <button type="button">Give in Tribute</button>
+    </div>
+    <form class="give-amt" onsubmit="return false">
+      <span>$</span>
+      <input type="text" value="50" aria-label="Donation amount">
+      <button type="submit" aria-label="Continue">&rsaquo;</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ PATHWAYS ============ -->
+<section class="patterned" id="involved">
+  <div class="wrap">
+    <h2 style="max-width:22ch">Los Feliz Animal Rescue is your neighbors, showing up for animals nobody else does.</h2>
+    <div class="note"><b>Direct borrow from APA!:</b> a bold statement line followed by three illustrated pathways. Their icons are a collar, a bone, and a tennis ball &mdash; simple objects rather than interface glyphs, which is a big part of why the page feels warm instead of corporate. These are stand-ins; real ones should be drawn once as a small set LFAR owns.</div>
+
+    <div class="paths">
+      <article class="path">
+        <svg class="path-icon" viewBox="0 0 96 96" aria-hidden="true">
+          <ellipse cx="48" cy="52" rx="34" ry="30" fill="none" stroke="#8CC63E" stroke-width="8"/>
+          <circle cx="48" cy="80" r="9" fill="#E9591F"/>
+          <rect x="44" y="66" width="8" height="12" rx="4" fill="#E9591F"/>
+        </svg>
+        <h3>Adopt</h3>
+        <p>Meet the dogs and cats in our care right now, and see exactly what the adoption process involves before you apply.</p>
+        <a class="more" href="#adopt">Learn more</a>
+      </article>
+
+      <article class="path">
+        <svg class="path-icon" viewBox="0 0 96 96" aria-hidden="true">
+          <rect x="24" y="41" width="48" height="14" rx="7" fill="#E9591F"/>
+          <circle cx="26" cy="38" r="11" fill="#E9591F"/><circle cx="26" cy="58" r="11" fill="#E9591F"/>
+          <circle cx="70" cy="38" r="11" fill="#E9591F"/><circle cx="70" cy="58" r="11" fill="#E9591F"/>
+        </svg>
+        <h3>Foster</h3>
+        <p>The single most useful thing you can do for us. We cover supplies and veterinary care &mdash; you supply the couch.</p>
+        <a class="more" href="#involved">Learn more</a>
+      </article>
+
+      <article class="path">
+        <svg class="path-icon" viewBox="0 0 96 96" aria-hidden="true">
+          <circle cx="48" cy="48" r="32" fill="#8CC63E"/>
+          <path d="M20 30c14 6 20 12 20 18s-6 12-20 18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+          <path d="M76 30c-14 6-20 12-20 18s6 12 20 18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <h3>Volunteer</h3>
+        <p>Transport, adoption events, TNR nights, photography, and the unglamorous work that keeps a rescue running.</p>
+        <a class="more" href="#involved">Learn more</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED PETS ============ -->
+<section class="pets patterned" id="adopt">
+  <div class="wrap">
+    <div class="pets-head">
+      <div class="brush">Meet Our Pets</div>
+      <p>Pulled straight from our Petfinder listings &mdash; always current, never hand-typed.</p>
+    </div>
+
+    <div class="petgrid">
+      <article class="pet">
+        <div class="shot"><img src="https://dbw3zep4prcju.cloudfront.net/animal/daf3fdc1-3318-4b14-90e6-ab6834bb813b/image/76f87215-cb62-4bf2-a48d-17d2b348c2d9.jpg" alt="Dusty, a young shorthair cat" style="object-position:center 28%"></div>
+        <div class="pet-body">
+          <h3>Dusty</h3>
+          <p>American Shorthair &middot; Young &middot; Male</p>
+          <span class="pet-pill">Available now</span>
+        </div>
+        <a class="learn" href="#">Learn More</a>
+      </article>
+
+      <article class="pet">
+        <div class="shot"><img src="https://dbw3zep4prcju.cloudfront.net/animal/1a8ebd99-b06f-4f1c-9973-bcc4534d9c2b/image/3571710b-1690-43c2-bffe-88906c33182b.jpg" alt="Misty, a young domestic shorthair cat" style="object-position:center 32%"></div>
+        <div class="pet-body">
+          <h3>Misty</h3>
+          <p>Domestic Shorthair &middot; Young &middot; Female</p>
+          <span class="pet-pill">Available now</span>
+        </div>
+        <a class="learn" href="#">Learn More</a>
+      </article>
+
+      <article class="pet">
+        <div class="shot"><img src="https://dbw3zep4prcju.cloudfront.net/animal/542c6b79-b61e-4dc7-b94e-7883a8f5b25d/image/a574a028-6e77-4338-9b4e-e52a676ddb3b.jpg" alt="Squid, a young shorthair cat" style="object-position:center 30%"></div>
+        <div class="pet-body">
+          <h3>Squid</h3>
+          <p>American Shorthair &middot; Young &middot; Female</p>
+          <span class="pet-pill">Available now</span>
+        </div>
+        <a class="learn" href="#">Learn More</a>
+      </article>
+
+      <article class="pet">
+        <div class="shot"><img src="https://dbw3zep4prcju.cloudfront.net/animal/8cee92b8-51c3-42b8-a869-f069720cf34b/image/6c50753f-4c3f-4df2-8e07-7315d90c462b.jpg" alt="Freddie, a young domestic shorthair cat" style="object-position:center 26%"></div>
+        <div class="pet-body">
+          <h3>Freddie</h3>
+          <p>Domestic Shorthair &middot; Young &middot; Male</p>
+          <span class="pet-pill">Available now</span>
+        </div>
+        <a class="learn" href="#">Learn More</a>
+      </article>
+    </div>
+
+    <div class="pets-foot">
+      <a class="btn btn-ghost-n" href="#">View all adoptable animals</a>
+    </div>
+    <div class="note"><b>Card anatomy copied from APA!:</b> photo, name in the brand's accent color, two lines of detail, then a full-width colored bar as the click target. The colored bar is doing real work &mdash; it gives every card an unmistakable action and lets the grid stay calm above it.</div>
+  </div>
+</section>
+
+<!-- ============ IMPACT ============ -->
+<section class="impact">
+  <div class="wrap">
+    <span class="eyebrow">Five years of work</span>
+    <h2 style="margin-top:.6rem">Small rescue. Stubbornly good numbers.</h2>
+    <div class="stats">
+      <div class="stat"><i></i><b>396</b><span>animals helped since 2021</span></div>
+      <div class="stat"><i></i><b>140+</b><span>community cats spayed or neutered</span></div>
+      <div class="stat"><i></i><b>62</b><span>active foster homes and volunteers</span></div>
+      <div class="stat"><i></i><b>91&cent;</b><span>of every dollar goes to animal care</span></div>
+    </div>
+    <div style="margin-top:2.2rem"><a class="btn btn-lime" href="#">Read our story</a></div>
+    <div class="note"><b>Still placeholders.</b> Every number here needs confirming before this goes anywhere near a donor.</div>
+  </div>
+</section>
+
+<!-- ============ BEYOND ADOPTION ============ -->
+<section class="beyond" id="resources">
+  <div class="wrap">
+    <div class="disc-wrap">
+      <div class="circ"><img src="https://dbw3zep4prcju.cloudfront.net/animal/f29ff02c-1204-4498-a7dc-d918a282a70f/image/4b3f851a-ca95-4ee9-bef5-78095a405029.jpg" alt="Sailor and Reign, two bonded kittens" style="object-position:center 30%"></div>
+    </div>
+    <div>
+      <span class="eyebrow" style="color:#fff">Beyond adoption</span>
+      <h2 style="margin-top:.6rem">Pet help for the whole neighborhood.</h2>
+      <p>Found an injured hawk? A litter under your porch? A dog with no collar on Hillhurst? Most of what we do never involves an adoption at all &mdash; and you don't have to be a foster or a donor to ask us for help.</p>
+      <div class="chips">
+        <a class="chip" href="#">Lost &amp; found</a>
+        <a class="chip" href="#">TNR &amp; community cats</a>
+        <a class="chip" href="#">Wildlife</a>
+        <a class="chip" href="#">Low-cost vet care</a>
+        <a class="chip" href="#">Other rescues</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWS ============ -->
+<section id="news">
+  <div class="wrap">
+    <div class="news-head">
+      <div>
+        <span class="eyebrow" style="color:var(--sky-dk)">From the rescue</span>
+        <h2 style="margin-top:.5rem">News &amp; happy tails</h2>
+      </div>
+      <a class="btn btn-ghost-n btn-sm" href="#">All updates</a>
+    </div>
+
+    <div class="newsgrid">
+      <article class="post">
+        <div class="shot"><img src="https://dbw3zep4prcju.cloudfront.net/animal/c73d1a0c-8d17-4928-9ec4-f254e76da214/image/3e74d4e8-8269-43b1-9d3f-58d95839e228.jpg" alt="Crystal, a young shorthair cat" style="object-position:center 30%"></div>
+        <div class="post-body">
+          <span class="cat cat-lime">Happy Tails</span>
+          <h3>Ruby's first year on the couch</h3>
+          <p>She came to us in February with a broken leg and a deep distrust of people. Her adopter sent us this.</p>
+          <time>August 18, 2026</time>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="shot"><img src="https://dbw3zep4prcju.cloudfront.net/animal/93578230-ceaf-40ca-84fb-6e0a16b253a8/image/9f786a4a-e978-4105-b1c4-e69735aecee1.jpg" alt="River, a young shorthair cat" style="object-position:center 25%"></div>
+        <div class="post-body">
+          <span class="cat cat-sky">Events</span>
+          <h3>Fifth anniversary block party &mdash; October 4</h3>
+          <p>Five years, one street, and a lot of dogs. Join us on Rowena for our anniversary celebration.</p>
+          <time>August 11, 2026</time>
+        </div>
+      </article>
+
+      <article class="post veil">
+        <div class="shot">
+          <img src="https://dbw3zep4prcju.cloudfront.net/animal/1a8ebd99-b06f-4f1c-9973-bcc4534d9c2b/image/3571710b-1690-43c2-bffe-88906c33182b.jpg" alt="Rescue update photograph" style="object-position:center 30%">
+          <div class="veil-msg">
+            <b>Sensitive image</b>
+            <span>This post shows an animal's condition at intake.</span>
+            <u>Tap to view</u>
+          </div>
+        </div>
+        <div class="post-body">
+          <span class="cat cat-orange">Rescue Updates</span>
+          <h3>The Franklin Avenue rescue: what happened next</h3>
+          <p>Seven animals, one very long weekend, and an update on where each of them is now.</p>
+          <time>August 2, 2026</time>
+        </div>
+      </article>
+    </div>
+    <div class="note"><b>Sensitive imagery still works here.</b> The click-to-reveal treatment carries over unchanged from the warm direction &mdash; worth checking that it still reads as careful rather than gimmicky against these brighter colors.</div>
+  </div>
+</section>
+
+<!-- ============ SIGNUP + DONATE ============ -->
+<section class="wrapup">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Stay close to the work</span>
+      <h2 style="margin-top:.6rem">A short email, once a month.</h2>
+      <p>Adoptable animals, urgent foster needs, and the occasional happy ending. No fundraising avalanche.</p>
+      <form class="signup" onsubmit="return false">
+        <input type="email" placeholder="you@email.com" aria-label="Email address">
+        <button class="btn btn-lime" type="submit">Sign up</button>
+      </form>
+      <p style="font-size:.86rem; margin-top:.9rem">Mailchimp embed &middot; unsubscribe anytime</p>
+    </div>
+
+    <div class="donatecard">
+      <h3>Give to the vet fund</h3>
+      <p>$45 covers a spay. $150 covers a broken leg's first x-ray.</p>
+      <div class="amounts">
+        <button class="amt" type="button">$25</button>
+        <button class="amt on" type="button">$45</button>
+        <button class="amt" type="button">$150</button>
+        <button class="amt" type="button">Other</button>
+      </div>
+      <a class="btn btn-orange" style="width:100%" href="#">Donate now</a>
+      <p style="font-size:.85rem; margin-top:.9rem">Donorbox embed &middot; LFAR is a registered 501(c)(3)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#" style="margin-bottom:1rem">
+          <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="23" fill="#8CC63E"/>
+            <ellipse cx="17" cy="18.5" rx="3.6" ry="5" fill="#0C2A50"/>
+            <ellipse cx="26.5" cy="15.5" rx="3.4" ry="4.8" fill="#0C2A50"/>
+            <ellipse cx="34" cy="21" rx="3.3" ry="4.4" fill="#0C2A50"/>
+            <path d="M25 24c4.6 0 9 3.6 9 7.6 0 3.4-3.1 5-6.3 5-1.6 0-2 .6-3.2.6s-1.7-.6-3.3-.6c-3.2 0-6.2-1.6-6.2-5 0-4 4.4-7.6 10-7.6z" fill="#0C2A50"/>
+          </svg>
+          <span class="brand-txt"><b style="color:#fff">los feliz animal rescue</b><small style="color:#8CC63E">Helping neighbors help animals</small></span>
+        </a>
+        <p style="max-width:34ch">A volunteer-run rescue serving Los Feliz, Silver Lake, and the surrounding neighborhoods.</p>
+        <p style="margin-top:1rem">hello@losfelizanimalrescue.org</p>
+      </div>
+      <div>
+        <h4>Adopt</h4>
+        <ul>
+          <li><a href="#">Adoptable animals</a></li>
+          <li><a href="#">Adoption process</a></li>
+          <li><a href="#">Apply to adopt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="#">Foster</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Wish list</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Pet help</h4>
+        <ul>
+          <li><a href="#">Lost &amp; found</a></li>
+          <li><a href="#">TNR &amp; community cats</a></li>
+          <li><a href="#">Wildlife</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Los Feliz Animal Rescue &middot; 501(c)(3) &middot; EIN 00-0000000</span>
+      <span>Privacy policy &middot; Accessibility</span>
+    </div>
+  </div>
+</footer>
+
+<button class="notes-toggle" id="notesBtn">Show design notes</button>
+
+<script>
+  var b = document.body, btn = document.getElementById('notesBtn');
+  btn.addEventListener('click', function(){
+    b.classList.toggle('notes-on');
+    btn.textContent = b.classList.contains('notes-on') ? 'Hide design notes' : 'Show design notes';
+  });
+  document.querySelectorAll('.amt').forEach(function(x){
+    x.addEventListener('click', function(){
+      document.querySelectorAll('.amt').forEach(function(y){y.classList.remove('on')});
+      x.classList.add('on');
+    });
+  });
+  document.querySelectorAll('.give-opts button').forEach(function(x){
+    x.addEventListener('click', function(){
+      document.querySelectorAll('.give-opts button').forEach(function(y){y.classList.remove('on')});
+      x.classList.add('on');
+    });
+  });
+  document.querySelectorAll('.veil').forEach(function(v){
+    v.addEventListener('click', function(){
+      v.querySelector('.shot img').style.filter = 'none';
+      v.querySelector('.veil-msg').style.display = 'none';
+    });
+  });
+</script>
+</body>
+</html>

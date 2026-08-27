@@ -1,0 +1,60 @@
+Administrative work is the big problem she wants the website to help address.
+
+What they dont do:
+- Dont do lost & found
+
+
+Higher priority
+- Clean, easy to use website
+- Good form system. Good backend CMS.
+- Design social media post, publish it on all channels.
+
+Low priority
+- Hitting the five year anniversary
+
+- Melody looking to us for UX
+- "Wordpress doesn't have built in forms" - is that true?
+- Salesforce is database. Friend setup custom version of salesforce.
+- "Friend can do all the salesforce stuff" RED FLAG
+- Our Donorbox link has different donation options based on browser - BAD
+- Damon: salesforce connection: probably want to use an API, despite no-code being possible.
+
+Four or five forms:
+volunterr
+foster
+adoption
+unsubscribe
+low-priority programs on hidden URLS
+
+-Google Forms problems:
+ - she wants conditional questions eg adopting dog vs cat
+ - She does not want "one dynamic form". Wants separate forms contact, volunteer, etc. 
+ - But to be able to include conditional questions. 
+ - Conditional questions with required questions.
+
+Give Melody a wireframe and she can create content to fit it eg more or less text, big or smaller images.
+They do have a style guide including colors and fonts
+"Everything doesn't need its own page, we can combine some things"
+"Do people even use websites today?"
+Website isn't really advertised. But wed like to start funneling people towards it (via Instagram).
+We will be applying for grunts, so a professional website would be good.
+
+'Happy Tails' - show dramatic transformations. eg really messed up animal to healthy animal. Melody wants our help designing that. Photos often too gross. 
+
+Core pages
+Combine adoption process with adoption application
+Foster contains Adoption Process with link to Adoption application
+
+Hoping that the website is really easy for Melody to edit. If she decides she needs a new page, she can create one quickly and easily. 
+
+Resources page should not be a link dump, "people wont look through that".
+
+Bo will make mockup
+Include CMS - Or is this tim? Maybe not in v1
+Include page creation
+Include social publishing (Buffer? Buffet?)
+
+Melody will provide us with list of social media accounts
+Melody will set up the wordpress account, Bo and Tim get access to it. 
+API keys (tim's territory) 
+Melody wants to use easy google font "clean and modern, not dated in 5 years"
