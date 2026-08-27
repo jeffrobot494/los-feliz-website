@@ -113,6 +113,28 @@ export function validateEditResponse(originalContent, result) {
   return { ok: true };
 }
 
+/**
+ * Maps a caught agent-adapter error to a message safe to show in the chat
+ * UI. A missing SDK dependency throws Node's raw module-loader error
+ * ("Cannot find package/module ...", code MODULE_NOT_FOUND or
+ * ERR_MODULE_NOT_FOUND depending on CJS/ESM) \u2014 confusing and unactionable
+ * for a user, so it's replaced with a concrete fix. Every other error's
+ * message passes through unchanged; this only ever reads err.code/err.message,
+ * never process.env, so it can't leak env values or token material.
+ */
+export function describeAgentError(err) {
+  const code = err?.code;
+  const message = typeof err?.message === 'string' ? err.message : '';
+  const isModuleNotFound =
+    code === 'MODULE_NOT_FOUND' ||
+    code === 'ERR_MODULE_NOT_FOUND' ||
+    /cannot find (package|module)/i.test(message);
+  if (isModuleNotFound && /claude-agent-sdk/i.test(message)) {
+    return 'The Claude Agent SDK is not installed \u2014 run npm --prefix studio install and restart the server.';
+  }
+  return message || 'agent failed';
+}
+
 /** A valid "save as new page" filename: no separators/traversal, ends in .html. */
 function isValidNewName(name) {
   if (typeof name !== 'string') return false;
@@ -205,7 +227,11 @@ export function createApp({ dir, agentAdapter } = {}) {
       if (err && err.code === 'auth_not_configured') {
         return res.status(401).json({ error: 'auth_not_configured' });
       }
-      return res.status(502).json({ error: 'agent_error', message: err?.message || 'agent failed' });
+      // The client only ever sees describeAgentError's sanitized message;
+      // the raw error (which may include stack/module-resolution detail) is
+      // always logged here so it's still discoverable for debugging.
+      console.error('Design Studio: agent adapter threw during /api/edit:', err);
+      return res.status(502).json({ error: 'agent_error', message: describeAgentError(err) });
     }
 
     const gate = validateEditResponse(currentContent, result);
