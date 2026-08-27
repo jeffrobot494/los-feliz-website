@@ -63,16 +63,42 @@ export function flattenGrouped(groupedPages) {
   return Object.values(groupedPages).flat();
 }
 
-/** A chat-facing message for a failed edit request, based on the API error shape. */
+const LEFT_UNCHANGED = ' The page was left unchanged.';
+
+/**
+ * A chat-facing message for a failed edit request, based on the API error
+ * shape ({ status, code, message, reason } — see ApiError in api.js). Every
+ * branch keeps the "page was left unchanged" reassurance, since the server
+ * never writes the file unless the whole request succeeds.
+ */
 export function describeEditError(err) {
-  if (err && err.status === 401 && err.code === 'auth_not_configured') {
-    return 'Claude isn\u2019t connected yet. Run `claude setup-token`, export CLAUDE_CODE_OAUTH_TOKEN, and restart the server, then try again.';
+  // fetch() itself throwing (offline, DNS failure, timeout) yields a plain
+  // error with no HTTP status — distinguish that from a server-returned error.
+  if (!err || typeof err.status !== 'number') {
+    return `Could not reach the server (network error or timeout).${LEFT_UNCHANGED} Try again.`;
   }
-  if (err && err.status === 502) {
+  if (err.status === 401 && err.code === 'auth_not_configured') {
+    return (
+      'No Claude token found \u2014 create a .env file in the repo root with ' +
+      `CLAUDE_CODE_OAUTH_TOKEN (see README) and restart the server.${LEFT_UNCHANGED}`
+    );
+  }
+  if (err.status === 502 && err.code === 'agent_error') {
+    // The server's message is already sanitized (see describeAgentError in
+    // server.mjs) and safe to show verbatim.
+    return `Agent error: ${err.message || 'the agent failed.'}${LEFT_UNCHANGED}`;
+  }
+  if (err.status === 502) {
     const reason = err.reason ? ` (${err.reason})` : '';
-    return `The edit failed and the page was left unchanged${reason}. Try rephrasing the instruction.`;
+    return `The edit failed${reason}.${LEFT_UNCHANGED} Try rephrasing the instruction.`;
   }
-  return 'Something went wrong applying that edit. The page was left unchanged.';
+  if (err.status === 400) {
+    return `The request was rejected by the server (${err.code || 'invalid_request'}).${LEFT_UNCHANGED}`;
+  }
+  if (err.status === 404) {
+    return `That page no longer exists on disk.${LEFT_UNCHANGED}`;
+  }
+  return `Something went wrong applying that edit.${LEFT_UNCHANGED}`;
 }
 
 /** An inline message for a failed save-as-new request, based on the API error shape. */
