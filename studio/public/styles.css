@@ -1,0 +1,424 @@
+/* Design Studio — vanilla CSS, no build step. A working tool, kept restrained. */
+
+:root {
+  --ink: #1c1c1a;
+  --ink-soft: #5f5c56;
+  --paper: #ffffff;
+  --floor: #f6f4f0;
+  --line: #e2ddd3;
+  --line-strong: #c9c2b3;
+  --accent: #2f5d50;
+  --accent-soft: #e4ede9;
+  --danger: #a3391b;
+  --danger-soft: #f7e8e2;
+  --radius: 8px;
+  --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--floor);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+button, input, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- layout ---------- */
+
+.app {
+  display: grid;
+  grid-template-columns: 240px 1fr 320px;
+  height: 100vh;
+  gap: 1px;
+  background: var(--line);
+}
+
+.app.pages-collapsed {
+  grid-template-columns: 44px 1fr 320px;
+}
+
+.app.is-maximized {
+  grid-template-columns: 1fr;
+}
+
+.app.pages-collapsed .pane-pages,
+.app:not(.pages-collapsed) .pages-rail {
+  display: none;
+}
+
+.app.is-maximized .pane-pages,
+.app.is-maximized .pages-rail,
+.app.is-maximized .pane-chat {
+  display: none;
+}
+
+.pane {
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.app.is-maximized .pane-preview {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+.app.is-maximized .pane-preview .pane-header {
+  display: none;
+}
+
+.pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.pane-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.pane-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.pane-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: var(--floor);
+  color: var(--ink);
+}
+
+/* ---------- pages pane ---------- */
+
+.pages-rail {
+  background: var(--paper);
+  border: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.6rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+.pages-rail:hover {
+  color: var(--ink);
+  background: var(--floor);
+}
+
+.pages-list {
+  padding: 0.4rem;
+}
+
+.page-group {
+  margin-bottom: 0.5rem;
+}
+
+.page-group-label {
+  padding: 0.35rem 0.5rem 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.page-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.4rem 0.5rem;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.page-item:hover {
+  background: var(--floor);
+}
+
+.page-item[aria-current="true"] {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.page-status {
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.page-status-error {
+  color: var(--danger);
+}
+
+.page-status-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.5rem;
+}
+
+.page-status-loading::before,
+.page-status-loading::after {
+  content: "";
+  display: block;
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--floor) 25%, var(--line) 37%, var(--floor) 63%);
+  background-size: 400% 100%;
+  animation: studio-shimmer 1.4s ease infinite;
+}
+
+@keyframes studio-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* ---------- preview pane ---------- */
+
+.preview-body {
+  flex: 1;
+  position: relative;
+  background: var(--floor);
+}
+
+.preview-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: var(--paper);
+}
+
+.preview-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.preview-empty:empty {
+  display: none;
+}
+
+.restore-btn {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 20;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- chat pane ---------- */
+
+.chat-history {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chat-empty {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  padding: 0.5rem 0.25rem;
+}
+
+.chat-message {
+  border-radius: var(--radius);
+  padding: 0.5rem 0.65rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  max-width: 100%;
+  white-space: pre-wrap;
+}
+
+.chat-message-user {
+  background: var(--floor);
+  align-self: flex-end;
+}
+
+.chat-message-assistant {
+  background: var(--accent-soft);
+  align-self: flex-start;
+}
+
+.chat-message-error {
+  background: var(--danger-soft);
+  color: var(--danger);
+  align-self: flex-start;
+}
+
+.chat-form {
+  border-top: 1px solid var(--line);
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chat-form textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 0.5rem;
+}
+
+.chat-form textarea:disabled {
+  background: var(--floor);
+  color: var(--ink-soft);
+}
+
+.chat-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.working-indicator {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.btn {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.btn:hover {
+  background: var(--floor);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #274e43;
+}
+
+.save-panel {
+  border-top: 1px solid var(--line);
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.save-panel label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.save-panel input {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.5rem;
+  font-family: var(--font-mono);
+}
+
+.save-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.save-error {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--danger);
+}
+
+@media (max-width: 900px) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(0, 1fr);
+  }
+  .app.pages-collapsed {
+    grid-template-columns: 1fr;
+  }
+}
