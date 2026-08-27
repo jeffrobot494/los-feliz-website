@@ -34,43 +34,64 @@ export const mockAdapter = {
 };
 
 /**
+ * Builds the query() options for a claudeAdapter edit call. Pulled out as a
+ * pure function so the tool-stripping regression (`tools: []`) is directly
+ * assertable without spinning up the real SDK.
+ */
+export function buildEditPrompt({ currentContent, instruction, history }) {
+  const transcript = (Array.isArray(history) ? history : [])
+    .slice(-10)
+    .map((m) => `${m.role}: ${m.text}`)
+    .join('\n');
+
+  return (
+    `You are editing a standalone HTML mockup. Return the COMPLETE updated file.\n` +
+    `Rules: keep it a single self-contained HTML file; preserve the :root design-token ` +
+    `block unless asked to change styling; change only what the instruction requires. ` +
+    `Do NOT use any tools. Respond with the complete updated file as plain text.\n` +
+    `Recent conversation:\n${transcript}\n\n` +
+    `Current file:\n${currentContent}\n\nInstruction: ${instruction}`
+  );
+}
+
+export const EDIT_QUERY_OPTIONS = {
+  maxTurns: 4, // belt-and-braces — a correct one-shot rewrite still takes 1 turn
+  tools: [], // removes tool exposure entirely (allowedTools only filters permissions)
+  allowedTools: [], // defense in depth alongside `tools: []`
+};
+
+/**
+ * Real adapter factory: one-shot full-file rewrite via the Claude Agent SDK,
+ * authenticated only through the subscription OAuth token.
+ *
+ * `loadSdk` is injectable so tests can assert on the exact query() call
+ * (e.g. that `tools: []` is passed) without installing/invoking the real
+ * network-calling SDK. Defaults to the real dynamic import, which is lazy
+ * so the app and tests run fine even in environments that skip installing
+ * the (now real, non-optional) dependency.
+ */
+export function createClaudeAdapter({ loadSdk = () => import('@anthropic-ai/claude-agent-sdk') } = {}) {
+  return {
+    async runEdit({ currentContent, instruction, history }) {
+      if (!process.env.CLAUDE_CODE_OAUTH_TOKEN) {
+        // Never attempt the call without the subscription token.
+        throw new AuthNotConfiguredError();
+      }
+
+      const { query } = await loadSdk();
+      const prompt = buildEditPrompt({ currentContent, instruction, history });
+      const result = await query({ prompt, options: EDIT_QUERY_OPTIONS });
+
+      return extractResult(result);
+    },
+  };
+}
+
+/**
  * Real adapter: one-shot full-file rewrite via the Claude Agent SDK,
  * authenticated only through the subscription OAuth token.
  */
-export const claudeAdapter = {
-  async runEdit({ currentContent, instruction, history }) {
-    if (!process.env.CLAUDE_CODE_OAUTH_TOKEN) {
-      // Never attempt the call without the subscription token.
-      throw new AuthNotConfiguredError();
-    }
-
-    // Lazy/dynamic import: the SDK is an optional peer dependency, not listed
-    // in package.json, so the app and tests run fine without it installed.
-    const { query } = await import('@anthropic-ai/claude-agent-sdk');
-
-    const transcript = (Array.isArray(history) ? history : [])
-      .slice(-10)
-      .map((m) => `${m.role}: ${m.text}`)
-      .join('\n');
-
-    const prompt =
-      `You are editing a standalone HTML mockup. Return the COMPLETE updated file.\n` +
-      `Rules: keep it a single self-contained HTML file; preserve the :root design-token ` +
-      `block unless asked to change styling; change only what the instruction requires.\n` +
-      `Recent conversation:\n${transcript}\n\n` +
-      `Current file:\n${currentContent}\n\nInstruction: ${instruction}`;
-
-    const result = await query({
-      prompt,
-      options: {
-        maxTurns: 1,
-        allowedTools: [], // no tool use — pure content transformation
-      },
-    });
-
-    return extractResult(result);
-  },
-};
+export const claudeAdapter = createClaudeAdapter();
 
 /**
  * Normalizes the Claude Agent SDK's response into { updatedContent, summary }.
@@ -107,12 +128,23 @@ async function extractResult(result) {
   const docIndex = text.toLowerCase().indexOf('<!doctype');
   const htmlIndex = text.toLowerCase().indexOf('<html');
   const start = docIndex !== -1 ? docIndex : htmlIndex;
-  const updatedContent = start !== -1 ? text.slice(start) : text.trim();
+  const sliced = start !== -1 ? text.slice(start) : text.trim();
+  const updatedContent = stripTrailingCodeFence(sliced);
 
   return {
     updatedContent,
     summary: 'Updated the page per your instruction.',
   };
+}
+
+/**
+ * The model sometimes wraps its answer in a markdown code fence even when
+ * asked not to. We already slice from <!doctype/<html to drop an opening
+ * fence line, but a trailing ``` (with optional trailing whitespace) is
+ * still part of the extracted tail and would corrupt the written HTML file.
+ */
+export function stripTrailingCodeFence(text) {
+  return text.replace(/\n?```\s*$/, '');
 }
 
 /** Selects the adapter implementation via STUDIO_AGENT env var (default: claude). */
