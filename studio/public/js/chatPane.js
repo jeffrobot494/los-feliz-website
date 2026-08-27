@@ -5,7 +5,14 @@
 // preference is), the edit request lifecycle, and the save-as-new flow.
 
 import { postEdit, postSave } from './api.js';
-import { baseNameOf, describeEditError, describeSaveError, folderKey, nextVariantName } from './format.js';
+import {
+  baseNameOf,
+  describeEditError,
+  describeSaveError,
+  folderKey,
+  formatEditProgress,
+  nextVariantName,
+} from './format.js';
 
 function buildMessageRow(message) {
   const row = document.createElement('div');
@@ -59,6 +66,7 @@ export function createChatPane(elements, { getGroupedPages, onEditSuccess, onSav
     input.disabled = working;
     sendBtn.disabled = working;
     workingIndicator.hidden = !working;
+    if (working) workingIndicator.textContent = 'Working\u2026';
   }
 
   async function handleSubmit(event) {
@@ -74,7 +82,18 @@ export function createChatPane(elements, { getGroupedPages, onEditSuccess, onSav
     setWorking(true);
 
     try {
-      const { summary } = await postEdit({ path: currentPage, instruction, history: priorHistory });
+      const { summary } = await postEdit({
+        path: currentPage,
+        instruction,
+        history: priorHistory,
+        onEvent: (progressEvent) => {
+          // 'started'/'done'/'error' don't carry a meaningful status line of
+          // their own -- only 'progress' and 'heartbeat' do.
+          if (progressEvent.type === 'progress' || progressEvent.type === 'heartbeat') {
+            workingIndicator.textContent = formatEditProgress(progressEvent);
+          }
+        },
+      });
       messages.push({ role: 'assistant', text: summary });
       onEditSuccess();
     } catch (err) {
