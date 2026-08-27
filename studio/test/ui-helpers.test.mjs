@@ -75,13 +75,37 @@ test('flattenGrouped concatenates every folder\u2019s entries', () => {
 });
 
 test('describeEditError distinguishes auth-not-configured, validation failures, and generic errors', () => {
-  assert.match(
-    describeEditError({ status: 401, code: 'auth_not_configured' }),
-    /claude setup-token/i,
-  );
+  const authMessage = describeEditError({ status: 401, code: 'auth_not_configured' });
+  assert.match(authMessage, /\.env/i);
+  assert.match(authMessage, /README/i);
   assert.match(describeEditError({ status: 502, reason: 'not_html' }), /\(not_html\)/);
   assert.match(describeEditError({ status: 502 }), /left unchanged/);
   assert.match(describeEditError({ status: 500 }), /went wrong/);
+});
+
+test('describeEditError surfaces the server\u2019s agent_error message verbatim, prefixed', () => {
+  const message = describeEditError({
+    status: 502,
+    code: 'agent_error',
+    message: 'The Claude Agent SDK is not installed \u2014 run npm --prefix studio install and restart the server.',
+  });
+  assert.match(message, /^Agent error: The Claude Agent SDK is not installed/);
+  assert.match(message, /left unchanged/i);
+});
+
+test('describeEditError maps 400 invalid_request\/invalid_path to a rejection message naming the code', () => {
+  assert.match(describeEditError({ status: 400, code: 'invalid_request' }), /rejected by the server \(invalid_request\)/);
+  assert.match(describeEditError({ status: 400, code: 'invalid_path' }), /rejected by the server \(invalid_path\)/);
+});
+
+test('describeEditError maps 404 not_found to a page-missing message', () => {
+  assert.match(describeEditError({ status: 404, code: 'not_found' }), /no longer exists/i);
+});
+
+test('describeEditError gives a network-specific message when there is no HTTP status at all', () => {
+  const message = describeEditError(new TypeError('Failed to fetch'));
+  assert.match(message, /could not reach the server/i);
+  assert.match(message, /left unchanged/i);
 });
 
 test('describeSaveError distinguishes name conflicts, invalid names, and generic errors', () => {
