@@ -48,6 +48,11 @@ export function resolveSafePath(targetDir, relPath) {
 // show up in the page list.
 const STUDIO_HOME = __dirname;
 
+// How often to emit a {type:'heartbeat'} event on an otherwise-quiet edit
+// stream, so the client can tell a slow-but-healthy agent turn from a
+// stalled connection.
+const HEARTBEAT_INTERVAL_MS = 5000;
+
 /** Recursively lists .html files under targetDir, grouped by repo-relative folder ("" = root). */
 export async function listPages(targetDir, { excludeDirs = [STUDIO_HOME] } = {}) {
   const files = [];
@@ -215,37 +220,80 @@ export function createApp({ dir, agentAdapter } = {}) {
       return res.status(500).json({ error: 'internal_error', message: err.message });
     }
 
-    let result;
-    try {
-      result = await agent.runEdit({
-        filePath: resolved,
-        currentContent,
-        instruction,
-        history: Array.isArray(history) ? history : [],
-      });
-    } catch (err) {
-      if (err && err.code === 'auth_not_configured') {
-        return res.status(401).json({ error: 'auth_not_configured' });
+    // Everything above this line can still fail as a normal HTTP
+    // status+JSON response (bad request body, invalid path, missing file):
+    // no bytes of the response have gone out yet. From here on, an edit can
+    // take 1-2 minutes, so the response becomes an NDJSON event stream
+    // instead \u2014 the HTTP status is fixed at 200, and every later outcome
+    // (success or failure) travels as a terminal event on the stream.
+    res.status(200);
+    res.setHeader('Content-Type', 'application/x-ndjson');
+    res.flushHeaders();
+
+    const startedAt = Date.now();
+    let streamEnded = false;
+    const writeEvent = (event) => {
+      if (streamEnded) return;
+      try {
+        res.write(`${JSON.stringify(event)}\n`);
+      } catch {
+        // The client disconnected mid-write; nothing more to do for this
+        // request. The 'close' handler below will stop the heartbeat.
       }
-      // The client only ever sees describeAgentError's sanitized message;
-      // the raw error (which may include stack/module-resolution detail) is
-      // always logged here so it's still discoverable for debugging.
-      console.error('Design Studio: agent adapter threw during /api/edit:', err);
-      return res.status(502).json({ error: 'agent_error', message: describeAgentError(err) });
-    }
+    };
+    res.on('close', () => {
+      streamEnded = true;
+    });
 
-    const gate = validateEditResponse(currentContent, result);
-    if (!gate.ok) {
-      return res.status(502).json({ error: 'validation_failed', reason: gate.reason });
-    }
+    writeEvent({ type: 'started', path: relPath });
+    const heartbeat = setInterval(() => {
+      writeEvent({ type: 'heartbeat', elapsedMs: Date.now() - startedAt });
+    }, HEARTBEAT_INTERVAL_MS);
 
     try {
-      await fs.writeFile(resolved, result.updatedContent, 'utf8');
-    } catch (err) {
-      return res.status(500).json({ error: 'internal_error', message: err.message });
-    }
+      let result;
+      try {
+        result = await agent.runEdit({
+          filePath: resolved,
+          currentContent,
+          instruction,
+          history: Array.isArray(history) ? history : [],
+          onProgress: (chars) => {
+            writeEvent({ type: 'progress', elapsedMs: Date.now() - startedAt, chars });
+          },
+        });
+      } catch (err) {
+        if (err && err.code === 'auth_not_configured') {
+          writeEvent({ type: 'error', code: 'auth_not_configured' });
+          return;
+        }
+        // The client only ever sees describeAgentError's sanitized message;
+        // the raw error (which may include stack/module-resolution detail) is
+        // always logged here so it's still discoverable for debugging.
+        console.error('Design Studio: agent adapter threw during /api/edit:', err);
+        writeEvent({ type: 'error', code: 'agent_error', message: describeAgentError(err) });
+        return;
+      }
 
-    return res.status(200).json({ summary: result.summary });
+      const gate = validateEditResponse(currentContent, result);
+      if (!gate.ok) {
+        writeEvent({ type: 'error', code: 'validation_failed', reason: gate.reason });
+        return;
+      }
+
+      try {
+        await fs.writeFile(resolved, result.updatedContent, 'utf8');
+      } catch (err) {
+        writeEvent({ type: 'error', code: 'internal_error', message: err.message });
+        return;
+      }
+
+      writeEvent({ type: 'done', summary: result.summary });
+    } finally {
+      clearInterval(heartbeat);
+      streamEnded = true;
+      res.end();
+    }
   });
 
   app.post('/api/save', async (req, res) => {
