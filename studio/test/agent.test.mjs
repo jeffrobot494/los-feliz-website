@@ -5,6 +5,8 @@ import {
   AuthNotConfiguredError,
   EDIT_QUERY_OPTIONS,
   createClaudeAdapter,
+  extractTextDelta,
+  mockAdapter,
   stripTrailingCodeFence,
 } from '../agent.mjs';
 
@@ -17,6 +19,7 @@ test('EDIT_QUERY_OPTIONS strips tools entirely (not just allowedTools)', () => {
   assert.deepEqual(EDIT_QUERY_OPTIONS.tools, []);
   assert.deepEqual(EDIT_QUERY_OPTIONS.allowedTools, []);
   assert.equal(EDIT_QUERY_OPTIONS.maxTurns, 4);
+  assert.equal(EDIT_QUERY_OPTIONS.includePartialMessages, true);
 });
 
 test('claudeAdapter calls query() with EDIT_QUERY_OPTIONS via an injected SDK loader', async () => {
@@ -63,6 +66,75 @@ test('claudeAdapter never invokes the SDK loader when the token is missing', asy
     AuthNotConfiguredError,
   );
   assert.equal(loaderCalled, false);
+});
+
+// --- Live progress streaming --------------------------------------------
+
+test('extractTextDelta reads a content_block_delta text_delta and ignores everything else', () => {
+  const streamEvent = {
+    type: 'stream_event',
+    event: { type: 'content_block_delta', delta: { type: 'text_delta', text: 'hello' } },
+  };
+  assert.equal(extractTextDelta(streamEvent), 'hello');
+
+  assert.equal(extractTextDelta({ type: 'assistant', message: {} }), null);
+  assert.equal(extractTextDelta({ type: 'stream_event', event: { type: 'message_start' } }), null);
+  assert.equal(
+    extractTextDelta({ type: 'stream_event', event: { type: 'content_block_delta', delta: { type: 'input_json_delta' } } }),
+    null,
+  );
+  assert.equal(extractTextDelta(null), null);
+});
+
+test('mockAdapter emits synthetic onProgress events so tests and offline dev exercise the streaming path', async () => {
+  const seen = [];
+  const { updatedContent } = await mockAdapter.runEdit({
+    currentContent: '<!doctype html><html><body>hi</body></html>',
+    instruction: 'say hi',
+    onProgress: (chars) => seen.push(chars),
+  });
+
+  assert.equal(seen.length, 2);
+  assert.ok(seen[0] > 0);
+  assert.equal(seen[1], updatedContent.length);
+});
+
+test('mockAdapter.runEdit works fine when onProgress is omitted', async () => {
+  const { summary } = await mockAdapter.runEdit({
+    currentContent: '<!doctype html><html><body>hi</body></html>',
+    instruction: 'say hi',
+  });
+  assert.equal(typeof summary, 'string');
+});
+
+test('claudeAdapter reports a running character count via onProgress as stream_event deltas arrive', async () => {
+  process.env.CLAUDE_CODE_OAUTH_TOKEN = 'test-token';
+  try {
+    const adapter = createClaudeAdapter({
+      loadSdk: async () => ({
+        async *query() {
+          yield { type: 'stream_event', event: { type: 'content_block_delta', delta: { type: 'text_delta', text: '<!doc' } } };
+          yield { type: 'stream_event', event: { type: 'content_block_delta', delta: { type: 'text_delta', text: 'type>' } } };
+          // A non-text stream_event (e.g. a tool-related delta) must not move the counter.
+          yield { type: 'stream_event', event: { type: 'content_block_start' } };
+          yield { message: { content: [{ type: 'text', text: '<!doctype html><html>done</html>' }] } };
+        },
+      }),
+    });
+
+    const seen = [];
+    const { updatedContent } = await adapter.runEdit({
+      currentContent: '<!doctype html><html>old</html>',
+      instruction: 'say ok',
+      history: [],
+      onProgress: (chars) => seen.push(chars),
+    });
+
+    assert.deepEqual(seen, [5, 10]);
+    assert.equal(updatedContent, '<!doctype html><html>done</html>');
+  } finally {
+    delete process.env.CLAUDE_CODE_OAUTH_TOKEN;
+  }
 });
 
 // --- Regression: trailing markdown code fence must not corrupt the file ----

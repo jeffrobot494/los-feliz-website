@@ -1,8 +1,12 @@
 // studio/agent.mjs
 //
 // AgentAdapter interface:
-//   runEdit({ filePath, currentContent, instruction, history }) =>
+//   runEdit({ filePath, currentContent, instruction, history, onProgress }) =>
 //     Promise<{ updatedContent: string, summary: string }>
+//
+//   onProgress is an optional (charsSoFar: number) => void callback invoked
+//   as assistant text arrives, so a caller (the /api/edit route) can stream
+//   live progress to the client without ever seeing the HTML itself.
 //
 // Two implementations live here:
 //   - claudeAdapter: drives the Claude Agent SDK using the user's Claude Code
@@ -24,11 +28,17 @@ export class AuthNotConfiguredError extends Error {
  * so the output is always valid, non-trivial-length, changed HTML.
  */
 export const mockAdapter = {
-  async runEdit({ currentContent, instruction }) {
+  async runEdit({ currentContent, instruction, onProgress }) {
     const marker = `<!-- studio-edit: ${instruction} -->`;
     const updatedContent = currentContent.includes('</body>')
       ? currentContent.replace('</body>', `${marker}\n</body>`)
       : `${currentContent}\n${marker}`;
+    if (typeof onProgress === 'function') {
+      // Synthetic progress so tests and offline dev exercise the streaming
+      // path without a real (network-calling) agent.
+      onProgress(Math.round(updatedContent.length / 2));
+      onProgress(updatedContent.length);
+    }
     return { updatedContent, summary: `Applied: ${instruction}` };
   },
 };
@@ -58,6 +68,7 @@ export const EDIT_QUERY_OPTIONS = {
   maxTurns: 4, // belt-and-braces — a correct one-shot rewrite still takes 1 turn
   tools: [], // removes tool exposure entirely (allowedTools only filters permissions)
   allowedTools: [], // defense in depth alongside `tools: []`
+  includePartialMessages: true, // emits stream_event text deltas, for live progress only
 };
 
 /**
@@ -72,7 +83,7 @@ export const EDIT_QUERY_OPTIONS = {
  */
 export function createClaudeAdapter({ loadSdk = () => import('@anthropic-ai/claude-agent-sdk') } = {}) {
   return {
-    async runEdit({ currentContent, instruction, history }) {
+    async runEdit({ currentContent, instruction, history, onProgress }) {
       if (!process.env.CLAUDE_CODE_OAUTH_TOKEN) {
         // Never attempt the call without the subscription token.
         throw new AuthNotConfiguredError();
@@ -80,9 +91,24 @@ export function createClaudeAdapter({ loadSdk = () => import('@anthropic-ai/clau
 
       const { query } = await loadSdk();
       const prompt = buildEditPrompt({ currentContent, instruction, history });
-      const result = await query({ prompt, options: EDIT_QUERY_OPTIONS });
+      // `await` here works whether query() returns a real (non-thenable)
+      // async-iterable Query object, as the real SDK does, or a Promise of
+      // one, as test stubs conveniently do -- `await` on a non-thenable
+      // value just resolves to that value.
+      const stream = await query({ prompt, options: EDIT_QUERY_OPTIONS });
 
-      return extractResult(result);
+      const messages = [];
+      let charsSoFar = 0;
+      for await (const message of stream) {
+        messages.push(message);
+        const delta = extractTextDelta(message);
+        if (delta && typeof onProgress === 'function') {
+          charsSoFar += delta.length;
+          onProgress(charsSoFar);
+        }
+      }
+
+      return extractResult(messages);
     },
   };
 }
@@ -135,6 +161,23 @@ async function extractResult(result) {
     updatedContent,
     summary: 'Updated the page per your instruction.',
   };
+}
+
+/**
+ * Pulls the incremental assistant-text delta out of a `stream_event` message
+ * (only emitted when `includePartialMessages` is set), or null for every
+ * other message shape. Used solely to drive onProgress's running character
+ * count -- the delta text itself is never sent anywhere, only its length.
+ */
+export function extractTextDelta(message) {
+  if (message?.type !== 'stream_event') return null;
+  const event = message.event;
+  if (event?.type !== 'content_block_delta') return null;
+  const delta = event.delta;
+  if (delta?.type === 'text_delta' && typeof delta.text === 'string') {
+    return delta.text;
+  }
+  return null;
 }
 
 /**
