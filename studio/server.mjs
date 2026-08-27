@@ -12,6 +12,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { selectAgentAdapter } from './agent.mjs';
+import { loadEnvFile } from './env.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -277,6 +278,11 @@ function isMainModule() {
 }
 
 if (isMainModule()) {
+  // Load studio/../.env (repo root) before resolving anything env-driven —
+  // selectAgentAdapter() reads CLAUDE_CODE_OAUTH_TOKEN right after this.
+  // A real exported env var always wins; the file only fills gaps.
+  loadEnvFile(path.join(REPO_ROOT, '.env'));
+
   const targetDir = resolveTargetDir();
   const app = createApp({ dir: targetDir });
   const port = Number(process.env.PORT) || 4590;

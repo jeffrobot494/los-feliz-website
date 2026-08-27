@@ -108,10 +108,15 @@ consumes your subscription quota, the same as an interactive Claude Code session
 
 ```sh
 claude setup-token
-# copy the printed token, then:
-export CLAUDE_CODE_OAUTH_TOKEN="<token>"
+# copy the printed token, then create a .env file in the repo root:
+cp .env.example .env
+# edit .env and paste the token in place of CLAUDE_CODE_OAUTH_TOKEN=
 node studio/server.mjs
 ```
+
+`.env` is gitignored, so it never gets committed. Exporting the variable instead of using
+a `.env` file still works too — a real exported `CLAUDE_CODE_OAUTH_TOKEN` always takes
+priority over whatever is in `.env`.
 
 If the token isn't set when you try to send an edit, the server reports a distinct
 "auth not configured" error (not a generic failure) and the chat panel shows a hint to
