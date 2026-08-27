@@ -73,6 +73,78 @@ python3 -m http.server 8000
 # then visit http://localhost:8000/homepage-mockup.html
 ```
 
+## Design studio
+
+`studio/` is a small in-repo Node app for iterating on these mockups: it lists every
+`.html` file in this directory, previews the one you pick, lets you describe an edit in
+plain language and have an agent rewrite the file, and saves variants without touching
+the original. It has no build step and ships alongside the mockups it edits.
+
+### Running it
+
+```sh
+node studio/server.mjs
+# Design Studio server listening on http://localhost:4590, serving <repo root>
+```
+
+By default it serves the repo root (this directory). Point it at a different directory
+with `--dir` or the `STUDIO_DIR` environment variable:
+
+```sh
+node studio/server.mjs --dir ../some-other-mockups
+# or
+STUDIO_DIR=../some-other-mockups node studio/server.mjs
+```
+
+`PORT` overrides the default port (4590).
+
+### Minting the subscription token
+
+Edits are driven by the Claude Agent SDK, authenticated with the OAuth token your Claude
+Code subscription mints — **never an `ANTHROPIC_API_KEY`**. The app does not read that
+variable at all; there is no API-credits path.
+
+```sh
+claude setup-token
+# copy the printed token, then:
+export CLAUDE_CODE_OAUTH_TOKEN="<token>"
+node studio/server.mjs
+```
+
+If the token isn't set when you try to send an edit, the server reports a distinct
+"auth not configured" error (not a generic failure) and the chat panel shows a hint to
+run `claude setup-token` and export the variable — the input stays enabled so you can
+retry once it's set.
+
+### How edits work
+
+Sending a chat message calls the agent with the current file's contents and your
+instruction. The agent's response is validated (non-empty, starts with `<!doctype`/`<html`,
+within 3x the original byte size, and actually different from the input) before it is
+written — a malformed or garbage response is rejected and the file is left untouched.
+A valid response **overwrites the current file in place**; the preview and the file on
+disk never diverge. There is no in-app undo — this repo is version-controlled, so `git
+diff` and `git checkout -- <file>` are the recovery path. Use "Save as new page" first if
+you want to keep the original and iterate on a copy instead.
+
+### Pane controls
+
+- **Preview (center).** The maximize button expands the preview to fill the window,
+  hiding the pages and chat panes. Press <kbd>Esc</kbd> or click the floating restore
+  button to return to the three-pane layout; chat history is untouched either way.
+- **Pages (left).** The minimize button collapses the page list to a slim rail; click the
+  rail's expand icon to bring it back. The collapsed/expanded state is remembered in
+  `localStorage` and survives a reload.
+
+### Running the tests
+
+```sh
+node --test studio/test/
+```
+
+Tests run against fixtures with a mock agent adapter — no network access and no real
+Claude Code subscription required.
+
 ## Status and open questions
 
 Still undecided:
