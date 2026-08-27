@@ -42,11 +42,17 @@ export function resolveSafePath(targetDir, relPath) {
   return resolved;
 }
 
+// This app's own home directory. When the target dir is the repo root (the
+// default), its own source/tests/fixtures are not mockups and must never
+// show up in the page list.
+const STUDIO_HOME = __dirname;
+
 /** Recursively lists .html files under targetDir, grouped by repo-relative folder ("" = root). */
-export async function listPages(targetDir) {
+export async function listPages(targetDir, { excludeDirs = [STUDIO_HOME] } = {}) {
   const files = [];
 
   async function walk(current) {
+    if (current !== targetDir && excludeDirs.includes(current)) return;
     let entries;
     try {
       entries = await fs.readdir(current, { withFileTypes: true });
