@@ -100,9 +100,11 @@ STUDIO_DIR=../some-other-mockups node studio/server.mjs
 
 ### Minting the subscription token
 
-Edits are driven by the Claude Agent SDK, authenticated with the OAuth token your Claude
-Code subscription mints — **never an `ANTHROPIC_API_KEY`**. The app does not read that
-variable at all; there is no API-credits path.
+Edits are driven by the Claude Agent SDK (`@anthropic-ai/claude-agent-sdk`, a normal
+dependency in `studio/package.json` — `npm install` provisions it), authenticated with
+the OAuth token your Claude Code subscription mints — **never an `ANTHROPIC_API_KEY`**.
+The app does not read that variable at all; there is no API-credits path. Each edit
+consumes your subscription quota, the same as an interactive Claude Code session.
 
 ```sh
 claude setup-token
@@ -119,9 +121,12 @@ retry once it's set.
 ### How edits work
 
 Sending a chat message calls the agent with the current file's contents and your
-instruction. The agent's response is validated (non-empty, starts with `<!doctype`/`<html`,
-within 3x the original byte size, and actually different from the input) before it is
-written — a malformed or garbage response is rejected and the file is left untouched.
+instruction, running with no tool access (a plain content rewrite, not a coding-agent
+session) so it can't wander off into exploring the filesystem. A real edit typically
+takes **roughly 1-2 minutes** to come back. The agent's response is validated (non-empty,
+starts with `<!doctype`/`<html`, within 3x the original byte size, and actually different
+from the input) before it is written — a malformed or garbage response is rejected and
+the file is left untouched.
 A valid response **overwrites the current file in place**; the preview and the file on
 disk never diverge. There is no in-app undo — this repo is version-controlled, so `git
 diff` and `git checkout -- <file>` are the recovery path. Use "Save as new page" first if
