@@ -125,13 +125,49 @@ retry once it's set.
 
 ### How edits work
 
-Sending a chat message calls the agent with the current file's contents and your
-instruction, running with no tool access (a plain content rewrite, not a coding-agent
-session) so it can't wander off into exploring the filesystem. A real edit typically
-takes **roughly 1-2 minutes** to come back. The agent's response is validated (non-empty,
-starts with `<!doctype`/`<html`, within 3x the original byte size, and actually different
-from the input) before it is written — a malformed or garbage response is rejected and
-the file is left untouched.
+Sending a chat message stages a throwaway copy of the page in a temp directory and lets
+the agent edit **that copy in place** with the Read and Edit tools. The agent is never
+asked to reproduce the file, so cost and latency scale with the size of the edit rather
+than the size of the page: a small change to a 34KB mockup lands in **under ten seconds**
+and touches a single line.
+
+The agent is confined twice over. `tools` grants Read and Edit only — no Bash, no Write,
+no Glob/Grep — and a `canUseTool` guard rejects any call naming a path other than the
+staged copy, so an instruction buried in a mockup's own markup can't reach the rest of the
+disk. (`allowedTools` is deliberately left **unset**: a bare tool name there auto-approves
+that tool *before* the guard is consulted, which silently disables the path check.)
+
+The edited copy is then validated (non-empty, starts with `<!doctype`/`<html`, between
+half and 3x the original byte size, and actually different from the input) before it is
+written back — a malformed, truncated, or garbage result is rejected and your file is left
+untouched. The lower bound earns its keep: under the previous full-rewrite design the
+model could return a clean, well-formed page that had quietly dropped two thirds of the
+original, and only a size floor catches that shape.
+
+### Tuning speed and model
+
+Edits run on **Claude Sonnet 5 at `low` effort** by default, rather than the CLI's
+Opus 5 at `high`. A mockup edit is 'find this markup, change it' — latency-sensitive and
+close to reasoning-free — so the default trades judgement you don't need for turnaround
+you do. Two environment variables move it back:
+
+```sh
+STUDIO_MODEL=claude-opus-5 node studio/server.mjs   # more design judgement, slower
+STUDIO_EFFORT=high node studio/server.mjs           # deeper thinking per turn, slower
+```
+
+Reach for those when an instruction is open-ended ('rework the hero', 'make this feel
+warmer') rather than targeted. `STUDIO_EFFORT` accepts `low`, `medium`, `high`,
+`xhigh`, and `max`; a typo is ignored with a warning instead of failing the request.
+
+Studio edits also run **hermetically** — `settingSources: []` means your personal
+`~/.claude/settings.json`, any project `.claude/settings.json`, and CLAUDE.md are not
+loaded, so your own hooks, permission rules, and MCP servers never apply to (or slow
+down) an edit.
+
+An edit that runs past its wall-clock budget — 3 minutes by default, `STUDIO_EDIT_TIMEOUT_MS`
+to change it — is aborted and reported as a timeout, so a stuck run ends the stream instead
+of spinning indefinitely.
 A valid response **overwrites the current file in place**; the preview and the file on
 disk never diverge. There is no in-app undo — this repo is version-controlled, so `git
 diff` and `git checkout -- <file>` are the recovery path. Use "Save as new page" first if

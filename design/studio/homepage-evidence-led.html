@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los Feliz Animal Rescue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   LOS FELIZ ANIMAL RESCUE — evidence-led homepage
+   Every structural decision here traces to a finding in the
+   research briefing. Press "Why this way?" to see them.
+
+   Palette: two colours, one committed. Ink on warm paper,
+   plus LFAR's own #B209D7. On this ground the brand purple
+   measures 4.88:1 — it passes AA as text, which it does NOT
+   on a dark ground. Same colour, different job.
+   ========================================================== */
+@view-transition { navigation: auto; }   /* two lines; Firefox ignores it and loads normally */
+
+:root{
+  --paper:#F6F4EF;
+  --paper-2:#EFEBE2;
+  --ink:#16150F;
+  --ink-2:#5B594F;          /* 6.4:1 */
+  --rule:#DCD8CD;
+  --violet:#B209D7;         /* brand — 4.88:1 as text here, 5.37:1 white-on-fill */
+  --violet-deep:#4A0A5E;    /* large fields — paper on it is 12.8:1 */
+  --violet-wash:#F2E2F8;
+
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --text:"Atkinson Hyperlegible",-apple-system,"Segoe UI",sans-serif;
+
+  --s--1:clamp(0.82rem,0.80rem + 0.10vw,0.88rem);
+  --s-0:clamp(1.02rem,0.99rem + 0.14vw,1.11rem);
+  --s-1:clamp(1.18rem,1.12rem + 0.28vw,1.36rem);
+  --s-2:clamp(1.45rem,1.32rem + 0.62vw,1.92rem);
+  --s-3:clamp(1.85rem,1.58rem + 1.30vw,2.85rem);
+  --s-4:clamp(2.35rem,1.85rem + 2.45vw,4.10rem);
+
+  --gutter:clamp(1.15rem,4vw,2.75rem);
+  --maxw:1200px;
+  --spring:linear(0,.0067,.0265,.0592,.1043,.1608,.2278,.3042,.3888,.4804,.5776,.6789,.7827,.8874,.9912,1.0925,1.1897,1.2812,1.3654,1.4409,1.4834,1.4906,1.4703,1.4308,1.3796,1.3232,1.2666,1.2137,1.1673,1.1289,1.0991,1.0776,1.0634,1.0552,1.0517,1.0512,1.0525,1.0545,1.0562,1.0572,1.0572,1.0563,1.0546,1.0525,1.0502,1.048,1.046,1.0444,1.0431,1.0422,1.0416,1.0412,1.041,1.0408,1.0407,1.0405,1.0402,1.0399,1.0395,1.039,1.0385,1.038,1.0375,1.037,1.0365,1.0361,1.0357,1.0354,1.0351,1.0349,1.0347,1.0345,1.0344,1.0343,1.0342,1.0341,1.034,1.0339,1.0338,1.0336,1.0335,1.0333,1.0331,1.0329,1.0327,1.0325,1.0323,1.0321,1.0319,1.0317,1.0315,1.0313,1.0311,1.031,1.0308,1.0307,1.0306,1.0305,1.0304,1.0303,1.0303);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--text); font-size:var(--s-0); line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-wrap:pretty;
+}
+img{display:block; max-width:100%}
+p{margin:0}
+a{color:inherit}
+h1,h2,h3,h4{
+  font-family:var(--display); font-optical-sizing:auto;
+  margin:0; line-height:1.05; letter-spacing:-.022em; text-wrap:balance; font-weight:800;
+}
+:focus-visible{outline:3px solid var(--violet); outline-offset:3px; border-radius:2px}
+
+.wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter)}
+.eyebrow{
+  font-family:var(--display); font-size:var(--s--1); font-weight:700;
+  letter-spacing:.15em; text-transform:uppercase; font-stretch:105%;
+}
+
+/* ---------- buttons: 48px minimum target, thumb-sized ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  min-height:52px; padding:.85rem 1.5rem; font-family:var(--display);
+  font-weight:700; font-size:1.02rem; letter-spacing:-.01em; text-decoration:none;
+  border:2px solid var(--ink); background:var(--paper); color:var(--ink); cursor:pointer;
+  transition:transform .32s var(--spring), background .16s ease, color .16s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-solid{background:var(--ink); color:var(--paper)}
+.btn-solid:hover{background:var(--violet-deep); border-color:var(--violet-deep)}
+.btn-violet{background:var(--violet); border-color:var(--violet); color:#fff}
+.btn-violet:hover{background:var(--violet-deep); border-color:var(--violet-deep)}
+.btn-onviolet{background:#fff; border-color:#fff; color:var(--violet-deep)}
+
+/* ---------- urgent line ---------- */
+.urgent{background:var(--ink); color:var(--paper); font-size:var(--s--1)}
+.urgent .wrap{display:flex; gap:.4rem 1rem; align-items:baseline; flex-wrap:wrap; padding-block:.7rem}
+.urgent .tag{
+  font-family:var(--display); font-weight:800; letter-spacing:.13em; text-transform:uppercase;
+  background:var(--violet); color:#fff; padding:.15em .5em; font-size:.76rem;
+}
+.urgent a{color:#fff; text-underline-offset:3px}
+
+/* ---------- masthead ---------- */
+.mast{position:sticky; top:0; z-index:60; background:var(--paper); border-bottom:2px solid var(--ink)}
+.mast .wrap{display:flex; align-items:center; gap:1.2rem; min-height:76px}
+.brand{display:flex; align-items:center; gap:.6rem; text-decoration:none; margin-right:auto}
+.brand svg{width:40px; height:40px; flex:none}
+.brand b{
+  font-family:var(--display); font-weight:800; font-size:1.05rem; line-height:1.05;
+  letter-spacing:-.02em; max-width:13ch; display:block;
+}
+.mast nav{display:flex; gap:1.5rem}
+.mast nav a{
+  font-family:var(--display); font-weight:600; font-size:1rem; text-decoration:none;
+  padding:.3rem 0; border-bottom:3px solid transparent;
+}
+.mast nav a:hover{border-bottom-color:var(--violet)}
+.burger{display:none; background:none; border:2px solid var(--ink); min-height:44px; min-width:44px; cursor:pointer; align-items:center; justify-content:center}
+@media (max-width:900px){
+  .mast nav{display:none}
+  .burger{display:inline-flex}
+  .brand b{max-width:none; font-size:.98rem}
+}
+
+/* ---------- hero: mission sentence, one animal, four doors ---------- */
+.hero{padding:clamp(2.4rem,6vw,4.4rem) 0 0}
+.hero-grid{display:grid; gap:clamp(1.8rem,4vw,3.2rem); align-items:center}
+@media (min-width:900px){ .hero-grid{grid-template-columns:1.04fr .96fr} }
+.hero-photo{margin:0}
+.hero-photo img{
+  width:100%; height:clamp(300px,42vw,530px); object-fit:cover; object-position:center 22%;
+  border:2px solid var(--ink); background:var(--paper-2);
+}
+.hero-photo figcaption{
+  display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+  margin-top:.7rem; font-size:var(--s--1); color:var(--ink-2);
+}
+.hero-photo figcaption b{font-family:var(--display); font-weight:700; color:var(--ink)}
+.hero-photo a{color:var(--violet); font-family:var(--display); font-weight:700; text-decoration:none}
+.hero-photo a:hover{text-decoration:underline; text-underline-offset:3px}
+.mission{
+  font-family:var(--display); font-weight:800; font-stretch:88%;
+  font-size:var(--s-4); line-height:1.02; letter-spacing:-.035em; max-width:19ch;
+}
+.mission em{font-style:normal; color:var(--violet)}
+.mission-sub{margin-top:1.2rem; font-size:var(--s-1); color:var(--ink-2); max-width:46ch}
+
+.doors{display:grid; gap:2px; background:var(--ink); margin-top:clamp(2rem,5vw,3.2rem); border:2px solid var(--ink)}
+@media (min-width:820px){ .doors{grid-template-columns:1fr 1fr 1fr; grid-template-rows:auto auto} }
+.door{
+  background:var(--paper); padding:1.5rem 1.4rem 1.6rem; text-decoration:none;
+  display:flex; flex-direction:column; gap:.35rem; min-height:150px;
+  transition:background .16s ease;
+}
+.door:hover{background:var(--violet-wash)}
+.door h3{font-size:var(--s-2); font-stretch:92%}
+.door p{font-size:var(--s--1); color:var(--ink-2); margin-top:.15rem}
+.door .go{margin-top:auto; font-family:var(--display); font-weight:700; font-size:var(--s--1); color:var(--violet)}
+.door:hover .go{color:var(--violet-deep)}
+
+/* the dominant one — the urgent lane, not the donate button */
+.door-help{
+  background:var(--violet-deep); color:var(--paper); grid-column:1 / -1;
+  flex-direction:row; flex-wrap:wrap; align-items:center; gap:1.2rem; justify-content:space-between;
+}
+.door-help:hover{background:#3A0849}
+.door-help h3{font-size:var(--s-2)}
+.door-help p{color:#E4CCEE; max-width:44ch}
+.door-help .helpwrap{display:flex; flex-direction:column; gap:.2rem}
+.door-help .go{color:#fff; margin-top:0}
+
+/* ---------- triage: the urgent visitor's four questions ---------- */
+.triage{background:var(--paper-2); border-block:2px solid var(--ink); margin-top:clamp(3rem,7vw,5rem)}
+.triage .wrap{padding-block:clamp(2.2rem,5vw,3.2rem)}
+.triage h2{font-size:var(--s-3); font-stretch:90%; max-width:20ch}
+.triage .note{color:var(--ink-2); margin-top:.8rem; max-width:52ch; font-size:var(--s-0)}
+.tri-grid{display:grid; gap:2px; background:var(--ink); border:2px solid var(--ink); margin-top:1.8rem}
+@media (min-width:700px){ .tri-grid{grid-template-columns:repeat(4,1fr)} }
+.tri{
+  background:var(--paper); padding:1.15rem 1.1rem; text-decoration:none;
+  display:flex; flex-direction:column; gap:.3rem; min-height:112px;
+  transition:background .16s ease;
+}
+.tri:hover{background:var(--violet-wash)}
+.tri b{font-family:var(--display); font-weight:800; font-size:var(--s-1); letter-spacing:-.018em}
+.tri span{font-size:var(--s--1); color:var(--ink-2); line-height:1.45}
+
+/* ---------- generic section ---------- */
+section{padding-block:clamp(3.2rem,7vw,5rem)}
+.sec-head{display:flex; justify-content:space-between; align-items:flex-end; gap:1.5rem; flex-wrap:wrap; margin-bottom:1.8rem}
+.sec-head h2{font-size:var(--s-3); font-stretch:90%; max-width:22ch}
+.sec-head .eyebrow{color:var(--violet); display:block; margin-bottom:.5rem}
+.sec-head p{color:var(--ink-2); max-width:50ch; margin-top:.7rem}
+
+/* ---------- adoptables ---------- */
+.animals{display:grid; gap:1.1rem; grid-template-columns:repeat(2,1fr)}
+@media (min-width:820px){ .animals{grid-template-columns:repeat(4,1fr)} }
+.animal{text-decoration:none; display:block}
+.animal img{width:100%; aspect-ratio:1/1; object-fit:cover; border:2px solid var(--ink); background:var(--paper-2)}
+.animal b{display:block; font-family:var(--display); font-weight:800; font-size:var(--s-1); margin-top:.7rem; letter-spacing:-.018em}
+.animal span{display:block; font-size:var(--s--1); color:var(--ink-2)}
+.animal .why{
+  display:block; font-size:var(--s--1); margin-top:.4rem; color:var(--ink);
+  border-left:3px solid var(--violet); padding-left:.6rem; line-height:1.4;
+}
+.animal:hover img{border-color:var(--violet)}
+
+/* ---------- foster: the block that answers the fear ---------- */
+.foster{background:var(--ink); color:var(--paper)}
+.foster h2, .foster h3{color:var(--paper)}
+.foster .eyebrow{color:#E8A8F5}
+.foster .cols{display:grid; gap:clamp(2rem,5vw,3.5rem)}
+@media (min-width:900px){ .foster .cols{grid-template-columns:1.05fr .95fr; align-items:start} }
+.foster p{color:#CFCCC2}
+.bigstat{font-family:var(--display); font-weight:800; font-size:var(--s-3); letter-spacing:-.03em; color:#fff; line-height:1.05; margin-bottom:.7rem; font-stretch:92%}
+.bigstat em{font-style:normal; color:#E8A8F5}
+.kinds{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.4rem}
+.kinds span{border:2px solid #4A483F; padding:.4rem .8rem; font-size:var(--s--1); font-family:var(--display); font-weight:600}
+details{border-top:1px solid #35342C}
+details:last-of-type{border-bottom:1px solid #35342C}
+summary{
+  cursor:pointer; padding:.95rem 0; font-family:var(--display); font-weight:700;
+  font-size:var(--s-0); list-style:none; display:flex; justify-content:space-between; gap:1rem; align-items:center;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+"; font-weight:400; font-size:1.4rem; color:#E8A8F5; line-height:1}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:1rem; font-size:var(--s--1); max-width:52ch}
+.quote{border-left:3px solid var(--violet); padding-left:1.1rem; margin-top:1.8rem}
+.quote p{color:#fff; font-size:var(--s-1); line-height:1.45}
+.quote cite{display:block; margin-top:.6rem; font-style:normal; font-size:var(--s--1); color:#A5A298}
+
+/* ---------- where the money goes ---------- */
+.money{background:var(--violet-wash); border-block:2px solid var(--ink)}
+.money .cols{display:grid; gap:clamp(2rem,5vw,3.5rem)}
+@media (min-width:900px){ .money .cols{grid-template-columns:1fr 1fr; align-items:start} }
+.bar{display:flex; height:52px; border:2px solid var(--ink); margin-top:1.5rem; overflow:hidden}
+.bar div{display:flex; align-items:center; justify-content:center; font-family:var(--display); font-weight:800; font-size:var(--s--1); color:#fff}
+.b1{background:var(--violet-deep); flex:71}
+.b2{background:var(--violet); flex:20}
+.b3{background:var(--ink-2); flex:9}
+.legend{display:grid; gap:.55rem; margin-top:1.1rem; font-size:var(--s--1)}
+.legend div{display:flex; gap:.6rem; align-items:baseline}
+.legend i{width:.9rem; height:.9rem; flex:none; display:block; translate:0 .1rem}
+.legend b{font-family:var(--display); font-weight:700}
+.counts{display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--ink); border:2px solid var(--ink)}
+.count{background:var(--violet-wash); padding:1.2rem 1.1rem}
+.count b{
+  display:block; font-family:var(--display); font-weight:800; font-size:var(--s-3);
+  letter-spacing:-.035em; line-height:1; font-variant-numeric:tabular-nums; font-stretch:92%;
+}
+.count span{display:block; font-size:var(--s--1); color:var(--ink-2); margin-top:.4rem; line-height:1.4}
+
+/* ---------- give ---------- */
+.give .cols{display:grid; gap:clamp(2rem,5vw,3.2rem)}
+@media (min-width:900px){ .give .cols{grid-template-columns:1.1fr .9fr; align-items:center} }
+.give-card{border:2px solid var(--ink); padding:clamp(1.4rem,3vw,2rem); background:var(--paper)}
+fieldset{border:0; margin:0; padding:0}
+legend{font-family:var(--display); font-weight:700; font-size:var(--s-0); padding:0; margin-bottom:.8rem}
+.freq{display:flex; gap:2px; background:var(--ink); border:2px solid var(--ink); margin-bottom:1.5rem}
+.freq label{
+  flex:1; text-align:center; background:var(--paper); padding:.75rem .5rem; cursor:pointer;
+  font-family:var(--display); font-weight:700; font-size:var(--s--1); min-height:48px;
+  display:flex; align-items:center; justify-content:center;
+}
+.freq input{position:absolute; opacity:0; width:0; height:0}
+.freq input:checked + span{color:#fff}
+.freq label:has(input:checked){background:var(--ink)}
+.freq label:has(input:focus-visible){outline:3px solid var(--violet); outline-offset:-3px}
+.amts{display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--ink); border:2px solid var(--ink)}
+.amts label{
+  background:var(--paper); min-height:56px; display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-family:var(--display); font-weight:800; font-size:var(--s-1);
+  font-variant-numeric:tabular-nums; transition:background .16s ease;
+}
+.amts label:hover{background:var(--violet-wash)}
+.amts input{position:absolute; opacity:0; width:0; height:0}
+.amts label:has(input:checked){background:var(--violet); color:#fff}
+.amts label:has(input:focus-visible){outline:3px solid var(--ink); outline-offset:-3px}
+.impact-line{margin-top:1rem; font-size:var(--s--1); color:var(--ink-2); min-height:2.6em}
+.impact-line b{color:var(--ink); font-family:var(--display)}
+.wallets{display:grid; gap:.6rem; margin-top:1.4rem}
+@media (min-width:520px){ .wallets{grid-template-columns:1fr 1fr} }
+.wallet{
+  min-height:52px; border:2px solid var(--ink); background:var(--ink); color:var(--paper);
+  font-family:var(--display); font-weight:700; font-size:1rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:.4rem;
+}
+.wallet:hover{background:var(--violet-deep); border-color:var(--violet-deep)}
+.fineprint{font-size:var(--s--1); color:var(--ink-2); margin-top:1rem}
+
+/* ---------- news ---------- */
+.news{display:grid; gap:1.6rem}
+@media (min-width:760px){ .news{grid-template-columns:repeat(3,1fr)} }
+.post{text-decoration:none; display:block}
+.post .cat{
+  font-family:var(--display); font-weight:700; font-size:.74rem; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--violet); display:block; margin-bottom:.4rem;
+}
+.post h3{font-size:var(--s-1); font-weight:700; letter-spacing:-.015em}
+.post time{display:block; font-size:var(--s--1); color:var(--ink-2); margin-top:.5rem}
+.post:hover h3{color:var(--violet)}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink); color:#CFCCC2; padding-block:clamp(2.6rem,6vw,4rem)}
+.foot{display:grid; gap:2rem}
+@media (min-width:760px){ .foot{grid-template-columns:1.6fr 1fr 1fr 1fr} }
+footer h4{font-family:var(--display); font-size:var(--s--1); letter-spacing:.13em; text-transform:uppercase; color:#fff; margin:0 0 .9rem; font-weight:700}
+footer ul{list-style:none; margin:0; padding:0; display:grid; gap:.55rem; font-size:var(--s--1)}
+footer a{text-decoration:none}
+footer a:hover{color:#fff; text-decoration:underline; text-underline-offset:3px}
+.foot-end{margin-top:2.6rem; padding-top:1.4rem; border-top:1px solid #35342C; font-size:var(--s--1); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; color:#8E8B82}
+
+/* ---------- the "why this way" layer ---------- */
+.why-note{
+  display:none; margin-top:1.1rem; padding:.9rem 1rem; background:#FFF8D9;
+  border-left:4px solid #C9A227; color:#4A3C0C; font-size:var(--s--1); line-height:1.5;
+}
+.why-note b{font-family:var(--display)}
+body.why-on .why-note{display:block}
+.why-toggle{
+  position:fixed; right:16px; bottom:16px; z-index:80; min-height:48px;
+  background:var(--violet-deep); color:#fff; border:0; padding:.8rem 1.2rem;
+  font-family:var(--display); font-weight:700; font-size:.95rem; cursor:pointer;
+  box-shadow:0 8px 22px rgba(74,10,94,.35);
+}
+.flag{
+  background:var(--violet); color:#fff; text-align:center; font-size:.82rem;
+  padding:.55rem 1rem; font-family:var(--display); font-weight:600; line-height:1.45;
+}
+.flag .fake{
+  display:block; margin-top:.25rem; font-weight:400; font-size:.78rem;
+  border-top:1px solid rgba(255,255,255,.45); padding-top:.3rem;
+  max-width:96ch; margin-inline:auto;
+}
+.flag .fake b{font-weight:800; letter-spacing:.06em}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important; animation-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<div class="flag">Homepage mockup — structure argued from the research briefing. Press “Why this way?” to see which finding drove each block.
+  <span class="fake"><b>PLACEHOLDER DATA:</b> the 91¢ figure, the 71/20/9 spending split, the four impact counts, the dollar-impact lines, the foster quote from “Dana R.” and the three news items are invented for layout only. None of it came from LFAR and none of it should be published.</span>
+</div>
+
+<!-- ============ URGENT ============ -->
+<div class="urgent">
+  <div class="wrap">
+    <span class="tag">Urgent</span>
+    <span>Five kittens found in Griffith Park need emergency foster homes this week.</span>
+    <a href="#foster">Can you take them?</a>
+  </div>
+</div>
+
+<!-- ============ MASTHEAD ============ -->
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <rect width="48" height="48" fill="#B209D7"/>
+        <ellipse cx="16" cy="19" rx="3.4" ry="4.6" fill="#F6F4EF"/>
+        <ellipse cx="25" cy="15.5" rx="3.3" ry="4.5" fill="#F6F4EF"/>
+        <ellipse cx="33" cy="20" rx="3.1" ry="4.2" fill="#F6F4EF"/>
+        <path d="M24 24c4.5 0 8.8 3.5 8.8 7.4 0 3.3-3 4.9-6.1 4.9-1.6 0-2 .6-3.1.6s-1.7-.6-3.2-.6c-3.1 0-6.1-1.6-6.1-4.9 0-3.9 4.3-7.4 9.7-7.4z" fill="#F6F4EF"/>
+      </svg>
+      <b>Los Feliz Animal Rescue</b>
+    </a>
+    <nav aria-label="Main">
+      <a href="#adopt">Adopt</a>
+      <a href="#foster">Foster</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#help">Get help</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="btn btn-violet" href="#give">Donate</a>
+    <button class="burger" aria-label="Open menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16150F" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1 class="mission">We are the volunteer rescue <em>on your block.</em></h1>
+        <p class="mission-sub">Los Feliz Animal Rescue has helped nearly 400 animals since 2021 — adopting, fostering, fixing community cats, and answering the phone when a neighbor finds something they don't know what to do with.</p>
+      </div>
+      <figure class="hero-photo">
+        <img src="https://dbw3zep4prcju.cloudfront.net/animal/6b0118c3-b5b9-4f9c-9a49-201c5d068b18/image/d4c4ec53-ebeb-42c1-9bc9-9345b03c1763.jpg"
+             alt="Snoopy, an adult grey pit bull terrier and cane corso mix, sitting in a garden and grinning up at the camera">
+        <figcaption><span><b>Snoopy</b> — with us since April</span><a href="#adopt">He's adoptable right now →</a></figcaption>
+      </figure>
+    </div>
+
+    <div class="why-note"><b>Finding:</b> mission is the single most-wanted piece of information on a nonprofit site, ranked 3.6× above the next factor — and only 43% of nonprofit homepages state one at all. It goes first, in one plain sentence, before any ask. <i>(NN/g nonprofit study)</i></div>
+
+    <div class="doors">
+      <a class="door" href="#adopt">
+        <h3>Adopt</h3>
+        <p>Meet the dogs and cats in our care right now.</p>
+        <span class="go">See who's available →</span>
+      </a>
+      <a class="door" href="#foster">
+        <h3>Foster</h3>
+        <p>The most useful thing you can do for us. We cover everything but the couch.</p>
+        <span class="go">How fostering works →</span>
+      </a>
+      <a class="door" href="#volunteer">
+        <h3>Volunteer</h3>
+        <p>Transport, events, TNR nights, photography.</p>
+        <span class="go">Find a role →</span>
+      </a>
+      <a class="door door-help" href="#help">
+        <span class="helpwrap">
+          <h3>I found an animal and I don't know what to do</h3>
+          <p>A stray, a litter under the porch, an injured bird. Start here — you don't have to be a donor or a foster to ask us for help.</p>
+        </span>
+        <span class="go">Get help now →</span>
+      </a>
+    </div>
+
+    <div class="why-note"><b>Finding:</b> the lowest-scoring task in NN/g's nonprofit testing was <i>non-monetary contribution</i> — exactly what LFAR mostly does. So the dominant element on this page is the help lane, not the donate button. Donate stays in the header, permanently, where it belongs.</div>
+  </div>
+</div>
+
+<!-- ============ TRIAGE ============ -->
+<div class="triage" id="help">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--violet)">Pet help</span>
+    <h2 style="margin-top:.5rem">What's happening right now?</h2>
+    <p class="note">Every one of these is a different problem with a different first hour. Pick the one that matches and we'll tell you exactly what to do next.</p>
+    <div class="tri-grid">
+      <a class="tri" href="#"><b>I found a pet</b><span>What to do in the first hour, and where to post so the owner finds them.</span></a>
+      <a class="tri" href="#"><b>I lost my pet</b><span>Where to file, which shelters to walk, and how to search effectively.</span></a>
+      <a class="tri" href="#"><b>Cats in my neighborhood</b><span>TNR, the LA voucher program, and how to borrow a trap from us.</span></a>
+      <a class="tri" href="#"><b>Injured wildlife</b><span>Who in Los Angeles takes wildlife — and who doesn't.</span></a>
+    </div>
+    <div class="why-note"><b>Finding:</b> nationally, 34% of stray dogs are returned to their owners — and only 6% of cats. That gap is the largest unmet need in the sheltering data and it is high-intent search traffic almost nobody serves. It earns its own band, above the adoptable animals. <i>(Shelter Animals Count 2025)</i></div>
+  </div>
+</div>
+
+<!-- ============ ADOPTABLES ============ -->
+<section id="adopt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Looking for homes</span>
+        <h2>Four of the animals with us this week</h2>
+        <p>Pulled live from our Petfinder listings, so this is never out of date.</p>
+      </div>
+      <a class="btn" href="#">See all animals</a>
+    </div>
+    <div class="animals">
+      <a class="animal" href="#">
+        <img src="https://dbw3zep4prcju.cloudfront.net/animal/daf3fdc1-3318-4b14-90e6-ab6834bb813b/image/76f87215-cb62-4bf2-a48d-17d2b348c2d9.jpg" alt="Dusty, a young grey and white shorthair cat" style="object-position:center 28%">
+        <b>Dusty</b><span>American Shorthair · Young · Male</span>
+        <span class="why">Follows you room to room, then pretends it was a coincidence.</span>
+      </a>
+      <a class="animal" href="#">
+        <img src="https://dbw3zep4prcju.cloudfront.net/animal/1a8ebd99-b06f-4f1c-9973-bcc4534d9c2b/image/3571710b-1690-43c2-bffe-88906c33182b.jpg" alt="Misty, a young black and white domestic shorthair cat" style="object-position:center 32%">
+        <b>Misty</b><span>Domestic Shorthair · Young · Female</span>
+        <span class="why">Talks constantly. Will tell you about her day whether you ask or not.</span>
+      </a>
+      <a class="animal" href="#">
+        <img src="https://dbw3zep4prcju.cloudfront.net/animal/542c6b79-b61e-4dc7-b94e-7883a8f5b25d/image/a574a028-6e77-4338-9b4e-e52a676ddb3b.jpg" alt="Squid, a young black shorthair cat" style="object-position:center 30%">
+        <b>Squid</b><span>American Shorthair · Young · Female</span>
+        <span class="why">Shy for about a day and a half, then completely yours.</span>
+      </a>
+      <a class="animal" href="#">
+        <img src="https://dbw3zep4prcju.cloudfront.net/animal/8cee92b8-51c3-42b8-a869-f069720cf34b/image/6c50753f-4c3f-4df2-8e07-7315d90c462b.jpg" alt="Freddie, a young tabby domestic shorthair cat" style="object-position:center 26%">
+        <b>Freddie</b><span>Domestic Shorthair · Young · Male</span>
+        <span class="why">Good with the resident dog. Unbothered by the vacuum.</span>
+      </a>
+    </div>
+    <div class="why-note"><b>Finding:</b> a 680-participant study found photo <i>backgrounds</i> had no significant effect on click-through — but the individual animal did. So the design spends nothing on staged backdrops and gives every card a line of real personality instead. That line is the highest-value content on the card. <i>(PLOS ONE, 2021)</i></div>
+  </div>
+</section>
+
+<!-- ============ FOSTER ============ -->
+<section class="foster" id="foster">
+  <div class="wrap cols">
+    <div>
+      <span class="eyebrow">Fostering</span>
+      <p class="bigstat" style="margin-top:.8rem">A third of people become interested in fostering <em>the moment someone explains what it actually does.</em></p>
+      <p>Fostering is how an animal gets out of a cage and into a house. It's the difference between us being able to say yes to the next call and having to say no. We pay for food, litter, crates, and every vet visit. You provide a room and a couch.</p>
+      <div class="kinds">
+        <span>One weekend</span><span>Two weeks</span><span>Medical recovery</span><span>Bottle babies</span><span>Respite for another foster</span>
+      </div>
+      <div class="quote">
+        <p>“I said yes to two weeks because that felt survivable. That was four cats ago.”</p>
+        <cite>Dana R., fostering since 2023</cite>
+      </div>
+      <p style="margin-top:1.8rem"><a class="btn btn-onviolet" href="#">Start a conversation about fostering</a></p>
+    </div>
+
+    <div>
+      <h3 style="font-size:var(--s-1); margin-bottom:.6rem">The questions everyone actually has</h3>
+      <details>
+        <summary>What if I get attached?</summary>
+        <p>You will. Every foster does, and it's the reason you're good at it. Most fosters describe the goodbye as hard and worth it — and you get first refusal if you decide you can't.</p>
+      </details>
+      <details>
+        <summary>Who pays for vet care?</summary>
+        <p>We do. All of it, including emergencies. You never front money for an animal in our care.</p>
+      </details>
+      <details>
+        <summary>What if it isn't working out?</summary>
+        <p>Call us and we'll move the animal. No guilt, no lecture. A foster who bails once and comes back is worth more to us than one who burns out.</p>
+      </details>
+      <details>
+        <summary>Can I go on vacation?</summary>
+        <p>Yes. Tell us your dates and we'll arrange respite care, or match you with an animal whose timeline fits around you.</p>
+      </details>
+      <details>
+        <summary>I have my own pets. Is that a problem?</summary>
+        <p>Usually not. We'll match you with an animal that suits your household, and walk you through a slow introduction.</p>
+      </details>
+      <div class="why-note"><b>Finding:</b> 33% of ~2,000 people surveyed became more interested in fostering purely from being told what it does — most people simply don't know. A third reported anxiety and worry. And 73% trust a friend who fosters over any official source. So this block explains the impact, answers the fear in the fosterer's own words, names flexible commitments, and ends in a conversation rather than an application. <i>(Edge Research / Maddie's Fund)</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHERE THE MONEY GOES ============ -->
+<section class="money" id="about">
+  <div class="wrap cols">
+    <div>
+      <span class="eyebrow" style="color:var(--violet-deep)">Where your money goes</span>
+      <h2 style="font-size:var(--s-3); margin-top:.5rem; font-stretch:90%">Ninety-one cents of every dollar is a vet bill.</h2>
+      <p style="color:var(--ink-2); margin-top:.9rem; max-width:46ch">We have no building, no paid staff, and no fundraising department. Here is the actual split for the last twelve months.</p>
+      <div class="bar" role="img" aria-label="Spending: 71 percent veterinary care, 20 percent food and supplies, 9 percent operating costs">
+        <div class="b1">71%</div><div class="b2">20%</div><div class="b3">9%</div>
+      </div>
+      <div class="legend">
+        <div><i style="background:var(--violet-deep)"></i><span><b>71% Veterinary care</b> — spay/neuter, vaccines, emergency surgery, dentals</span></div>
+        <div><i style="background:var(--violet)"></i><span><b>20% Food &amp; supplies</b> — litter, crates, formula, medication</span></div>
+        <div><i style="background:var(--ink-2)"></i><span><b>9% Operating</b> — insurance, software, transport fuel</span></div>
+      </div>
+      <div class="why-note"><b>Finding:</b> donors' top two information needs are the mission and <i>how donations are used</i> — and only <b>4%</b> of nonprofit homepages explain the second one. Four percent. This block is the cheapest competitive advantage on the entire site. <i>(NN/g)</i></div>
+    </div>
+
+    <div class="counts">
+      <div class="count"><b>396</b><span>animals helped since 2021</span></div>
+      <div class="count"><b>140+</b><span>community cats spayed or neutered</span></div>
+      <div class="count"><b>62</b><span>active fosters and volunteers</span></div>
+      <div class="count"><b>0</b><span>paid staff</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GIVE ============ -->
+<section class="give" id="give">
+  <div class="wrap cols">
+    <div>
+      <span class="eyebrow" style="color:var(--violet)">Give</span>
+      <h2 style="font-size:var(--s-3); font-stretch:90%; margin-top:.5rem">$45 covers a spay. $150 covers the first x-ray on a broken leg.</h2>
+      <p style="color:var(--ink-2); margin-top:.9rem; max-width:46ch">Every gift goes to the veterinary fund. You don't need an account, and we won't email you more than once a month.</p>
+      <div class="why-note"><b>Finding:</b> mobile is 52% of nonprofit traffic and only 28% of revenue — and at organizations LFAR's size, mobile donation completion runs at <b>4%</b> against 11% on desktop. Digital wallets are the single mechanical fix, because they delete manual card entry. Every control on this form clears a 48px touch target. <i>(M+R Benchmarks 2026)</i></div>
+    </div>
+
+    <form class="give-card" onsubmit="return false">
+      <fieldset>
+        <legend>How often?</legend>
+        <div class="freq">
+          <label><input type="radio" name="freq" value="once" checked><span>Once</span></label>
+          <label><input type="radio" name="freq" value="month"><span>Monthly</span></label>
+          <label><input type="radio" name="freq" value="tribute"><span>In tribute</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>How much?</legend>
+        <div class="amts">
+          <label><input type="radio" name="amt" value="10"><span>$10</span></label>
+          <label><input type="radio" name="amt" value="25"><span>$25</span></label>
+          <label><input type="radio" name="amt" value="45" checked><span>$45</span></label>
+          <label><input type="radio" name="amt" value="75"><span>$75</span></label>
+          <label><input type="radio" name="amt" value="150"><span>$150</span></label>
+          <label><input type="radio" name="amt" value="other"><span>Other</span></label>
+        </div>
+        <p class="impact-line" id="impact"><b>$45</b> pays for one spay surgery — the thing that stops the next litter.</p>
+      </fieldset>
+
+      <div class="wallets">
+        <button class="wallet" type="button">Pay with Apple&nbsp;Pay</button>
+        <button class="wallet" type="button">Pay with Google&nbsp;Pay</button>
+      </div>
+      <p style="margin-top:.9rem"><a class="btn btn-violet" style="width:100%" href="#">Or pay by card</a></p>
+      <p class="fineprint">Donorbox · LFAR is a registered 501(c)(3) · No account required</p>
+
+      <div class="why-note"><b>Finding:</b> six ascending amounts beat three by <b>+104%</b> conversion, and low-to-high beats high-to-low by 25% in total revenue — leading with the big number makes people who can't meet it leave. Monthly is offered first but <i>not</i> pre-selected: defaulting to recurring raised recurring signups 348% and cut overall donor conversion 22% and revenue per visitor 50%. <i>(NextAfter experiments #930, #191926)</i></div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ NEWS ============ -->
+<section id="volunteer">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">From the rescue</span>
+        <h2>News &amp; happy tails</h2>
+      </div>
+      <a class="btn" href="#">All updates</a>
+    </div>
+    <div class="news">
+      <a class="post" href="#"><span class="cat">Happy tails</span><h3>Ruby's first year on the couch</h3><time>18 August 2026</time></a>
+      <a class="post" href="#"><span class="cat">Events</span><h3>Fifth anniversary block party — October 4 on Rowena</h3><time>11 August 2026</time></a>
+      <a class="post" href="#"><span class="cat">Volunteering</span><h3>We need three drivers a week. That's the whole job.</h3><time>2 August 2026</time></a>
+    </div>
+    <div class="why-note"><b>Finding:</b> readers scan by heading and dip into the text between them — the “layer cake” pattern, which NN/g calls by far the most effective way to scan a page. So every headline on this site is written to be descriptive on its own, and no post here is represented by an image alone.</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h4>Los Feliz Animal Rescue</h4>
+        <p style="max-width:32ch; font-size:var(--s--1)">A volunteer-run rescue serving Los Feliz, Silver Lake, Atwater Village and the surrounding neighborhoods.</p>
+        <p style="margin-top:.9rem; font-size:var(--s--1)">hello@losfelizanimalrescue.org</p>
+      </div>
+      <div><h4>Adopt</h4><ul><li><a href="#">Available animals</a></li><li><a href="#">How adoption works</a></li><li><a href="#">Adoption fees</a></li></ul></div>
+      <div><h4>Help out</h4><ul><li><a href="#">Foster</a></li><li><a href="#">Volunteer</a></li><li><a href="#">Donate</a></li><li><a href="#">Wish list</a></li></ul></div>
+      <div><h4>Pet help</h4><ul><li><a href="#">Found a pet</a></li><li><a href="#">Lost a pet</a></li><li><a href="#">Community cats</a></li><li><a href="#">Wildlife</a></li></ul></div>
+    </div>
+    <div class="foot-end">
+      <span>© 2026 Los Feliz Animal Rescue · 501(c)(3) · EIN 00-0000000</span>
+      <span><a href="#">Accessibility</a> · <a href="#">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<button class="why-toggle" id="whyBtn" aria-pressed="false">Why this way?</button>
+
+<script>
+  var body = document.body, btn = document.getElementById('whyBtn');
+  btn.addEventListener('click', function(){
+    var on = body.classList.toggle('why-on');
+    btn.textContent = on ? 'Hide the reasoning' : 'Why this way?';
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+
+  // the impact line is a clarity feature, not a conversion claim — the
+  // research found no clean evidence that per-amount labels lift giving
+  var lines = {
+    '10':  ['$10', 'buys a week of formula for a bottle-baby kitten.'],
+    '25':  ['$25', 'covers a full round of vaccines for one animal.'],
+    '45':  ['$45', 'pays for one spay surgery — the thing that stops the next litter.'],
+    '75':  ['$75', 'covers a dental extraction for an older cat.'],
+    '150': ['$150', 'covers the first x-ray and splint on a broken leg.'],
+    'other':['Any amount', 'goes straight to the veterinary fund.']
+  };
+  document.querySelectorAll('.amts input').forEach(function(i){
+    i.addEventListener('change', function(){
+      var l = lines[i.value];
+      document.getElementById('impact').innerHTML = '<b>' + l[0] + '</b> ' + l[1];
+    });
+  });
+</script>
+</body>
+</html>

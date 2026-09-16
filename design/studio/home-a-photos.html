@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los Feliz Animal Rescue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   LFAR — Direction A: "The animals are the interface"
+   Furball Farm's warmth and photography, Kitten Rescue's
+   verb-first nav, Santé D'Or's restraint in the chrome.
+   The page has almost no decoration: the photographs do all
+   the colour work, and the interface stays warm and quiet
+   underneath them.
+   ========================================================== */
+@view-transition { navigation: auto; }
+
+:root{
+  --paper:#FFFAF3;
+  --paper-2:#F7EFE3;
+  --ink:#241B14;
+  --ink-2:#6B5D50;
+  --rule:#E6DACA;
+  --violet:#B209D7;        /* LFAR's own — every action on the page */
+  --violet-deep:#4A0A5E;
+  --violet-wash:#F7E6FC;
+
+  --display:"Outfit","Helvetica Neue",Arial,sans-serif;
+  --text:"Figtree",-apple-system,"Segoe UI",sans-serif;
+
+  --s--1:clamp(.84rem,.82rem + .1vw,.9rem);
+  --s-0:clamp(1.03rem,1rem + .15vw,1.13rem);
+  --s-1:clamp(1.2rem,1.13rem + .3vw,1.4rem);
+  --s-2:clamp(1.5rem,1.35rem + .68vw,2.05rem);
+  --s-3:clamp(1.9rem,1.6rem + 1.4vw,3rem);
+  --s-4:clamp(2.4rem,1.85rem + 2.6vw,4.3rem);
+  --gutter:clamp(1.1rem,4vw,2.6rem);
+  --r:10px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} *{transition-duration:.01ms !important} }
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--text); font-size:var(--s-0); line-height:1.62;
+  -webkit-font-smoothing:antialiased; text-wrap:pretty;
+}
+img{display:block; max-width:100%}
+p{margin:0}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display); margin:0; line-height:1.06; letter-spacing:-.028em; font-weight:700; text-wrap:balance}
+:focus-visible{outline:3px solid var(--violet); outline-offset:3px; border-radius:4px}
+.wrap{max-width:1240px; margin-inline:auto; padding-inline:var(--gutter)}
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  min-height:50px; padding:.8rem 1.5rem; border-radius:999px; text-decoration:none;
+  font-family:var(--display); font-weight:600; font-size:1rem; cursor:pointer;
+  border:2px solid transparent; transition:transform .18s ease, background .18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-v{background:var(--violet); color:#fff}
+.btn-v:hover{background:var(--violet-deep)}
+.btn-o{border-color:var(--ink); color:var(--ink)}
+.btn-o:hover{background:var(--ink); color:var(--paper)}
+.btn-w{background:#fff; color:var(--violet-deep)}
+
+/* ---------- chrome ---------- */
+.topbar{background:var(--ink); color:#E9DFD3; font-size:var(--s--1)}
+.topbar .wrap{display:flex; gap:1rem; justify-content:space-between; padding-block:.55rem; flex-wrap:wrap}
+.topbar b{color:#fff}
+header{position:sticky; top:0; z-index:60; background:var(--paper); border-bottom:1px solid var(--rule)}
+header .wrap{display:flex; align-items:center; gap:1.2rem; min-height:78px}
+.brand{display:flex; align-items:center; gap:.6rem; text-decoration:none; margin-right:auto}
+.brand svg{width:42px; height:42px; flex:none}
+.brand b{font-family:var(--display); font-weight:800; font-size:1.06rem; line-height:1.06; letter-spacing:-.03em; max-width:13ch; display:block}
+nav.main{display:flex; gap:1.4rem}
+nav.main a{
+  font-family:var(--display); font-weight:600; font-size:.94rem; letter-spacing:.05em;
+  text-transform:uppercase; text-decoration:none; padding:.3rem 0; border-bottom:2px solid transparent;
+}
+nav.main a:hover{border-bottom-color:var(--violet)}
+.burger{display:none; background:none; border:2px solid var(--ink); border-radius:8px; min-width:46px; min-height:46px; cursor:pointer; align-items:center; justify-content:center}
+@media (max-width:960px){ nav.main{display:none} .burger{display:inline-flex} }
+
+/* ---------- hero mosaic ---------- */
+.hero{padding-top:clamp(1.8rem,4vw,3rem)}
+.hero-top{display:grid; gap:1.6rem; align-items:end; margin-bottom:1.4rem}
+@media (min-width:900px){ .hero-top{grid-template-columns:1.15fr .85fr} }
+.hero h1{font-size:var(--s-4); max-width:15ch}
+.hero h1 em{font-style:normal; color:var(--violet)}
+.hero-top p{color:var(--ink-2); font-size:var(--s-1); max-width:46ch}
+.hero-cta{display:flex; gap:.7rem; flex-wrap:wrap; margin-top:1.2rem}
+
+.mosaic{display:grid; gap:10px; grid-template-columns:repeat(2,1fr)}
+@media (min-width:760px){ .mosaic{grid-template-columns:repeat(4,1fr); grid-auto-rows:150px} }
+.mosaic figure{margin:0; position:relative; overflow:hidden; border-radius:var(--r); background:var(--paper-2)}
+.mosaic img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease}
+.mosaic figure:hover img{transform:scale(1.04)}
+.mosaic figcaption{
+  position:absolute; left:0; right:0; bottom:0; padding:1.4rem .85rem .7rem;
+  color:#fff; font-family:var(--display); font-weight:600; font-size:.92rem;
+  background:linear-gradient(to top, rgba(20,14,10,.78), transparent);
+}
+@media (min-width:760px){
+  .m1{grid-column:span 2; grid-row:span 2}
+  .m2{grid-column:span 2; grid-row:span 1}
+  .m3,.m4{grid-column:span 1; grid-row:span 1}
+  .m5{grid-column:span 1; grid-row:span 1}
+  .m6{grid-column:span 2; grid-row:span 1}   /* 1+2+1 fills the third course exactly */
+  .m7{grid-column:span 1; grid-row:span 1}
+}
+@media (max-width:759px){ .mosaic figure{aspect-ratio:1/1} .m1{grid-column:span 2; aspect-ratio:4/3} }
+
+/* ---------- sections ---------- */
+section{padding-block:clamp(3rem,7vw,5rem)}
+.head{display:flex; justify-content:space-between; align-items:flex-end; gap:1.4rem; flex-wrap:wrap; margin-bottom:1.9rem}
+.kicker{
+  font-family:var(--display); font-weight:700; font-size:var(--s--1); letter-spacing:.16em;
+  text-transform:uppercase; color:var(--violet); display:block; margin-bottom:.5rem;
+}
+.head h2{font-size:var(--s-3); max-width:20ch}
+.head p{color:var(--ink-2); margin-top:.6rem; max-width:48ch}
+
+/* adoptables — bigger photos, personality line */
+.pets{display:grid; gap:1.3rem; grid-template-columns:repeat(2,1fr)}
+@media (min-width:900px){ .pets{grid-template-columns:repeat(4,1fr)} }
+.pet{text-decoration:none; display:block}
+.pet .shot{position:relative; overflow:hidden; border-radius:var(--r); aspect-ratio:4/5; background:var(--paper-2)}
+.pet img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease}
+.pet:hover img{transform:scale(1.045)}
+.pet .badge{
+  position:absolute; top:.7rem; left:.7rem; background:#fff; color:var(--violet-deep);
+  font-family:var(--display); font-weight:700; font-size:.76rem; letter-spacing:.05em;
+  text-transform:uppercase; padding:.3rem .65rem; border-radius:999px;
+}
+.pet h3{font-size:var(--s-1); margin-top:.75rem}
+.pet .meta{display:block; font-size:var(--s--1); color:var(--ink-2)}
+.pet .line{display:block; font-size:var(--s--1); margin-top:.35rem}   /* spans are inline by default — these ran together */
+
+/* ways to help — photo cards, Furball Farm's immediate actions */
+.help{background:var(--paper-2)}
+.ways{display:grid; gap:1.2rem; grid-template-columns:repeat(2,1fr)}
+@media (min-width:960px){ .ways{grid-template-columns:repeat(4,1fr)} }
+.way{background:var(--paper); border-radius:var(--r); overflow:hidden; text-decoration:none; display:flex; flex-direction:column; transition:transform .2s ease, box-shadow .2s ease}
+.way:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(36,27,20,.12)}
+.way .shot{aspect-ratio:3/2; overflow:hidden; background:var(--paper-2)}
+.way img{width:100%; height:100%; object-fit:cover}
+.way .body{padding:1.1rem 1.15rem 1.3rem; flex:1; display:flex; flex-direction:column}
+.way h3{font-size:var(--s-1)}
+.way p{font-size:var(--s--1); color:var(--ink-2); margin-top:.35rem; flex:1}
+.way .go{margin-top:.9rem; font-family:var(--display); font-weight:700; font-size:var(--s--1); color:var(--violet)}
+
+/* beyond adoption — full-bleed photo band */
+.band{position:relative; min-height:min(62vh,520px); display:grid; align-items:center; overflow:hidden}
+.band img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0}
+.band::after{content:""; position:absolute; inset:0; z-index:1; background:linear-gradient(100deg, rgba(28,18,12,.9) 0%, rgba(28,18,12,.72) 46%, rgba(28,18,12,.25) 100%)}
+.band .wrap{position:relative; z-index:2; color:#fff; padding-block:clamp(2.6rem,6vw,4rem)}
+.band h2{color:#fff; font-size:var(--s-3); max-width:17ch}
+.band p{color:#EADFD3; margin-top:.9rem; max-width:44ch}
+.chips{display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.4rem}
+.chips a{background:rgba(255,255,255,.14); border:1.5px solid rgba(255,255,255,.4); color:#fff; text-decoration:none; padding:.5rem 1rem; border-radius:999px; font-family:var(--display); font-weight:600; font-size:var(--s--1)}
+.chips a:hover{background:#fff; color:var(--ink)}
+
+/* efficient donations */
+.eff .cols{display:grid; gap:clamp(1.8rem,4vw,3rem); align-items:center}
+@media (min-width:900px){ .eff .cols{grid-template-columns:1fr 1fr} }
+.effbar{display:flex; height:56px; border-radius:999px; overflow:hidden; margin-top:1.3rem}
+.effbar div{display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--display); font-weight:700; font-size:var(--s--1)}
+.stats{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--rule); border-radius:var(--r); overflow:hidden}
+.stat{background:var(--paper); padding:1.3rem 1.2rem}
+.stat b{display:block; font-family:var(--display); font-weight:800; font-size:var(--s-3); letter-spacing:-.04em; line-height:1; font-variant-numeric:tabular-nums}
+.stat span{display:block; font-size:var(--s--1); color:var(--ink-2); margin-top:.4rem}
+
+/* happy tails strip */
+.strip{display:grid; gap:.9rem; grid-template-columns:repeat(2,1fr)}
+@media (min-width:820px){ .strip{grid-template-columns:repeat(4,1fr)} }
+.strip figure{margin:0; border-radius:var(--r); overflow:hidden; aspect-ratio:1/1; background:var(--paper-2); position:relative}
+.strip img{width:100%; height:100%; object-fit:cover}
+.strip figcaption{position:absolute; inset:auto 0 0 0; padding:1.3rem .8rem .65rem; color:#fff; font-size:.86rem; font-family:var(--display); font-weight:600; background:linear-gradient(to top, rgba(20,14,10,.8), transparent)}
+
+/* donate band */
+.give{background:var(--violet-deep); color:#fff}
+.give .wrap{display:grid; gap:1.6rem; align-items:center}
+@media (min-width:860px){ .give .wrap{grid-template-columns:1.15fr .85fr} }
+.give h2{color:#fff; font-size:var(--s-3); max-width:18ch}
+.give p{color:#E7CFF2; margin-top:.8rem; max-width:44ch}
+.amts{display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem}
+.amts label{
+  background:rgba(255,255,255,.1); border:2px solid rgba(255,255,255,.32); border-radius:999px;
+  min-height:54px; display:flex; align-items:center; justify-content:center; cursor:pointer;
+  font-family:var(--display); font-weight:700; font-size:1.05rem;
+}
+.amts input{position:absolute; opacity:0; width:0; height:0}
+.amts label:has(input:checked){background:#fff; color:var(--violet-deep); border-color:#fff}
+.amts label:has(input:focus-visible){outline:3px solid #fff; outline-offset:2px}
+
+footer{background:var(--ink); color:#D6C9BB; padding-block:clamp(2.6rem,6vw,3.8rem); font-size:var(--s--1)}
+.foot{display:grid; gap:1.8rem}
+@media (min-width:800px){ .foot{grid-template-columns:1.7fr 1fr 1fr 1fr} }
+footer h4{font-family:var(--display); font-weight:700; color:#fff; font-size:var(--s--1); letter-spacing:.12em; text-transform:uppercase; margin:0 0 .8rem}
+footer ul{list-style:none; margin:0; padding:0; display:grid; gap:.5rem}
+footer a{text-decoration:none}
+footer a:hover{color:#fff; text-decoration:underline; text-underline-offset:3px}
+.foot-end{margin-top:2.2rem; padding-top:1.2rem; border-top:1px solid #3E322A; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; color:#9C8D7E}
+
+.flag{background:var(--violet); color:#fff; text-align:center; font-size:.82rem; padding:.55rem 1rem; font-family:var(--display); font-weight:600; line-height:1.45}
+.flag .fake{display:block; margin-top:.25rem; font-weight:400; font-size:.78rem; border-top:1px solid rgba(255,255,255,.45); padding-top:.3rem; max-width:96ch; margin-inline:auto}
+.flag .fake b{font-weight:800; letter-spacing:.06em}
+</style>
+</head>
+<body>
+
+<div class="flag">Direction A — “The animals are the interface.” Photography-led, warm, verb-first navigation.
+  <span class="fake"><b>PLACEHOLDER DATA:</b> the impact counts, the 71/20/9 spending split, the dollar-impact lines and the happy-tails captions are invented for layout only. The animals and their photographs are real, from LFAR's Petfinder listings.</span>
+</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <span><b>Los Feliz · Silver Lake · Atwater Village</b> — a volunteer-run rescue, no shelter building, all foster homes.</span>
+    <span>hello@losfelizanimalrescue.org</span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#B209D7"/><ellipse cx="16" cy="19" rx="3.4" ry="4.6" fill="#FFFAF3"/><ellipse cx="25" cy="15.5" rx="3.3" ry="4.5" fill="#FFFAF3"/><ellipse cx="33" cy="20" rx="3.1" ry="4.2" fill="#FFFAF3"/><path d="M24 24c4.5 0 8.8 3.5 8.8 7.4 0 3.3-3 4.9-6.1 4.9-1.6 0-2 .6-3.1.6s-1.7-.6-3.2-.6c-3.1 0-6.1-1.6-6.1-4.9 0-3.9 4.3-7.4 9.7-7.4z" fill="#FFFAF3"/></svg>
+      <b>Los Feliz Animal Rescue</b>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="#adopt">Adopt</a><a href="#help">Foster</a><a href="#help">Volunteer</a><a href="#wild">Pet help</a><a href="#about">About</a>
+    </nav>
+    <a class="btn btn-v" href="#give">Donate</a>
+    <button class="burger" aria-label="Open menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#241B14" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
+
+<!-- ================= HERO MOSAIC ================= -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <h1>Every one of them came from <em>somewhere near you.</em></h1>
+      <div>
+        <p>We're a volunteer rescue in Los Feliz. No building, no paid staff — just foster homes on these streets, and nearly 400 animals who've come through them since 2021.</p>
+        <div class="hero-cta">
+          <a class="btn btn-v" href="#adopt">Meet the animals</a>
+          <a class="btn btn-o" href="#help">Foster one</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mosaic">
+      <figure class="m1"><img src="https://dbw3zep4prcju.cloudfront.net/animal/6b0118c3-b5b9-4f9c-9a49-201c5d068b18/image/d4c4ec53-ebeb-42c1-9bc9-9345b03c1763.jpg" alt="Snoopy, a grey pit bull terrier mix, grinning up at the camera in a garden" style="object-position:center 22%"><figcaption>Snoopy — adoptable now</figcaption></figure>
+      <figure class="m2"><img src="https://dbw3zep4prcju.cloudfront.net/animal/c73d1a0c-8d17-4928-9ec4-f254e76da214/image/3e74d4e8-8269-43b1-9d3f-58d95839e228.jpg" alt="Crystal, a young tabby cat stretched out on a carpet" style="object-position:center 35%"><figcaption>Crystal</figcaption></figure>
+      <figure class="m3"><img src="https://dbw3zep4prcju.cloudfront.net/animal/f29ff02c-1204-4498-a7dc-d918a282a70f/image/4b3f851a-ca95-4ee9-bef5-78095a405029.jpg" alt="Sailor and Reign, two bonded kittens side by side"><figcaption>Sailor &amp; Reign</figcaption></figure>
+      <figure class="m4"><img src="https://dbw3zep4prcju.cloudfront.net/animal/93578230-ceaf-40ca-84fb-6e0a16b253a8/image/9f786a4a-e978-4105-b1c4-e69735aecee1.jpg" alt="River, a black and white cat looking at the camera" style="object-position:center 25%"><figcaption>River</figcaption></figure>
+      <figure class="m5"><img src="https://dbw3zep4prcju.cloudfront.net/animal/542c6b79-b61e-4dc7-b94e-7883a8f5b25d/image/a574a028-6e77-4338-9b4e-e52a676ddb3b.jpg" alt="Squid, a black cat sitting on hexagonal tile"><figcaption>Squid</figcaption></figure>
+      <figure class="m6"><img src="https://dbw3zep4prcju.cloudfront.net/animal/1a8ebd99-b06f-4f1c-9973-bcc4534d9c2b/image/3571710b-1690-43c2-bffe-88906c33182b.jpg" alt="Misty, a black and white cat lying on a tiled floor" style="object-position:center 40%"><figcaption>Misty — in foster in Atwater</figcaption></figure>
+      <figure class="m7"><img src="https://dbw3zep4prcju.cloudfront.net/animal/8cee92b8-51c3-42b8-a869-f069720cf34b/image/6c50753f-4c3f-4df2-8e07-7315d90c462b.jpg" alt="Freddie, a tabby cat looking directly at the camera" style="object-position:center 26%"><figcaption>Freddie</figcaption></figure>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ADOPTABLES ================= -->
+<section id="adopt">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="kicker">Looking for homes</span>
+        <h2>Meet the ones waiting right now</h2>
+        <p>Straight from our Petfinder listings, so it's never out of date. Every animal is in a foster home — which means we can tell you what they're actually like to live with.</p>
+      </div>
+      <a class="btn btn-o" href="#">See all animals</a>
+    </div>
+    <div class="pets">
+      <a class="pet" href="#"><div class="shot"><span class="badge">Adoptable</span><img src="https://dbw3zep4prcju.cloudfront.net/animal/daf3fdc1-3318-4b14-90e6-ab6834bb813b/image/76f87215-cb62-4bf2-a48d-17d2b348c2d9.jpg" alt="Dusty, a grey and white shorthair cat lying down" style="object-position:center 28%"></div><h3>Dusty</h3><span class="meta">American Shorthair · Young · Male</span><span class="line">Follows you room to room, then pretends it was a coincidence.</span></a>
+      <a class="pet" href="#"><div class="shot"><span class="badge">Adoptable</span><img src="https://dbw3zep4prcju.cloudfront.net/animal/1a8ebd99-b06f-4f1c-9973-bcc4534d9c2b/image/3571710b-1690-43c2-bffe-88906c33182b.jpg" alt="Misty, a black and white cat" style="object-position:center 34%"></div><h3>Misty</h3><span class="meta">Domestic Shorthair · Young · Female</span><span class="line">Talks constantly. Will tell you about her day whether you ask or not.</span></a>
+      <a class="pet" href="#"><div class="shot"><span class="badge">Bonded pair</span><img src="https://dbw3zep4prcju.cloudfront.net/animal/f29ff02c-1204-4498-a7dc-d918a282a70f/image/4b3f851a-ca95-4ee9-bef5-78095a405029.jpg" alt="Sailor and Reign, two kittens" style="object-position:center 30%"></div><h3>Sailor &amp; Reign</h3><span class="meta">Kittens · 4 months</span><span class="line">Go together. Sleep in a single pile regardless of how much space you give them.</span></a>
+      <a class="pet" href="#"><div class="shot"><span class="badge">Adoptable</span><img src="https://dbw3zep4prcju.cloudfront.net/animal/6b0118c3-b5b9-4f9c-9a49-201c5d068b18/image/d4c4ec53-ebeb-42c1-9bc9-9345b03c1763.jpg" alt="Snoopy, a grey pit bull terrier mix" style="object-position:center 20%"></div><h3>Snoopy</h3><span class="meta">Pit Bull &amp; Cane Corso · Adult · Male</span><span class="line">Seventy pounds of leaning. Knows sit, and considers it optional.</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WAYS TO HELP ================= -->
+<section class="help" id="help">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="kicker">Ways to help</span>
+        <h2>Four things that keep this running</h2>
+      </div>
+    </div>
+    <div class="ways">
+      <a class="way" href="#">
+        <div class="shot"><img src="https://dbw3zep4prcju.cloudfront.net/animal/93578230-ceaf-40ca-84fb-6e0a16b253a8/image/9f786a4a-e978-4105-b1c4-e69735aecee1.jpg" alt="River, a black and white cat, in a foster home" style="object-position:center 25%"></div>
+        <div class="body"><h3>Foster</h3><p>A spare room for two weeks or two months. We cover food, litter and every vet bill.</p><span class="go">How it works →</span></div>
+      </a>
+      <a class="way" href="#">
+        <div class="shot"><img src="https://dbw3zep4prcju.cloudfront.net/animal/542c6b79-b61e-4dc7-b94e-7883a8f5b25d/image/a574a028-6e77-4338-9b4e-e52a676ddb3b.jpg" alt="Squid, a black cat, at an adoption event"></div>
+        <div class="body"><h3>Volunteer</h3><p>Transport, weekend adoption events, TNR nights, photographing animals.</p><span class="go">Find a role →</span></div>
+      </a>
+      <a class="way" href="#give">
+        <div class="shot"><img src="https://dbw3zep4prcju.cloudfront.net/animal/c73d1a0c-8d17-4928-9ec4-f254e76da214/image/3e74d4e8-8269-43b1-9d3f-58d95839e228.jpg" alt="Crystal, a tabby cat, resting" style="object-position:center 30%"></div>
+        <div class="body"><h3>Donate</h3><p>Nearly every dollar becomes a vet bill. $45 is one spay surgery.</p><span class="go">Give now →</span></div>
+      </a>
+      <a class="way" href="#">
+        <div class="shot"><img src="https://dbw3zep4prcju.cloudfront.net/animal/8cee92b8-51c3-42b8-a869-f069720cf34b/image/6c50753f-4c3f-4df2-8e07-7315d90c462b.jpg" alt="Freddie, a tabby cat, with a toy" style="object-position:center 26%"></div>
+        <div class="body"><h3>Wish list</h3><p>Kitten formula, crates, heating pads, and the unglamorous things we always run out of.</p><span class="go">See the list →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BEYOND ADOPTION ================= -->
+<div class="band" id="wild">
+  <img src="https://dbw3zep4prcju.cloudfront.net/animal/f29ff02c-1204-4498-a7dc-d918a282a70f/image/4b3f851a-ca95-4ee9-bef5-78095a405029.jpg" alt="Two kittens from a managed community cat colony" style="object-position:center 32%">
+  <div class="wrap">
+    <span class="kicker" style="color:#F0B6FF">Beyond adoption</span>
+    <h2>Most of what we do never involves an adoption at all.</h2>
+    <p>A litter under someone's porch. An injured hawk on Hillhurst. A dog with no collar at 11pm. You don't have to be a foster or a donor to ask us for help.</p>
+    <div class="chips">
+      <a href="#">I found a pet</a><a href="#">I lost my pet</a><a href="#">Community cats &amp; TNR</a><a href="#">Injured wildlife</a><a href="#">Low-cost vet care</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= EFFICIENCY ================= -->
+<section class="eff" id="about">
+  <div class="wrap cols">
+    <div>
+      <span class="kicker">Where the money goes</span>
+      <h2 style="font-size:var(--s-3); max-width:16ch">Ninety-one cents of every dollar is a vet bill.</h2>
+      <p style="color:var(--ink-2); margin-top:.9rem; max-width:44ch">No building. No paid staff. No fundraising department. Here's the actual split for the last twelve months.</p>
+      <div class="effbar" role="img" aria-label="71 percent veterinary care, 20 percent food and supplies, 9 percent operating">
+        <div style="flex:71; background:var(--violet-deep)">71% Vet care</div>
+        <div style="flex:20; background:var(--violet)">20%</div>
+        <div style="flex:9; background:var(--ink-2)">9%</div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>396</b><span>animals helped since 2021</span></div>
+      <div class="stat"><b>140+</b><span>community cats fixed</span></div>
+      <div class="stat"><b>62</b><span>fosters and volunteers</span></div>
+      <div class="stat"><b>0</b><span>paid staff</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HAPPY TAILS ================= -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><div><span class="kicker">Happy tails</span><h2>Where they ended up</h2></div><a class="btn btn-o" href="#">Read their stories</a></div>
+    <div class="strip">
+      <figure><img src="https://dbw3zep4prcju.cloudfront.net/animal/daf3fdc1-3318-4b14-90e6-ab6834bb813b/image/76f87215-cb62-4bf2-a48d-17d2b348c2d9.jpg" alt="Dusty, adopted, asleep on a sofa" style="object-position:center 28%"><figcaption>Dusty · adopted in Silver Lake</figcaption></figure>
+      <figure><img src="https://dbw3zep4prcju.cloudfront.net/animal/93578230-ceaf-40ca-84fb-6e0a16b253a8/image/9f786a4a-e978-4105-b1c4-e69735aecee1.jpg" alt="River, adopted, at home" style="object-position:center 25%"><figcaption>River · adopted 2025</figcaption></figure>
+      <figure><img src="https://dbw3zep4prcju.cloudfront.net/animal/c73d1a0c-8d17-4928-9ec4-f254e76da214/image/3e74d4e8-8269-43b1-9d3f-58d95839e228.jpg" alt="Crystal, adopted, stretched out" style="object-position:center 32%"><figcaption>Crystal · adopted 2025</figcaption></figure>
+      <figure><img src="https://dbw3zep4prcju.cloudfront.net/animal/1a8ebd99-b06f-4f1c-9973-bcc4534d9c2b/image/3571710b-1690-43c2-bffe-88906c33182b.jpg" alt="Misty, adopted, on a windowsill" style="object-position:center 36%"><figcaption>Misty · adopted in Los Feliz</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GIVE ================= -->
+<section class="give" id="give">
+  <div class="wrap">
+    <div>
+      <h2>$45 is one spay. One spay is the next litter that never happens.</h2>
+      <p>Every gift goes to the veterinary fund. No account needed, and one email a month at most.</p>
+    </div>
+    <form onsubmit="return false">
+      <div class="amts">
+        <label><input type="radio" name="a" value="10"><span>$10</span></label>
+        <label><input type="radio" name="a" value="25"><span>$25</span></label>
+        <label><input type="radio" name="a" value="45" checked><span>$45</span></label>
+        <label><input type="radio" name="a" value="75"><span>$75</span></label>
+        <label><input type="radio" name="a" value="150"><span>$150</span></label>
+        <label><input type="radio" name="a" value="other"><span>Other</span></label>
+      </div>
+      <p style="margin-top:1rem"><a class="btn btn-w" style="width:100%" href="#">Give once</a></p>
+      <p style="margin-top:.6rem; text-align:center; font-size:var(--s--1); color:#E7CFF2">or <a href="#" style="color:#fff">give monthly</a> · Donorbox · 501(c)(3)</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h4>Los Feliz Animal Rescue</h4>
+        <p style="max-width:34ch">A volunteer-run rescue serving Los Feliz, Silver Lake, Atwater Village and the surrounding neighborhoods. Every animal lives in a foster home.</p>
+        <p style="margin-top:.9rem">hello@losfelizanimalrescue.org</p>
+      </div>
+      <div><h4>Adopt</h4><ul><li><a href="#">Available animals</a></li><li><a href="#">How adoption works</a></li><li><a href="#">Adoption fees</a></li></ul></div>
+      <div><h4>Help out</h4><ul><li><a href="#">Foster</a></li><li><a href="#">Volunteer</a></li><li><a href="#">Donate</a></li><li><a href="#">Wish list</a></li></ul></div>
+      <div><h4>Pet help</h4><ul><li><a href="#">Found a pet</a></li><li><a href="#">Lost a pet</a></li><li><a href="#">Community cats</a></li><li><a href="#">Wildlife</a></li></ul></div>
+    </div>
+    <div class="foot-end"><span>© 2026 Los Feliz Animal Rescue · 501(c)(3) · EIN 00-0000000</span><span><a href="#">Accessibility</a> · <a href="#">Privacy</a></span></div>
+  </div>
+</footer>
+</body>
+</html>

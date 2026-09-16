@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los Feliz Animal Rescue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   LFAR — Direction C: "Say less"
+   Santé D'Or's model, taken seriously: three pathways, a
+   persistent donate action, and almost nothing else. One
+   typeface at four weights. One accent. No cards, no bands,
+   no texture. Everything the page does is done with size,
+   space and a single colour.
+
+   The discipline is subtractive — if a block doesn't help
+   someone adopt, help, or ask for help, it isn't here.
+   ========================================================== */
+@view-transition { navigation: auto; }
+
+:root{
+  --bg:#FFFFFF;
+  --bg-2:#F5F3F6;
+  --ink:#121114;
+  --ink-2:#5E5C63;
+  --rule:#E4E2E7;
+  --violet:#B209D7;
+  --violet-dk:#4A0A5E;
+
+  --font:"Manrope",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+
+  --s--1:clamp(.85rem,.83rem + .1vw,.92rem);
+  --s-0:clamp(1.05rem,1.01rem + .18vw,1.18rem);
+  --s-1:clamp(1.22rem,1.14rem + .36vw,1.5rem);
+  --s-2:clamp(1.6rem,1.4rem + .9vw,2.4rem);
+  --s-3:clamp(2.1rem,1.7rem + 1.9vw,3.6rem);
+  --s-4:clamp(2.8rem,2rem + 3.6vw,5.6rem);
+  --gutter:clamp(1.2rem,5vw,3rem);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} *{transition-duration:.01ms !important} }
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--font);
+  font-size:var(--s-0); line-height:1.6; -webkit-font-smoothing:antialiased; text-wrap:pretty;
+}
+img{display:block; max-width:100%}
+p{margin:0}
+a{color:inherit}
+h1,h2,h3{margin:0; font-weight:800; line-height:1.02; letter-spacing:-.035em; text-wrap:balance}
+:focus-visible{outline:3px solid var(--violet); outline-offset:4px; border-radius:6px}
+.wrap{max-width:1080px; margin-inline:auto; padding-inline:var(--gutter)}
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:54px; padding:.85rem 1.8rem; border-radius:999px; text-decoration:none;
+  font-weight:700; font-size:1.02rem; letter-spacing:-.01em; cursor:pointer;
+  border:2px solid transparent; transition:background .18s ease, color .18s ease;
+}
+.btn-v{background:var(--violet); color:#fff}
+.btn-v:hover{background:var(--violet-dk)}
+.btn-o{border-color:var(--ink); color:var(--ink)}
+.btn-o:hover{background:var(--ink); color:#fff}
+
+/* ---------- header ---------- */
+header{position:sticky; top:0; z-index:50; background:var(--bg)}
+header .wrap{display:flex; align-items:center; gap:1.2rem; min-height:88px}
+.brand{display:flex; align-items:center; gap:.65rem; text-decoration:none; margin-right:auto}
+.brand svg{width:38px; height:38px; flex:none}
+.brand b{font-weight:800; font-size:1.02rem; letter-spacing:-.03em; line-height:1.05; max-width:13ch; display:block}
+nav.main{display:flex; gap:2rem}
+nav.main a{font-weight:600; font-size:1.02rem; text-decoration:none; letter-spacing:-.01em}
+nav.main a:hover{color:var(--violet)}
+.burger{display:none; background:none; border:0; padding:.6rem; cursor:pointer; min-width:46px; min-height:46px}
+@media (max-width:900px){ nav.main{display:none} .burger{display:inline-flex; align-items:center; justify-content:center} }
+
+/* ---------- hero: name, one sentence, two actions, the hours ---------- */
+.hero{padding:clamp(3rem,9vw,7rem) 0 clamp(2.6rem,7vw,5rem)}
+.hero h1{font-size:var(--s-4); max-width:13ch}
+.hero h1 em{font-style:normal; color:var(--violet)}
+.hero p{font-size:var(--s-1); color:var(--ink-2); max-width:44ch; margin-top:1.5rem}
+.hero .actions{display:flex; gap:.75rem; flex-wrap:wrap; margin-top:2.2rem}
+.hours{
+  display:flex; gap:.5rem 2rem; flex-wrap:wrap; margin-top:2.6rem;
+  padding-top:1.4rem; border-top:1px solid var(--rule); font-size:var(--s--1); color:var(--ink-2);
+}
+.hours b{color:var(--ink); font-weight:700}
+
+/* ---------- three pathways ---------- */
+.paths{display:grid; gap:0; border-top:1px solid var(--rule)}
+.path{
+  display:grid; gap:.4rem 2rem; align-items:baseline; padding:clamp(1.8rem,4vw,2.8rem) 0;
+  border-bottom:1px solid var(--rule); text-decoration:none; transition:padding-left .25s ease;
+}
+@media (min-width:780px){ .path{grid-template-columns:minmax(0,22ch) minmax(0,1fr) auto} }
+.path:hover{padding-left:1rem}
+.path h2{font-size:var(--s-2); letter-spacing:-.035em}
+.path:hover h2{color:var(--violet)}
+.path p{color:var(--ink-2); max-width:46ch}
+.path .go{font-weight:700; color:var(--violet); white-space:nowrap}
+
+/* ---------- animals ---------- */
+section{padding-block:clamp(3rem,8vw,5.5rem)}
+.head{display:flex; justify-content:space-between; align-items:baseline; gap:1.5rem; flex-wrap:wrap; margin-bottom:2rem}
+.head h2{font-size:var(--s-2)}
+.head a{font-weight:700; color:var(--violet); text-decoration:none}
+.head a:hover{text-decoration:underline; text-underline-offset:4px}
+.pets{display:grid; gap:1.2rem; grid-template-columns:repeat(2,1fr)}
+@media (min-width:820px){ .pets{grid-template-columns:repeat(4,1fr)} }
+.pet{text-decoration:none; display:block}
+.pet img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:14px; background:var(--bg-2)}
+.pet b{display:block; font-weight:800; font-size:var(--s-1); letter-spacing:-.025em; margin-top:.7rem}
+.pet span{display:block; font-size:var(--s--1); color:var(--ink-2)}
+
+/* ---------- one grey band: pet help ---------- */
+.band{background:var(--bg-2)}
+.band h2{font-size:var(--s-2); max-width:20ch}
+.band p{color:var(--ink-2); margin-top:.9rem; max-width:48ch}
+.links{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.6rem}
+.links a{
+  background:var(--bg); border:1px solid var(--rule); border-radius:999px; padding:.6rem 1.2rem;
+  text-decoration:none; font-weight:600; font-size:var(--s--1);
+}
+.links a:hover{border-color:var(--violet); color:var(--violet)}
+
+/* ---------- money: one sentence, four numbers ---------- */
+.money h2{font-size:var(--s-3); max-width:15ch}
+.money p{color:var(--ink-2); margin-top:1rem; max-width:44ch}
+.stats{display:grid; grid-template-columns:repeat(2,1fr); gap:2rem 1.5rem; margin-top:2.6rem}
+@media (min-width:780px){ .stats{grid-template-columns:repeat(4,1fr)} }
+.stat b{display:block; font-weight:800; font-size:var(--s-3); letter-spacing:-.045em; line-height:1; font-variant-numeric:tabular-nums}
+.stat span{display:block; color:var(--ink-2); font-size:var(--s--1); margin-top:.5rem}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--rule); padding-block:clamp(2.4rem,6vw,3.6rem); font-size:var(--s--1)}
+.foot{display:grid; gap:1.8rem}
+@media (min-width:780px){ .foot{grid-template-columns:1.8fr 1fr 1fr 1fr} }
+footer h4{font-size:var(--s--1); font-weight:800; margin:0 0 .8rem; letter-spacing:-.01em}
+footer ul{list-style:none; margin:0; padding:0; display:grid; gap:.5rem}
+footer a{text-decoration:none; color:var(--ink-2)}
+footer a:hover{color:var(--violet)}
+.foot-end{margin-top:2.4rem; padding-top:1.2rem; border-top:1px solid var(--rule); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; color:var(--ink-2)}
+
+.flag{background:var(--violet); color:#fff; text-align:center; font-size:.82rem; padding:.55rem 1rem; font-weight:600; line-height:1.5}
+.flag .fake{display:block; margin-top:.25rem; font-weight:400; font-size:.78rem; border-top:1px solid rgba(255,255,255,.45); padding-top:.3rem; max-width:96ch; margin-inline:auto}
+.flag .fake b{font-weight:800}
+</style>
+</head>
+<body>
+
+<div class="flag">Direction C — “Say less.” Three pathways, one typeface, one accent.
+  <span class="fake"><b>PLACEHOLDER DATA:</b> the hours, impact counts and the 91¢ figure are invented for layout only. The animals and their photographs are real, from LFAR's Petfinder listings.</span>
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="#B209D7"/><ellipse cx="16" cy="19" rx="3.4" ry="4.6" fill="#fff"/><ellipse cx="25" cy="15.5" rx="3.3" ry="4.5" fill="#fff"/><ellipse cx="33" cy="20" rx="3.1" ry="4.2" fill="#fff"/><path d="M24 24c4.5 0 8.8 3.5 8.8 7.4 0 3.3-3 4.9-6.1 4.9-1.6 0-2 .6-3.1.6s-1.7-.6-3.2-.6c-3.1 0-6.1-1.6-6.1-4.9 0-3.9 4.3-7.4 9.7-7.4z" fill="#fff"/></svg>
+      <b>Los Feliz Animal Rescue</b>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="#adopt">Adopt</a><a href="#help">How to help</a><a href="#pethelp">Pet help</a><a href="#about">About</a>
+    </nav>
+    <a class="btn btn-v" href="#give">Donate</a>
+    <button class="burger" aria-label="Open menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#121114" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>A volunteer rescue in <em>Los Feliz.</em></h1>
+    <p>Nearly 400 animals since 2021. Every one of them lives in a foster home until we find the right person.</p>
+    <div class="actions">
+      <a class="btn btn-v" href="#adopt">Meet the animals</a>
+      <a class="btn btn-o" href="#help">How to help</a>
+    </div>
+    <div class="hours">
+      <span><b>Meet an animal</b> — weekends, by appointment</span>
+      <span><b>Found an animal?</b> <a href="#pethelp">Start here</a></span>
+      <span>hello@losfelizanimalrescue.org</span>
+    </div>
+  </div>
+</div>
+
+<!-- three pathways -->
+<div class="wrap">
+  <div class="paths" id="help">
+    <a class="path" href="#adopt">
+      <h2>Adopt</h2>
+      <p>Meet the dogs and cats in foster homes around the neighbourhood right now. We can tell you what they're actually like to live with.</p>
+      <span class="go">See who's available →</span>
+    </a>
+    <a class="path" href="#">
+      <h2>Help out</h2>
+      <p>Foster a spare room for a fortnight. Drive animals to the vet. Photograph them so they get seen. Send something from the wish list.</p>
+      <span class="go">Find something to do →</span>
+    </a>
+    <a class="path" href="#about">
+      <h2>About us</h2>
+      <p>Five years, no building, no paid staff. Where the money goes and who's actually doing this.</p>
+      <span class="go">Read our story →</span>
+    </a>
+  </div>
+</div>
+
+<!-- animals -->
+<section id="adopt">
+  <div class="wrap">
+    <div class="head"><h2>Looking for homes</h2><a href="#">See all animals →</a></div>
+    <div class="pets">
+      <a class="pet" href="#"><img src="https://dbw3zep4prcju.cloudfront.net/animal/daf3fdc1-3318-4b14-90e6-ab6834bb813b/image/76f87215-cb62-4bf2-a48d-17d2b348c2d9.jpg" alt="Dusty, a grey and white shorthair cat" style="object-position:center 28%"><b>Dusty</b><span>Shorthair · Young · Male</span></a>
+      <a class="pet" href="#"><img src="https://dbw3zep4prcju.cloudfront.net/animal/1a8ebd99-b06f-4f1c-9973-bcc4534d9c2b/image/3571710b-1690-43c2-bffe-88906c33182b.jpg" alt="Misty, a black and white cat" style="object-position:center 34%"><b>Misty</b><span>Shorthair · Young · Female</span></a>
+      <a class="pet" href="#"><img src="https://dbw3zep4prcju.cloudfront.net/animal/8cee92b8-51c3-42b8-a869-f069720cf34b/image/6c50753f-4c3f-4df2-8e07-7315d90c462b.jpg" alt="Freddie, a tabby cat" style="object-position:center 26%"><b>Freddie</b><span>Shorthair · Young · Male</span></a>
+      <a class="pet" href="#"><img src="https://dbw3zep4prcju.cloudfront.net/animal/6b0118c3-b5b9-4f9c-9a49-201c5d068b18/image/d4c4ec53-ebeb-42c1-9bc9-9345b03c1763.jpg" alt="Snoopy, a grey pit bull terrier mix" style="object-position:center 20%"><b>Snoopy</b><span>Pit Bull mix · Adult · Male</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- pet help -->
+<section class="band" id="pethelp">
+  <div class="wrap">
+    <h2>Found an animal and don't know what to do?</h2>
+    <p>Most of what we do never involves an adoption. You don't have to be a foster or a donor to ask us for help.</p>
+    <div class="links">
+      <a href="#">I found a pet</a><a href="#">I lost my pet</a><a href="#">Community cats &amp; TNR</a><a href="#">Injured wildlife</a><a href="#">Low-cost vet care</a>
+    </div>
+  </div>
+</section>
+
+<!-- money -->
+<section class="money" id="about">
+  <div class="wrap">
+    <h2>Ninety-one cents of every dollar is a vet bill.</h2>
+    <p>No building, no salaries, no fundraising department. $45 covers one spay surgery — the thing that stops the next litter.</p>
+    <div class="stats">
+      <div class="stat"><b>396</b><span>animals helped since 2021</span></div>
+      <div class="stat"><b>140+</b><span>community cats fixed</span></div>
+      <div class="stat"><b>62</b><span>fosters and volunteers</span></div>
+      <div class="stat"><b>0</b><span>paid staff</span></div>
+    </div>
+    <p style="margin-top:2.4rem"><a class="btn btn-v" id="give" href="#">Give to the vet fund</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h4>Los Feliz Animal Rescue</h4>
+        <p style="max-width:34ch; color:var(--ink-2)">A volunteer-run rescue serving Los Feliz, Silver Lake and Atwater Village.</p>
+        <p style="margin-top:.8rem; color:var(--ink-2)">hello@losfelizanimalrescue.org</p>
+      </div>
+      <div><h4>Adopt</h4><ul><li><a href="#">Available animals</a></li><li><a href="#">How adoption works</a></li></ul></div>
+      <div><h4>Help out</h4><ul><li><a href="#">Foster</a></li><li><a href="#">Volunteer</a></li><li><a href="#">Donate</a></li><li><a href="#">Wish list</a></li></ul></div>
+      <div><h4>Pet help</h4><ul><li><a href="#">Found a pet</a></li><li><a href="#">Lost a pet</a></li><li><a href="#">Community cats</a></li><li><a href="#">Wildlife</a></li></ul></div>
+    </div>
+    <div class="foot-end"><span>© 2026 Los Feliz Animal Rescue · 501(c)(3) · EIN 00-0000000</span><span><a href="#">Accessibility</a> · <a href="#">Privacy</a></span></div>
+  </div>
+</footer>
+</body>
+</html>
