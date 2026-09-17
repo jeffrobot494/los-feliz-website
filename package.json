@@ -1,0 +1,12 @@
+{
+  "name": "los-feliz-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gallery": "node scripts/build-gallery.mjs",
+    "preview": "npm run gallery && npx --yes serve ."
+  },
+  "devDependencies": {
+    "playwright": "^1.54.0"
+  }
+}

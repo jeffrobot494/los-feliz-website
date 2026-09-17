@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los Feliz Animal Rescue — Designs</title>
+<style>
+  :root {
+    --bg: #f6f4f0;
+    --card: #ffffff;
+    --ink: #1f1d1a;
+    --muted: #6d6860;
+    --line: #e4dfd6;
+    --accent: #7a4fb3;
+    --shadow: 0 1px 2px rgb(0 0 0 / .05), 0 4px 16px rgb(0 0 0 / .06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171614;
+      --card: #22201d;
+      --ink: #f1ede6;
+      --muted: #a39d93;
+      --line: #34312c;
+      --accent: #b99be6;
+      --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 4px 16px rgb(0 0 0 / .3);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 1200px; margin: 0 auto; padding: 40px 16px 80px; }
+  header h1 { margin: 0 0 4px; font-size: 28px; letter-spacing: -.01em; }
+  header p { margin: 0; color: var(--muted); }
+  nav.crumbs { margin: 28px 0 20px; font-size: 15px; color: var(--muted); }
+  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  nav.crumbs a:hover { text-decoration: underline; }
+  nav.crumbs span.sep { margin: 0 8px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 32px 0 12px; font-weight: 600; }
+  .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  a.card {
+    display: block; color: inherit; text-decoration: none;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  a.card:hover { transform: translateY(-2px); box-shadow: var(--shadow), 0 8px 24px rgb(0 0 0 / .08); }
+  a.card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .thumb { aspect-ratio: 16 / 10; background: var(--line); display: grid; place-items: center; overflow: hidden; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .thumb.folder { color: var(--accent); }
+  .thumb.folder .stack { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; width: 100%; height: 100%; }
+  .thumb.folder .stack img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .label { padding: 12px 14px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .label strong { font-weight: 600; }
+  .label small { color: var(--muted); white-space: nowrap; }
+  .empty { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Los Feliz Animal Rescue</h1>
+    <p>Website design explorations</p>
+  </header>
+  <nav class="crumbs" id="crumbs"></nav>
+  <div id="view"></div>
+</main>
+<script>
+const view = document.getElementById('view');
+const crumbs = document.getElementById('crumbs');
+let tree;
+
+const el = (tag, attrs = {}, ...children) => {
+  const node = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+  node.append(...children);
+  return node;
+};
+const countPages = (f) => f.pages.length + f.folders.reduce((n, c) => n + countPages(c), 0);
+const samplePages = (f) => [...f.pages, ...f.folders.flatMap(samplePages)].filter((p) => p.thumb);
+
+function folderCard(folder) {
+  const samples = samplePages(folder).slice(0, 4);
+  const thumb = el('div', { class: 'thumb folder' });
+  if (samples.length >= 4) {
+    thumb.append(el('div', { class: 'stack' }, ...samples.map((p) => el('img', { src: p.thumb, alt: '', loading: 'lazy' }))));
+  } else if (samples.length) {
+    thumb.append(el('img', { src: samples[0].thumb, alt: '', loading: 'lazy' }));
+  }
+  const n = countPages(folder);
+  return el('a', { class: 'card', href: '#/' + folder.path.replace(/^design\/?/, '') },
+    thumb,
+    el('div', { class: 'label' }, el('strong', {}, folder.name), el('small', {}, `${n} design${n === 1 ? '' : 's'}`)));
+}
+
+function pageCard(page) {
+  const thumb = el('div', { class: 'thumb' });
+  if (page.thumb) thumb.append(el('img', { src: page.thumb, alt: '', loading: 'lazy' }));
+  return el('a', { class: 'card', href: page.path }, thumb, el('div', { class: 'label' }, el('strong', {}, page.title)));
+}
+
+function render() {
+  const parts = decodeURIComponent(location.hash.replace(/^#\/?/, '')).split('/').filter(Boolean);
+  let folder = tree;
+  const trail = [folder];
+  for (const part of parts) {
+    const next = folder.folders.find((f) => f.path.split('/').pop() === part);
+    if (!next) break;
+    folder = next;
+    trail.push(folder);
+  }
+
+  crumbs.replaceChildren();
+  trail.forEach((f, i) => {
+    if (i) crumbs.append(el('span', { class: 'sep' }, '/'));
+    const name = i === 0 ? 'All designs' : f.name;
+    crumbs.append(i === trail.length - 1 ? el('span', {}, name) : el('a', { href: '#/' + f.path.replace(/^design\/?/, '') }, name));
+  });
+
+  view.replaceChildren();
+  if (folder.folders.length) {
+    view.append(el('div', { class: 'grid' }, ...folder.folders.map(folderCard)));
+  }
+  if (folder.pages.length) {
+    if (folder.folders.length) view.append(el('h2', {}, 'Pages'));
+    view.append(el('div', { class: 'grid' }, ...folder.pages.map(pageCard)));
+  }
+  if (!folder.folders.length && !folder.pages.length) {
+    view.append(el('p', { class: 'empty' }, 'No designs here yet.'));
+  }
+  document.title = (trail.length > 1 ? folder.name + ' — ' : '') + 'Los Feliz Animal Rescue Designs';
+}
+
+fetch('gallery/manifest.json', { cache: 'no-cache' })
+  .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then((data) => { tree = data.tree; render(); window.addEventListener('hashchange', render); })
+  .catch(() => view.append(el('p', { class: 'empty' }, 'Could not load gallery/manifest.json — run "npm run gallery" first.')));
+</script>
+</body>
+</html>

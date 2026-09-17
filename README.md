@@ -209,3 +209,15 @@ Still undecided:
 
 Next step per the kickoff: deliver a wireframe the client can write content against, since
 they'd rather fit copy to a layout than the other way around.
+
+## Client gallery (GitHub Pages)
+
+`index.html` is a simple browser for everything in `design/`: folders first, then a thumbnail
+card for each page. `studio/` and folders with no HTML are hidden. Titles come from the filenames.
+
+- **Build locally:** `npm install && npx playwright install chromium`, then `npm run gallery`
+  (writes `gallery/manifest.json` + thumbnails; `gallery/` is git-ignored). `npm run preview`
+  builds and serves the site locally.
+- **Deploy:** `.github/workflows/pages.yml` rebuilds the gallery and publishes `index.html`,
+  `gallery/`, and `design/` (minus `studio/`) on every push to `main`. One-time setup:
+  repo **Settings → Pages → Source: GitHub Actions**.
