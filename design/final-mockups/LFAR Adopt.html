@@ -400,6 +400,11 @@ footer ul a:hover{color:#F3D3FB}
 .app .cond + .cond .inner{margin-top:16px}
 .cond .sub{padding-top:14px}
 .cond .check{margin:6px 0 16px}
+.fee-box{margin:4px 0 22px;padding:18px 22px;border:2px dashed var(--accent-soft);border-radius:12px;background:#FFFFFF}
+.fee-box p{margin:0 0 8px;font-size:14.5px;color:#4A4050}
+.fee-box .fee-line{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:6px;font-size:18px;font-weight:700;color:var(--head)}
+.fee-box .fee-line strong{font-size:26px;color:var(--accent)}
+.fee-link{font-weight:700;font-size:15px}
 .foster-row{display:grid;grid-template-columns:5fr 7fr;gap:60px;align-items:start;position:relative;z-index:1}
 @media (max-width:991px){.foster-row{grid-template-columns:1fr;gap:50px}}
 @media (max-width:400px){.intent-card{padding:16px 14px 14px}.intent-card strong{font-size:21px}.intent-card .box{top:12px;right:12px}}
@@ -1015,6 +1020,14 @@ footer ul a:hover{color:#F3D3FB}
               <div class="field"><label for="h-kids">Children at home (ages)</label><input id="h-kids" placeholder="e.g. 4 and 9, or none"></div>
             </fieldset>
 
+            <div class="cond open" data-for="fee"><div>
+              <div class="fee-box">
+                <p class="fee-line"><span>Adoption fee</span><strong>$300</strong></p>
+                <p>The full adoption details explain the process from application to going home.</p>
+                <a class="fee-link" href="https://drive.google.com/file/d/18AhJgdD7Ce0bgJVqZKbbEn7ZkSdeEfe5/view" target="_blank" rel="noopener">Read the full adoption details <span aria-hidden="true">→</span></a>
+              </div>
+            </div></div>
+
             <p class="app-error" id="app-error" hidden></p>
             <button class="give" type="submit" id="submit-btn">Send adoption application</button>
             <p class="app-note">Mockup form. Nothing is sent.</p>
@@ -1373,7 +1386,7 @@ footer ul a:hover{color:#F3D3FB}
   var iAdopt=$('#i-adopt'), iFoster=$('#i-foster'), submitBtn=$('#submit-btn');
   function syncForm(){
     function open(key,on){var c=$('.cond[data-for="'+key+'"]'); if(c) c.classList.toggle('open',!!on);}
-    open('adopt',iAdopt.checked); open('foster',iFoster.checked);
+    open('adopt',iAdopt.checked); open('foster',iFoster.checked); open('fee',iAdopt.checked);
     var kind=($('input[name="kind"]:checked')||{}).value;
     ['dog','cat','other'].forEach(function(k){open(k,k===kind)});
     open('rent',($('input[name="home"]:checked')||{}).value==='rent');
