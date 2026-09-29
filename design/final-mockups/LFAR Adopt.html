@@ -1088,18 +1088,18 @@ footer ul a:hover{color:#F3D3FB}
         <ul>
           <li><a href="#">[email address]</a></li>
           <li>Los Feliz, Los Angeles, CA</li>
-          <li><a href="#">Send us a message</a></li>
+          <li><a href="LFAR%20Contact.html#message">Send us a message</a></li>
         </ul>
       </div>
       <div>
         <h6><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-9A5.3 5.3 0 0 1 12 6.3 5.3 5.3 0 0 1 21.3 12C19 16.6 12 21 12 21z"/></svg>Explore</h6>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Adopt</a></li>
-          <li><a href="#">Get Involved</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Donate</a></li>
+          <li><a href="LFAR%20Home.html">Home</a></li>
+          <li><a href="LFAR%20About.html">About</a></li>
+          <li><a href="LFAR%20Adopt.html">Adopt</a></li>
+          <li><a href="LFAR%20Get%20Involved.html">Get Involved</a></li>
+          <li><a href="LFAR%20Contact.html">Contact</a></li>
+          <li><a href="LFAR%20Donate.html">Donate</a></li>
         </ul>
       </div>
     </div>
@@ -1416,6 +1416,8 @@ footer ul a:hover{color:#F3D3FB}
   $$('.apply-for').forEach(function(b){b.addEventListener('click',function(){goTo('adopt',b.dataset.pet,b.dataset.type||'dog');});});
   $$('.go-adopt').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();goTo('adopt');});});
   $$('.go-foster').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();goTo('foster');});});
+  // links from other pages: #apply-foster opens the form with Foster selected
+  if(location.hash==='#apply-foster'){setTimeout(function(){goTo('foster');},300);}
 
   // submit (mockup: nothing is sent)
   form.addEventListener('submit',function(e){
