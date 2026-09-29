@@ -673,12 +673,25 @@ footer{padding-block:56px 32px}
 
 [hidden]{display:none!important}
 
-/* five-item nav (Home, About, Adopt, Get Involved, Contact) fits inline down to tablet */
-.menu{gap:6px}
-.menu a{font-size:16px;padding:0 16px}
-@media (min-width:768px){
+/* six-item nav (Home, Adopt, Get Involved, About, Contact, Donate) */
+.menu a.active{background:var(--accent)}
+.menu{gap:4px}
+.menu a{font-size:15.5px;padding:0 16px}
+.nav-donate{margin-left:14px}
+.nav-donate a{background:var(--white);color:var(--nav)!important;padding:0 22px;text-transform:uppercase;letter-spacing:.3px;font-size:14px}
+.nav-donate a:hover,.nav-donate a:focus-visible{background:var(--accent-soft);color:var(--nav)!important}
+@media (min-width:992px){
   .burger{display:none}
   .menu,.menu.open{display:flex;position:static;flex-direction:row;align-items:center;background:none;padding:0;box-shadow:none}
+}
+@media (max-width:991px){
+  .burger{display:block}
+  .navbar .nav-inner{position:relative}
+  .menu{display:none;position:absolute;left:0;right:0;top:100%;background:var(--nav);flex-direction:column;align-items:stretch;padding:8px 16px 18px;gap:2px;box-shadow:0 12px 20px rgba(0,0,0,.15)}
+  .menu.open{display:flex}
+  .menu a{font-size:16px;padding:0 16px}
+  .nav-donate{margin:8px 0 0}
+  .nav-donate a{text-align:center}
 }
 </style>
 <script>(function(){var d=document.documentElement;d.classList.add("js");function go(){var h=document.querySelector(".hero");if(h)h.classList.add("go");}function tryGo(){if(document.visibilityState==="visible"){requestAnimationFrame(function(){setTimeout(go,150)});return true}return false}window.addEventListener("load",function(){if(!tryGo())document.addEventListener("visibilitychange",function v(){if(tryGo())document.removeEventListener("visibilitychange",v)})});setTimeout(go,6000);})();</script>
@@ -708,10 +721,11 @@ footer{padding-block:56px 32px}
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
     <ul class="menu" id="menu">
       <li><a href="#">Home</a></li>
-      <li><a href="#" class="active" aria-current="page">About</a></li>
       <li><a href="#">Adopt</a></li>
       <li><a href="#">Get Involved</a></li>
+      <li><a href="#" class="active" aria-current="page">About</a></li>
       <li><a href="#">Contact</a></li>
+      <li class="nav-donate"><a href="#">Donate</a></li>
     </ul>
   </div>
 </nav>
