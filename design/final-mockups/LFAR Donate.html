@@ -710,12 +710,8 @@ footer ul a:hover{color:#F3D3FB}
 .fine{font-size:13px;color:#7A7A7A;margin-top:18px}
 
 /* ---------- 7. close ---------- */
-.closing{text-align:center}
-.closing .receipt-wrap{margin:0 auto 36px;max-width:360px}
 .cursor{display:inline-block;width:3px;height:30px;background:var(--accent);margin-left:4px;vertical-align:-4px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.closing h2{font-size:44px;color:var(--head);letter-spacing:-1px;margin-bottom:12px}
-.closing p{font-size:18px;margin-bottom:10px}
 
 /* ---------- responsive ---------- */
 @media (max-width:1100px){ .lines4{grid-template-columns:repeat(2,1fr);gap:64px 22px} .wall{grid-template-columns:repeat(3,1fr)} }
@@ -754,7 +750,6 @@ footer ul a:hover{color:#F3D3FB}
   .wall{grid-template-columns:1fr 1fr;gap:26px 14px}
   .mini{padding:10px 10px 14px}.mini .m-name{font-size:16px}.mini .m-stamp{font-size:12px}
   .amounts{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .closing h2{font-size:32px}
 }
 </style>
 <script>(function(){var d=document.documentElement;d.classList.add("js");function go(){var h=document.querySelector(".rc-hero");if(h)h.classList.add("go");}function tryGo(){if(document.visibilityState==="visible"){requestAnimationFrame(go);return true}return false}document.addEventListener("DOMContentLoaded",function(){if(!tryGo())document.addEventListener("visibilitychange",function v(){if(tryGo())document.removeEventListener("visibilitychange",v)})});setTimeout(go,4000);})();</script>
@@ -950,24 +945,6 @@ footer ul a:hover{color:#F3D3FB}
           <p class="fine">Los Feliz Animal Rescue is a registered 501(c)(3) nonprofit, EIN 87-4677140. Dollar amounts are examples to be confirmed with LFAR.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- 7. CLOSE -->
-  <section class="fw section2 closing" id="next">
-    <div class="container">
-      <div class="receipt-wrap" data-anim="fade-up">
-        <div class="receipt">
-          <div class="r-head"><div class="r-paw"></div><div class="r-org">LOS FELIZ ANIMAL RESCUE</div><div class="r-no">RESCUE RECEIPT #402</div></div>
-          <hr class="r-rule">
-          <div class="rline on"><div><div class="row"><span class="lbl">Foster home<small>Day 1 · a neighbor just called</small></span><span class="ramt">$0.00</span></div></div></div>
-          <hr class="r-rule">
-          <div class="r-total"><span>So far</span><strong>$0.00<span class="cursor"></span></strong></div>
-        </div>
-      </div>
-      <h2>The Next Receipt Just Started</h2>
-      <p>Somewhere in Los Feliz, a neighbor just opened their door to a new foster.</p>
-      <a class="btn" href="#give">Choose your donation</a>
     </div>
   </section>
 
