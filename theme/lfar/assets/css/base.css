@@ -1,0 +1,26 @@
+/* LFAR base: loaded before each page's mockup CSS. Neutralizes WordPress wrappers so the mockup layout holds. */
+.wp-site-blocks { padding: 0; }
+.wp-block-template-part { display: contents; }
+.wp-block-post-content { margin: 0; }
+.wp-block-image { margin: 0; }
+.wp-block-image img { display: block; max-width: 100%; height: auto; }
+p.lfar-a.lfar-a { margin: 0; }
+/* Photo frames where the mockup stretched the <img> to fill its box: let the image block's figure fill it too */
+:is(.avatar.photo, .feat-photo, .mosaic, .portrait, .pup-frame, .split-photo, .stat-photo, .step-photo, .thumb, .way-photo) > .wp-block-image { width: 100%; height: 100%; }
+
+/* Block styles registered in functions.php */
+.is-style-blob img { border-radius: var(--blob, var(--wp--custom--radius--blob)); }
+.is-style-irregular img { border-radius: var(--irregular, var(--wp--custom--radius--irregular)); }
+
+/* Keep the sticky nav below the WordPress admin bar when logged in */
+.admin-bar .navbar { top: 32px; }
+@media (max-width: 782px) { .admin-bar .navbar { top: 46px; } }
+@media (max-width: 600px) { .admin-bar .navbar { top: 0; } }
+
+/* Simple layout for posts, archives and 404 (not part of the mockups) */
+.lfar-plain { padding: 60px 0 80px; }
+.lfar-plain .container { max-width: 900px; }
+.lfar-plain .wp-block-post-title { margin-bottom: 8px; }
+.lfar-plain .wp-block-post-date { color: var(--h3, #7D7D7D); margin-bottom: 24px; }
+.lfar-plain .wp-block-post-template { list-style: none; padding: 0; margin: 0; }
+.lfar-plain .wp-block-post-template > li { margin-bottom: 48px; }
