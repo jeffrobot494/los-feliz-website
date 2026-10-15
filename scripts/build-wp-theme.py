@@ -261,12 +261,17 @@ def grp(cls, kids, id_=None):
     return blk('group', {'className': cls}, f'<div{open_attrs("wp-block-group " + cls, id_)}>' + '\n\n'.join(kids) + '</div>')
 
 
+def anim_cls(node):
+    """The lfar-anim-* class carrying a mockup element's data-anim (see convert()), or ''."""
+    return ' lfar-anim-' + node['data-anim'] if node.get('data-anim') else ''
+
+
 def swap_adopt(node):
     """Adopt / Foster: keep the mockup's two intent cards, then one Fluent form for each (assets/js/forms.js toggles them)."""
     intent = node.find('form').find('fieldset')
     for r in intent.find_all('input'):
         r['name'] = 'intent'
-    return [grp('app lfar-app', [blk('html', None, '<div class="lfar-intent">' + str(intent) + '</div>'),
+    return [grp('app lfar-app' + anim_cls(node), [blk('html', None, '<div class="lfar-intent">' + str(intent) + '</div>'),
                                  grp('lfar-form lfar-form-adopt', [shortcode('adoption')]),
                                  grp('lfar-form lfar-form-foster', [shortcode('foster')])], 'app')]
 
@@ -274,8 +279,8 @@ def swap_adopt(node):
 # Mockup forms -> Fluent Forms (form ids are looked up by lfar_form_id() in functions.php)
 SWAPS = {
     'app': swap_adopt,
-    'vol-form': lambda n: [grp('app lfar-app', [shortcode('volunteer')])],
-    'contact-form': lambda n: [grp('app lfar-app', [shortcode('contact')])],
+    'vol-form': lambda n: [grp('app lfar-app' + anim_cls(n), [shortcode('volunteer')])],
+    'contact-form': lambda n: [grp('app lfar-app' + anim_cls(n), [shortcode('contact')])],
     'nl-form': lambda n: [grp('lfar-nl', [shortcode('newsletter'),
                                           blk('paragraph', {'className': 'nl-note'}, '<p class="nl-note">No spam. Unsubscribe any time.</p>')])],
 }
@@ -345,6 +350,8 @@ def convert(node):
             kids += r
         if all(k.startswith('<!-- wp:html') for k in kids):
             return [html_blk(node)]
+        # Blocks drop data-anim, so carry it as a class; ANIM_SHIM turns it back into data-anim in the browser.
+        c = (c + anim_cls(node)).strip()
         a = {}
         if t != 'div':
             a['tagName'] = t
@@ -369,6 +376,10 @@ def pattern_file(slug, title, content, cats='lfar-pages', inserter='yes', extra=
 NAV_ACTIVE = ("(function(){var p=location.pathname.replace(/\\/?$/,'/');[].forEach.call(document.querySelectorAll('#menu a'),"
               "function(a){var h;try{h=new URL(a.href).pathname.replace(/\\/?$/,'/')}catch(e){return}"
               "if(h===p){a.setAttribute('aria-current','page');if(!a.parentNode.classList.contains('nav-donate'))a.classList.add('active');}});})();\n")
+
+# Restores data-anim from the lfar-anim-* classes convert() writes, before the mockup's scroll-in observer looks for it.
+ANIM_SHIM = ("(function(){[].forEach.call(document.querySelectorAll('[class*=\"lfar-anim-\"]'),function(el){"
+             "var m=el.className.match(/\\blfar-anim-([\\w-]+)/);if(m&&!el.dataset.anim)el.dataset.anim=m[1];});})();\n")
 
 report = []
 for key, fn in PAGES.items():
@@ -401,7 +412,7 @@ for key, fn in PAGES.items():
     imgonly = imgclasses - otherclasses
     open(os.path.join(THEME, 'assets/css', key + '.css'), 'w', encoding='utf-8').write(
         finish_css(css, imgonly) + '\n' + '\n'.join(extra_css) + '\n')
-    js = cut_js(NAV_ACTIVE + '\n'.join(s for a, s in scripts if 'ld+json' not in a), key)
+    js = cut_js(NAV_ACTIVE + ANIM_SHIM + '\n'.join(s for a, s in scripts if 'ld+json' not in a), key)
     open(os.path.join(THEME, 'assets/js', key + '.js'), 'w', encoding='utf-8').write(js)
     allb = '\n'.join(blocks)
     report.append((key, 'html', allb.count('<!-- wp:html'), 'group', allb.count('<!-- wp:group'), 'heading', allb.count('<!-- wp:heading'),

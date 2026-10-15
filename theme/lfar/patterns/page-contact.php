@@ -109,8 +109,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"apply-row"} -->
-<div class="wp-block-group apply-row"><!-- wp:group {"className":"custom"} -->
-<div class="wp-block-group custom"><!-- wp:html -->
+<div class="wp-block-group apply-row"><!-- wp:group {"className":"custom lfar-anim-slide-left"} -->
+<div class="wp-block-group custom lfar-anim-slide-left"><!-- wp:html -->
 <ul class="reach">
 <li>
 <span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="5"></rect><path d="m3 7 9 6 9-6"></path></svg></span>
@@ -154,8 +154,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"app lfar-app"} -->
-<div class="wp-block-group app lfar-app"><!-- wp:shortcode -->
+<!-- wp:group {"className":"app lfar-app lfar-anim-fade-up"} -->
+<div class="wp-block-group app lfar-app lfar-anim-fade-up"><!-- wp:shortcode -->
 [fluentform id="<?php echo (int) lfar_form_id( 'contact' ); ?>"]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group --></div>
@@ -241,8 +241,8 @@
 </ul>
 <!-- /wp:html -->
 
-<!-- wp:group {"className":"pf-note urgent-note"} -->
-<div class="wp-block-group pf-note urgent-note"><!-- wp:paragraph -->
+<!-- wp:group {"className":"pf-note urgent-note lfar-anim-fade-up"} -->
+<div class="wp-block-group pf-note urgent-note lfar-anim-fade-up"><!-- wp:paragraph -->
 <p><strong>Is an animal badly hurt right now?</strong> Take it to <span class="tbd">[nearest 24-hour emergency vet]</span> or call LA Animal Services. We don't have a shelter or anyone on call, so a message to us may not be seen in time.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>

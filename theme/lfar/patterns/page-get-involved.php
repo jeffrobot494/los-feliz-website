@@ -85,8 +85,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"news-grid"} -->
-<div class="wp-block-group news-grid" id="feed-grid"><!-- wp:group {"tagName":"article","className":"news-card"} -->
-<article class="wp-block-group news-card"><!-- wp:html -->
+<div class="wp-block-group news-grid" id="feed-grid"><!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
+<article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
 <a class="thumb" href="#"><img alt="Stand-in photo: A smiling volunteer holding a young brindle puppy" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/stand-in-photo-a-smiling-volunteer-holding-a-you.jpg' ) ); ?>"/><span class="tag">#AllStar</span><span class="overlay-mask">View post</span></a>
 <!-- /wp:html -->
 
@@ -105,8 +105,8 @@
 <!-- /wp:group --></article>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"article","className":"news-card"} -->
-<article class="wp-block-group news-card"><!-- wp:html -->
+<!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
+<article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
 <a class="thumb" href="#"><img alt="Stand-in photo: A scruffy black puppy held close in someone's arms" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/stand-in-photo-a-scruffy-black-puppy-held-close.jpg' ) ); ?>"/><span class="tag">#VolunteersNeeded</span><span class="overlay-mask">View post</span></a>
 <!-- /wp:html -->
 
@@ -125,8 +125,8 @@
 <!-- /wp:group --></article>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"article","className":"news-card"} -->
-<article class="wp-block-group news-card"><!-- wp:html -->
+<!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
+<article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
 <a class="thumb" href="#"><img alt="Stand-in photo: Three volunteers sitting together with a small dog" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/stand-in-photo-three-volunteers-sitting-together.jpg' ) ); ?>"/><span class="tag">#Volunteer</span><span class="overlay-mask">View post</span></a>
 <!-- /wp:html -->
 
@@ -212,8 +212,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"apply-row"} -->
-<div class="wp-block-group apply-row"><!-- wp:group {"className":"custom"} -->
-<div class="wp-block-group custom"><!-- wp:heading {"level":3,"className":"side-h"} -->
+<div class="wp-block-group apply-row"><!-- wp:group {"className":"custom lfar-anim-slide-left"} -->
+<div class="wp-block-group custom lfar-anim-slide-left"><!-- wp:heading {"level":3,"className":"side-h"} -->
 <h3 class="wp-block-heading side-h">After you sign up</h3>
 <!-- /wp:heading -->
 
@@ -246,8 +246,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"app lfar-app"} -->
-<div class="wp-block-group app lfar-app"><!-- wp:shortcode -->
+<!-- wp:group {"className":"app lfar-app lfar-anim-fade-up"} -->
+<div class="wp-block-group app lfar-app lfar-anim-fade-up"><!-- wp:shortcode -->
 [fluentform id="<?php echo (int) lfar_form_id( 'volunteer' ); ?>"]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group --></div>
@@ -258,8 +258,8 @@
 <!-- wp:group {"tagName":"section","className":"fw band section2"} -->
 <section class="wp-block-group fw band section2" id="give"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"row"} -->
-<div class="wp-block-group row"><!-- wp:group {"className":"custom"} -->
-<div class="wp-block-group custom"><!-- wp:heading {"className":"band-title"} -->
+<div class="wp-block-group row"><!-- wp:group {"className":"custom lfar-anim-slide-left"} -->
+<div class="wp-block-group custom lfar-anim-slide-left"><!-- wp:heading {"className":"band-title"} -->
 <h2 class="wp-block-heading band-title">Can't Give Time?<br/>Give a Rescue.</h2>
 <!-- /wp:heading -->
 
@@ -300,8 +300,8 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sec-image"} -->
-<div class="wp-block-group sec-image"><!-- wp:image {"className":"border-irregular"} -->
+<!-- wp:group {"className":"sec-image lfar-anim-slide-right"} -->
+<div class="wp-block-group sec-image lfar-anim-slide-right"><!-- wp:image {"className":"border-irregular"} -->
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/stand-in-photo-five-puppies-looking-out-of-a-cra.jpg' ) ); ?>" alt="Stand-in photo: five puppies looking out of a crate"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group --></div>
@@ -367,8 +367,8 @@
 <!-- wp:group {"tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="faq"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"faq-row"} -->
-<div class="wp-block-group faq-row"><!-- wp:group {"className":"faq"} -->
-<div class="wp-block-group faq"><!-- wp:heading {"level":3,"className":"faq-title"} -->
+<div class="wp-block-group faq-row"><!-- wp:group {"className":"faq lfar-anim-slide-left"} -->
+<div class="wp-block-group faq lfar-anim-slide-left"><!-- wp:heading {"level":3,"className":"faq-title"} -->
 <h3 class="wp-block-heading faq-title">Good questions</h3>
 <!-- /wp:heading -->
 
@@ -408,8 +408,8 @@
 <!-- /wp:html --></div>
 <!-- /wp:group -->
 
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":3,"className":"faq-title"} -->
+<!-- wp:group {"className":"lfar-anim-slide-right"} -->
+<div class="wp-block-group lfar-anim-slide-right"><!-- wp:heading {"level":3,"className":"faq-title"} -->
 <h3 class="wp-block-heading faq-title">Spread the word</h3>
 <!-- /wp:heading -->
 

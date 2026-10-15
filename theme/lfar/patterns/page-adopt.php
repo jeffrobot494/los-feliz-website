@@ -73,8 +73,8 @@
 </ul>
 <!-- /wp:html -->
 
-<!-- wp:group {"className":"cost-copy"} -->
-<div class="wp-block-group cost-copy"><!-- wp:paragraph -->
+<!-- wp:group {"className":"cost-copy lfar-anim-fade-up"} -->
+<div class="wp-block-group cost-copy lfar-anim-fade-up"><!-- wp:paragraph -->
 <p>The catch is that real connection takes time, and time is the one thing busy people are short on.</p>
 <!-- /wp:paragraph -->
 
@@ -92,14 +92,14 @@
 
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"row"} -->
-<div class="wp-block-group row"><!-- wp:group {"className":"sec-image order-img"} -->
-<div class="wp-block-group sec-image order-img"><!-- wp:image {"className":"border-irregular"} -->
+<div class="wp-block-group row"><!-- wp:group {"className":"sec-image order-img lfar-anim-fade-down"} -->
+<div class="wp-block-group sec-image order-img lfar-anim-fade-down"><!-- wp:image {"className":"border-irregular"} -->
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home-hero-bg.webp' ) ); ?>" alt="A smiling woman in red glasses hugging a spotted puppy"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"custom"} -->
-<div class="wp-block-group custom"><!-- wp:heading {"className":"big"} -->
+<!-- wp:group {"className":"custom lfar-anim-slide-right"} -->
+<div class="wp-block-group custom lfar-anim-slide-right"><!-- wp:heading {"className":"big"} -->
 <h2 class="wp-block-heading big">The Answer Has Four Legs</h2>
 <!-- /wp:heading -->
 
@@ -201,8 +201,8 @@
 </ul>
 <!-- /wp:html -->
 
-<!-- wp:group {"className":"stories-close"} -->
-<div class="wp-block-group stories-close"><!-- wp:paragraph -->
+<!-- wp:group {"className":"stories-close lfar-anim-fade-up"} -->
+<div class="wp-block-group stories-close lfar-anim-fade-up"><!-- wp:paragraph -->
 <p>We helped them find the right animal. We'd love to do the same for you.</p>
 <!-- /wp:paragraph -->
 
@@ -233,8 +233,8 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"feat-card"} -->
-<div class="wp-block-group feat-card"><!-- wp:group {"className":"feat-photo"} -->
+<!-- wp:group {"className":"feat-card lfar-anim-fade-down"} -->
+<div class="wp-block-group feat-card lfar-anim-fade-down"><!-- wp:group {"className":"feat-photo"} -->
 <div class="wp-block-group feat-photo"><!-- wp:image -->
 <figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ); ?>" alt="Sherlock, a young grey brindle dog in a red harness, held by his smiling foster"/></figure>
 <!-- /wp:image -->
@@ -343,8 +343,8 @@
 </div>
 <!-- /wp:html -->
 
-<!-- wp:group {"className":"pf-note"} -->
-<div class="wp-block-group pf-note"><!-- wp:paragraph -->
+<!-- wp:group {"className":"pf-note lfar-anim-fade-up"} -->
+<div class="wp-block-group pf-note lfar-anim-fade-up"><!-- wp:paragraph -->
 <p><strong>Listings come straight from Petfinder.</strong> This panel is where the full Petfinder embed goes, so it updates on its own whenever an animal is added or adopted.</p>
 <!-- /wp:paragraph -->
 
@@ -374,8 +374,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"apply-wrap"} -->
-<div class="wp-block-group apply-wrap" id="signup"><!-- wp:group {"className":"app lfar-app"} -->
-<div class="wp-block-group app lfar-app" id="app"><!-- wp:html -->
+<div class="wp-block-group apply-wrap" id="signup"><!-- wp:group {"className":"app lfar-app lfar-anim-fade-up"} -->
+<div class="wp-block-group app lfar-app lfar-anim-fade-up" id="app"><!-- wp:html -->
 <div class="lfar-intent"><fieldset>
 <legend>What would you like to do?</legend>
 <div class="intent-row">

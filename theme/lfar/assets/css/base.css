@@ -24,3 +24,9 @@ p.lfar-a.lfar-a { margin: 0; }
 .lfar-plain .wp-block-post-date { color: var(--h3, #7D7D7D); margin-bottom: 24px; }
 .lfar-plain .wp-block-post-template { list-style: none; padding: 0; margin: 0; }
 .lfar-plain .wp-block-post-template > li { margin-bottom: 48px; }
+
+/* Respect the OS "reduce motion" setting on every page (About, Get Involved and Contact also carry this from their mockups). */
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { animation: none !important; transition: none !important; }
+	html { scroll-behavior: auto; }
+}

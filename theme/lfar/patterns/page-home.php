@@ -74,8 +74,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"news-grid"} -->
-<div class="wp-block-group news-grid"><!-- wp:group {"tagName":"article","className":"news-card"} -->
-<article class="wp-block-group news-card"><!-- wp:html -->
+<div class="wp-block-group news-grid"><!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
+<article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
 <a class="thumb" href="#">
 <span class="tag">Event</span>
 <img alt="A volunteer holding a small tan dog" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-volunteer-holding-a-small-tan-dog.jpg' ) ); ?>"/>
@@ -105,8 +105,8 @@
 <!-- /wp:group --></article>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"article","className":"news-card"} -->
-<article class="wp-block-group news-card"><!-- wp:html -->
+<!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
+<article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
 <a class="thumb" href="/adopt/#apply-foster">
 <span class="tag urgent">Urgent need</span>
 <img alt="Five puppies looking out of a crate" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/five-puppies-looking-out-of-a-crate.jpg' ) ); ?>"/>
@@ -135,8 +135,8 @@
 <!-- /wp:group --></article>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"article","className":"news-card"} -->
-<article class="wp-block-group news-card"><!-- wp:html -->
+<!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
+<article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
 <a class="thumb" href="#">
 <span class="tag update">Update</span>
 <img alt="Three volunteers sitting with a dog" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/three-volunteers-sitting-with-a-dog.jpg' ) ); ?>"/>
@@ -187,8 +187,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"row"} -->
-<div class="wp-block-group row"><!-- wp:group {"className":"custom"} -->
-<div class="wp-block-group custom"><!-- wp:heading {"level":3,"className":"pet-name"} -->
+<div class="wp-block-group row"><!-- wp:group {"className":"custom lfar-anim-slide-left"} -->
+<div class="wp-block-group custom lfar-anim-slide-left"><!-- wp:heading {"level":3,"className":"pet-name"} -->
 <h3 class="wp-block-heading pet-name">Meet Sherlock</h3>
 <!-- /wp:heading -->
 
@@ -223,8 +223,8 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"sec-image"} -->
-<div class="wp-block-group sec-image"><!-- wp:image {"className":"border-irregular"} -->
+<!-- wp:group {"className":"sec-image lfar-anim-fade-down"} -->
+<div class="wp-block-group sec-image lfar-anim-fade-down"><!-- wp:image {"className":"border-irregular"} -->
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ); ?>" alt="Sherlock, a young grey brindle dog, held by his foster"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group --></div>
@@ -241,8 +241,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"row"} -->
-<div class="wp-block-group row"><!-- wp:group {"className":"custom"} -->
-<div class="wp-block-group custom"><!-- wp:heading {"level":3} -->
+<div class="wp-block-group row"><!-- wp:group {"className":"custom lfar-anim-slide-left"} -->
+<div class="wp-block-group custom lfar-anim-slide-left"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Every dollar goes to vet bills.</h3>
 <!-- /wp:heading -->
 
@@ -315,14 +315,14 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"row"} -->
-<div class="wp-block-group row"><!-- wp:group {"className":"sec-image order-img"} -->
-<div class="wp-block-group sec-image order-img"><!-- wp:image {"className":"border-irregular"} -->
+<div class="wp-block-group row"><!-- wp:group {"className":"sec-image order-img lfar-anim-fade-down"} -->
+<div class="wp-block-group sec-image order-img lfar-anim-fade-down"><!-- wp:image {"className":"border-irregular"} -->
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/pepper-a-brown-and-white-puppy-with-her-new-fami.jpg' ) ); ?>" alt="Pepper, a brown and white puppy, with her new family"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"custom"} -->
-<div class="wp-block-group custom"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"custom lfar-anim-slide-right"} -->
+<div class="wp-block-group custom lfar-anim-slide-right"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Success Story: Pepper</h3>
 <!-- /wp:heading -->
 

@@ -544,7 +544,7 @@ function lfar_ig_news_card( $p, $more ) {
 		$tag = '<span class="tag' . ( $p['urgent'] ? ' urgent' : '' ) . '">' . esc_html( $p['label'] ) . '</span>';
 	}
 	$video = 'VIDEO' === $p['type'] ? ' (video)' : '';
-	return '<article class="news-card' . ( $more ? ' more-post" hidden=""' : '"' ) . ">\n"
+	return '<article class="news-card' . ( $more ? ' more-post" hidden=""' : '" data-anim="fade-up"' ) . ">\n"
 		. '<a class="thumb" href="' . esc_url( $p['permalink'] ) . '" target="_blank" rel="noopener">'
 		. '<img alt="' . esc_attr( $p['parsed']['title'] . $video ) . '" loading="lazy" src="' . esc_url( lfar_ig_img_url( $p ) ) . '"/>'
 		. $tag . '<span class="overlay-mask">View post</span></a>' . "\n"
@@ -560,7 +560,7 @@ function lfar_ig_home_card( $p ) {
 	$tag   = $p['urgent'] ? '<span class="tag urgent">Urgent need</span>' : '<span class="tag update">Update</span>';
 	$clock = '<svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>';
 	$link  = esc_url( $p['permalink'] );
-	return '<article class="news-card">' . "\n"
+	return '<article class="news-card" data-anim="fade-up">' . "\n"
 		. '<a class="thumb" href="' . $link . '" target="_blank" rel="noopener">' . $tag
 		. '<img alt="' . esc_attr( $p['parsed']['title'] ) . '" loading="lazy" src="' . esc_url( lfar_ig_img_url( $p ) ) . '"/>'
 		. '<span class="overlay-mask">View post</span></a>' . "\n"
@@ -575,10 +575,10 @@ function lfar_ig_home_card( $p ) {
 /** Home's featured Happy Tale (replaces the "Success Story: Pepper" row). */
 function lfar_ig_home_story( $p ) {
 	$parsed = lfar_ig_parse_caption( $p['caption'], 420 );
-	return '<div class="wp-block-group row"><div class="wp-block-group sec-image order-img">'
+	return '<div class="wp-block-group row"><div class="wp-block-group sec-image order-img" data-anim="fade-down">'
 		. '<figure class="wp-block-image border-irregular">'
 		. '<img src="' . esc_url( lfar_ig_img_url( $p ) ) . '" alt="' . esc_attr( $parsed['title'] ) . '" style="aspect-ratio:4/3;object-fit:cover"/></figure></div>' . "\n"
-		. '<div class="wp-block-group custom">' . "\n"
+		. '<div class="wp-block-group custom" data-anim="slide-right">' . "\n"
 		. '<h3 class="wp-block-heading">' . esc_html( $parsed['title'] ) . '</h3>' . "\n"
 		. ( $parsed['text'] ? '<p>' . esc_html( $parsed['text'] ) . '</p>' . "\n" : '' )
 		. '<p class="lfar-a"><a class="btn" href="/adopt/#stories">Read more Happy Tales</a></p>' . "\n"

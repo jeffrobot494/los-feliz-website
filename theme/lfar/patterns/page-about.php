@@ -48,8 +48,8 @@
 <!-- wp:group -->
 <div class="wp-block-group" id="facts"><!-- wp:group {"tagName":"section","className":"fact"} -->
 <section class="wp-block-group fact"><!-- wp:group {"className":"container fact-row"} -->
-<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo"} -->
-<figure class="wp-block-group fact-photo"><!-- wp:image {"className":"border-irregular"} -->
+<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo lfar-anim-fade-down"} -->
+<figure class="wp-block-group fact-photo lfar-anim-fade-down"><!-- wp:image {"className":"border-irregular"} -->
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-black-and-white-kitten-held-by-its-foster.jpg' ) ); ?>" alt="A black and white kitten held by its foster"/></figure>
 <!-- /wp:image -->
 
@@ -58,8 +58,8 @@
 <!-- /wp:html --></figure>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"fact-body"} -->
-<div class="wp-block-group fact-body"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"fact-body lfar-anim-slide-right"} -->
+<div class="wp-block-group fact-body lfar-anim-slide-right"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Every animal waits in a home</h3>
 <!-- /wp:heading -->
 
@@ -72,8 +72,8 @@
 
 <!-- wp:group {"tagName":"section","className":"fact alt"} -->
 <section class="wp-block-group fact alt"><!-- wp:group {"className":"container fact-row"} -->
-<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo"} -->
-<figure class="wp-block-group fact-photo"><!-- wp:image {"className":"border-irregular"} -->
+<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo lfar-anim-fade-down"} -->
+<figure class="wp-block-group fact-photo lfar-anim-fade-down"><!-- wp:image {"className":"border-irregular"} -->
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/five-puppies-looking-out-of-a-crate.jpg' ) ); ?>" alt="Five puppies looking out of a crate"/></figure>
 <!-- /wp:image -->
 
@@ -82,8 +82,8 @@
 <!-- /wp:html --></figure>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"fact-body"} -->
-<div class="wp-block-group fact-body"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"fact-body lfar-anim-slide-left"} -->
+<div class="wp-block-group fact-body lfar-anim-slide-left"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">More than 400 animals and counting</h3>
 <!-- /wp:heading -->
 
@@ -96,8 +96,8 @@
 
 <!-- wp:group {"tagName":"section","className":"fact"} -->
 <section class="wp-block-group fact"><!-- wp:group {"className":"container fact-row"} -->
-<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo"} -->
-<figure class="wp-block-group fact-photo"><!-- wp:image {"className":"border-irregular"} -->
+<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo lfar-anim-fade-down"} -->
+<figure class="wp-block-group fact-photo lfar-anim-fade-down"><!-- wp:image {"className":"border-irregular"} -->
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/three-volunteers-sitting-with-a-dog.jpg' ) ); ?>" alt="Three volunteers sitting together with a small dog"/></figure>
 <!-- /wp:image -->
 
@@ -106,8 +106,8 @@
 <!-- /wp:html --></figure>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"fact-body"} -->
-<div class="wp-block-group fact-body"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"fact-body lfar-anim-slide-right"} -->
+<div class="wp-block-group fact-body lfar-anim-slide-right"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Run by neighbors</h3>
 <!-- /wp:heading -->
 
@@ -120,8 +120,8 @@
 
 <!-- wp:group {"tagName":"section","className":"fact alt"} -->
 <section class="wp-block-group fact alt"><!-- wp:group {"className":"container fact-row"} -->
-<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo"} -->
-<figure class="wp-block-group fact-photo"><!-- wp:image {"className":"border-irregular"} -->
+<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo lfar-anim-fade-down"} -->
+<figure class="wp-block-group fact-photo lfar-anim-fade-down"><!-- wp:image {"className":"border-irregular"} -->
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-scruffy-black-puppy-held-close-in-someone-s-ar.jpg' ) ); ?>" alt="A scruffy black puppy held close in someone's arms"/></figure>
 <!-- /wp:image -->
 
@@ -130,8 +130,8 @@
 <!-- /wp:html --></figure>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"fact-body"} -->
-<div class="wp-block-group fact-body"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"fact-body lfar-anim-slide-left"} -->
+<div class="wp-block-group fact-body lfar-anim-slide-left"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Nearly five years in the neighborhood</h3>
 <!-- /wp:heading -->
 
@@ -144,8 +144,8 @@
 
 <!-- wp:group {"tagName":"section","className":"fact"} -->
 <section class="wp-block-group fact"><!-- wp:group {"className":"container fact-row"} -->
-<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo"} -->
-<figure class="wp-block-group fact-photo"><!-- wp:image {"className":"border-irregular"} -->
+<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo lfar-anim-fade-down"} -->
+<figure class="wp-block-group fact-photo lfar-anim-fade-down"><!-- wp:image {"className":"border-irregular"} -->
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-volunteer-holding-a-small-tan-dog.jpg' ) ); ?>" alt="A man holding a small tan dog in his new home"/></figure>
 <!-- /wp:image -->
 
@@ -154,8 +154,8 @@
 <!-- /wp:html --></figure>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"fact-body"} -->
-<div class="wp-block-group fact-body"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"fact-body lfar-anim-slide-right"} -->
+<div class="wp-block-group fact-body lfar-anim-slide-right"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">A registered nonprofit</h3>
 <!-- /wp:heading -->
 
@@ -168,8 +168,8 @@
 
 <!-- wp:group {"tagName":"section","className":"fact alt"} -->
 <section class="wp-block-group fact alt"><!-- wp:group {"className":"container fact-row"} -->
-<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo"} -->
-<figure class="wp-block-group fact-photo"><!-- wp:image {"className":"border-irregular"} -->
+<div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo lfar-anim-fade-down"} -->
+<figure class="wp-block-group fact-photo lfar-anim-fade-down"><!-- wp:image {"className":"border-irregular"} -->
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/pepper-a-brown-and-white-puppy-with-her-new-fami.jpg' ) ); ?>" alt="Pepper, a brown and white puppy, with her new family"/></figure>
 <!-- /wp:image -->
 
@@ -178,8 +178,8 @@
 <!-- /wp:html --></figure>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"fact-body"} -->
-<div class="wp-block-group fact-body"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"fact-body lfar-anim-slide-left"} -->
+<div class="wp-block-group fact-body lfar-anim-slide-left"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Open about where the money goes</h3>
 <!-- /wp:heading -->
 
@@ -204,8 +204,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"row"} -->
-<div class="wp-block-group row"><!-- wp:group {"tagName":"figure","className":"portrait"} -->
-<figure class="wp-block-group portrait"><!-- wp:image -->
+<div class="wp-block-group row"><!-- wp:group {"tagName":"figure","className":"portrait lfar-anim-fade-down"} -->
+<figure class="wp-block-group portrait lfar-anim-fade-down"><!-- wp:image -->
 <figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ); ?>" alt="Stand-in photo for Melody: a smiling woman holding a brindle puppy"/></figure>
 <!-- /wp:image -->
 
@@ -214,8 +214,8 @@
 <!-- /wp:html --></figure>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"custom"} -->
-<div class="wp-block-group custom"><!-- wp:heading {"level":3} -->
+<!-- wp:group {"className":"custom lfar-anim-slide-right"} -->
+<div class="wp-block-group custom lfar-anim-slide-right"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Melody <em class="tbd">[Last name]</em></h3>
 <!-- /wp:heading -->
 
@@ -260,8 +260,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"board two"} -->
-<div class="wp-block-group board two"><!-- wp:group {"tagName":"article","className":"person"} -->
-<article class="wp-block-group person"><!-- wp:html -->
+<div class="wp-block-group board two"><!-- wp:group {"tagName":"article","className":"person lfar-anim-fade-up"} -->
+<article class="wp-block-group person lfar-anim-fade-up"><!-- wp:html -->
 <div aria-hidden="true" class="avatar photo"><img alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ); ?>"/></div>
 <!-- /wp:html -->
 
@@ -278,8 +278,8 @@
 <!-- /wp:paragraph --></article>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"article","className":"person"} -->
-<article class="wp-block-group person"><!-- wp:html -->
+<!-- wp:group {"tagName":"article","className":"person lfar-anim-fade-up"} -->
+<article class="wp-block-group person lfar-anim-fade-up"><!-- wp:html -->
 <div aria-hidden="true" class="avatar"><span class="paw-mask"></span></div>
 <!-- /wp:html -->
 
@@ -359,8 +359,8 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"money"} -->
-<div class="wp-block-group money"><!-- wp:paragraph {"className":"money-total"} -->
+<!-- wp:group {"className":"money lfar-anim-fade-up"} -->
+<div class="wp-block-group money lfar-anim-fade-up"><!-- wp:paragraph {"className":"money-total"} -->
 <p class="money-total">Annual budget: <strong>about $20,000</strong> <span class="money-year"><em class="tbd">[fiscal year]</em></span></p>
 <!-- /wp:paragraph -->
 
@@ -401,8 +401,8 @@
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"logo-group"} -->
-<div class="wp-block-group logo-group"><!-- wp:heading {"level":3,"className":"group-title"} -->
+<!-- wp:group {"className":"logo-group lfar-anim-fade-up"} -->
+<div class="wp-block-group logo-group lfar-anim-fade-up"><!-- wp:heading {"level":3,"className":"group-title"} -->
 <h3 class="wp-block-heading group-title">Community partners</h3>
 <!-- /wp:heading -->
 
@@ -437,8 +437,8 @@
 <!-- /wp:list --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"logo-group"} -->
-<div class="wp-block-group logo-group"><!-- wp:heading {"level":3,"className":"group-title"} -->
+<!-- wp:group {"className":"logo-group lfar-anim-fade-up"} -->
+<div class="wp-block-group logo-group lfar-anim-fade-up"><!-- wp:heading {"level":3,"className":"group-title"} -->
 <h3 class="wp-block-heading group-title">Supported by</h3>
 <!-- /wp:heading -->
 
@@ -480,8 +480,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"news-grid"} -->
-<div class="wp-block-group news-grid" id="feed-grid"><!-- wp:group {"tagName":"article","className":"news-card"} -->
-<article class="wp-block-group news-card"><!-- wp:html -->
+<div class="wp-block-group news-grid" id="feed-grid"><!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
+<article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
 <a class="thumb" href="#"><img alt="A man holding a small tan dog in his new home" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-volunteer-holding-a-small-tan-dog.jpg' ) ); ?>"/><span class="tag">#InTheNews</span><span class="overlay-mask">View post</span></a>
 <!-- /wp:html -->
 
@@ -500,8 +500,8 @@
 <!-- /wp:group --></article>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"article","className":"news-card"} -->
-<article class="wp-block-group news-card"><!-- wp:html -->
+<!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
+<article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
 <a class="thumb" href="#"><img alt="A volunteer in red glasses cuddling a puppy" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home-hero-bg.webp' ) ); ?>"/><span class="tag">#AllStar</span><span class="overlay-mask">View post</span></a>
 <!-- /wp:html -->
 
@@ -520,8 +520,8 @@
 <!-- /wp:group --></article>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"article","className":"news-card"} -->
-<article class="wp-block-group news-card"><!-- wp:html -->
+<!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
+<article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
 <a class="thumb" href="#"><img alt="A black and white kitten held by its foster" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-black-and-white-kitten-held-by-its-foster.jpg' ) ); ?>"/><span class="tag">#Mission</span><span class="overlay-mask">View post</span></a>
 <!-- /wp:html -->
 
@@ -636,8 +636,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"priorities"} -->
-<div class="wp-block-group priorities"><!-- wp:group {"tagName":"article","className":"priority"} -->
-<article class="wp-block-group priority"><!-- wp:html -->
+<div class="wp-block-group priorities"><!-- wp:group {"tagName":"article","className":"priority lfar-anim-fade-up"} -->
+<article class="wp-block-group priority lfar-anim-fade-up"><!-- wp:html -->
 <span aria-hidden="true" class="pr-icon"><svg viewbox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5.5 10v10h13V10"></path><path d="M10 20v-5h4v5"></path></svg></span>
 <!-- /wp:html -->
 
@@ -650,8 +650,8 @@
 <!-- /wp:paragraph --></article>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"article","className":"priority"} -->
-<article class="wp-block-group priority"><!-- wp:html -->
+<!-- wp:group {"tagName":"article","className":"priority lfar-anim-fade-up"} -->
+<article class="wp-block-group priority lfar-anim-fade-up"><!-- wp:html -->
 <span aria-hidden="true" class="pr-icon"><svg viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path><rect height="18" rx="4" width="18" x="3" y="3"></rect></svg></span>
 <!-- /wp:html -->
 
@@ -664,8 +664,8 @@
 <!-- /wp:paragraph --></article>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"article","className":"priority"} -->
-<article class="wp-block-group priority"><!-- wp:html -->
+<!-- wp:group {"tagName":"article","className":"priority lfar-anim-fade-up"} -->
+<article class="wp-block-group priority lfar-anim-fade-up"><!-- wp:html -->
 <span aria-hidden="true" class="pr-icon"><svg viewbox="0 0 24 24"><path d="M5 20V9l3-5 2 4h4l2-4 3 5v11"></path><circle cx="9.5" cy="12.5" r=".8"></circle><circle cx="14.5" cy="12.5" r=".8"></circle></svg></span>
 <!-- /wp:html -->
 
@@ -712,8 +712,8 @@
 </dl>
 <!-- /wp:html -->
 
-<!-- wp:group {"className":"docs"} -->
-<div class="wp-block-group docs"><!-- wp:heading {"level":3,"className":"group-title"} -->
+<!-- wp:group {"className":"docs lfar-anim-slide-right"} -->
+<div class="wp-block-group docs lfar-anim-slide-right"><!-- wp:heading {"level":3,"className":"group-title"} -->
 <h3 class="wp-block-heading group-title">Documents</h3>
 <!-- /wp:heading -->
 
@@ -762,8 +762,8 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"cta-actions"} -->
-<div class="wp-block-group cta-actions"><!-- wp:paragraph {"className":"lfar-a"} -->
+<!-- wp:group {"className":"cta-actions lfar-anim-fade-up"} -->
+<div class="wp-block-group cta-actions lfar-anim-fade-up"><!-- wp:paragraph {"className":"lfar-a"} -->
 <p class="lfar-a"><a class="btn" href="/donate/">Donate</a></p>
 <!-- /wp:paragraph -->
 

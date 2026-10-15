@@ -185,8 +185,8 @@
 </form>
 <!-- /wp:html -->
 
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:html -->
+<!-- wp:group {"className":"lfar-anim-fade-up"} -->
+<div class="wp-block-group lfar-anim-fade-up"><!-- wp:html -->
 <div class="receipt-wrap" style="max-width:none">
 <div class="receipt cover-receipt">
 <div class="r-head"><div class="r-paw"></div><div class="r-org">LOS FELIZ ANIMAL RESCUE</div><div class="r-no">RESCUE RECEIPT #402 · THE NEXT ANIMAL</div></div>
