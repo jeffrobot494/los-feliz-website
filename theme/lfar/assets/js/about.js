@@ -7,34 +7,6 @@
   burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
   menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
 
-  // newsletter (mockup: no data is sent)
-  var nf=document.getElementById('nl-form'), ne=document.getElementById('nl-email'), nn=document.getElementById('nl-note');
-  nf.addEventListener('submit',function(e){e.preventDefault();
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ne.value.trim())){nn.className='nl-note';nn.textContent='Enter an email address like name@example.com.';ne.focus();return;}
-    nn.className='nl-note ok';nn.textContent='Thanks! You\'re signed up.';ne.value='';});
-
-  // count-up stats (final values are already in the HTML)
-  var nums=[].slice.call(document.querySelectorAll('.stat-num[data-count]'));
-  if('IntersectionObserver' in window){
-    var cio=new IntersectionObserver(function(es){es.forEach(function(en){
-      if(!en.isIntersecting) return; var el=en.target; cio.unobserve(el);
-      var end=+el.dataset.count, pre=el.dataset.prefix||'', suf=el.dataset.suffix||'', t0=null, dur=1600;
-      function step(t){ if(!t0) t0=t; var p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
-        el.textContent=pre+Math.round(end*e)+(p===1?suf:''); if(p<1) requestAnimationFrame(step); }
-      requestAnimationFrame(step);
-    });},{threshold:.4});
-    nums.forEach(function(el){ if(el.getBoundingClientRect().top>window.innerHeight) cio.observe(el); });
-  }
-
-  // feed: "See more" reveals the next six posts (mockup; live site would load them from the feed)
-  var more=document.getElementById('see-more');
-  if(more){more.addEventListener('click',function(){
-    var hidden=[].slice.call(document.querySelectorAll('.more-post[hidden]')).slice(0,6);
-    hidden.forEach(function(c){c.hidden=false;c.classList.add('reveal');});
-    if(hidden[0]){var l=hidden[0].querySelector('a');if(l)l.focus({preventScroll:true});}
-    if(!document.querySelector('.more-post[hidden]')){more.hidden=true;more.setAttribute('aria-expanded','true');}
-  });}
-
   // back to top
   var toTop=document.getElementById('toTop');
   function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}

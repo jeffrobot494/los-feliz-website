@@ -1,0 +1,123 @@
+/* Fluent Forms dressed in the mockups' form styles (see .app / .field / .opt / .cond in the page CSS). */
+.lfar-form[hidden] { display: none !important; }
+.lfar-intent fieldset { border: 0; margin: 0 0 26px; padding: 0; min-width: 0; }
+
+.lfar-app .fluentform { font-family: var(--wp--preset--font-family--heading); color: #2A2430; }
+.lfar-app .fluentform .ff-el-group { margin-bottom: 14px; }
+
+/* Section headings (Section Break) look like the mockup legends */
+.lfar-app .fluentform .ff-el-section-break { margin: 12px 0 14px; }
+.lfar-app .fluentform .ff-el-section-break .ff-el-section-title {
+	display: flex; align-items: center; gap: 10px; margin: 0; padding: 0;
+	font: 700 20px/1.2 var(--wp--preset--font-family--heading); color: var(--head);
+}
+.lfar-app .fluentform .ff-el-section-break .ff-el-section-title::before {
+	content: ""; flex: 0 0 18px; width: 18px; height: 18px; background: var(--accent);
+	-webkit-mask: var(--paw) center/contain no-repeat; mask: var(--paw) center/contain no-repeat;
+}
+.lfar-app .fluentform .ff-el-section-break hr { display: none; }
+.lfar-app .fluentform .ff-section_break_desk { margin: 6px 0 0; font-size: 13.5px; color: #6F6875; }
+
+/* Labels and inputs */
+.lfar-app .fluentform .ff-el-input--label label { font-weight: 700; font-size: 14.5px; color: #4A4050; }
+.lfar-app .fluentform .ff-el-form-control {
+	width: 100%; min-height: 48px; padding: 10px 14px; border: 1px solid #DDD3E2; border-radius: 8px;
+	background: var(--white); font: 600 15.5px var(--wp--preset--font-family--heading); color: #2A2430;
+	box-shadow: none; transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+.lfar-app .fluentform textarea.ff-el-form-control { min-height: 88px; resize: vertical; }
+.lfar-app .fluentform .ff-el-form-control:hover { border-color: var(--accent); }
+.lfar-app .fluentform .ff-el-form-control:focus { border-color: var(--accent); box-shadow: 0 0 0 3px #F1D6FA; outline: 0; }
+.lfar-app .fluentform .ff-el-is-required.asterisk-right label::after,
+.lfar-app .fluentform .ff-el-is-required.asterisk-left label::before { color: var(--accent); }
+
+/* Two-column rows */
+.lfar-app .fluentform .ff-t-container { gap: 14px; }
+.lfar-app .fluentform .ff-t-container .ff-t-cell { padding: 0; }
+@media (max-width: 767px) { .lfar-app .fluentform .ff-t-container { display: block; } }
+
+/* Multiple-choice options as rounded chips (radio and checkbox groups) */
+.lfar-app .fluentform .ff-el-input--content .ff-el-form-check { display: inline-block; margin: 0 8px 8px 0; padding: 0; }
+.lfar-app .fluentform .ff-el-form-check-label { position: relative; display: inline-block; margin: 0; padding: 0; cursor: pointer; }
+.lfar-app .fluentform .ff-el-form-check-label .ff-el-form-check-input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.lfar-app .fluentform .ff-el-form-check-label > span {
+	display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 20px;
+	border: 2px solid #DDD3E2; border-radius: var(--blob); font: 700 15.5px var(--wp--preset--font-family--heading); color: #4A4050;
+	transition: border-color .2s, background-color .2s, color .2s, transform .2s;
+}
+.lfar-app .fluentform .ff-el-form-check-label:hover > span { border-color: var(--accent); transform: translateY(-2px); }
+.lfar-app .fluentform .ff-el-form-check-input:checked + span { background: #F6E6FB; border-color: var(--accent); color: var(--nav); }
+.lfar-app .fluentform .ff-el-form-check-input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* Single yes/no checkboxes (no question label) read as a plain checkbox line, like the mockup's .check */
+.lfar-app .fluentform .ff-el-group:not(:has(.ff-el-input--label label:not(:empty))) .ff-el-form-check { display: block; margin: 0 0 4px; }
+.lfar-app .fluentform .ff-el-group:not(:has(.ff-el-input--label label:not(:empty))) .ff-el-form-check-label { display: flex; gap: 12px; align-items: flex-start; }
+.lfar-app .fluentform .ff-el-group:not(:has(.ff-el-input--label label:not(:empty))) .ff-el-form-check-input {
+	position: static; opacity: 1; width: 20px; height: 20px; margin-top: 2px; flex: 0 0 20px; accent-color: var(--accent);
+}
+.lfar-app .fluentform .ff-el-group:not(:has(.ff-el-input--label label:not(:empty))) .ff-el-form-check-label > span {
+	display: inline; min-height: 0; padding: 0; border: 0; border-radius: 0; font: 400 15px var(--wp--preset--font-family--heading); color: #4A4050; transform: none; background: none;
+}
+
+/* Terms checkbox */
+.lfar-app .fluentform .ff-el-tc label.ff_tc_label { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: #4A4050; }
+.lfar-app .fluentform .ff-el-tc input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; flex: 0 0 20px; accent-color: var(--accent); }
+.lfar-app .fluentform .ff-el-tc p { margin: 0; }
+
+/* Questions that appear for one answer: the mockup's tinted follow-up panel */
+.lfar-app .fluentform .lfar-cond {
+	padding: 16px 20px 6px; margin-top: -2px; background: #FBF6FD; border-left: 4px solid var(--accent); border-radius: 0 10px 10px 0;
+}
+.lfar-app .fluentform .lfar-cond + .lfar-cond { margin-top: -14px; padding-top: 4px; border-radius: 0 0 10px 0; }
+.lfar-app .fluentform .cond-tip { margin: 0 0 10px; padding: 12px 16px; background: #FBF6FD; border-left: 4px solid var(--accent); border-radius: 0 10px 10px 0; font-size: 14.5px; color: #4A4050; }
+
+/* Panels: a group of questions that belongs to one answer (Adoption questions, For renters, Vet rides...).
+   Same look as the mockup's .cond .inner. Built in Fluent Forms as a one-column container with the CSS class "lfar-panel". */
+.lfar-app .fluentform .ff-t-container.lfar-panel,
+.lfar-app .fluentform .lfar-panel {
+	display: block; padding: 18px 20px 4px; margin: 14px 0 18px; background: #FBF6FD;
+	border-left: 4px solid var(--accent); border-radius: 0 10px 10px 0;
+}
+.lfar-app .fluentform .lfar-panel .ff-t-cell { width: 100% !important; padding: 0; }
+.lfar-app .fluentform .lfar-panel .cond-label { margin: 0 0 10px; }
+.lfar-app .fluentform .lfar-panel .cond-tip { margin: 0 0 14px; padding: 0; background: none; border: 0; }
+.lfar-app .fluentform .lfar-panel .ff-custom_html { margin-bottom: 0; }
+
+/* Submit button = the mockup's .give */
+.lfar-app .fluentform .ff_submit_btn_wrapper { margin-top: 10px; }
+.lfar-app .fluentform .ff-btn-submit,
+.lfar-app .fluentform .ff_submit_btn_wrapper .ff-btn-submit:not(.ff_btn_no_style) {
+	width: 100%; height: 56px; border: 0; border-radius: var(--blob); background: var(--accent); color: var(--white);
+	font: 700 17px var(--wp--preset--font-family--heading); letter-spacing: .3px; text-transform: uppercase; cursor: pointer;
+	transition: background-color .2s ease-in-out; box-shadow: none;
+}
+.lfar-app .fluentform .ff-btn-submit:hover,
+.lfar-app .fluentform .ff-btn-submit:focus-visible { background: var(--nav); opacity: 1; }
+
+/* Errors and the thank-you message */
+.lfar-app .fluentform .error.text-danger { font-size: 13px; color: #B3261E; font-weight: 700; margin-top: 6px; }
+.lfar-app .ff-message-success {
+	padding: 30px 20px; border: 0; box-shadow: none; text-align: center; font: 700 20px/1.4 var(--wp--preset--font-family--heading); color: var(--head);
+}
+
+/* Newsletter band: email + button on one line */
+.lfar-nl { width: 470px; max-width: 100%; min-width: 0; }
+@media (max-width: 991px) { .lfar-nl { grid-column: 1 / -1; width: auto; max-width: 470px; } }
+.lfar-nl .fluentform form,
+.lfar-nl .fluentform form > fieldset { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; border: 0; margin: 0; padding: 0; min-width: 0; width: 100%; }
+.lfar-nl .fluentform .ff-el-group { flex: 1 1 220px; margin: 0; }
+.lfar-nl .fluentform .ff-el-form-control {
+	height: 52px; padding: 0 22px; border: 2px solid #DDD3E2; border-radius: var(--blob); background: var(--white);
+	font: 600 16px var(--wp--preset--font-family--body); color: #2A2430; box-shadow: none;
+}
+.lfar-nl .fluentform .ff-el-form-control:focus { border-color: var(--accent); outline: 0; }
+.lfar-nl .fluentform .ff-el-group.ff_submit_btn_wrapper { flex: 0 0 auto; margin: 0; }
+.lfar-nl .fluentform .ff-btn-submit,
+.lfar-nl .fluentform .ff_submit_btn_wrapper .ff-btn-submit:not(.ff_btn_no_style) {
+	height: 52px; padding: 0 30px; border: 0; border-radius: var(--blob); background: var(--accent); color: var(--white);
+	font: 700 15px var(--wp--preset--font-family--heading); text-transform: uppercase; letter-spacing: .5px; box-shadow: none;
+}
+.lfar-nl .fluentform .ff-btn-submit:hover { background: var(--nav); opacity: 1; }
+.lfar-nl .nl-note { flex-basis: 100%; margin: 8px 0 0; }
+.lfar-nl .ff-message-success { margin: 0; padding: 12px 0; border: 0; box-shadow: none; font-weight: 700; color: var(--nav); background: none; }
+@media (max-width: 767px) { .lfar-nl .fluentform .ff-el-group.ff_submit_btn_wrapper { flex: 1 1 100%; } .lfar-nl .fluentform .ff-btn-submit { width: 100%; } }

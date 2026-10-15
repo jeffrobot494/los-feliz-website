@@ -373,11 +373,10 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<div class="apply-wrap" id="signup">
-<div class="app" data-anim="fade-up" id="app">
-<form id="app-form" novalidate="">
-<fieldset>
+<!-- wp:group {"className":"apply-wrap"} -->
+<div class="wp-block-group apply-wrap" id="signup"><!-- wp:group {"className":"app lfar-app"} -->
+<div class="wp-block-group app lfar-app" id="app"><!-- wp:html -->
+<div class="lfar-intent"><fieldset>
 <legend>What would you like to do?</legend>
 <div class="intent-row">
 <label class="intent"><input checked="" id="i-adopt" name="intent" type="radio" value="adopt"/>
@@ -397,96 +396,22 @@
 </span>
 </label>
 </div>
-</fieldset>
-<fieldset>
-<legend>About you</legend>
-<div class="grid2">
-<div class="field"><label for="f-first">First name</label><input autocomplete="given-name" id="f-first" value="Maya"/></div>
-<div class="field"><label for="f-last">Last name</label><input autocomplete="family-name" id="f-last" value="Alvarez"/></div>
-</div>
-<div class="grid2">
-<div class="field"><label for="f-email">Email</label><input autocomplete="email" id="f-email" type="email" value="maya@example.com"/></div>
-<div class="field"><label for="f-phone">Phone</label><input autocomplete="tel" id="f-phone" placeholder="(323) 555-0123" type="tel"/></div>
-</div>
-</fieldset>
-<div class="cond open" data-for="adopt"><div><div class="inner">
-<p class="cond-label">Adoption questions</p>
-<div class="field" id="pet-field"><label for="f-pet">Which animal are you interested in?</label><input id="f-pet" placeholder='A name, or "not sure yet"' value="Sherlock"/></div>
-<p class="q" id="type-q">What kind of animal?</p>
-<div aria-labelledby="type-q" class="opt-row" role="radiogroup">
-<label class="opt"><input checked="" id="k-dog" name="kind" type="radio" value="dog"/><span>Dog</span></label>
-<label class="opt"><input id="k-cat" name="kind" type="radio" value="cat"/><span>Cat</span></label>
-<label class="opt"><input id="k-other" name="kind" type="radio" value="other"/><span>Other</span></label>
-</div>
-<div class="cond open" data-for="dog"><div><div class="sub">
-<div class="field"><label for="d-yard">Do you have a yard?</label>
-<select id="d-yard"><option>Yes, fully fenced</option><option>Yes, not fenced</option><option>No yard</option></select></div>
-<div class="field"><label for="d-alone">How many hours a day would the dog be alone?</label>
-<select id="d-alone"><option>Less than 4</option><option selected="">4 to 6</option><option>6 to 8</option><option>More than 8</option></select></div>
-<div class="field"><label for="d-exercise">How will your dog get exercise?</label>
-<textarea id="d-exercise">Two walks a day around the neighborhood, and weekend hikes in Griffith Park.</textarea></div>
-</div></div></div>
-<div class="cond" data-for="cat"><div><div class="sub">
-<div class="field"><label for="c-indoor">Will the cat live indoors only?</label>
-<select id="c-indoor"><option>Yes, indoors only</option><option>Indoors with a catio</option><option>Indoor and outdoor</option></select></div>
-<div class="field"><label for="c-before">Have you had a cat before?</label>
-<select id="c-before"><option>Yes, I have one now</option><option>Yes, in the past</option><option>No, this is my first</option></select></div>
-</div></div></div>
-<div class="cond" data-for="other"><div><div class="sub">
-<div class="field"><label for="o-species">What kind of animal?</label><input id="o-species" placeholder="e.g. rabbit, guinea pig, bird"/></div>
-<div class="field"><label for="o-habitat">What enclosure or setup do you have ready?</label><textarea id="o-habitat"></textarea></div>
-</div></div></div>
-<label class="check"><input checked="" id="f-agree" type="checkbox"/><span>I understand the adoption isn't final until the trial ends and LFAR agrees it's a good match.</span></label>
-</div></div></div>
-<div class="cond" data-for="foster"><div><div class="inner">
-<p class="cond-label">Foster questions</p>
-<p class="q" id="fo-kinds-q">Which animals could you foster?</p>
-<div aria-labelledby="fo-kinds-q" class="opt-row" role="group">
-<label class="opt"><input checked="" id="fo-dogs" type="checkbox"/><span>Dogs</span></label>
-<label class="opt"><input checked="" id="fo-cats" type="checkbox"/><span>Cats</span></label>
-<label class="opt"><input id="fo-babies" type="checkbox"/><span>Puppies or kittens</span></label>
-<label class="opt"><input id="fo-other" type="checkbox"/><span>Other</span></label>
-</div>
-<div class="field" style="margin-top:16px"><label for="fo-length">How long can you foster?</label>
-<select id="fo-length"><option>A weekend</option><option selected="">2 weeks</option><option>A month</option><option>Until adopted</option></select></div>
-</div></div></div>
-<fieldset style="margin-top:26px">
-<legend>Your home</legend>
-<p class="q" id="home-q">Do you own or rent?</p>
-<div aria-labelledby="home-q" class="opt-row" role="radiogroup">
-<label class="opt"><input id="h-own" name="home" type="radio" value="own"/><span>Own</span></label>
-<label class="opt"><input checked="" id="h-rent" name="home" type="radio" value="rent"/><span>Rent</span></label>
-</div>
-<div class="cond open" data-for="rent"><div><div class="inner">
-<p class="cond-label">For renters</p>
-<div class="field"><label for="r-lease">Does your lease allow pets?</label>
-<select id="r-lease"><option>Yes</option><option>Yes, with a size or breed limit</option><option>I need to check</option></select></div>
-<div class="field"><label for="r-landlord">Landlord's name and phone</label><input id="r-landlord" placeholder="We only call to confirm pets are allowed"/></div>
-</div></div></div>
-<div class="field" style="margin-top:16px"><label for="h-pets">Other pets at home</label><input id="h-pets" value="One cat, 5 years old"/></div>
-<div class="field"><label for="h-kids">Children at home (ages)</label><input id="h-kids" placeholder="e.g. 4 and 9, or none"/></div>
-</fieldset>
-<div class="cond open" data-for="fee"><div>
-<div class="fee-box">
-<p class="fee-line"><span>Adoption fee</span><strong>$300</strong></p>
-<p>The full adoption details explain the process from application to going home.</p>
-<a class="fee-link" href="https://drive.google.com/file/d/18AhJgdD7Ce0bgJVqZKbbEn7ZkSdeEfe5/view" rel="noopener" target="_blank">Read the full adoption details <span aria-hidden="true">→</span></a>
-</div>
-</div></div>
-<p class="app-error" hidden="" id="app-error"></p>
-<button class="give" id="submit-btn" type="submit">Send adoption application</button>
-<p class="app-note">Mockup form. Nothing is sent.</p>
-</form>
-<div class="thanks" hidden="" id="thanks">
-<div aria-hidden="true" class="big-paw"></div>
-<h3 id="thanks-title">Thank you!</h3>
-<p id="thanks-text">We got your form.</p>
-<p>Keep an eye on your email. We usually reply within two or three days.</p>
-<button class="btn btn-ghost" id="again" type="button">Back to the form</button>
-</div>
-</div>
-</div>
-<!-- /wp:html --></div>
+</fieldset></div>
+<!-- /wp:html -->
+
+<!-- wp:group {"className":"lfar-form lfar-form-adopt"} -->
+<div class="wp-block-group lfar-form lfar-form-adopt"><!-- wp:shortcode -->
+[fluentform id="<?php echo (int) lfar_form_id( 'adoption' ); ?>"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"lfar-form lfar-form-foster"} -->
+<div class="wp-block-group lfar-form lfar-form-foster"><!-- wp:shortcode -->
+[fluentform id="<?php echo (int) lfar_form_id( 'foster' ); ?>"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 

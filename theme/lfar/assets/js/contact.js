@@ -20,34 +20,6 @@
     try{navigator.clipboard.writeText(et.textContent.trim()).then(done,fallback);}catch(e){fallback();}
   });
 
-  // topic -> conditional follow-up
-  var conds=$$('.cond');
-  function showTopic(v){conds.forEach(function(c){c.classList.toggle('open',c.dataset.for===v)});}
-  $$('input[name="topic"]').forEach(function(r){r.addEventListener('change',function(){showTopic(r.value)});});
-
-  // contact form (mockup: nothing is sent)
-  var form=$('#contact-form'), body=$('#form-body'), thanks=$('#thanks');
-  function setErr(id,msg){var e=$('#'+id);e.textContent=msg;e.hidden=!msg;}
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var email=$('#c-email').value.trim(), msg=$('#c-msg').value.trim(), ok=true;
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){setErr('err-email','Enter an email address like name@example.com so we can reply.');ok=false;} else setErr('err-email','');
-    if(msg.length<5){setErr('err-msg','Add a few words so we know how to help.');ok=false;} else setErr('err-msg','');
-    if(!ok){(email&&ok)||$(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)?'#c-email':'#c-msg').focus();return;}
-    if($('#c-website').value){return;}
-    var name=$('#c-first').value.trim();
-    $('#thanks-text').textContent=(name?'Thanks, '+name+'. ':'Thanks! ')+'A copy is on its way to '+email+', and a volunteer will reply within 2–3 days.';
-    body.hidden=true;thanks.hidden=false;
-    form.scrollIntoView({behavior:'smooth',block:'center'});
-  });
-  $('#again').addEventListener('click',function(){thanks.hidden=true;body.hidden=false;$('#c-msg').value='';$('#c-msg').focus();});
-
-  // newsletter (mockup: no data is sent)
-  var nf=$('#nl-form'), ne=$('#nl-email'), nn=$('#nl-note');
-  nf.addEventListener('submit',function(e){e.preventDefault();
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ne.value.trim())){nn.className='nl-note';nn.textContent='Enter an email address like name@example.com.';ne.focus();return;}
-    nn.className='nl-note ok';nn.textContent='Thanks! You\'re signed up.';ne.value='';});
-
   // back to top
   var toTop=$('#toTop');
   function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}

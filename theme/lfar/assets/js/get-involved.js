@@ -28,38 +28,6 @@
     $$('.more-post').forEach(function(p){p.hidden=!open;if(open)p.classList.add('run','fade-up');});
     sm.setAttribute('aria-expanded',open);sm.textContent=open?'Show fewer':'See more';});
 
-  // role checkboxes
-  var boxes=$$('input[name="role"]');
-  function box(v){return boxes.filter(function(b){return b.value===v})[0];}
-
-  // conditional follow-ups
-  function cond(key,on){var c=$('.cond[data-for="'+key+'"]');if(c)c.classList.toggle('open',on);}
-  boxes.forEach(function(b){b.addEventListener('change',function(){cond('vet',box('vet').checked);setErr('err-role','');});});
-  $('#v-foster').addEventListener('change',function(){cond('foster',this.checked);});
-
-  // sign-up form (mockup: nothing is sent)
-  var form=$('#vol-form'), body=$('#form-body'), thanks=$('#thanks');
-  function setErr(id,msg){var e=$('#'+id);e.textContent=msg;e.hidden=!msg;}
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var first=$('#v-first').value.trim(), email=$('#v-email').value.trim(), picked=boxes.some(function(b){return b.checked}), bad=null;
-    if(!first){setErr('err-first','Add your first name so we know who to ask for.');bad=bad||'#v-first';} else setErr('err-first','');
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){setErr('err-email','Enter an email address like name@example.com so we can reach you.');bad=bad||'#v-email';} else setErr('err-email','');
-    if(!picked){setErr('err-role','Pick at least one, or choose "Not sure yet".');bad=bad||'#role-opts input';} else setErr('err-role','');
-    if(bad){$(bad).focus();return;}
-    if($('#v-website').value)return;
-    $('#thanks-text').textContent='Thanks, '+first+'. A confirmation is on its way to '+email+', and a volunteer coordinator will reach out within a week.';
-    body.hidden=true;thanks.hidden=false;
-    form.scrollIntoView({behavior:'smooth',block:'center'});
-  });
-  $('#again').addEventListener('click',function(){thanks.hidden=true;body.hidden=false;$('#v-first').focus();});
-
-  // newsletter (mockup: no data is sent)
-  var nf=$('#nl-form'), ne=$('#nl-email'), nn=$('#nl-note');
-  nf.addEventListener('submit',function(e){e.preventDefault();
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ne.value.trim())){nn.className='nl-note';nn.textContent='Enter an email address like name@example.com.';ne.focus();return;}
-    nn.className='nl-note ok';nn.textContent='Thanks! You\'re signed up.';ne.value='';});
-
   // back to top
   var toTop=$('#toTop');
   function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}

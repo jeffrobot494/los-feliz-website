@@ -15,6 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 const LFAR_PAGES = array( 'home', 'about', 'adopt', 'get-involved', 'contact', 'donate' );
 
+// Instagram feed on About, Get Involved and Adopt (Settings → LFAR Instagram).
+require_once get_theme_file_path( 'inc/instagram.php' );
+
 /**
  * Which mockup a page belongs to, or '' if none.
  *
@@ -43,6 +46,49 @@ function lfar_page_key( $post_id = 0 ) {
 	return '';
 }
 
+/**
+ * Fluent Forms ID for one of the site's forms, found by its title (so it survives a move to production).
+ * Rename a form in Fluent Forms? Update the title here too.
+ *
+ * @param string $key adoption | foster | volunteer | contact | newsletter.
+ */
+function lfar_form_id( $key ) {
+	static $ids = null;
+	$titles = array(
+		'adoption'   => 'Adoption application',
+		'foster'     => 'Foster application',
+		'volunteer'  => 'Volunteer sign-up',
+		'contact'    => 'Contact',
+		'newsletter' => 'Newsletter sign-up',
+	);
+	if ( null === $ids ) {
+		global $wpdb;
+		$ids   = array();
+		$table = $wpdb->prefix . 'fluentform_forms';
+		if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) ) === $table ) { // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+			$rows = $wpdb->get_results( "SELECT id, title FROM {$table} ORDER BY id ASC" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			foreach ( $rows as $row ) {
+				$k = array_search( $row->title, $titles, true );
+				if ( false !== $k && ! isset( $ids[ $k ] ) ) {
+					$ids[ $k ] = (int) $row->id;
+				}
+			}
+		}
+	}
+	return isset( $ids[ $key ] ) ? $ids[ $key ] : 0;
+}
+
+/*
+ * Shortcode blocks inside patterns used by templates (e.g. the newsletter form in every page footer)
+ * are expanded after WordPress has already processed shortcodes, so run them here.
+ */
+add_filter(
+	'render_block_core/shortcode',
+	function ( $content ) {
+		return do_shortcode( shortcode_unautop( $content ) );
+	}
+);
+
 /** Cache-busting version: the file's modified time. */
 function lfar_ver( $rel ) {
 	$path = get_theme_file_path( $rel );
@@ -69,6 +115,8 @@ add_action(
 		// so the link sits in flex/grid rows exactly as in the mockups. (Kept out of the editor so the block stays selectable.)
 		wp_add_inline_style( 'lfar-base', 'p.lfar-a.lfar-a{display:contents}' );
 		wp_enqueue_script( 'lfar-page', get_theme_file_uri( $js ), array(), lfar_ver( $js ), array( 'in_footer' => true ) );
+		wp_enqueue_style( 'lfar-forms', get_theme_file_uri( 'assets/css/forms.css' ), array( 'lfar-page' ), lfar_ver( 'assets/css/forms.css' ) );
+		wp_enqueue_script( 'lfar-forms', get_theme_file_uri( 'assets/js/forms.js' ), array( 'lfar-page' ), lfar_ver( 'assets/js/forms.js' ), array( 'in_footer' => true ) );
 	}
 );
 

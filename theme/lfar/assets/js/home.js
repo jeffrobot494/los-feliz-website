@@ -13,12 +13,6 @@
   amts.forEach(function(b){b.addEventListener('click',function(){amts.forEach(function(x){x.setAttribute('aria-pressed',x===b)});other.value='';setLabel(b.dataset.v);});});
   other.addEventListener('input',function(){var v=other.value.replace(/[^0-9.]/g,'');other.value=v;amts.forEach(function(x){x.setAttribute('aria-pressed','false')});setLabel(v);});
 
-  // newsletter (mockup: no data is sent)
-  var nf=document.getElementById('nl-form'), ne=document.getElementById('nl-email'), nn=document.getElementById('nl-note');
-  nf.addEventListener('submit',function(e){e.preventDefault();
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ne.value.trim())){nn.className='nl-note';nn.textContent='Enter an email address like name@example.com.';ne.focus();return;}
-    nn.className='nl-note ok';nn.textContent='Thanks! You\'re signed up.';ne.value='';});
-
   // back to top
   var toTop=document.getElementById('toTop');
   function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}

@@ -270,62 +270,6 @@
     });
   });});
 
-  // sign-up form: Adopt / Foster checkboxes and conditional questions
-  var iAdopt=$('#i-adopt'), iFoster=$('#i-foster'), submitBtn=$('#submit-btn');
-  function syncForm(){
-    function open(key,on){var c=$('.cond[data-for="'+key+'"]'); if(c) c.classList.toggle('open',!!on);}
-    open('adopt',iAdopt.checked); open('foster',iFoster.checked); open('fee',iAdopt.checked);
-    var kind=($('input[name="kind"]:checked')||{}).value;
-    ['dog','cat','other'].forEach(function(k){open(k,k===kind)});
-    open('rent',($('input[name="home"]:checked')||{}).value==='rent');
-    // questions inside a closed group are skipped
-    $$('#app-form .cond input,#app-form .cond select,#app-form .cond textarea').forEach(function(el){el.disabled=!!el.closest('.cond:not(.open)');});
-    submitBtn.textContent=iFoster.checked?'Sign up to foster':'Send adoption application';
-  }
-  [iAdopt,iFoster].concat($$('input[name="kind"],input[name="home"]')).forEach(function(el){el.addEventListener('change',syncForm)});
-  syncForm();
-
-  var form=$('#app-form'), err=$('#app-error'), thanks=$('#thanks');
-  function showForm(){thanks.hidden=true;form.hidden=false;}
-  function flash(id){var f=$(id);if(!f)return;f.classList.remove('flash');setTimeout(function(){f.classList.add('flash')},700);}
-  function goTo(intent,pet,type){
-    showForm();
-    if(intent==='adopt'){iAdopt.checked=true;}
-    if(intent==='foster'){iFoster.checked=true;}
-    if(pet){$('#f-pet').value=pet;}
-    if(type){var k=$('#k-'+type);if(k)k.checked=true;}
-    syncForm();
-    $('#signup').scrollIntoView({behavior:'smooth'});
-    var card=(intent==='foster'?iFoster:iAdopt).nextElementSibling;
-    card.classList.remove('pulse');setTimeout(function(){card.classList.add('pulse')},700);
-    if(pet) flash('#pet-field');
-  }
-  // "Apply for ___" checks Adopt, fills in the animal and scrolls to the form
-  $$('.apply-for').forEach(function(b){b.addEventListener('click',function(){goTo('adopt',b.dataset.pet,b.dataset.type||'dog');});});
-  $$('.go-adopt').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();goTo('adopt');});});
-  $$('.go-foster').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();goTo('foster');});});
-  // links from other pages: #apply-foster opens the form with Foster selected
-  if(location.hash==='#apply-foster'){setTimeout(function(){goTo('foster');},300);}
-
-  // submit (mockup: nothing is sent)
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var first=$('#f-first').value.trim(), email=$('#f-email').value.trim(), msg='';
-    if(!first) msg='Add your first name so we know who to contact.';
-    else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) msg='Enter an email address like name@example.com.';
-    else if(iAdopt.checked&&!$('#f-agree').checked) msg='Check the box to confirm you understand how the adoption trial works.';
-    else if(iFoster.checked&&!$$('#fo-dogs,#fo-cats,#fo-babies,#fo-other').some(function(c){return c.checked})) msg='Pick at least one kind of animal you could foster.';
-    if(msg){err.textContent=msg;err.hidden=false;return;}
-    err.hidden=true;
-    var pet=$('#f-pet').value.trim(), a=iAdopt.checked, f=iFoster.checked;
-    var adoptTxt=pet?('your application to adopt '+pet):'your adoption application';
-    $('#thanks-title').textContent='Thank you, '+first+'!';
-    $('#thanks-text').textContent='We got '+(a?adoptTxt+'.':'your sign-up to foster.');
-    form.hidden=true;thanks.hidden=false;
-    $('#app').scrollIntoView({behavior:'smooth',block:'start'});
-  });
-  $('#again').addEventListener('click',showForm);
-
   // Happy Tales: each click reveals the next three #happytales posts
   var talesBtn=$('#tales-btn');
   if(talesBtn) talesBtn.addEventListener('click',function(){
@@ -337,12 +281,6 @@
     }
   });
 
-
-  // newsletter (mockup: no data is sent)
-  var nf=$('#nl-form'), ne=$('#nl-email'), nn=$('#nl-note');
-  nf.addEventListener('submit',function(e){e.preventDefault();
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ne.value.trim())){nn.className='nl-note';nn.textContent='Enter an email address like name@example.com.';ne.focus();return;}
-    nn.className='nl-note ok';nn.textContent='Thanks! You\'re signed up.';ne.value='';});
 
   // back to top
   var toTop=$('#toTop');

@@ -154,72 +154,11 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<form class="app" data-anim="fade-up" id="contact-form" novalidate="">
-<div id="form-body">
-<fieldset>
-<legend>About you</legend>
-<div class="grid2">
-<div class="field"><label for="c-first">First name</label><input autocomplete="given-name" id="c-first" value="Jordan"/></div>
-<div class="field"><label for="c-last">Last name</label><input autocomplete="family-name" id="c-last" value="Reyes"/></div>
-</div>
-<div class="grid2">
-<div class="field"><label for="c-email">Email</label><input autocomplete="email" id="c-email" type="email" value="jordan@example.com"/><span class="err" hidden="" id="err-email"></span></div>
-<div class="field"><label for="c-phone">Phone <span class="opt-l">(optional)</span></label><input autocomplete="tel" id="c-phone" placeholder="(323) 555-0123" type="tel"/></div>
-</div>
-</fieldset>
-<fieldset>
-<legend>What's it about?</legend>
-<div class="opt-row" id="topics">
-<label class="opt"><input id="t-general" name="topic" type="radio" value="general"/><span>General question</span></label>
-<label class="opt"><input id="t-adopt" name="topic" type="radio" value="adopt"/><span>Adopting</span></label>
-<label class="opt"><input id="t-foster" name="topic" type="radio" value="foster"/><span>Fostering</span></label>
-<label class="opt"><input checked="" id="t-volunteer" name="topic" type="radio" value="volunteer"/><span>Volunteering</span></label>
-<label class="opt"><input id="t-supplies" name="topic" type="radio" value="supplies"/><span>Donating supplies</span></label>
-<label class="opt"><input id="t-press" name="topic" type="radio" value="press"/><span>Press or partnership</span></label>
-<label class="opt"><input id="t-other" name="topic" type="radio" value="other"/><span>Something else</span></label>
-</div>
-<div class="cond" data-for="adopt"><div><div class="inner">
-<p class="cond-label">Adopting</p>
-<div class="field"><label for="c-animal">Which animal caught your eye? <span class="opt-l">(optional)</span></label><input id="c-animal" placeholder="For example, Sherlock"/></div>
-<p class="cond-tip">Ready to go? The <a href="/adopt/#apply">adoption application</a> is the quickest route to a meet-and-greet.</p>
-</div></div></div>
-<div class="cond" data-for="foster"><div><div class="inner">
-<p class="cond-label">Fostering</p>
-<p class="cond-tip">Questions are welcome here. If you're ready to start, the <a href="/adopt/#apply-foster">foster application</a> gets you on our list faster.</p>
-</div></div></div>
-<div class="cond open" data-for="volunteer"><div><div class="inner">
-<p class="cond-label">Volunteering</p>
-<div class="field"><label for="c-help">How would you like to help?</label>
-<select id="c-help"><option>Adoption events</option><option selected="">Driving animals to the vet</option><option>Pet photography</option><option>Supply runs</option><option>Sharing posts online</option><option>Not sure yet</option></select>
-</div>
-</div></div></div>
-<div class="cond" data-for="supplies"><div><div class="inner">
-<p class="cond-label">Donating supplies</p>
-<div class="field"><label for="c-items">What would you like to donate?</label><input id="c-items" placeholder="For example, a large crate and two bags of kitten food"/></div>
-</div></div></div>
-<div class="cond" data-for="press"><div><div class="inner">
-<p class="cond-label">Press or partnership</p>
-<div class="field"><label for="c-org">Organization or outlet</label><input id="c-org" placeholder="For example, Los Feliz Ledger"/></div>
-</div></div></div>
-</fieldset>
-<fieldset>
-<legend>Your message</legend>
-<div class="field"><label for="c-msg">Message</label><textarea id="c-msg" rows="5">Hi! I live near Griffith Park and have my Saturday mornings free. I'd love to help drive animals to vet appointments. I have a hatchback that fits a large crate.</textarea><span class="err" hidden="" id="err-msg"></span></div>
-<label class="check"><input checked="" id="c-news" type="checkbox"/> Send me the newsletter too (a couple of times a month).</label>
-<div aria-hidden="true" class="hp"><label for="c-website">Leave this empty</label><input autocomplete="off" id="c-website" tabindex="-1"/></div>
-</fieldset>
-<button class="give" type="submit">Send message</button>
-<p class="app-note">We'll email you a copy so you know it arrived. Mockup: nothing is sent.</p>
-</div>
-<div class="thanks" hidden="" id="thanks">
-<div aria-hidden="true" class="big-paw"></div>
-<h3>Message received</h3>
-<p id="thanks-text">Thanks, Jordan. A copy is on its way to your inbox, and a volunteer will reply within 2–3 days.</p>
-<button class="btn btn-ghost" id="again" type="button">Send another message</button>
-</div>
-</form>
-<!-- /wp:html --></div>
+<!-- wp:group {"className":"app lfar-app"} -->
+<div class="wp-block-group app lfar-app"><!-- wp:shortcode -->
+[fluentform id="<?php echo (int) lfar_form_id( 'contact' ); ?>"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->

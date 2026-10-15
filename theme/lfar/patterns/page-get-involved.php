@@ -246,76 +246,11 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<form class="app" data-anim="fade-up" id="vol-form" novalidate="">
-<div id="form-body">
-<fieldset>
-<legend>About you</legend>
-<div class="grid2">
-<div class="field"><label for="v-first">First name</label><input autocomplete="given-name" id="v-first" value="Jordan"/><span class="err" hidden="" id="err-first"></span></div>
-<div class="field"><label for="v-last">Last name</label><input autocomplete="family-name" id="v-last" value="Reyes"/></div>
-</div>
-<div class="grid2">
-<div class="field"><label for="v-email">Email</label><input autocomplete="email" id="v-email" type="email" value="jordan@example.com"/><span class="err" hidden="" id="err-email"></span></div>
-<div class="field"><label for="v-phone">Phone <span class="opt-l">(optional)</span></label><input autocomplete="tel" id="v-phone" placeholder="(323) 555-0123" type="tel"/></div>
-</div>
-<div class="field"><label for="v-hood">Neighborhood</label>
-<select id="v-hood"><option>Los Feliz</option><option selected="">Silver Lake</option><option>Atwater Village</option><option>Echo Park</option><option>East Hollywood</option><option>Somewhere else in LA</option></select>
-</div>
-<label class="check"><input checked="" id="v-age" type="checkbox"/> I'm 18 or older <span class="opt-l">(<span class="tbd">confirm age rule</span>)</span></label>
-</fieldset>
-<fieldset>
-<legend>How would you like to help?</legend>
-<p class="q-hint">Pick as many as you like.</p>
-<div class="opt-row" id="role-opts">
-<label class="opt"><input name="role" type="checkbox" value="events"/><span>Adoption events</span></label>
-<label class="opt"><input checked="" name="role" type="checkbox" value="vet"/><span>Vet rides</span></label>
-<label class="opt"><input name="role" type="checkbox" value="photos"/><span>Pet photos</span></label>
-<label class="opt"><input name="role" type="checkbox" value="supplies"/><span>Supply runs</span></label>
-<label class="opt"><input name="role" type="checkbox" value="sharing"/><span>Sharing posts</span></label>
-<label class="opt"><input name="role" type="checkbox" value="skills"/><span>Skills (tell us below)</span></label>
-<label class="opt"><input name="role" type="checkbox" value="unsure"/><span>Not sure yet</span></label>
-</div>
-<span class="err" hidden="" id="err-role"></span>
-<div class="cond open" data-for="vet"><div><div class="inner">
-<p class="cond-label">Vet rides</p>
-<p class="q">Does your car fit a large crate?</p>
-<div class="opt-row">
-<label class="opt"><input checked="" name="crate" type="radio" value="large"/><span>Yes, a large crate</span></label>
-<label class="opt"><input name="crate" type="radio" value="small"/><span>Carriers only</span></label>
-</div>
-</div></div></div>
-</fieldset>
-<fieldset>
-<legend>When are you usually free?</legend>
-<div class="opt-row">
-<label class="opt"><input name="when" type="checkbox" value="wkday-am"/><span>Weekday mornings</span></label>
-<label class="opt"><input name="when" type="checkbox" value="wkday-pm"/><span>Weekday evenings</span></label>
-<label class="opt"><input checked="" name="when" type="checkbox" value="weekend"/><span>Weekends</span></label>
-<label class="opt"><input name="when" type="checkbox" value="varies"/><span>It varies</span></label>
-</div>
-</fieldset>
-<fieldset>
-<legend>Anything else?</legend>
-<div class="field"><label for="v-notes">Skills, experience or questions <span class="opt-l">(optional)</span></label><textarea id="v-notes" rows="3">I have a hatchback and Saturday mornings free. Happy to take photos too.</textarea></div>
-<label class="check"><input id="v-foster" type="checkbox"/> I'm also curious about fostering</label>
-<div class="cond" data-for="foster"><div><div class="inner">
-<p class="cond-tip">Great. We'll mention it when we get in touch, and you can read up on the <a href="/adopt/#foster">fostering section of the Adopt page</a> now.</p>
-</div></div></div>
-<label class="check"><input checked="" id="v-news" type="checkbox"/> Send me the newsletter too (a couple of times a month).</label>
-<div aria-hidden="true" class="hp"><label for="v-website">Leave this empty</label><input autocomplete="off" id="v-website" tabindex="-1"/></div>
-</fieldset>
-<button class="give" type="submit">Sign me up</button>
-<p class="app-note">Goes straight into our volunteer records. Mockup: nothing is sent.</p>
-</div>
-<div class="thanks" hidden="" id="thanks">
-<div aria-hidden="true" class="big-paw"></div>
-<h3>You're on the list</h3>
-<p id="thanks-text">Thanks, Jordan. A confirmation is on its way to your inbox, and a volunteer coordinator will reach out within a week.</p>
-<button class="btn btn-ghost" id="again" type="button">Edit my answers</button>
-</div>
-</form>
-<!-- /wp:html --></div>
+<!-- wp:group {"className":"app lfar-app"} -->
+<div class="wp-block-group app lfar-app"><!-- wp:shortcode -->
+[fluentform id="<?php echo (int) lfar_form_id( 'volunteer' ); ?>"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->

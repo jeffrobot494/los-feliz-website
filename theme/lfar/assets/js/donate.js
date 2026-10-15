@@ -83,12 +83,6 @@
     $$('[data-count]').forEach(function(el){ if(el.getBoundingClientRect().top>window.innerHeight) cio.observe(el); });
   }
 
-  // newsletter (mockup: no data is sent)
-  var nf=$('#nl-form'), ne=$('#nl-email'), nn=$('#nl-note');
-  nf.addEventListener('submit',function(e){e.preventDefault();
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ne.value.trim())){nn.className='nl-note';nn.textContent='Enter an email address like name@example.com.';ne.focus();return;}
-    nn.className='nl-note ok';nn.textContent='Thanks! You\'re signed up.';ne.value='';});
-
   // back to top
   var toTop=$('#toTop');
   function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}

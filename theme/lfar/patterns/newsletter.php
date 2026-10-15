@@ -23,14 +23,15 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<form class="nl-form" id="nl-form" novalidate="">
-<label for="nl-email">Email address</label>
-<input autocomplete="email" id="nl-email" placeholder="Your email address" required="" type="email"/>
-<button class="btn" type="submit">Sign up</button>
-<span aria-live="polite" class="nl-note" id="nl-note">No spam. Unsubscribe any time.</span>
-</form>
-<!-- /wp:html --></div>
+<!-- wp:group {"className":"lfar-nl"} -->
+<div class="wp-block-group lfar-nl"><!-- wp:shortcode -->
+[fluentform id="<?php echo (int) lfar_form_id( 'newsletter' ); ?>"]
+<!-- /wp:shortcode -->
+
+<!-- wp:paragraph {"className":"nl-note"} -->
+<p class="nl-note">No spam. Unsubscribe any time.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->

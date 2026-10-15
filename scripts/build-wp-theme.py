@@ -253,7 +253,53 @@ def convert_list(tag):
                f'<{tag.name}{open_attrs("wp-block-list " + clsof(tag), tag.get("id"))}>' + '\n\n'.join(items) + f'</{tag.name}>')
 
 
+def shortcode(form):
+    return blk('shortcode', None, f'[fluentform id="__FORM__{form}__"]')
+
+
+def grp(cls, kids, id_=None):
+    return blk('group', {'className': cls}, f'<div{open_attrs("wp-block-group " + cls, id_)}>' + '\n\n'.join(kids) + '</div>')
+
+
+def swap_adopt(node):
+    """Adopt / Foster: keep the mockup's two intent cards, then one Fluent form for each (assets/js/forms.js toggles them)."""
+    intent = node.find('form').find('fieldset')
+    for r in intent.find_all('input'):
+        r['name'] = 'intent'
+    return [grp('app lfar-app', [blk('html', None, '<div class="lfar-intent">' + str(intent) + '</div>'),
+                                 grp('lfar-form lfar-form-adopt', [shortcode('adoption')]),
+                                 grp('lfar-form lfar-form-foster', [shortcode('foster')])], 'app')]
+
+
+# Mockup forms -> Fluent Forms (form ids are looked up by lfar_form_id() in functions.php)
+SWAPS = {
+    'app': swap_adopt,
+    'vol-form': lambda n: [grp('app lfar-app', [shortcode('volunteer')])],
+    'contact-form': lambda n: [grp('app lfar-app', [shortcode('contact')])],
+    'nl-form': lambda n: [grp('lfar-nl', [shortcode('newsletter'),
+                                          blk('paragraph', {'className': 'nl-note'}, '<p class="nl-note">No spam. Unsubscribe any time.</p>')])],
+}
+# Mockup JS that drove the placeholder forms; removed so it can't fight with Fluent Forms.
+JS_CUTS = {'adopt': [('// sign-up form: Adopt', '// Happy Tales')],
+           'get-involved': [('// role checkboxes', '// newsletter')],
+           'contact': [('// topic -> conditional', '// newsletter')]}
+JS_CUTS_ALL = [('// newsletter (mockup', '// back to top')]
+
+
+def cut_js(js, key):
+    for a, b in JS_CUTS.get(key, []) + JS_CUTS_ALL:
+        i = js.find(a)
+        j = js.find(b, i + 1) if i >= 0 else -1
+        if i >= 0 and j > i:
+            js = js[:i] + js[j:]
+        else:
+            print('  ! JS cut not found:', key, a)
+    return js
+
+
 def convert(node):
+    if isinstance(node, Tag) and node.get('id') in SWAPS:
+        return SWAPS[node['id']](node)
     if isinstance(node, Comment):
         return []
     if isinstance(node, NavigableString):
@@ -309,6 +355,7 @@ def convert(node):
 
 
 def php_out(s):
+    s = re.sub(r'__FORM__(\w+)__', r"<?php echo (int) lfar_form_id( '\1' ); ?>", s)
     return re.sub(r'__IMG__(.+?)__', r"<?php echo esc_url( get_theme_file_uri( 'assets/images/\1' ) ); ?>", s)
 
 
@@ -354,7 +401,7 @@ for key, fn in PAGES.items():
     imgonly = imgclasses - otherclasses
     open(os.path.join(THEME, 'assets/css', key + '.css'), 'w', encoding='utf-8').write(
         finish_css(css, imgonly) + '\n' + '\n'.join(extra_css) + '\n')
-    js = NAV_ACTIVE + '\n'.join(s for a, s in scripts if 'ld+json' not in a)
+    js = cut_js(NAV_ACTIVE + '\n'.join(s for a, s in scripts if 'ld+json' not in a), key)
     open(os.path.join(THEME, 'assets/js', key + '.js'), 'w', encoding='utf-8').write(js)
     allb = '\n'.join(blocks)
     report.append((key, 'html', allb.count('<!-- wp:html'), 'group', allb.count('<!-- wp:group'), 'heading', allb.count('<!-- wp:heading'),
