@@ -23,22 +23,43 @@
 </div>
 <!-- /wp:html -->
 
-<!-- wp:html -->
-<nav class="navbar" id="navbar" aria-label="Main">
-  <div class="nav-inner">
-    <a class="brand" href="/" aria-label="Los Feliz Animal Rescue home">
-      <img class="icon" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/lfar-paw-icon.png' ) ); ?>" alt="">
-      <img class="word" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/lfar-wordmark.png' ) ); ?>" alt="Los Feliz Animal Rescue">
-    </a>
-    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
-    <ul class="menu" id="menu">
-      <li><a href="/">Home</a></li>
-      <li><a href="/adopt/">Adopt</a></li>
-      <li><a href="/get-involved/">Get Involved</a></li>
-      <li><a href="/about/">About</a></li>
-      <li><a href="/contact/">Contact</a></li>
-      <li class="nav-donate"><a href="/donate/">Donate</a></li>
-    </ul>
-  </div>
-</nav>
+<!-- wp:group {"tagName":"nav","className":"navbar","ariaLabel":"Main"} -->
+<nav class="wp-block-group navbar" id="navbar" aria-label="Main"><!-- wp:group {"className":"nav-inner"} -->
+<div class="wp-block-group nav-inner"><!-- wp:html -->
+<a aria-label="Los Feliz Animal Rescue home" class="brand" href="/">
+<img alt="" class="icon" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/lfar-paw-icon.png' ) ); ?>"/>
+<img alt="Los Feliz Animal Rescue" class="word" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/lfar-wordmark.png' ) ); ?>"/>
+</a>
 <!-- /wp:html -->
+
+<!-- wp:html -->
+<button aria-controls="menu" aria-expanded="false" aria-label="Open menu" class="burger" id="burger"><span></span><span></span><span></span></button>
+<!-- /wp:html -->
+
+<!-- wp:list {"className":"menu"} -->
+<ul class="wp-block-list menu" id="menu"><!-- wp:list-item -->
+<li><a href="/">Home</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="/adopt/">Adopt</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="/get-involved/">Get Involved</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="/about/">About</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="/contact/">Contact</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item {"className":"nav-donate"} -->
+<li class="nav-donate"><a href="/donate/">Donate</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group --></nav>
+<!-- /wp:group -->

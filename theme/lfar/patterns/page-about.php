@@ -14,9 +14,9 @@
 
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"hero-card mission-card"} -->
-<div class="wp-block-group hero-card mission-card"><!-- wp:html -->
-<span class="eyebrow">About Us</span>
-<!-- /wp:html -->
+<div class="wp-block-group hero-card mission-card"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="eyebrow">About Us</span></p>
+<!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">We're not a shelter. We're a network of foster homes.</h1>
@@ -35,9 +35,9 @@
 
 <!-- wp:group {"tagName":"section","className":"mission-band"} -->
 <section class="wp-block-group mission-band"><!-- wp:group {"className":"container"} -->
-<div class="wp-block-group container"><!-- wp:html -->
-<span class="eyebrow">Our Mission</span>
-<!-- /wp:html -->
+<div class="wp-block-group container"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="eyebrow">Our Mission</span></p>
+<!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"mission-text"} -->
 <p class="mission-text">A community full of healthy, happy animals, whatever their species.</p>
@@ -53,9 +53,11 @@
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-black-and-white-kitten-held-by-its-foster.jpg' ) ); ?>" alt="A black and white kitten held by its foster"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:html -->
-<figcaption class="fact-badge"><span class="fb-num">0</span><span class="fb-label">Kennels</span></figcaption>
-<!-- /wp:html --></figure>
+<!-- wp:group {"tagName":"figcaption","className":"fact-badge"} -->
+<figcaption class="wp-block-group fact-badge"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="fb-num">0</span><span class="fb-label">Kennels</span></p>
+<!-- /wp:paragraph --></figcaption>
+<!-- /wp:group --></figure>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"fact-body lfar-anim-slide-right"} -->
@@ -77,9 +79,11 @@
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/five-puppies-looking-out-of-a-crate.jpg' ) ); ?>" alt="Five puppies looking out of a crate"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:html -->
-<figcaption class="fact-badge"><span class="fb-num">400+</span><span class="fb-label">Animals helped</span></figcaption>
-<!-- /wp:html --></figure>
+<!-- wp:group {"tagName":"figcaption","className":"fact-badge"} -->
+<figcaption class="wp-block-group fact-badge"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="fb-num">400+</span><span class="fb-label">Animals helped</span></p>
+<!-- /wp:paragraph --></figcaption>
+<!-- /wp:group --></figure>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"fact-body lfar-anim-slide-left"} -->
@@ -101,9 +105,11 @@
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/three-volunteers-sitting-with-a-dog.jpg' ) ); ?>" alt="Three volunteers sitting together with a small dog"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:html -->
-<figcaption class="fact-badge"><span class="fb-num">50+</span><span class="fb-label">Volunteers</span></figcaption>
-<!-- /wp:html --></figure>
+<!-- wp:group {"tagName":"figcaption","className":"fact-badge"} -->
+<figcaption class="wp-block-group fact-badge"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="fb-num">50+</span><span class="fb-label">Volunteers</span></p>
+<!-- /wp:paragraph --></figcaption>
+<!-- /wp:group --></figure>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"fact-body lfar-anim-slide-right"} -->
@@ -125,9 +131,11 @@
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-scruffy-black-puppy-held-close-in-someone-s-ar.jpg' ) ); ?>" alt="A scruffy black puppy held close in someone's arms"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:html -->
-<figcaption class="fact-badge"><span class="fb-num"><em class="tbd">2021</em></span><span class="fb-label">Founded</span></figcaption>
-<!-- /wp:html --></figure>
+<!-- wp:group {"tagName":"figcaption","className":"fact-badge"} -->
+<figcaption class="wp-block-group fact-badge"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="fb-num"><em class="tbd">2021</em></span><span class="fb-label">Founded</span></p>
+<!-- /wp:paragraph --></figcaption>
+<!-- /wp:group --></figure>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"fact-body lfar-anim-slide-left"} -->
@@ -149,9 +157,11 @@
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-volunteer-holding-a-small-tan-dog.jpg' ) ); ?>" alt="A man holding a small tan dog in his new home"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:html -->
-<figcaption class="fact-badge"><span class="fb-num fb-sm">501(c)(3)</span><span class="fb-label">Nonprofit</span></figcaption>
-<!-- /wp:html --></figure>
+<!-- wp:group {"tagName":"figcaption","className":"fact-badge"} -->
+<figcaption class="wp-block-group fact-badge"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="fb-num fb-sm">501(c)(3)</span><span class="fb-label">Nonprofit</span></p>
+<!-- /wp:paragraph --></figcaption>
+<!-- /wp:group --></figure>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"fact-body lfar-anim-slide-right"} -->
@@ -173,9 +183,11 @@
 <figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/pepper-a-brown-and-white-puppy-with-her-new-fami.jpg' ) ); ?>" alt="Pepper, a brown and white puppy, with her new family"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:html -->
-<figcaption class="fact-badge"><span class="fb-num fb-sm"><em class="tbd">Gold</em></span><span class="fb-label">Candid seal</span></figcaption>
-<!-- /wp:html --></figure>
+<!-- wp:group {"tagName":"figcaption","className":"fact-badge"} -->
+<figcaption class="wp-block-group fact-badge"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="fb-num fb-sm"><em class="tbd">Gold</em></span><span class="fb-label">Candid seal</span></p>
+<!-- /wp:paragraph --></figcaption>
+<!-- /wp:group --></figure>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"fact-body lfar-anim-slide-left"} -->
@@ -209,9 +221,11 @@
 <figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ); ?>" alt="Stand-in photo for Melody: a smiling woman holding a brindle puppy"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:html -->
-<figcaption class="stand-in">Stand-in photo</figcaption>
-<!-- /wp:html --></figure>
+<!-- wp:group {"tagName":"figcaption","className":"stand-in"} -->
+<figcaption class="wp-block-group stand-in"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Stand-in photo</p>
+<!-- /wp:paragraph --></figcaption>
+<!-- /wp:group --></figure>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"custom lfar-anim-slide-right"} -->
@@ -231,9 +245,11 @@
 <p>She spent about a decade in software, working in UX design and project management, and started the rescue on the side while she was still in that career. She brings the same habits to rescue: clear processes, careful records and follow-through. <em class="tbd">[One or two sentences, in her words, on why she started the rescue.]</em></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:html -->
-<blockquote class="pull"><em class="tbd">[A short line from Melody about what keeps her going.]</em><cite>Melody, founder</cite></blockquote>
-<!-- /wp:html -->
+<!-- wp:group {"tagName":"blockquote","className":"pull"} -->
+<blockquote class="wp-block-group pull"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[A short line from Melody about what keeps her going.]</em><cite>Melody, founder</cite></p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:group -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
 <p class="lfar-a"><a class="btn" href="/contact/#message">Get in touch</a></p>
@@ -317,35 +333,237 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<ul class="programs-list">
-<li class="program" data-anim="fade-up">
-<div class="p-name"><span aria-hidden="true" class="p-icon"><span class="paw-mask"></span></span><h4>Foster &amp; adoption</h4></div>
+<!-- wp:group {"tagName":"ul","className":"programs-list"} -->
+<ul class="wp-block-group programs-list"><!-- wp:group {"tagName":"li","className":"program lfar-anim-fade-up"} -->
+<li class="wp-block-group program lfar-anim-fade-up"><!-- wp:group {"className":"p-name"} -->
+<div class="wp-block-group p-name"><!-- wp:html -->
+<span aria-hidden="true" class="p-icon"><span class="paw-mask"></span></span>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Foster &amp; adoption</h4>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"p-what"} -->
 <p class="p-what">Animals live in volunteer foster homes, get vet care, and are matched with screened adopters.</p>
-<dl class="p-stats"><div><dt>Last year</dt><dd><em class="tbd">[__ animals adopted]</em></dd></div><div><dt>2027 goal</dt><dd><em class="tbd">[__ foster homes]</em></dd></div></dl>
-</li>
-<li class="program" data-anim="fade-up">
-<div class="p-name"><span aria-hidden="true" class="p-icon"><svg viewbox="0 0 24 24"><path d="M5 20V9l3-5 2 4h4l2-4 3 5v11"></path><circle cx="9.5" cy="12.5" r=".8"></circle><circle cx="14.5" cy="12.5" r=".8"></circle></svg></span><h4>Community cats</h4></div>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"tagName":"dl","className":"p-stats"} -->
+<dl class="wp-block-group p-stats"><!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Last year</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[__ animals adopted]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">2027 goal</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[__ foster homes]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group --></dl>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"program lfar-anim-fade-up"} -->
+<li class="wp-block-group program lfar-anim-fade-up"><!-- wp:group {"className":"p-name"} -->
+<div class="wp-block-group p-name"><!-- wp:html -->
+<span aria-hidden="true" class="p-icon"><svg viewbox="0 0 24 24"><path d="M5 20V9l3-5 2 4h4l2-4 3 5v11"></path><circle cx="9.5" cy="12.5" r=".8"></circle><circle cx="14.5" cy="12.5" r=".8"></circle></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Community cats</h4>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"p-what"} -->
 <p class="p-what">Support for neighbors caring for outdoor cats, including trap, neuter and return.</p>
-<dl class="p-stats"><div><dt>Last year</dt><dd><em class="tbd">[__ cats spayed/neutered]</em></dd></div><div><dt>2027 goal</dt><dd><em class="tbd">[__]</em></dd></div></dl>
-</li>
-<li class="program" data-anim="fade-up">
-<div class="p-name"><span aria-hidden="true" class="p-icon"><svg viewbox="0 0 24 24"><path d="M4 15c3-6 8-8 14-8-1 6-5 11-12 11"></path><path d="M4 20c2-4 5-7 9-9"></path></svg></span><h4>Wildlife guidance</h4></div>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"tagName":"dl","className":"p-stats"} -->
+<dl class="wp-block-group p-stats"><!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Last year</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[__ cats spayed/neutered]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">2027 goal</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[__]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group --></dl>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"program lfar-anim-fade-up"} -->
+<li class="wp-block-group program lfar-anim-fade-up"><!-- wp:group {"className":"p-name"} -->
+<div class="wp-block-group p-name"><!-- wp:html -->
+<span aria-hidden="true" class="p-icon"><svg viewbox="0 0 24 24"><path d="M4 15c3-6 8-8 14-8-1 6-5 11-12 11"></path><path d="M4 20c2-4 5-7 9-9"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Wildlife guidance</h4>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"p-what"} -->
 <p class="p-what">Advice on living alongside coyotes, possums and birds, and who to call when one is hurt.</p>
-<dl class="p-stats"><div><dt>Last year</dt><dd><em class="tbd">[__ calls or referrals]</em></dd></div><div><dt>2027 goal</dt><dd><em class="tbd">[__]</em></dd></div></dl>
-</li>
-<li class="program" data-anim="fade-up">
-<div class="p-name"><span aria-hidden="true" class="p-icon"><svg viewbox="0 0 24 24"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"></path><path d="M17 8v6M14 11h6"></path></svg></span><h4>Independent rescuers</h4></div>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"tagName":"dl","className":"p-stats"} -->
+<dl class="wp-block-group p-stats"><!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Last year</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[__ calls or referrals]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">2027 goal</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[__]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group --></dl>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"program lfar-anim-fade-up"} -->
+<li class="wp-block-group program lfar-anim-fade-up"><!-- wp:group {"className":"p-name"} -->
+<div class="wp-block-group p-name"><!-- wp:html -->
+<span aria-hidden="true" class="p-icon"><svg viewbox="0 0 24 24"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"></path><path d="M17 8v6M14 11h6"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Independent rescuers</h4>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"p-what"} -->
 <p class="p-what">A place for independent rescuers to list animals, find fosters and borrow equipment.</p>
-<dl class="p-stats"><div><dt>Last year</dt><dd><em class="tbd">[__ rescuers supported]</em></dd></div><div><dt>2027 goal</dt><dd><em class="tbd">[__]</em></dd></div></dl>
-</li>
-<li class="program" data-anim="fade-up">
-<div class="p-name"><span aria-hidden="true" class="p-icon"><svg viewbox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3A5.4 5.4 0 0 1 12 6.2a5.4 5.4 0 0 1 9.6 5.5C19.5 16.4 12 21 12 21z"></path></svg></span><h4>Free &amp; low-cost pet care</h4></div>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"tagName":"dl","className":"p-stats"} -->
+<dl class="wp-block-group p-stats"><!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Last year</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[__ rescuers supported]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">2027 goal</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[__]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group --></dl>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"program lfar-anim-fade-up"} -->
+<li class="wp-block-group program lfar-anim-fade-up"><!-- wp:group {"className":"p-name"} -->
+<div class="wp-block-group p-name"><!-- wp:html -->
+<span aria-hidden="true" class="p-icon"><svg viewbox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3A5.4 5.4 0 0 1 12 6.2a5.4 5.4 0 0 1 9.6 5.5C19.5 16.4 12 21 12 21z"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Free &amp; low-cost pet care</h4>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"p-what"} -->
 <p class="p-what">A guide to affordable vets, food and supplies for pet owners who are struggling.</p>
-<dl class="p-stats"><div><dt>Last year</dt><dd><em class="tbd">[__ families helped]</em></dd></div><div><dt>2027 goal</dt><dd><em class="tbd">[__]</em></dd></div></dl>
-</li>
-</ul>
-<!-- /wp:html --></div>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"tagName":"dl","className":"p-stats"} -->
+<dl class="wp-block-group p-stats"><!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Last year</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[__ families helped]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">2027 goal</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[__]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group --></dl>
+<!-- /wp:group --></li>
+<!-- /wp:group --></ul>
+<!-- /wp:group --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
@@ -702,44 +920,246 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"funders-grid"} -->
-<div class="wp-block-group funders-grid"><!-- wp:html -->
-<dl class="org-facts" data-anim="slide-left">
-<div><dt>Legal name</dt><dd>Los Feliz Animal Rescue <em class="tbd">[confirm exact legal name]</em></dd></div>
-<div><dt>Tax status</dt><dd>501(c)(3) public charity, recognized by the IRS in March 2024</dd></div>
-<div><dt>EIN</dt><dd>87-4677140</dd></div>
-<div><dt>Founded</dt><dd><em class="tbd">2021</em></dd></div>
-<div><dt>Mailing address</dt><dd><em class="tbd">[PO Box ___, Los Angeles, CA 900__]</em></dd></div>
-<div><dt>Contact</dt><dd><em class="tbd">[grants@ or info@losfelizanimalrescue.org]</em></dd></div>
-<div><dt>Service area</dt><dd>Los Feliz, Silver Lake and Atwater Village, Los Angeles</dd></div>
-</dl>
-<!-- /wp:html -->
+<div class="wp-block-group funders-grid"><!-- wp:group {"tagName":"dl","className":"org-facts lfar-anim-slide-left"} -->
+<dl class="wp-block-group org-facts lfar-anim-slide-left"><!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Legal name</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Los Feliz Animal Rescue <em class="tbd">[confirm exact legal name]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Tax status</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">501(c)(3) public charity, recognized by the IRS in March 2024</p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">EIN</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">87-4677140</p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Founded</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">2021</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Mailing address</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[PO Box ___, Los Angeles, CA 900__]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Contact</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><em class="tbd">[grants@ or info@losfelizanimalrescue.org]</em></p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:group {"tagName":"dt"} -->
+<dt class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Service area</p>
+<!-- /wp:paragraph --></dt>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"dd"} -->
+<dd class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Los Feliz, Silver Lake and Atwater Village, Los Angeles</p>
+<!-- /wp:paragraph --></dd>
+<!-- /wp:group --></div>
+<!-- /wp:group --></dl>
+<!-- /wp:group -->
 
 <!-- wp:group {"className":"docs lfar-anim-slide-right"} -->
 <div class="wp-block-group docs lfar-anim-slide-right"><!-- wp:heading {"level":3,"className":"group-title"} -->
 <h3 class="wp-block-heading group-title">Documents</h3>
 <!-- /wp:heading -->
 
-<!-- wp:html -->
-<ul class="doc-list">
-<li><a href="#"><span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg></span><span>Annual report <em class="tbd">[2025]</em></span><span class="doc-type">PDF</span></a></li>
-<li><a href="#"><span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg></span><span>Financial summary <em class="tbd">[2025]</em></span><span class="doc-type">PDF</span></a></li>
-<li><a href="#"><span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg></span><span>IRS determination letter</span><span class="doc-type">PDF</span></a></li>
-<li><a href="#"><span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg></span><span>Latest IRS filing <em class="tbd">[990-N]</em></span><span class="doc-type">Link</span></a></li>
-<li><a href="#"><span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><circle cx="12" cy="10" r="6"></circle><path d="m8.5 15-1.5 6 5-2.5 5 2.5-1.5-6"></path></svg></span><span>Candid profile <em class="tbd">[if created]</em></span><span class="doc-type">Link</span></a></li>
-</ul>
+<!-- wp:group {"tagName":"ul","className":"doc-list"} -->
+<ul class="wp-block-group doc-list"><!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:group {"className":"lfar-card"} -->
+<div class="wp-block-group lfar-card"><!-- wp:html -->
+<span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg></span>
 <!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="lfar-stretch" href="#"><span>Annual report <em class="tbd">[2025]</em></span></a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="doc-type">PDF</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:group {"className":"lfar-card"} -->
+<div class="wp-block-group lfar-card"><!-- wp:html -->
+<span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="lfar-stretch" href="#"><span>Financial summary <em class="tbd">[2025]</em></span></a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="doc-type">PDF</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:group {"className":"lfar-card"} -->
+<div class="wp-block-group lfar-card"><!-- wp:html -->
+<span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="lfar-stretch" href="#"><span>IRS determination letter</span></a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="doc-type">PDF</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:group {"className":"lfar-card"} -->
+<div class="wp-block-group lfar-card"><!-- wp:html -->
+<span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="lfar-stretch" href="#"><span>Latest IRS filing <em class="tbd">[990-N]</em></span></a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="doc-type">Link</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:group {"className":"lfar-card"} -->
+<div class="wp-block-group lfar-card"><!-- wp:html -->
+<span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><circle cx="12" cy="10" r="6"></circle><path d="m8.5 15-1.5 6 5-2.5 5 2.5-1.5-6"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="lfar-stretch" href="#"><span>Candid profile <em class="tbd">[if created]</em></span></a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="doc-type">Link</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group --></ul>
+<!-- /wp:group -->
 
 <!-- wp:heading {"level":3,"className":"group-title"} -->
 <h3 class="wp-block-heading group-title">Policies</h3>
 <!-- /wp:heading -->
 
-<!-- wp:html -->
-<ul class="doc-list">
-<li><a href="#"><span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M12 2.5 4 6v6c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5V6z"></path></svg></span><span>Adoption policy <em class="tbd">[spay/neuter, vaccines, screening]</em></span><span class="doc-type">Page</span></a></li>
-<li><a href="#"><span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M12 2.5 4 6v6c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5V6z"></path></svg></span><span>Nondiscrimination statement</span><span class="doc-type">Page</span></a></li>
-<li><a href="#"><span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M12 2.5 4 6v6c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5V6z"></path></svg></span><span>Privacy policy</span><span class="doc-type">Page</span></a></li>
-</ul>
-<!-- /wp:html --></div>
+<!-- wp:group {"tagName":"ul","className":"doc-list"} -->
+<ul class="wp-block-group doc-list"><!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:group {"className":"lfar-card"} -->
+<div class="wp-block-group lfar-card"><!-- wp:html -->
+<span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M12 2.5 4 6v6c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5V6z"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="lfar-stretch" href="#"><span>Adoption policy <em class="tbd">[spay/neuter, vaccines, screening]</em></span></a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="doc-type">Page</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:group {"className":"lfar-card"} -->
+<div class="wp-block-group lfar-card"><!-- wp:html -->
+<span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M12 2.5 4 6v6c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5V6z"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="lfar-stretch" href="#"><span>Nondiscrimination statement</span></a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="doc-type">Page</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:group {"className":"lfar-card"} -->
+<div class="wp-block-group lfar-card"><!-- wp:html -->
+<span aria-hidden="true" class="doc-ic"><svg viewbox="0 0 24 24"><path d="M12 2.5 4 6v6c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5V6z"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="lfar-stretch" href="#"><span>Privacy policy</span></a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="doc-type">Page</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group --></ul>
+<!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>

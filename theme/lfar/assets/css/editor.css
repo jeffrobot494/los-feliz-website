@@ -8,3 +8,8 @@
 
 /* Scroll-in animations never run in the editor, so never hide anything waiting for them. */
 .hero .hero-bg, .hero .hero-card { opacity: 1 !important; animation: none !important; transform: none !important; }
+
+/* Donate story: every step shown fully (the "active" step highlight is driven by scrolling on the live page). */
+.steps .step { opacity: 1 !important; }
+/* About documents: the text takes the free space so the PDF/Link tag sits on the right, as on the live page. */
+.doc-list .lfar-card > p.lfar-w:has(.lfar-stretch) { flex: 1; min-width: 0; }

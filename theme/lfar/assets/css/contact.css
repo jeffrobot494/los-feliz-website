@@ -538,3 +538,4 @@ h3, .pet-name{font-size:30px}
 html{scroll-behavior:auto}
 }
 figure.hero-bg>img{object-position:70% 38%}
+a:where(.lfar-stretch){color:inherit}

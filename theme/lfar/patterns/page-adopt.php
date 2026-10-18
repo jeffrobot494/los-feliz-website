@@ -26,9 +26,11 @@
 <p class="header-p">Long workdays, packed weekends and a phone that never stops buzzing. It's harder than ever to make time for the connections that recharge us.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:html -->
-<div class="big-stat"><span aria-hidden="true" class="stat-paw"></span><span>Everyone does better with someone to come home to.</span></div>
-<!-- /wp:html -->
+<!-- wp:group {"className":"big-stat"} -->
+<div class="wp-block-group big-stat"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span aria-hidden="true" class="stat-paw"></span><span>Everyone does better with someone to come home to.</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
 <p class="lfar-a"><a class="btn" href="#connection">See what helps</a></p>
@@ -53,25 +55,49 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<ul class="risks">
-<li class="risk" data-anim="fade-up">
+<!-- wp:group {"tagName":"ul","className":"risks"} -->
+<ul class="wp-block-group risks"><!-- wp:group {"tagName":"li","className":"risk lfar-anim-fade-up"} -->
+<li class="wp-block-group risk lfar-anim-fade-up"><!-- wp:html -->
 <span aria-hidden="true" class="risk-ico"><svg viewbox="0 0 24 24"><path d="M13 2 4.5 13.5H12L11 22l8.5-11.5H12z"></path></svg></span>
-<p class="risk-label">More energy</p>
-<p>Time with someone you love is how we refuel after a long week.</p>
-</li>
-<li class="risk" data-anim="fade-up">
-<span aria-hidden="true" class="risk-ico"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2M9 9.5h.01M15 9.5h.01"></path></svg></span>
-<p class="risk-label">Less stress</p>
-<p>A friendly face at the end of the day makes the hard parts easier to shake off.</p>
-</li>
-<li class="risk" data-anim="fade-up">
-<span aria-hidden="true" class="risk-ico"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"></path></svg></span>
-<p class="risk-label">Better days</p>
-<p>People with close bonds tend to be happier, healthier and more focused.</p>
-</li>
-</ul>
 <!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"risk-label"} -->
+<p class="risk-label">More energy</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Time with someone you love is how we refuel after a long week.</p>
+<!-- /wp:paragraph --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"risk lfar-anim-fade-up"} -->
+<li class="wp-block-group risk lfar-anim-fade-up"><!-- wp:html -->
+<span aria-hidden="true" class="risk-ico"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2M9 9.5h.01M15 9.5h.01"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"risk-label"} -->
+<p class="risk-label">Less stress</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A friendly face at the end of the day makes the hard parts easier to shake off.</p>
+<!-- /wp:paragraph --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"risk lfar-anim-fade-up"} -->
+<li class="wp-block-group risk lfar-anim-fade-up"><!-- wp:html -->
+<span aria-hidden="true" class="risk-ico"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"risk-label"} -->
+<p class="risk-label">Better days</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>People with close bonds tend to be happier, healthier and more focused.</p>
+<!-- /wp:paragraph --></li>
+<!-- /wp:group --></ul>
+<!-- /wp:group -->
 
 <!-- wp:group {"className":"cost-copy lfar-anim-fade-up"} -->
 <div class="wp-block-group cost-copy lfar-anim-fade-up"><!-- wp:paragraph -->
@@ -107,14 +133,47 @@
 <p class="lede">A rescue animal doesn't need a calendar invite. They're there when you wake up and waiting when you get home, and they make the rest of your day better too.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:html -->
-<ul class="benefits">
-<li><span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 9.5V20h13V9.5"></path><path d="M10 20v-5h4v5"></path></svg></span><span><strong>Someone happy to see you, every day</strong><span>Pets are built-in company, and time with them eases stress and anxiety.</span></span></li>
-<li><span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3A5.4 5.4 0 0 1 12 6.2a5.4 5.4 0 0 1 9.6 5.5C19.5 16.4 12 21 12 21z"></path><path d="M7 12h2.5l1.5-2.5 2 5 1.5-2.5H17"></path></svg></span><span><strong>A healthier heart</strong><span>Walking and playing with a pet can lower blood pressure and cholesterol.</span></span></li>
-<li><span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><circle cx="13" cy="4.5" r="2"></circle><path d="m10 21 2-6 3 3v3M8 12l2.5-4.5 3.5 1.5 2 3M12 15l-1.5-5"></path></svg></span><span><strong>A reason to get outside every day</strong><span>More walks, more fresh air, more routine.</span></span></li>
-<li><span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><circle cx="8" cy="8" r="3"></circle><circle cx="16.5" cy="9" r="2.5"></circle><path d="M2.5 20c.5-3.5 2.8-5.5 5.5-5.5s5 2 5.5 5.5M14 15.2c.8-.5 1.6-.7 2.5-.7 2.3 0 4 1.7 4.5 4.5"></path></svg></span><span><strong>New friends on the block</strong><span>A dog on a leash starts a lot of conversations.</span></span></li>
-</ul>
+<!-- wp:group {"tagName":"ul","className":"benefits"} -->
+<ul class="wp-block-group benefits"><!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:html -->
+<span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 9.5V20h13V9.5"></path><path d="M10 20v-5h4v5"></path></svg></span>
 <!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span><strong>Someone happy to see you, every day</strong><span>Pets are built-in company, and time with them eases stress and anxiety.</span></span></p>
+<!-- /wp:paragraph --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:html -->
+<span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3A5.4 5.4 0 0 1 12 6.2a5.4 5.4 0 0 1 9.6 5.5C19.5 16.4 12 21 12 21z"></path><path d="M7 12h2.5l1.5-2.5 2 5 1.5-2.5H17"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span><strong>A healthier heart</strong><span>Walking and playing with a pet can lower blood pressure and cholesterol.</span></span></p>
+<!-- /wp:paragraph --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:html -->
+<span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><circle cx="13" cy="4.5" r="2"></circle><path d="m10 21 2-6 3 3v3M8 12l2.5-4.5 3.5 1.5 2 3M12 15l-1.5-5"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span><strong>A reason to get outside every day</strong><span>More walks, more fresh air, more routine.</span></span></p>
+<!-- /wp:paragraph --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li"} -->
+<li class="wp-block-group"><!-- wp:html -->
+<span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><circle cx="8" cy="8" r="3"></circle><circle cx="16.5" cy="9" r="2.5"></circle><path d="M2.5 20c.5-3.5 2.8-5.5 5.5-5.5s5 2 5.5 5.5M14 15.2c.8-.5 1.6-.7 2.5-.7 2.3 0 4 1.7 4.5 4.5"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span><strong>New friends on the block</strong><span>A dog on a leash starts a lot of conversations.</span></span></p>
+<!-- /wp:paragraph --></li>
+<!-- /wp:group --></ul>
+<!-- /wp:group -->
 
 <!-- wp:paragraph {"className":"src"} -->
 <p class="src">Health benefits as listed by the <a href="https://www.cdc.gov/healthy-pets/about/index.html">CDC, Healthy Pets, Healthy People</a>.</p>
@@ -431,13 +490,19 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<ul class="ff-points" data-anim="fade-up">
+<!-- wp:list {"className":"ff-points lfar-anim-fade-up"} -->
+<ul class="wp-block-list ff-points lfar-anim-fade-up"><!-- wp:list-item -->
 <li>We pay for vet care</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li>No upfront costs</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li>A weekend or longer</li>
-</ul>
-<!-- /wp:html -->
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
 <p class="lfar-a"><a class="btn btn-light go-foster" href="#signup">Sign up to foster</a></p>

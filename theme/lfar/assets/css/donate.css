@@ -698,4 +698,5 @@ h3, .pet-name{font-size:30px}
 .mini .m-stamp{font-size:12px}
 .amounts{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-
+.lfar-s1{grid-column:1/-1 !important}
+a:where(.lfar-stretch){color:inherit}

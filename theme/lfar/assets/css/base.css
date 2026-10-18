@@ -35,3 +35,8 @@ p.lfar-a.lfar-a { margin: 0; }
    the photo fills it the way the mockups' CSS background did. Each page's CSS sets object-position. */
 figure.hero-bg { background-image: none !important; overflow: hidden; }
 figure.hero-bg > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+
+/* Blockified sections (see BLOCKIFY in scripts/build-wp-theme.py) */
+p.lfar-w { margin: 0; }                       /* front end: display:contents + all:unset (functions.php) */
+.lfar-card { position: relative; }            /* a card that used to be one big link... */
+.lfar-stretch::after { content: ""; position: absolute; inset: 0; }   /* ...is still clickable all over */

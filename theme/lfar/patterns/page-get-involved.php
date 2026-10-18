@@ -7,10 +7,6 @@
  * Post Types: page
  */
 ?>
-<!-- wp:html -->
-<div class="mockup-key" role="note"><div class="container"><p><strong>Mockup note:</strong> <span class="tbd">Yellow-highlighted text</span> is a placeholder or still needs to be confirmed with LFAR (sample posts, dates, numbers, links and policies). It gets replaced before launch.</p></div></div>
-<!-- /wp:html -->
-
 <!-- wp:group {"tagName":"section","className":"hero adopt-hero contact-hero gi-hero"} -->
 <section class="wp-block-group hero adopt-hero contact-hero gi-hero"><!-- wp:image {"className":"hero-bg"} -->
 <figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/get-involved-get-involved-page-gi-hero-hero-bg.jpg' ) ); ?>" alt="Stand-in photo: a volunteer kneeling in the grass with a tan dog"/></figure>
@@ -329,38 +325,135 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<div class="give-grid">
-<a class="other-way" data-anim="fade-up" href="#">
+<!-- wp:group {"className":"give-grid"} -->
+<div class="wp-block-group give-grid"><!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
+<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
 <span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="m3.5 6 1 1 2-2M3.5 12l1 1 2-2M3.5 18l1 1 2-2"></path></svg></span>
-<div><h4>Wish lists</h4><p>Food, litter, crates and meds, shipped straight to a foster home.</p><span class="more"><span class="tbd">[Amazon · Chewy links]</span> <i>→</i></span></div>
-</a>
-<a class="other-way" data-anim="fade-up" href="#">
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3c-.5 1.5-2 2.5-4 2.5S8.5 4.5 8 3z"></path></svg></span>
-<div><h4>Rescue merch</h4><p>T-shirts, mugs and stickers from our TeePublic shop. A share of each sale comes to us.</p><span class="more">Shop the store <i>→</i></span></div>
-</a>
-<a class="other-way" data-anim="fade-up" href="/contact/#message">
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M3 8 12 3l9 5v8l-9 5-9-5z"></path><path d="m3 8 9 5 9-5M12 13v8"></path></svg></span>
-<div><h4>Donate supplies</h4><p>Have a spare crate or unopened food? We don't have a drop-off, so message us and we'll arrange a pickup.</p><span class="more">Contact us <i>→</i></span></div>
-</a>
-<a class="other-way" data-anim="fade-up" href="#">
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M4 11h16v10H4z"></path><path d="M2 7h20v4H2zM12 7v14"></path><path d="M12 7S10 3 7.5 3a2 2 0 0 0 0 4M12 7s2-4 4.5-4a2 2 0 0 1 0 4"></path></svg></span>
-<div><h4>Start a fundraiser</h4><p>Ask for gifts to the rescue for your birthday or a milestone. We'll send you photos to share.</p><span class="more"><span class="tbd">[How to set one up]</span> <i>→</i></span></div>
-</a>
-<a class="other-way" data-anim="fade-up" href="#">
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><rect height="13" rx="2" width="18" x="3" y="7"></rect><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"></path></svg></span>
-<div><h4>Employer matching</h4><p>Many employers match gifts to 501(c)(3)s. Ask your HR team and give them our EIN: 87-4677140.</p><span class="more"><span class="tbd">[Confirm we accept]</span></span></div>
-</a>
-<a class="other-way aff" data-anim="fade-up" href="#">
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg></span>
-<div><span class="aff-tag">Affiliate</span><h4>Shop with our partners</h4><p>Some stores give us a small commission when you buy through our links. It costs you nothing extra.</p><span class="more"><span class="tbd">[Affiliate programs]</span> <i>→</i></span></div>
-</a>
-</div>
 <!-- /wp:html -->
 
-<!-- wp:html -->
-<p class="aff-note" data-anim="fade-up">Links marked <strong>Affiliate</strong> earn the rescue a commission. We label every one.</p>
-<!-- /wp:html --></div>
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Wish lists</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Food, litter, crates and meds, shipped straight to a foster home.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="more lfar-stretch" href="#"><span class="tbd">[Amazon · Chewy links]</span> <i>→</i></a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
+<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
+<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3c-.5 1.5-2 2.5-4 2.5S8.5 4.5 8 3z"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Rescue merch</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>T-shirts, mugs and stickers from our TeePublic shop. A share of each sale comes to us.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="more lfar-stretch" href="#">Shop the store <i>→</i></a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
+<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
+<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M3 8 12 3l9 5v8l-9 5-9-5z"></path><path d="m3 8 9 5 9-5M12 13v8"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Donate supplies</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Have a spare crate or unopened food? We don't have a drop-off, so message us and we'll arrange a pickup.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="more lfar-stretch" href="/contact/#message">Contact us <i>→</i></a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
+<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
+<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M4 11h16v10H4z"></path><path d="M2 7h20v4H2zM12 7v14"></path><path d="M12 7S10 3 7.5 3a2 2 0 0 0 0 4M12 7s2-4 4.5-4a2 2 0 0 1 0 4"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Start a fundraiser</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Ask for gifts to the rescue for your birthday or a milestone. We'll send you photos to share.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="more lfar-stretch" href="#"><span class="tbd">[How to set one up]</span> <i>→</i></a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
+<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
+<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><rect height="13" rx="2" width="18" x="3" y="7"></rect><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Employer matching</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Many employers match gifts to 501(c)(3)s. Ask your HR team and give them our EIN: 87-4677140.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="more lfar-stretch" href="#"><span class="tbd">[Confirm we accept]</span></a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"other-way aff lfar-card lfar-anim-fade-up"} -->
+<div class="wp-block-group other-way aff lfar-card lfar-anim-fade-up"><!-- wp:html -->
+<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg></span>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="aff-tag">Affiliate</span></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Shop with our partners</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Some stores give us a small commission when you buy through our links. It costs you nothing extra.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="more lfar-stretch" href="#"><span class="tbd">[Affiliate programs]</span> <i>→</i></a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"aff-note lfar-anim-fade-up"} -->
+<p class="aff-note lfar-anim-fade-up">Links marked <strong>Affiliate</strong> earn the rescue a commission. We label every one.</p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
@@ -412,22 +505,67 @@
 <p class="form-lead">The fastest way to help an animal find a home is to tell someone about it.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:html -->
-<div class="forms-list">
-<a class="other-way" href="#">
+<!-- wp:group {"className":"forms-list"} -->
+<div class="wp-block-group forms-list"><!-- wp:group {"className":"other-way lfar-card"} -->
+<div class="wp-block-group other-way lfar-card"><!-- wp:html -->
 <span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" r=".6"></circle></svg></span>
-<div><h4>Follow us</h4><p>New animals, happy endings and urgent needs, on Instagram and Facebook.</p><span class="more">Instagram · Facebook <i>→</i></span></div>
-</a>
-<a class="other-way" href="/adopt/#meet">
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Follow us</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>New animals, happy endings and urgent needs, on Instagram and Facebook.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="more lfar-stretch" href="#">Instagram · Facebook <i>→</i></a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"other-way lfar-card"} -->
+<div class="wp-block-group other-way lfar-card"><!-- wp:html -->
 <span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M12 20s-7-4.4-9-9A5 5 0 0 1 12 6.5 5 5 0 0 1 21 11c-2 4.6-9 9-9 9z"></path></svg></span>
-<div><h4>Share an adoptable animal</h4><p>Every listing has a share link. One share in the right group chat can find a home.</p><span class="more">Meet the animals <i>→</i></span></div>
-</a>
-<a class="other-way" href="/contact/#message">
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Share an adoptable animal</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Every listing has a share link. One share in the right group chat can find a home.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="more lfar-stretch" href="/adopt/#meet">Meet the animals <i>→</i></a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"other-way lfar-card"} -->
+<div class="wp-block-group other-way lfar-card"><!-- wp:html -->
 <span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="5"></rect><path d="m3 7 9 6 9-6"></path></svg></span>
-<div><h4>Still have a question?</h4><p>Send us a message and a volunteer will write back.</p><span class="more">Contact us <i>→</i></span></div>
-</a>
-</div>
-<!-- /wp:html --></div>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Still have a question?</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Send us a message and a volunteer will write back.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="more lfar-stretch" href="/contact/#message">Contact us <i>→</i></a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>

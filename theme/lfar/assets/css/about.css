@@ -530,9 +530,9 @@ h3, .pet-name{font-size:30px}
 .org-facts dd{margin:0;font-size:15px;color:var(--head);font-variant-numeric:tabular-nums}
 .docs .group-title{font-size:22px;margin-bottom:12px}
 .doc-list{list-style:none;margin:0 0 28px;padding:0;display:flex;flex-direction:column;gap:10px}
-.doc-list a{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--white);border:2px solid #EFE4F3;border-radius:12px;color:var(--head);transition:border-color .2s ease-in-out,transform .2s ease-in-out}
-.doc-list a:hover, .doc-list a:focus-visible{border-color:var(--accent);transform:translateX(4px)}
-.doc-list a > span:nth-child(2){flex:1;min-width:0}
+.doc-list .lfar-card{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--white);border:2px solid #EFE4F3;border-radius:12px;color:var(--head);transition:border-color .2s ease-in-out,transform .2s ease-in-out}
+.doc-list .lfar-card:hover, .doc-list .lfar-card:focus-within{border-color:var(--accent);transform:translateX(4px)}
+.doc-list .lfar-stretch{flex:1;min-width:0}
 .doc-ic{flex:0 0 36px;width:36px;height:36px;border-radius:10px;background:#F6E6FB;display:grid;place-items:center}
 .doc-ic svg{width:20px;height:20px;fill:none;stroke:var(--nav);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .doc-type{font-family:var(--wp--preset--font-family--heading);font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--accent)}
@@ -617,3 +617,4 @@ footer{padding-block:56px 32px}
 .nav-donate a{text-align:center}
 }
 figure.hero-bg>img{object-position:50% 35%}
+a:where(.lfar-stretch){color:inherit}

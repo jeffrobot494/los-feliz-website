@@ -240,3 +240,4 @@ h3, .pet-name{font-size:30px}
 }
 figure.hero-bg>img{object-position:50% 35%}
 #happy-tales{padding-top:60px;padding-bottom:140px}
+a:where(.lfar-stretch){color:inherit}

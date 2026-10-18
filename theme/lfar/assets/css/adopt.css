@@ -609,4 +609,4 @@ h3, .pet-name{font-size:30px}
 .foster-strip{padding-block:56px 64px}
 .foster-strip .btn{width:100%}
 }
-
+a:where(.lfar-stretch){color:inherit}

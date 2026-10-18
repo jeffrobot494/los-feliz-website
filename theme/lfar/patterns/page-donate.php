@@ -39,79 +39,174 @@
 <!-- /wp:image --></div>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<span class="pup-chip day">Day 1 · Found near Griffith Park</span>
-<!-- /wp:html -->
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="pup-chip day">Day 1 · Found near Griffith Park</span></p>
+<!-- /wp:paragraph -->
 
-<!-- wp:html -->
-<span class="pup-chip free"><b>$0</b>Foster home: free</span>
-<!-- /wp:html --></div>
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="pup-chip free"><b>$0</b>Foster home: free</span></p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<section class="story-sec" id="story">
+<!-- wp:group {"tagName":"section","className":"story-sec"} -->
+<section class="wp-block-group story-sec" id="story"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
-<div class="container">
-<div class="story-grid">
-<ol class="steps" id="steps">
-<li class="step" data-i="1">
+<!-- /wp:html -->
+
+<!-- wp:group {"className":"container"} -->
+<div class="wp-block-group container"><!-- wp:group {"className":"story-grid"} -->
+<div class="wp-block-group story-grid"><!-- wp:group {"tagName":"ol","className":"steps"} -->
+<ol class="wp-block-group steps" id="steps"><!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d1"} -->
+<li class="wp-block-group step lfar-d--i--1"><!-- wp:html -->
 <span aria-hidden="true" class="step-ico"><svg viewbox="0 0 48 48"><path d="M7 26h34c0 8-7 14-17 14S7 34 7 26z"></path><path d="M14 26c1-4 5-6 10-6s9 2 10 6"></path><path d="M20 12c0 2 2 3 2 5M26 10c0 2 2 3 2 5"></path></svg></span>
-<div>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:paragraph {"className":"step-when"} -->
 <p class="step-when">Day 2</p>
-<h3>A full bowl</h3>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">A full bowl</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
 <p>Puppy food, a few treats and a bed that's all hers. She eats like she's been waiting all week for it.</p>
-<span class="buys"><b>$10</b>buys her first week of food and bedding</span>
-</div>
-</li>
-<li class="step" data-i="2">
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="buys"><b>$10</b>buys her first week of food and bedding</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d2"} -->
+<li class="wp-block-group step lfar-d--i--2"><!-- wp:html -->
 <span aria-hidden="true" class="step-ico"><svg viewbox="0 0 48 48"><path d="M30 6l12 12M34 10l-18 18-6 2 2-6 18-18M12 30l-6 6M22 16l4 4M18 20l4 4"></path></svg></span>
-<div>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:paragraph {"className":"step-when"} -->
 <p class="step-when">Week 1</p>
-<h3>Her first shots</h3>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Her first shots</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
 <p>Her first vet visit, and her first round of puppy vaccines. She handles it like a champ, especially the treat afterward.</p>
-<span class="buys"><b>$25</b>buys her vaccines</span>
-</div>
-</li>
-<li class="step" data-i="3">
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="buys"><b>$25</b>buys her vaccines</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d3"} -->
+<li class="wp-block-group step lfar-d--i--3"><!-- wp:html -->
 <span aria-hidden="true" class="step-ico"><svg viewbox="0 0 48 48"><rect height="20" rx="3" width="20" x="14" y="14"></rect><path d="M19 8v6M24 8v6M29 8v6M19 34v6M24 34v6M29 34v6M8 19h6M8 24h6M8 29h6M34 19h6M34 24h6M34 29h6"></path></svg></span>
-<div>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:paragraph {"className":"step-when"} -->
 <p class="step-when">Week 3</p>
-<h3>A chip for life</h3>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">A chip for life</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
 <p>A full checkup and a microchip, so if she ever slips out the gate, she can always find her way home.</p>
-<span class="buys"><b>$50</b>buys a vet exam and microchip</span>
-</div>
-</li>
-<li class="step" data-i="4">
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="buys"><b>$50</b>buys a vet exam and microchip</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d4"} -->
+<li class="wp-block-group step lfar-d--i--4"><!-- wp:html -->
 <span aria-hidden="true" class="step-ico"><svg viewbox="0 0 48 48"><path d="M24 40s-14-8.5-17.5-17A9.8 9.8 0 0 1 24 12a9.8 9.8 0 0 1 17.5 11C38 31.5 24 40 24 40z"></path><path d="M17 24h14M24 17v14"></path></svg></span>
-<div>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:paragraph {"className":"step-when"} -->
 <p class="step-when">Week 6</p>
-<h3>Surgery day</h3>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Surgery day</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
 <p>Her spay surgery, so she's ready for adoption. She's back to her zoomies by the weekend.</p>
-<span class="buys"><b>$100</b>buys her spay surgery</span>
-</div>
-</li>
-<li class="step" data-i="5">
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="buys"><b>$100</b>buys her spay surgery</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d5"} -->
+<li class="wp-block-group step lfar-d--i--5"><!-- wp:html -->
 <span aria-hidden="true" class="step-ico"><svg viewbox="0 0 48 48"><path d="M10 12h28v28H10z"></path><path d="M16 20h16M16 26h16M16 32h10"></path><path d="M18 8v8M30 8v8"></path></svg></span>
-<div>
+<!-- /wp:html -->
+
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:paragraph {"className":"step-when"} -->
 <p class="step-when">Week 8</p>
-<h3>Everything else</h3>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Everything else</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
 <p>Dewormer, flea care and a follow-up visit to make sure she's growing the way she should.</p>
-<span class="buys"><b>$65</b>covers the rest of her care</span>
-</div>
-</li>
-<li class="step" data-i="6">
-<div class="step-photo"><img alt="Pepper, a brown and white puppy, with her new family of four" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/pepper-a-brown-and-white-puppy-with-her-new-fami.jpg' ) ); ?>"/></div>
-<div style="grid-column:1/-1">
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="buys"><b>$65</b>covers the rest of her care</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d6"} -->
+<li class="wp-block-group step lfar-d--i--6"><!-- wp:group {"className":"step-photo"} -->
+<div class="wp-block-group step-photo"><!-- wp:image -->
+<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/pepper-a-brown-and-white-puppy-with-her-new-fami.jpg' ) ); ?>" alt="Pepper, a brown and white puppy, with her new family of four"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"lfar-s1"} -->
+<div class="wp-block-group lfar-s1"><!-- wp:paragraph {"className":"step-when"} -->
 <p class="step-when">Adoption day</p>
-<h3>Pepper goes home</h3>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Pepper goes home</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
 <p>Two kids, a backyard and a family that fell for her on the first visit. Her whole rescue came to $250, paid in full by neighbors who gave what they could.</p>
-<span class="buys"><b>$250</b>one whole rescue</span>
-</div>
-</li>
-</ol>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w"><span class="buys"><b>$250</b>one whole rescue</span></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></li>
+<!-- /wp:group --></ol>
+<!-- /wp:group -->
+
+<!-- wp:html -->
 <aside aria-label="Pepper's receipt" class="story-receipt">
 <div class="receipt-wrap">
 <div class="receipt" id="story-receipt">
@@ -132,11 +227,16 @@
 </div>
 </div>
 </aside>
-</div>
-<div aria-hidden="true" class="mini-total" id="mini-total">Pepper's receipt <b id="mini-num">$0.00</b></div>
-</div>
-</section>
-<!-- /wp:html -->
+<!-- /wp:html --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"mini-total"} -->
+<div class="wp-block-group mini-total" id="mini-total"><!-- wp:paragraph {"className":"lfar-w"} -->
+<p class="lfar-w">Pepper's receipt <b id="mini-num">$0.00</b></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></section>
+<!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="give"><!-- wp:html -->

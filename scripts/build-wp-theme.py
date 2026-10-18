@@ -66,6 +66,8 @@ def prep(html):
     for k, v in LINKS.items():
         html = re.sub(r'LFAR%20' + k + r'\.html', v, html)
     html = html.replace('[XX-XXXXXXX]', '87-4677140')
+    html = html.replace('<a href="#">[email address]</a>',
+                        '<a href="mailto:info@losfelizanimalrescue.org">info@losfelizanimalrescue.org</a>')
     html = re.sub(r'\s*<p style="opacity:\.85;font-weight:400">Design mockup[^<]*</p>', '', html)
     return html
 
@@ -349,7 +351,182 @@ def details_block(node):
                 + '\n\n'.join(inner) + '</details>')]
 
 
+# ---------- "blockify": mockup sections whose copy Melody edits, converted to core blocks ----------
+# The default rules above stop at anything that isn't a plain heading/paragraph/list/image. Inside these sections
+# the stricter rules below apply instead:
+#   * lists, cards, definition lists keep their own tags (Group block with tagName ul/li/dl/dt/blockquote...),
+#     so the mockup CSS still matches;
+#   * a text-only element becomes a Paragraph: phrasing elements (span, em, a...) are wrapped whole in
+#     <p class="lfar-w">, other tags become a Group with that tag holding the Paragraph. On the front end
+#     p.lfar-w is display:contents with all:unset (functions.php), so the page renders exactly as before;
+#   * data-* attributes ride along as lfar-d--name--value classes (restored by DATA_SHIM), inline styles
+#     move to a generated class;
+#   * a card that was one big <a> becomes a div.lfar-card; its "more" line (or its text) becomes the link,
+#     stretched over the whole card with CSS so the card is still clickable;
+#   * SVG icons, buttons, forms and anything in BLOCKIFY_KEEP stay Custom HTML.
+# Selectors are tag.class[.class] ("tag." = no class).
+BLOCKIFY = {
+    'about': ['ul.programs-list', 'dl.org-facts', 'ul.doc-list', 'figcaption.fact-badge', 'figcaption.stand-in',
+              'span.eyebrow', 'blockquote.pull'],
+    'adopt': ['ul.benefits', 'ul.risks', 'div.big-stat', 'ul.ff-points'],
+    'contact': ['ul.reach', 'ul.routes', 'div.forms-list'],
+    'donate': ['section.story-sec', 'span.pup-chip'],
+    'get-involved': ['div.give-grid', 'div.forms-list', 'p.aff-note'],
+    'chrome': ['nav.navbar', 'footer.'],
+}
+BLOCKIFY_KEEP = ['aside.story-receipt', 'a.brand', 'div.brandcol']
+BLOCKIFY_DROP = {'get-involved': ['div.mockup-key']}  # "Mockup note" banner: not for the live site
+# CSS written for an <a> card that is now div.lfar-card
+CSS_REWRITES = {
+    'about': [('.doc-list a:hover, .doc-list a:focus-visible{', '.doc-list .lfar-card:hover, .doc-list .lfar-card:focus-within{'),
+              ('.doc-list a > span:nth-child(2){', '.doc-list .lfar-stretch{'),
+              ('.doc-list a{', '.doc-list .lfar-card{')],
+}
+PHRASING = INLINE | {'label'}
+# Tags a Group may take here (they can hold a <p>)
+BK_GROUP_TAGS = CONTAINERS | {'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'nav', 'footer', 'figcaption', 'main'}
+BK = {'on': False, 'n': 0}
+_mk = BeautifulSoup('', 'html.parser')
+
+
+def sel_match(node, sel):
+    tag, _, cls = sel.partition('.')
+    if node.name != tag:
+        return False
+    want = [c for c in cls.split('.') if c]
+    return set(want) <= set(node.get('class', [])) if want else True
+
+
+def matches_any(node, sels):
+    return isinstance(node, Tag) and any(sel_match(node, x) for x in sels)
+
+
+def bk_classes(node):
+    """Class string for a converted element (its classes + data-*/style carriers), or None if it can't be carried."""
+    out = node.get('class', [])[:]
+    for k, v in node.attrs.items():
+        if k == 'data-anim':
+            out.append('lfar-anim-' + v)
+        elif k.startswith('data-'):
+            if not re.fullmatch(r'[a-z0-9]+', k[5:]) or not re.fullmatch(r'[\w-]+', v):
+                return None
+            out.append(f'lfar-d--{k[5:]}--{v}')
+        elif k not in ('class', 'id', 'aria-hidden', 'aria-label', 'style'):
+            return None
+    if node.get('style'):
+        BK['n'] += 1
+        n = f'lfar-s{BK["n"]}'
+        decl = ';'.join(d.strip() + ' !important' for d in node['style'].split(';') if d.strip())
+        extra_css.append(f'.{n}{{{decl}}}')
+        out.append(n)
+    return ' '.join(out)
+
+
+def text_leaf(node):
+    return inline_only(node) and node.get_text().strip() != ''
+
+
+def card_to_div(node):
+    """<a class="card" href> ... </a> -> <div class="card lfar-card"> with the link moved onto its "more" line or text."""
+    href = node['href']
+    tgt = node.find('span', class_='more')
+    if tgt is not None:
+        tgt.name = 'a'
+        tgt['href'] = href
+        tgt['class'] = tgt.get('class', []) + ['lfar-stretch']
+    else:
+        tgt = next((ch for ch in node.find_all('span', recursive=False)
+                    if not ch.get('class') and text_leaf(ch)), None)
+        if tgt is None:
+            return False
+        tgt.wrap(_mk.new_tag('a', attrs={'class': 'lfar-stretch', 'href': href}))
+    node.name = 'div'
+    node['class'] = node.get('class', []) + ['lfar-card']
+    for k in ('href', 'target', 'rel'):
+        if k in node.attrs:
+            del node[k]
+    return True
+
+
+def convert_bk(node):
+    if not isinstance(node, Tag):
+        return convert_base(node)
+    if matches_any(node, BLOCKIFY_KEEP):
+        return [html_blk(node)]
+    t, i = node.name, node.get('id')
+    if t in ('script', 'style', 'button', 'form', 'input', 'select', 'textarea', 'svg', 'canvas', 'iframe', 'img', 'details', 'hr'):
+        return convert_base(node)
+    if t == 'a' and node.get('href') and not inline_only(node) and node.find(['div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span']):
+        if card_to_div(node):
+            return convert_bk(node)
+        return convert_base(node)
+    c = bk_classes(node)
+    if c is None:
+        return convert_base(node)
+    if text_leaf(node):
+        if t == 'p':
+            return [blk('paragraph', {'className': c} if c else None, f'<p{open_attrs(c, i)}>{node.decode_contents()}</p>')]
+        if t in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6'):
+            lvl, a = int(t[1]), {}
+            if lvl != 2:
+                a['level'] = lvl
+            if c:
+                a['className'] = c
+            return [blk('heading', a or None, f'<{t}{open_attrs("wp-block-heading " + c, i)}>{node.decode_contents()}</{t}>')]
+        if t in PHRASING:
+            return [blk('paragraph', {'className': 'lfar-w'}, f'<p class="lfar-w">{str(node)}</p>')]
+        if t in BK_GROUP_TAGS - {'ul', 'ol'}:
+            inner = blk('paragraph', {'className': 'lfar-w'}, f'<p class="lfar-w">{node.decode_contents().strip()}</p>')
+            return [bk_group(node, t, c, [inner])]
+    if t in ('ul', 'ol') and not node.get('style'):
+        clone = BeautifulSoup(str(node), 'html.parser').find(t)
+        clone.attrs = {k: v for k, v in clone.attrs.items() if k in ('id',)}
+        if c:
+            clone['class'] = c.split()
+        r = convert_list(clone)
+        if r:
+            return [r]
+    if t not in BK_GROUP_TAGS or has_text(node) or not node.find(True):
+        return convert_base(node)
+    kids = []
+    for ch in node.children:
+        r = convert(ch)
+        if r is None:
+            return [html_blk(node)]
+        kids += r
+    if all(k.startswith('<!-- wp:html') for k in kids):
+        return [html_blk(node)]
+    return [bk_group(node, t, c, kids)]
+
+
+def bk_group(node, t, c, kids):
+    a, extra = {}, ''
+    if t != 'div':
+        a['tagName'] = t
+    if c:
+        a['className'] = c
+    if node.get('aria-label'):
+        a['ariaLabel'] = node['aria-label']
+        extra = f' aria-label="{esc_attr(node["aria-label"])}"'
+    return blk('group', a or None, f'<{t}{open_attrs("wp-block-group " + c, node.get("id"))}{extra}>' + '\n\n'.join(kids) + f'</{t}>')
+
+
 def convert(node):
+    if isinstance(node, Tag):
+        if matches_any(node, BLOCKIFY_DROP.get(CUR['key'], [])):
+            return []
+        if BK['on']:
+            return convert_bk(node)
+        if matches_any(node, BLOCKIFY.get(CUR['key'], [])):
+            BK['on'] = True
+            try:
+                return convert_bk(node)
+            finally:
+                BK['on'] = False
+    return convert_base(node)
+
+
+def convert_base(node):
     if isinstance(node, Tag) and node.get('id') in SWAPS:
         return SWAPS[node['id']](node)
     if isinstance(node, Tag) and node.name == 'div' and 'hero-bg' in node.get('class', []) and not node.find(True):
@@ -436,6 +613,10 @@ NAV_ACTIVE = ("(function(){var p=location.pathname.replace(/\\/?$/,'/');[].forEa
 ANIM_SHIM = ("(function(){[].forEach.call(document.querySelectorAll('[class*=\"lfar-anim-\"]'),function(el){"
              "var m=el.className.match(/\\blfar-anim-([\\w-]+)/);if(m&&!el.dataset.anim)el.dataset.anim=m[1];});})();\n")
 
+# Restores data-* attributes carried as lfar-d--name--value classes (see bk_classes()).
+DATA_SHIM = ("(function(){[].forEach.call(document.querySelectorAll('[class*=\"lfar-d--\"]'),function(el){"
+             "el.className.replace(/\\blfar-d--([a-z0-9]+)--([\\w-]+)/g,function(_,k,v){if(!(k in el.dataset))el.dataset[k]=v;});});})();\n")
+
 report = []
 for key, fn in PAGES.items():
     raw = prep(open(os.path.join(SRC, fn), encoding='utf-8').read())
@@ -466,9 +647,16 @@ for key, fn in PAGES.items():
     blocks += [html_blk(o) for o in outside]
     pattern_file('page-' + key, TITLES[key] + ' page', '\n\n'.join(blocks), extra=" * Post Types: page\n")
     imgonly = imgclasses - otherclasses
+    page_css = finish_css(css, imgonly)
+    for old, new in CSS_REWRITES.get(key, []):
+        if old not in page_css:
+            print('  ! CSS rewrite not found:', key, old)
+        page_css = page_css.replace(old, new)
+    # A card's stretched link keeps the card's text color (it was a plain span inside the old <a>), but .more etc. still win.
+    extra_css.append('a:where(.lfar-stretch){color:inherit}')
     open(os.path.join(THEME, 'assets/css', key + '.css'), 'w', encoding='utf-8').write(
-        finish_css(css, imgonly) + '\n' + '\n'.join(extra_css) + '\n')
-    js = cut_js(NAV_ACTIVE + ANIM_SHIM + '\n'.join(s for a, s in scripts if 'ld+json' not in a), key)
+        page_css + '\n' + '\n'.join(extra_css) + '\n')
+    js = cut_js(NAV_ACTIVE + ANIM_SHIM + DATA_SHIM + '\n'.join(s for a, s in scripts if 'ld+json' not in a), key)
     open(os.path.join(THEME, 'assets/js', key + '.js'), 'w', encoding='utf-8').write(js)
     allb = '\n'.join(blocks)
     report.append((key, 'html', allb.count('<!-- wp:html'), 'group', allb.count('<!-- wp:group'), 'heading', allb.count('<!-- wp:heading'),
@@ -477,11 +665,14 @@ for key, fn in PAGES.items():
     if key == 'donate':  # site chrome comes from the Donate mockup (real EIN, full Explore footer)
         top = re.search(r'<div class="topbar">.*?</nav>', body, re.S).group(0).replace(' aria-current="page"', '')
         topbar, navbar = re.split(r'(?=<nav class="navbar")', top)
-        pattern_file('header', 'Site header', blk('html', None, topbar.strip()) + '\n\n' + blk('html', None, navbar.strip()),
+        CUR['key'] = 'chrome'
+        nav_blocks = convert(BeautifulSoup(navbar.strip(), 'html.parser').find('nav'))
+        pattern_file('header', 'Site header', blk('html', None, topbar.strip()) + '\n\n' + '\n\n'.join(nav_blocks),
                      cats='lfar-chrome', inserter='no')
         foot = re.search(r'<footer>.*?</footer>\s*<a class="back-to-top".*?</a>', body, re.S).group(0)
         f1, f2 = re.split(r'(?=<a class="back-to-top")', foot)
-        pattern_file('footer', 'Site footer', blk('html', None, f1.strip()) + '\n\n' + blk('html', None, f2.strip()),
+        foot_blocks = convert(BeautifulSoup(f1.strip(), 'html.parser').find('footer'))
+        pattern_file('footer', 'Site footer', '\n\n'.join(foot_blocks) + '\n\n' + blk('html', None, f2.strip()),
                      cats='lfar-chrome', inserter='no')
         pattern_file('newsletter', 'Newsletter sign-up', '\n\n'.join(convert(nl)), cats='lfar-chrome')
 for r in report:

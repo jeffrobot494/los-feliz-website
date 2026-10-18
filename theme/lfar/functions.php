@@ -130,6 +130,9 @@ add_action(
 		// Front end only: the paragraph wrapped around stand-alone links/buttons steps out of the layout,
 		// so the link sits in flex/grid rows exactly as in the mockups. (Kept out of the editor so the block stays selectable.)
 		wp_add_inline_style( 'lfar-base', 'p.lfar-a.lfar-a{display:contents}' );
+		// Same for the paragraph wrapped around a converted text element (span, em, cite...): it adds no box and no styles,
+		// so the element sits and looks exactly as in the mockup.
+		wp_add_inline_style( 'lfar-base', 'p.lfar-w.lfar-w{all:unset;display:contents}' );
 		wp_enqueue_script( 'lfar-page', get_theme_file_uri( $js ), array(), lfar_ver( $js ), array( 'in_footer' => true ) );
 		wp_enqueue_style( 'lfar-forms', get_theme_file_uri( 'assets/css/forms.css' ), array( 'lfar-page' ), lfar_ver( 'assets/css/forms.css' ) );
 		wp_enqueue_script( 'lfar-forms', get_theme_file_uri( 'assets/js/forms.js' ), array( 'lfar-page' ), lfar_ver( 'assets/js/forms.js' ), array( 'in_footer' => true ) );
