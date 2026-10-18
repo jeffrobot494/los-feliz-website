@@ -25,7 +25,7 @@
 
 <!-- wp:group {"className":"lfar-nl"} -->
 <div class="wp-block-group lfar-nl"><!-- wp:shortcode -->
-[fluentform id="<?php echo (int) lfar_form_id( 'newsletter' ); ?>"]
+[lfar_form name="newsletter"]
 <!-- /wp:shortcode -->
 
 <!-- wp:paragraph {"className":"nl-note"} -->

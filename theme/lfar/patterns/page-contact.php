@@ -8,9 +8,9 @@
  */
 ?>
 <!-- wp:group {"tagName":"section","className":"hero adopt-hero contact-hero"} -->
-<section class="wp-block-group hero adopt-hero contact-hero"><!-- wp:html -->
-<div aria-label="A smiling volunteer hugging a spotted puppy" class="hero-bg" role="img"></div>
-<!-- /wp:html -->
+<section class="wp-block-group hero adopt-hero contact-hero"><!-- wp:image {"className":"hero-bg"} -->
+<figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home-hero-bg.webp' ) ); ?>" alt="A smiling volunteer hugging a spotted puppy"/></figure>
+<!-- /wp:image -->
 
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"hero-card adopt-card contact-card"} -->
@@ -65,30 +65,37 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:html -->
-<div class="faq" data-anim="fade-up">
-<details open="">
-<summary>Can I drop off an animal?</summary>
+<!-- wp:group {"className":"faq lfar-anim-fade-up"} -->
+<div class="wp-block-group faq lfar-anim-fade-up"><!-- wp:details {"showContent":true} -->
+<details class="wp-block-details" open><summary>Can I drop off an animal?</summary><!-- wp:paragraph -->
 <p>We don't have a building. Every animal lives with a foster family, so we can only take in an animal when a foster home is open. Send us a message first and we'll tell you what we can do.</p>
-</details>
-<details>
-<summary>Can you pick up a stray?</summary>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Can you pick up a stray?</summary><!-- wp:paragraph -->
 <p>Usually not. We don't have staff or vehicles on call. The lost and found page explains how to check for a microchip and who to contact.</p>
-</details>
-<details>
-<summary>Do you have a phone number?</summary>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Do you have a phone number?</summary><!-- wp:paragraph -->
 <p><span class="tbd">We don't have a public phone line.</span> The form or email reaches the whole team, so it's the fastest way to get an answer.</p>
-</details>
-<details>
-<summary>Can I come meet an animal?</summary>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Can I come meet an animal?</summary><!-- wp:paragraph -->
 <p>Yes. After you apply, we set up a meet-and-greet with the animal's foster family.</p>
-</details>
-<details>
-<summary>Where can I send a tax receipt question?</summary>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Where can I send a tax receipt question?</summary><!-- wp:paragraph -->
 <p>Donation receipts come from Donorbox by email. If yours didn't arrive, pick "Something else" in the form and we'll sort it out.</p>
-</details>
-</div>
-<!-- /wp:html --></div>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
@@ -156,7 +163,7 @@
 
 <!-- wp:group {"className":"app lfar-app lfar-anim-fade-up"} -->
 <div class="wp-block-group app lfar-app lfar-anim-fade-up"><!-- wp:shortcode -->
-[fluentform id="<?php echo (int) lfar_form_id( 'contact' ); ?>"]
+[lfar_form name="contact"]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

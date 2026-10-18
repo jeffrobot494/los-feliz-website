@@ -12,9 +12,9 @@
 <!-- /wp:html -->
 
 <!-- wp:group {"tagName":"section","className":"hero adopt-hero contact-hero gi-hero"} -->
-<section class="wp-block-group hero adopt-hero contact-hero gi-hero"><!-- wp:html -->
-<div aria-label="Stand-in photo: a volunteer kneeling in the grass with a tan dog" class="hero-bg" role="img"></div>
-<!-- /wp:html -->
+<section class="wp-block-group hero adopt-hero contact-hero gi-hero"><!-- wp:image {"className":"hero-bg"} -->
+<figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/get-involved-get-involved-page-gi-hero-hero-bg.jpg' ) ); ?>" alt="Stand-in photo: a volunteer kneeling in the grass with a tan dog"/></figure>
+<!-- /wp:image -->
 
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"hero-card adopt-card contact-card"} -->
@@ -248,7 +248,7 @@
 
 <!-- wp:group {"className":"app lfar-app lfar-anim-fade-up"} -->
 <div class="wp-block-group app lfar-app lfar-anim-fade-up"><!-- wp:shortcode -->
-[fluentform id="<?php echo (int) lfar_form_id( 'volunteer' ); ?>"]
+[lfar_form name="volunteer"]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -372,40 +372,35 @@
 <h3 class="wp-block-heading faq-title">Good questions</h3>
 <!-- /wp:heading -->
 
-<!-- wp:html -->
-<details open="">
-<summary>Do I need experience with animals?</summary>
+<!-- wp:details {"showContent":true} -->
+<details class="wp-block-details" open><summary>Do I need experience with animals?</summary><!-- wp:paragraph -->
 <p>No. Plenty of our volunteers had never fostered or trained a dog. We'll show you what to do, and your first shift is with someone who's done it before.</p>
-</details>
-<!-- /wp:html -->
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
 
-<!-- wp:html -->
-<details>
-<summary>How much time do I have to give?</summary>
+<!-- wp:details -->
+<details class="wp-block-details"><summary>How much time do I have to give?</summary><!-- wp:paragraph -->
 <p>As much or as little as you like. Some volunteers do one vet ride a month; others work every adoption event. You can pause any time.</p>
-</details>
-<!-- /wp:html -->
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
 
-<!-- wp:html -->
-<details>
-<summary>I'm allergic, or my building doesn't allow pets. Can I still help?</summary>
+<!-- wp:details -->
+<details class="wp-block-details"><summary>I'm allergic, or my building doesn't allow pets. Can I still help?</summary><!-- wp:paragraph -->
 <p>Yes. Sharing posts, supply runs, photography at events and skills work like design or grant writing don't need you to have an animal at home.</p>
-</details>
-<!-- /wp:html -->
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
 
-<!-- wp:html -->
-<details>
-<summary>Can my kids help?</summary>
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Can my kids help?</summary><!-- wp:paragraph -->
 <p><span class="tbd">[Confirm]</span> Teens can volunteer at events with a parent or guardian. Younger kids are welcome to hold a fundraiser or a supply drive.</p>
-</details>
-<!-- /wp:html -->
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
 
-<!-- wp:html -->
-<details>
-<summary>Is my donation tax-deductible?</summary>
+<!-- wp:details -->
+<details class="wp-block-details"><summary>Is my donation tax-deductible?</summary><!-- wp:paragraph -->
 <p>Yes. We're a registered 501(c)(3), EIN 87-4677140. Donorbox emails your receipt automatically.</p>
-</details>
-<!-- /wp:html --></div>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"lfar-anim-slide-right"} -->

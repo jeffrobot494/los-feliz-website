@@ -8,9 +8,9 @@
  */
 ?>
 <!-- wp:group {"tagName":"section","className":"hero"} -->
-<section class="wp-block-group hero"><!-- wp:html -->
-<div aria-label="A volunteer holding a rescued puppy" class="hero-bg" role="img"></div>
-<!-- /wp:html -->
+<section class="wp-block-group hero"><!-- wp:image {"className":"hero-bg"} -->
+<figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home-hero-bg.webp' ) ); ?>" alt="A volunteer holding a rescued puppy"/></figure>
+<!-- /wp:image -->
 
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"hero-card"} -->

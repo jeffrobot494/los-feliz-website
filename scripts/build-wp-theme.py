@@ -254,7 +254,9 @@ def convert_list(tag):
 
 
 def shortcode(form):
-    return blk('shortcode', None, f'[fluentform id="__FORM__{form}__"]')
+    # [lfar_form] looks the Fluent Forms id up by title each time the page renders (functions.php), so a page
+    # saved before the forms exist, or moved to another server where the ids differ, still shows the right form.
+    return blk('shortcode', None, f'[lfar_form name="{form}"]')
 
 
 def grp(cls, kids, id_=None):
@@ -302,9 +304,62 @@ def cut_js(js, key):
     return js
 
 
+CUR = {'key': '', 'css': ''}  # page being converted (set in the main loop)
+
+
+def hero_image(node):
+    """The mockups paint each hero photo as a CSS background on an empty div.hero-bg, which an editor can't
+    change. Emit an Image block in its place (same class, so the layout/animation CSS still applies) and
+    pin the photo's crop with object-position, so Melody can swap it from the Media Library."""
+    parent = set(node.parent.get('class', [])) if node.parent else set()
+    best = None
+    for m in re.finditer(r'([^{}]*\.hero-bg[^{}]*)\{([^}]*__IMG__[^}]*)\}', CUR['css']):
+        sel, body = m.group(1).strip(), m.group(2)
+        pre = re.findall(r'\.([\w-]+)\s+\.hero-bg', sel)
+        if pre and not (set(pre) & parent):
+            continue
+        best = (sel, body) if best is None or pre else best
+    if not best:
+        return None
+    body = best[1]
+    name = re.search(r'__IMG__(.+?)__', body).group(1)
+    pos = re.search(r'background-position\s*:\s*([^;!}]+)', body) or re.search(r'url\([^)]*\)\s+([\d.]+%\s+[\d.]+%)', body)
+    extra_css.append('figure.hero-bg>img{object-position:' + (pos.group(1).strip() if pos else '50% 50%') + '}')
+    alt = esc_attr(node.get('aria-label', ''))
+    return [blk('image', {'className': 'hero-bg'},
+                f'<figure class="wp-block-image hero-bg"><img src="__IMG__{name}__" alt="{alt}"/></figure>')]
+
+
+def details_block(node):
+    """<details><summary>Question</summary><p>Answer</p></details> -> core/details (same tags, so the CSS still applies)."""
+    kids = [k for k in node.children if not (isinstance(k, NavigableString) and not k.strip())]
+    if not kids or not isinstance(kids[0], Tag) or kids[0].name != 'summary' or not inline_only(kids[0]):
+        return None
+    if kids[0].attrs or not attrs_sub(node, {'open'}):
+        return None
+    inner = []
+    for k in kids[1:]:
+        r = convert(k)
+        if r is None or any(x.startswith('<!-- wp:html') for x in r):
+            return None
+        inner += r
+    is_open = node.has_attr('open')
+    return [blk('details', {'showContent': True} if is_open else None,
+                '<details class="wp-block-details"' + (' open' if is_open else '') + f'><summary>{kids[0].decode_contents()}</summary>'
+                + '\n\n'.join(inner) + '</details>')]
+
+
 def convert(node):
     if isinstance(node, Tag) and node.get('id') in SWAPS:
         return SWAPS[node['id']](node)
+    if isinstance(node, Tag) and node.name == 'div' and 'hero-bg' in node.get('class', []) and not node.find(True):
+        r = hero_image(node)
+        if r:
+            return r
+    if isinstance(node, Tag) and node.name == 'details':
+        r = details_block(node)
+        if r:
+            return r
     if isinstance(node, Comment):
         return []
     if isinstance(node, NavigableString):
@@ -336,7 +391,7 @@ def convert(node):
                 otherclasses.add(k)
     if t == 'a' and inline_only(node) and attrs_sub(node, {'href', 'class', 'target', 'rel', 'aria-label'}):
         return [blk('paragraph', {'className': 'lfar-a'}, f'<p class="lfar-a">{str(node)}</p>')]
-    if (t in CONTAINERS and attrs_sub(node, {'class', 'id', 'data-anim', 'aria-label', 'aria-labelledby', 'style'})
+    if (t in CONTAINERS and attrs_sub(node, {'class', 'id', 'data-anim', 'aria-label', 'aria-labelledby', 'style', 'aria-hidden'})
             and node.find(True) and not has_text(node)):
         if node.get('style'):
             if not i:
@@ -392,6 +447,7 @@ for key, fn in PAGES.items():
     soup = BeautifulSoup(body, 'html.parser')
     main = soup.find('main')
     extra_css.clear(); imgclasses.clear(); otherclasses.clear()
+    CUR['key'], CUR['css'] = key, css
     blocks, nl = [], None
     for ch in main.children:
         if isinstance(ch, Tag) and ch.get('id') == 'newsletter':

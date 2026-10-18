@@ -537,4 +537,4 @@ h3, .pet-name{font-size:30px}
 *, *::before, *::after{animation:none!important;transition:none!important}
 html{scroll-behavior:auto}
 }
-
+figure.hero-bg>img{object-position:70% 38%}

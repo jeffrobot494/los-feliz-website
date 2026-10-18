@@ -30,3 +30,8 @@ p.lfar-a.lfar-a { margin: 0; }
 	*, *::before, *::after { animation: none !important; transition: none !important; }
 	html { scroll-behavior: auto; }
 }
+
+/* Hero photos are Image blocks (swappable from the Media Library). The figure keeps the old .hero-bg box;
+   the photo fills it the way the mockups' CSS background did. Each page's CSS sets object-position. */
+figure.hero-bg { background-image: none !important; overflow: hidden; }
+figure.hero-bg > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }

@@ -78,6 +78,22 @@ function lfar_form_id( $key ) {
 	return isset( $ids[ $key ] ) ? $ids[ $key ] : 0;
 }
 
+/**
+ * [lfar_form name="adoption"]: the Fluent Form with that title, looked up each time the page renders.
+ * (Writing [fluentform id="3"] into the page would freeze whatever id existed when the page was first saved.)
+ */
+add_shortcode(
+	'lfar_form',
+	function ( $atts ) {
+		$atts = shortcode_atts( array( 'name' => '' ), $atts, 'lfar_form' );
+		$id   = lfar_form_id( $atts['name'] );
+		if ( ! $id ) {
+			return current_user_can( 'edit_pages' ) ? '<p class="lfar-form-missing">[Form "' . esc_html( $atts['name'] ) . '" not found in Fluent Forms]</p>' : '';
+		}
+		return do_shortcode( '[fluentform id="' . (int) $id . '"]' );
+	}
+);
+
 /*
  * Shortcode blocks inside patterns used by templates (e.g. the newsletter form in every page footer)
  * are expanded after WordPress has already processed shortcodes, so run them here.
@@ -126,7 +142,7 @@ add_action(
 	function () {
 		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$key     = $post_id ? lfar_page_key( $post_id ) : '';
-		add_editor_style( array( 'assets/css/base.css', 'assets/css/' . ( $key ? $key : 'home' ) . '.css' ) );
+		add_editor_style( array( 'assets/css/base.css', 'assets/css/' . ( $key ? $key : 'home' ) . '.css', 'assets/css/editor.css' ) );
 	}
 );
 

@@ -8,9 +8,9 @@
  */
 ?>
 <!-- wp:group {"tagName":"section","className":"hero about-hero"} -->
-<section class="wp-block-group hero about-hero"><!-- wp:html -->
-<div aria-label="A volunteer kneeling in a sunny field with a rescued dog" class="hero-bg" role="img"></div>
-<!-- /wp:html -->
+<section class="wp-block-group hero about-hero"><!-- wp:image {"className":"hero-bg"} -->
+<figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/about-hero-bg.webp' ) ); ?>" alt="A volunteer kneeling in a sunny field with a rescued dog"/></figure>
+<!-- /wp:image -->
 
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"hero-card mission-card"} -->
@@ -261,9 +261,11 @@
 
 <!-- wp:group {"className":"board two"} -->
 <div class="wp-block-group board two"><!-- wp:group {"tagName":"article","className":"person lfar-anim-fade-up"} -->
-<article class="wp-block-group person lfar-anim-fade-up"><!-- wp:html -->
-<div aria-hidden="true" class="avatar photo"><img alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ); ?>"/></div>
-<!-- /wp:html -->
+<article class="wp-block-group person lfar-anim-fade-up"><!-- wp:group {"className":"avatar photo"} -->
+<div class="wp-block-group avatar photo"><!-- wp:image -->
+<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:group -->
 
 <!-- wp:heading {"level":4} -->
 <h4 class="wp-block-heading">Melody <em class="tbd">[Last name]</em></h4>
@@ -744,12 +746,39 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","className":"fw band section2 cta-band"} -->
-<section class="wp-block-group fw band section2 cta-band" id="join"><!-- wp:html -->
-<div aria-hidden="true" class="mosaic">
-<img alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/five-puppies-looking-out-of-a-crate.jpg' ) ); ?>"/><img alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-scruffy-black-puppy-held-close-in-someone-s-ar.jpg' ) ); ?>"/><img alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home-hero-bg.webp' ) ); ?>"/><img alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-black-and-white-kitten-held-by-its-foster.jpg' ) ); ?>"/>
-<img alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-volunteer-holding-a-small-tan-dog.jpg' ) ); ?>"/><img alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ); ?>"/><img alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/pepper-a-brown-and-white-puppy-with-her-new-fami.jpg' ) ); ?>"/><img alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/about-hero-bg.webp' ) ); ?>"/>
-</div>
-<!-- /wp:html -->
+<section class="wp-block-group fw band section2 cta-band" id="join"><!-- wp:group {"className":"mosaic"} -->
+<div class="wp-block-group mosaic"><!-- wp:image -->
+<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/five-puppies-looking-out-of-a-crate.jpg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-scruffy-black-puppy-held-close-in-someone-s-ar.jpg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home-hero-bg.webp' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-black-and-white-kitten-held-by-its-foster.jpg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-volunteer-holding-a-small-tan-dog.jpg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/pepper-a-brown-and-white-puppy-with-her-new-fami.jpg' ) ); ?>" alt=""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/about-hero-bg.webp' ) ); ?>" alt=""/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:group -->
 
 <!-- wp:group {"className":"container center"} -->
 <div class="wp-block-group container center"><!-- wp:group {"className":"section-heading"} -->

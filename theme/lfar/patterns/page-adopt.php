@@ -401,13 +401,13 @@
 
 <!-- wp:group {"className":"lfar-form lfar-form-adopt"} -->
 <div class="wp-block-group lfar-form lfar-form-adopt"><!-- wp:shortcode -->
-[fluentform id="<?php echo (int) lfar_form_id( 'adoption' ); ?>"]
+[lfar_form name="adoption"]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"lfar-form lfar-form-foster"} -->
 <div class="wp-block-group lfar-form lfar-form-foster"><!-- wp:shortcode -->
-[fluentform id="<?php echo (int) lfar_form_id( 'foster' ); ?>"]
+[lfar_form name="foster"]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

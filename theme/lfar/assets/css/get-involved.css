@@ -643,4 +643,4 @@ html{scroll-behavior:auto}
 .hero.contact-hero{height:auto}
 .triangle{height:40px}
 }
-
+figure.hero-bg>img{object-position:30% 45%}

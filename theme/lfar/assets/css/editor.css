@@ -1,0 +1,10 @@
+/* Editor only (loaded with add_editor_style): make the Pages editor look like the live page. */
+
+/* The mockup sections are full-width; don't squeeze them into the 760px text column. */
+.is-root-container > .wp-block { max-width: none !important; }
+
+/* The editor gives every block position:relative; the hero photo has to stay pinned behind the hero card. */
+.hero > figure.hero-bg.wp-block { position: absolute !important; inset: 0; margin: 0; }
+
+/* Scroll-in animations never run in the editor, so never hide anything waiting for them. */
+.hero .hero-bg, .hero .hero-card { opacity: 1 !important; animation: none !important; transform: none !important; }
