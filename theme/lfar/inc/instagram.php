@@ -18,8 +18,8 @@
  * option, or, on production, can be set in wp-config.php as define( 'LFAR_IG_TOKEN', '...' ).
  * Never commit it to git.
  *
- * The theme's page patterns are left untouched (they're regenerated from the mockups by
- * scripts/build-wp-theme.py); the live posts are swapped in while the blocks render.
+ * The theme's page patterns keep the mockup sample posts; the live posts are swapped in
+ * while the blocks render.
  *
  * @package lfar
  */

@@ -2,9 +2,9 @@
 /**
  * LFAR theme setup.
  *
- * Each mockup page brings its own stylesheet and script (assets/css/<page>.css, assets/js/<page>.js),
- * generated from design/final-mockups by scripts/build-wp-theme.py. Pages that aren't one of the six
- * mockups (posts, archives, new pages) fall back to the Home styles and assets/js/common.js.
+ * Each of the six main pages brings its own stylesheet and script (assets/css/<page>.css, assets/js/<page>.js).
+ * They started as a conversion of design/final-mockups but are now edited directly. Other pages (posts,
+ * archives, new pages) fall back to the Home styles and assets/js/common.js.
  *
  * @package lfar
  */

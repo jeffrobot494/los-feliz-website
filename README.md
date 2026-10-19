@@ -210,6 +210,17 @@ Still undecided:
 Next step per the kickoff: deliver a wireframe the client can write content against, since
 they'd rather fit copy to a layout than the other way around.
 
+## WordPress theme
+
+`theme/lfar/` is the LFAR block theme, and it's the source of truth for the site: edit its
+patterns, CSS and JS directly.
+
+It started as a conversion of `design/final-mockups/` by `scripts/build-wp-theme.py`. That
+script was retired after its last run (commit `a627e69`) and is still in git history. The
+mockups stay in `design/` as the design reference and for the client gallery, but nothing
+is generated from them anymore, so a change to a mockup has to be carried into the theme
+by hand.
+
 ## Client gallery (GitHub Pages)
 
 `index.html` is a simple browser for everything in `design/`: folders first, then a thumbnail

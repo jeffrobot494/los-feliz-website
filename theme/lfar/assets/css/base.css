@@ -36,7 +36,7 @@ p.lfar-a.lfar-a { margin: 0; }
 figure.hero-bg { background-image: none !important; overflow: hidden; }
 figure.hero-bg > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
 
-/* Blockified sections (see BLOCKIFY in scripts/build-wp-theme.py) */
+/* Copy converted to blocks: text wrapped in p.lfar-w, and cards that used to be one big link (.lfar-card + .lfar-stretch) */
 p.lfar-w { margin: 0; }                       /* front end: display:contents + all:unset (functions.php) */
 .lfar-card { position: relative; }            /* a card that used to be one big link... */
 .lfar-stretch::after { content: ""; position: absolute; inset: 0; }   /* ...is still clickable all over */
