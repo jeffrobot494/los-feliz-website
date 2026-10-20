@@ -1,0 +1,18 @@
+/* Featured pet block, editor only: the Choose pet button on the photo, and the picker window. */
+.feat-card .lfar-fp-choose{position:absolute;right:16px;bottom:16px;z-index:2;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.feat-card .btn.apply-for{display:block;cursor:default}
+
+.lfar-fp-modal{width:min(980px,calc(100vw - 48px))}
+.lfar-fp-bar{display:flex;align-items:center;gap:12px;margin:-8px 0 20px}
+.lfar-fp-count{color:#757575}
+.lfar-fp-filters{display:flex;gap:6px;margin-left:auto}
+.lfar-fp-msg{padding:40px 0;text-align:center;color:#757575}
+.lfar-fp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+.lfar-fp-tile{display:flex;flex-direction:column;gap:8px;padding:0;border:2px solid transparent;border-radius:10px;background:none;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.lfar-fp-tile:hover,.lfar-fp-tile:focus-visible{border-color:var(--wp-admin-theme-color,#3858e9);outline:none}
+.lfar-fp-tile.is-current{border-color:#1e1e1e}
+.lfar-fp-ph{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:#f0f0f0}
+.lfar-fp-ph img{display:block;width:100%;height:100%;object-fit:cover}
+.lfar-fp-badge{position:absolute;top:6px;left:6px;padding:2px 8px;border-radius:999px;background:#1e1e1e;color:#fff;font-size:11px;font-weight:600}
+.lfar-fp-nm{padding:0 6px;font-weight:600;font-size:14px;line-height:1.3}
+.lfar-fp-sub{padding:0 6px 8px;margin-top:-6px;color:#757575;font-size:12.5px}

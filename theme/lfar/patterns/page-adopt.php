@@ -292,49 +292,7 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"feat-card lfar-anim-fade-down"} -->
-<div class="wp-block-group feat-card lfar-anim-fade-down"><!-- wp:group {"className":"feat-photo"} -->
-<div class="wp-block-group feat-photo"><!-- wp:image -->
-<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ); ?>" alt="Sherlock, a young grey brindle dog in a red harness, held by his smiling foster"/></figure>
-<!-- /wp:image -->
-
-<!-- wp:html -->
-<span class="feat-tag">Featured pet</span>
-<!-- /wp:html --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"feat-body custom"} -->
-<div class="wp-block-group feat-body custom"><!-- wp:heading {"level":3,"className":"pet-name"} -->
-<h3 class="wp-block-heading pet-name">Meet Sherlock</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"pet-facts"} -->
-<p class="pet-facts">Dog · 3 years · Male</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Sherlock is a cuddlebug. He greets everyone at the door, naps with his head on your lap and follows his foster around the house like a shadow.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Good with other dogs</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>House-trained and crate-trained</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Loves car rides and short walks</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
-
-<!-- wp:html -->
-<button class="btn apply-for" data-pet="Sherlock" data-type="dog" type="button">Apply for Sherlock</button>
-<!-- /wp:html --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group -->
+<!-- wp:lfar/featured-pet /-->
 
 <!-- wp:html -->
 <div class="pf-toggle"><button aria-controls="pf-panel" aria-expanded="false" class="btn btn-ghost" id="pf-btn" type="button">See all adoptable animals <svg aria-hidden="true" class="chev" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg></button></div>

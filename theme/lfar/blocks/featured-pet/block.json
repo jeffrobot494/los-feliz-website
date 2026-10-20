@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lfar/featured-pet",
+	"title": "Featured pet",
+	"category": "widgets",
+	"icon": "pets",
+	"description": "One of LFAR's adoptable animals from Petfinder. Click Choose pet on the toolbar to pick another; the card shows Adopted! once the pet leaves Petfinder's adoptable list.",
+	"textdomain": "lfar",
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"attributes": {
+		"petId": { "type": "string", "default": "" },
+		"name": { "type": "string", "role": "content", "default": "Sherlock" },
+		"kind": { "type": "string", "default": "dog" },
+		"facts": { "type": "string", "default": "Dog · 3 years · Male" },
+		"blurb": { "type": "string", "role": "content", "default": "Sherlock is a cuddlebug. He greets everyone at the door, naps with his head on your lap and follows his foster around the house like a shadow." },
+		"bullets": { "type": "array", "items": { "type": "string" }, "default": [ "Good with other dogs", "House-trained and crate-trained", "Loves car rides and short walks" ] },
+		"photo": { "type": "string", "default": "" },
+		"alt": { "type": "string", "default": "Sherlock, a young grey brindle dog in a red harness, held by his smiling foster" },
+		"url": { "type": "string", "default": "" }
+	},
+	"editorScript": "file:./editor.js",
+	"editorStyle": "file:./editor.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

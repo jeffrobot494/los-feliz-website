@@ -5,7 +5,7 @@
 // Run from the repo root:  npm --prefix tools/check-blocks ci && node tools/check-blocks/check.mjs [patterns dir]
 import globalJsdom from 'global-jsdom';
 import { VirtualConsole } from 'jsdom';
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
@@ -18,8 +18,10 @@ globalJsdom(undefined, { virtualConsole: new VirtualConsole() });
 const require = createRequire(import.meta.url);
 const { parse } = require('@wordpress/blocks');
 const { registerCoreBlocks } = require('@wordpress/block-library');
+const { registerBlockType } = require('@wordpress/blocks');
 
 const PATTERNS = process.argv[2] || join(dirname(fileURLToPath(import.meta.url)), '../../theme/lfar/patterns');
+const BLOCKS = join(PATTERNS, '../blocks');
 
 // Quiet the editor's own console output, but keep its "Updated Block" notes: a block an old-version migration
 // had to fix is accepted, then silently rewritten the next time the page is saved.
@@ -30,6 +32,16 @@ console.log = console.info = console.warn = console.error = (...args) => {
 	if (msg.startsWith('Updated Block')) migrated.push(msg);
 };
 registerCoreBlocks();
+// The theme's own blocks (blocks/*/block.json) are rendered in PHP, so they save nothing for the editor to compare.
+if (existsSync(BLOCKS)) {
+	for (const dir of readdirSync(BLOCKS)) {
+		const json = join(BLOCKS, dir, 'block.json');
+		if (existsSync(json)) {
+			const meta = JSON.parse(readFileSync(json, 'utf8'));
+			registerBlockType(meta.name, { ...meta, save: () => null });
+		}
+	}
+}
 
 // Patterns are PHP: drop the header and stand in for the inline echoes (image URLs, form ids).
 function toMarkup(php) {

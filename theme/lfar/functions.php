@@ -174,6 +174,11 @@ add_action(
 		register_block_pattern_category( 'lfar-chrome', array( 'label' => __( 'LFAR site sections', 'lfar' ) ) );
 		register_block_style( 'core/image', array( 'name' => 'blob', 'label' => __( 'Blob', 'lfar' ) ) );
 		register_block_style( 'core/image', array( 'name' => 'irregular', 'label' => __( 'Irregular', 'lfar' ) ) );
+
+		// Featured pet block (Adopt page): its picker in the editor and its "Adopted!" check both read LFAR's animals from Petfinder.
+		wp_register_script( 'lfar-petfinder', get_theme_file_uri( 'blocks/featured-pet/petfinder.js' ), array(), lfar_ver( 'blocks/featured-pet/petfinder.js' ), array( 'in_footer' => true ) );
+		wp_add_inline_script( 'lfar-petfinder', 'lfarPetfinder.sherlockPhoto = ' . wp_json_encode( get_theme_file_uri( 'assets/images/sherlock-a-young-grey-brindle-dog-held-by-his-fo.jpg' ) ) . ';' );
+		register_block_type( get_theme_file_path( 'blocks/featured-pet' ) );
 	}
 );
 
