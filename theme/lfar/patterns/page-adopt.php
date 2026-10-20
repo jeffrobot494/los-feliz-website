@@ -33,7 +33,7 @@
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn" href="#connection">See what helps</a></p>
+<p class="lfar-a"><a class="btn" href="#meet">Meet the pets</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>
