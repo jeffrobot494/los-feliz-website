@@ -1,0 +1,12 @@
+{
+  "name": "lfar-check-blocks",
+  "private": true,
+  "type": "module",
+  "description": "Checks that the theme's block patterns pass the block editor's validation.",
+  "dependencies": {
+    "@wordpress/block-library": "11.2.0",
+    "@wordpress/blocks": "16.2.0",
+    "global-jsdom": "27.0.0",
+    "jsdom": "27.0.1"
+  }
+}

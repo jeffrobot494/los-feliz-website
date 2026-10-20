@@ -7,7 +7,7 @@
  * Post Types: page
  */
 ?>
-<!-- wp:group {"tagName":"section","className":"hero adopt-hero contact-hero"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"hero adopt-hero contact-hero"} -->
 <section class="wp-block-group hero adopt-hero contact-hero"><!-- wp:image {"className":"hero-bg"} -->
 <figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home-hero-bg.webp' ) ); ?>" alt="A smiling volunteer hugging a spotted puppy"/></figure>
 <!-- /wp:image -->
@@ -53,7 +53,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="faq"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
@@ -99,7 +99,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="message"><!-- wp:html -->
 <div aria-hidden="true" class="watermark r"></div>
 <!-- /wp:html -->
@@ -203,7 +203,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="forms"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
@@ -281,7 +281,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="help"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
 <!-- /wp:html -->

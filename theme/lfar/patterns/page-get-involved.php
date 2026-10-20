@@ -7,7 +7,7 @@
  * Post Types: page
  */
 ?>
-<!-- wp:group {"tagName":"section","className":"hero adopt-hero contact-hero gi-hero"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"hero adopt-hero contact-hero gi-hero"} -->
 <section class="wp-block-group hero adopt-hero contact-hero gi-hero"><!-- wp:image {"className":"hero-bg"} -->
 <figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/get-involved-get-involved-page-gi-hero-hero-bg.jpg' ) ); ?>" alt="Stand-in photo: a volunteer kneeling in the grass with a tan dog"/></figure>
 <!-- /wp:image -->
@@ -64,7 +64,7 @@
 </nav>
 <!-- /wp:html -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="stories"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
 <!-- /wp:html -->
@@ -191,7 +191,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="signup"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
 <!-- /wp:html -->
@@ -251,7 +251,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw band section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw band section2"} -->
 <section class="wp-block-group fw band section2" id="give"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"row"} -->
 <div class="wp-block-group row"><!-- wp:group {"className":"custom lfar-anim-slide-left"} -->
@@ -309,7 +309,7 @@
 <div aria-hidden="true" class="triangle-wrap on-light"><svg class="triangle" preserveaspectratio="none" viewbox="0 0 100 102"><path d="M0 0 L50 100 L100 0 Z"></path></svg></div>
 <!-- /wp:html -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2 tight-top"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2 tight-top"} -->
 <section class="wp-block-group fw bg-light section2 tight-top" id="more-ways"><!-- wp:html -->
 <div aria-hidden="true" class="watermark r"></div>
 <!-- /wp:html -->
@@ -457,7 +457,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="faq"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"faq-row"} -->
 <div class="wp-block-group faq-row"><!-- wp:group {"className":"faq lfar-anim-slide-left"} -->

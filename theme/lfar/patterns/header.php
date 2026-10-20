@@ -23,7 +23,7 @@
 </div>
 <!-- /wp:html -->
 
-<!-- wp:group {"tagName":"nav","className":"navbar","ariaLabel":"Main"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"nav","className":"navbar","ariaLabel":"Main"} -->
 <nav class="wp-block-group navbar" id="navbar" aria-label="Main"><!-- wp:group {"className":"nav-inner"} -->
 <div class="wp-block-group nav-inner"><!-- wp:html -->
 <a aria-label="Los Feliz Animal Rescue home" class="brand" href="/">

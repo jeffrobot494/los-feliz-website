@@ -7,7 +7,7 @@
  * Post Types: page
  */
 ?>
-<!-- wp:group {"tagName":"section","className":"hero about-hero"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"hero about-hero"} -->
 <section class="wp-block-group hero about-hero"><!-- wp:image {"className":"hero-bg"} -->
 <figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/about-hero-bg.webp' ) ); ?>" alt="A volunteer kneeling in a sunny field with a rescued dog"/></figure>
 <!-- /wp:image -->
@@ -33,7 +33,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"mission-band"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"mission-band"} -->
 <section class="wp-block-group mission-band"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:paragraph {"className":"lfar-w"} -->
 <p class="lfar-w"><span class="eyebrow">Our Mission</span></p>
@@ -45,7 +45,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group -->
+<!-- wp:group {"templateLock":"contentOnly"} -->
 <div class="wp-block-group" id="facts"><!-- wp:group {"tagName":"section","className":"fact"} -->
 <section class="wp-block-group fact"><!-- wp:group {"className":"container fact-row"} -->
 <div class="wp-block-group container fact-row"><!-- wp:group {"tagName":"figure","className":"fact-photo lfar-anim-fade-down"} -->
@@ -203,7 +203,7 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="melody"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
 <!-- /wp:html -->
@@ -259,7 +259,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="board"><!-- wp:html -->
 <div aria-hidden="true" class="watermark r"></div>
 <!-- /wp:html -->
@@ -321,7 +321,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="programs"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
@@ -567,7 +567,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="money"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
@@ -609,7 +609,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="partners"><!-- wp:html -->
 <div aria-hidden="true" class="watermark r"></div>
 <!-- /wp:html -->
@@ -687,7 +687,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="feed"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
@@ -843,7 +843,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="next"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
@@ -907,7 +907,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw funders section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw funders section2"} -->
 <section class="wp-block-group fw funders section2" id="funders"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
@@ -1165,7 +1165,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw band section2 cta-band"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw band section2 cta-band"} -->
 <section class="wp-block-group fw band section2 cta-band" id="join"><!-- wp:group {"className":"mosaic"} -->
 <div class="wp-block-group mosaic"><!-- wp:image -->
 <figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/five-puppies-looking-out-of-a-crate.jpg' ) ); ?>" alt=""/></figure>

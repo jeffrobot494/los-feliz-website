@@ -6,7 +6,7 @@
  * Inserter: yes
  */
 ?>
-<!-- wp:group {"tagName":"section","className":"fw newsletter"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw newsletter"} -->
 <section class="wp-block-group fw newsletter" id="newsletter"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"nl lfar-anim-fade-up"} -->
 <div class="wp-block-group nl lfar-anim-fade-up"><!-- wp:html -->

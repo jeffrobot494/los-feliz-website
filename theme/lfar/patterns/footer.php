@@ -6,7 +6,7 @@
  * Inserter: no
  */
 ?>
-<!-- wp:group {"tagName":"footer"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"footer"} -->
 <footer class="wp-block-group"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"foot"} -->
 <div class="wp-block-group foot"><!-- wp:html -->

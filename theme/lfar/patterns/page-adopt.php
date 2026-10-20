@@ -7,7 +7,7 @@
  * Post Types: page
  */
 ?>
-<!-- wp:group {"tagName":"section","className":"hero night"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"hero night"} -->
 <section class="wp-block-group hero night"><!-- wp:html -->
 <canvas aria-hidden="true" id="city"></canvas>
 <!-- /wp:html -->
@@ -39,7 +39,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="connection"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
 <!-- /wp:html -->
@@ -111,7 +111,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2 answer"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2 answer"} -->
 <section class="wp-block-group fw section2 answer" id="answer"><!-- wp:html -->
 <div aria-hidden="true" class="watermark r"></div>
 <!-- /wp:html -->
@@ -187,7 +187,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="stories"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
 <!-- /wp:html -->
@@ -276,7 +276,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="meet"><!-- wp:html -->
 <div aria-hidden="true" class="watermark r"></div>
 <!-- /wp:html -->
@@ -416,7 +416,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="apply"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
 <!-- /wp:html -->
@@ -474,7 +474,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw band foster-strip"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw band foster-strip"} -->
 <section class="wp-block-group fw band foster-strip" id="foster"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l" style="background:#fff;opacity:.07"></div>
 <!-- /wp:html -->

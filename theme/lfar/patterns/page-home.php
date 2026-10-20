@@ -7,7 +7,7 @@
  * Post Types: page
  */
 ?>
-<!-- wp:group {"tagName":"section","className":"hero"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"hero"} -->
 <section class="wp-block-group hero"><!-- wp:image {"className":"hero-bg"} -->
 <figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home-hero-bg.webp' ) ); ?>" alt="A volunteer holding a rescued puppy"/></figure>
 <!-- /wp:image -->
@@ -61,7 +61,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="news"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
 <!-- /wp:html -->
@@ -174,7 +174,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="featured"><!-- wp:html -->
 <div aria-hidden="true" class="watermark r"></div>
 <!-- /wp:html -->
@@ -232,7 +232,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw band section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw band section2"} -->
 <section class="wp-block-group fw band section2" id="donate"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
@@ -302,7 +302,7 @@
 <div aria-hidden="true" class="triangle-wrap"><svg class="triangle" preserveaspectratio="none" viewbox="0 0 100 102"><path d="M0 0 L50 100 L100 0 Z"></path></svg></div>
 <!-- /wp:html -->
 
-<!-- wp:group {"tagName":"section","className":"fw"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw"} -->
 <section class="wp-block-group fw" id="happy-tales"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
 <!-- /wp:html -->

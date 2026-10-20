@@ -1,6 +1,5 @@
 (function(){var p=location.pathname.replace(/\/?$/,'/');[].forEach.call(document.querySelectorAll('#menu a'),function(a){var h;try{h=new URL(a.href).pathname.replace(/\/?$/,'/')}catch(e){return}if(h===p){a.setAttribute('aria-current','page');if(!a.parentNode.classList.contains('nav-donate'))a.classList.add('active');}});})();
 (function(){[].forEach.call(document.querySelectorAll('[class*="lfar-anim-"]'),function(el){var m=el.className.match(/\blfar-anim-([\w-]+)/);if(m&&!el.dataset.anim)el.dataset.anim=m[1];});})();
-(function(){[].forEach.call(document.querySelectorAll('[class*="lfar-d--"]'),function(el){el.className.replace(/\blfar-d--([a-z0-9]+)--([\w-]+)/g,function(_,k,v){if(!(k in el.dataset))el.dataset[k]=v;});});})();
 (function(){var d=document.documentElement;d.classList.add("js");function go(){var h=document.querySelector(".rc-hero");if(h)h.classList.add("go");}function tryGo(){if(document.visibilityState==="visible"){requestAnimationFrame(go);return true}return false}document.addEventListener("DOMContentLoaded",function(){if(!tryGo())document.addEventListener("visibilitychange",function v(){if(tryGo())document.removeEventListener("visibilitychange",v)})});setTimeout(go,4000);})();
 
 (function(){
@@ -26,7 +25,7 @@
   }
   function setStep(i){
     if(i===cur) return; var up=i>cur; cur=i; var sum=0;
-    steps.forEach(function(s){s.classList.toggle('active',+s.dataset.i===i);});
+    steps.forEach(function(s,n){s.classList.toggle('active',n+1===i);});
     rlines.forEach(function(l){ var on=+l.dataset.i<=i; if(on&&!l.classList.contains('on')&&up){l.classList.add('fresh');setTimeout(function(){l.classList.remove('fresh')},1200);} l.classList.toggle('on',on); if(on) sum+=(+l.dataset.v||0); });
     chips.forEach(function(c){ var line=rlines.filter(function(l){return l.dataset.v===c.dataset.v})[0]; c.classList.toggle('on',!!line&&+line.dataset.i<=i); });
     stamp.classList.toggle('on',i>=6);
@@ -34,7 +33,7 @@
   }
   function pickStep(){
     var line=window.innerHeight*.72, idx=0;
-    steps.forEach(function(st){ if(st.getBoundingClientRect().top<line) idx=+st.dataset.i; });
+    steps.forEach(function(st,n){ if(st.getBoundingClientRect().top<line) idx=n+1; });
     setStep(idx);
   }
   var sticking=false; window.addEventListener('scroll',function(){ if(!sticking){ sticking=true; requestAnimationFrame(function(){ pickStep(); sticking=false; }); } },{passive:true});

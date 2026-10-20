@@ -7,7 +7,7 @@
  * Post Types: page
  */
 ?>
-<!-- wp:group {"tagName":"section","className":"rc-hero"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"rc-hero"} -->
 <section class="wp-block-group rc-hero"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"hero-card rc-card"} -->
 <div class="wp-block-group hero-card rc-card"><!-- wp:paragraph {"className":"eyebrow"} -->
@@ -51,7 +51,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"story-sec"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"story-sec"} -->
 <section class="wp-block-group story-sec" id="story"><!-- wp:html -->
 <div aria-hidden="true" class="watermark l"></div>
 <!-- /wp:html -->
@@ -59,8 +59,8 @@
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"story-grid"} -->
 <div class="wp-block-group story-grid"><!-- wp:group {"tagName":"ol","className":"steps"} -->
-<ol class="wp-block-group steps" id="steps"><!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d1"} -->
-<li class="wp-block-group step lfar-d--i--1"><!-- wp:html -->
+<ol class="wp-block-group steps" id="steps"><!-- wp:group {"tagName":"li","className":"step"} -->
+<li class="wp-block-group step"><!-- wp:html -->
 <span aria-hidden="true" class="step-ico"><svg viewbox="0 0 48 48"><path d="M7 26h34c0 8-7 14-17 14S7 34 7 26z"></path><path d="M14 26c1-4 5-6 10-6s9 2 10 6"></path><path d="M20 12c0 2 2 3 2 5M26 10c0 2 2 3 2 5"></path></svg></span>
 <!-- /wp:html -->
 
@@ -83,8 +83,8 @@
 <!-- /wp:group --></li>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d2"} -->
-<li class="wp-block-group step lfar-d--i--2"><!-- wp:html -->
+<!-- wp:group {"tagName":"li","className":"step"} -->
+<li class="wp-block-group step"><!-- wp:html -->
 <span aria-hidden="true" class="step-ico"><svg viewbox="0 0 48 48"><path d="M30 6l12 12M34 10l-18 18-6 2 2-6 18-18M12 30l-6 6M22 16l4 4M18 20l4 4"></path></svg></span>
 <!-- /wp:html -->
 
@@ -107,8 +107,8 @@
 <!-- /wp:group --></li>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d3"} -->
-<li class="wp-block-group step lfar-d--i--3"><!-- wp:html -->
+<!-- wp:group {"tagName":"li","className":"step"} -->
+<li class="wp-block-group step"><!-- wp:html -->
 <span aria-hidden="true" class="step-ico"><svg viewbox="0 0 48 48"><rect height="20" rx="3" width="20" x="14" y="14"></rect><path d="M19 8v6M24 8v6M29 8v6M19 34v6M24 34v6M29 34v6M8 19h6M8 24h6M8 29h6M34 19h6M34 24h6M34 29h6"></path></svg></span>
 <!-- /wp:html -->
 
@@ -131,8 +131,8 @@
 <!-- /wp:group --></li>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d4"} -->
-<li class="wp-block-group step lfar-d--i--4"><!-- wp:html -->
+<!-- wp:group {"tagName":"li","className":"step"} -->
+<li class="wp-block-group step"><!-- wp:html -->
 <span aria-hidden="true" class="step-ico"><svg viewbox="0 0 48 48"><path d="M24 40s-14-8.5-17.5-17A9.8 9.8 0 0 1 24 12a9.8 9.8 0 0 1 17.5 11C38 31.5 24 40 24 40z"></path><path d="M17 24h14M24 17v14"></path></svg></span>
 <!-- /wp:html -->
 
@@ -155,8 +155,8 @@
 <!-- /wp:group --></li>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d5"} -->
-<li class="wp-block-group step lfar-d--i--5"><!-- wp:html -->
+<!-- wp:group {"tagName":"li","className":"step"} -->
+<li class="wp-block-group step"><!-- wp:html -->
 <span aria-hidden="true" class="step-ico"><svg viewbox="0 0 48 48"><path d="M10 12h28v28H10z"></path><path d="M16 20h16M16 26h16M16 32h10"></path><path d="M18 8v8M30 8v8"></path></svg></span>
 <!-- /wp:html -->
 
@@ -179,8 +179,8 @@
 <!-- /wp:group --></li>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"li","className":"step lfar-d\u002d\u002di\u002d\u002d6"} -->
-<li class="wp-block-group step lfar-d--i--6"><!-- wp:group {"className":"step-photo"} -->
+<!-- wp:group {"tagName":"li","className":"step"} -->
+<li class="wp-block-group step"><!-- wp:group {"className":"step-photo"} -->
 <div class="wp-block-group step-photo"><!-- wp:image -->
 <figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/pepper-a-brown-and-white-puppy-with-her-new-fami.jpg' ) ); ?>" alt="Pepper, a brown and white puppy, with her new family of four"/></figure>
 <!-- /wp:image --></div>
@@ -238,7 +238,7 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","className":"fw bg-light section2"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="give"><!-- wp:html -->
 <div aria-hidden="true" class="watermark r"></div>
 <!-- /wp:html -->

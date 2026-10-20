@@ -221,6 +221,24 @@ mockups stay in `design/` as the design reference and for the client gallery, bu
 is generated from them anymore, so a change to a mockup has to be carried into the theme
 by hand.
 
+Each section of the six main pages, plus the header menu, footer and newsletter, is locked to
+**content only**: in the editor you can change text and swap images, but not delete or
+rearrange the blocks that hold the layout together. Changing a section's structure means
+editing its pattern in `theme/lfar/patterns/`.
+
+After editing a pattern, check that the block editor will still accept it:
+
+```sh
+npm --prefix tools/check-blocks ci
+node tools/check-blocks/check.mjs
+```
+
+It parses every pattern with WordPress's own block code and fails on any block the editor
+would reject ("This block contains unexpected or invalid content") or silently rewrite. On
+this OneDrive folder from WSL it takes over 20 minutes, because of disk speed; a copy of
+`tools/check-blocks` on the Linux disk runs in seconds. Pass it the patterns folder:
+`node check.mjs /path/to/theme/lfar/patterns`.
+
 ## Client gallery (GitHub Pages)
 
 `index.html` is a simple browser for everything in `design/`: folders first, then a thumbnail
