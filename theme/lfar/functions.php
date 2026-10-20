@@ -140,7 +140,21 @@ add_action(
 		if ( 'adopt' === $key ) {
 			wp_enqueue_script( 'petfinder-pet-scroller', 'https://www.petfinder.com/pet-scroller.bundle.js', array(), null, array( 'in_footer' => true ) );
 		}
+		// Home and Donate: Donorbox's script, which sizes the donation form iframe to its content.
+		if ( 'home' === $key || 'donate' === $key ) {
+			wp_enqueue_script( 'donorbox-widget', 'https://donorbox.org/widget.js', array(), null, array( 'in_footer' => true ) );
+		}
 	}
+);
+
+// Donorbox's embed code loads widget.js with paypalExpress="false"; keep that attribute.
+add_filter(
+	'script_loader_tag',
+	function ( $tag, $handle ) {
+		return 'donorbox-widget' === $handle ? str_replace( ' src=', ' paypalExpress="false" src=', $tag ) : $tag;
+	},
+	10,
+	2
 );
 
 // Editor: load the same page styles so pages look like the front end while editing.

@@ -250,39 +250,15 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"subhead"} -->
-<p class="subhead">Pick an amount and see what it covers on the next animal's receipt.</p>
+<p class="subhead">Every gift goes on the next animal's receipt. Here's what it covers.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"give-grid"} -->
 <div class="wp-block-group give-grid"><!-- wp:html -->
-<form class="widget" data-anim="slide-left" id="donate-form" novalidate="">
-<div aria-label="How often" class="freq" role="group">
-<button aria-pressed="true" data-f="once" type="button">One time</button>
-<button aria-pressed="false" data-f="monthly" type="button">Monthly</button>
+<div class="widget dbox" data-anim="slide-left">
+<iframe src="https://donorbox.org/embed/los-feliz-animal-rescue-1" name="donorbox" allowpaymentrequest="allowpaymentrequest" seamless="seamless" frameborder="0" scrolling="no" height="900px" width="100%" style="max-width:500px; min-width:250px; max-height:none!important"></iframe>
 </div>
-<fieldset>
-<legend>Choose an amount</legend>
-<div class="amounts">
-<button aria-pressed="false" class="amt" data-v="10" type="button">$10<small>food</small></button>
-<button aria-pressed="true" class="amt" data-v="25" type="button">$25<small>vaccines</small></button>
-<button aria-pressed="false" class="amt" data-v="50" type="button">$50<small>microchip</small></button>
-<button aria-pressed="false" class="amt" data-v="100" type="button">$100<small>surgery</small></button>
-</div>
-</fieldset>
-<label class="other" for="other-amount"><span>$</span><input autocomplete="off" id="other-amount" inputmode="decimal" placeholder="Other amount" type="text"/></label>
-<button class="suggest" id="suggest" type="button">★ Try $21 a month: one whole rescue a year</button>
-<label class="tribute" for="trib"><input id="trib" type="checkbox"/> Give in honor of someone (or your own pet)</label>
-<input class="trib-name" hidden="" id="trib-name" placeholder="Their name"/>
-<button class="give" id="give-btn" type="submit">Give $25</button>
-<div class="or">or pay with</div>
-<div class="wallets">
-<button aria-label="Pay with PayPal" class="wallet pp" type="button"><span style="color:#003087">Pay</span><span style="color:#009CDE">Pal</span></button>
-<button aria-label="Pay with Venmo" class="wallet vm" type="button">venmo</button>
-</div>
-<div class="secure"><svg aria-hidden="true" viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Secure donation · Tax-deductible</div>
-<p class="give-note" id="give-note">Mockup form. Nothing is charged.</p>
-</form>
 <!-- /wp:html -->
 
 <!-- wp:group {"className":"lfar-anim-fade-up"} -->

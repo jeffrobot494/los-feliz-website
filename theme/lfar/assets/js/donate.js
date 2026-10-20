@@ -39,15 +39,14 @@
   var sticking=false; window.addEventListener('scroll',function(){ if(!sticking){ sticking=true; requestAnimationFrame(function(){ pickStep(); sticking=false; }); } },{passive:true});
   window.addEventListener('resize',pickStep); pickStep();
 
-  // ---------- form + "next receipt" preview ----------
+  // ---------- "next receipt" preview (the Donorbox form itself is an iframe we can't read) ----------
   var COST=[['Food and bedding',10],['Vaccines',25],['Exam and microchip',50],['Spay or neuter surgery',100],['Dewormer, flea care, follow-up',65]];
-  var amts=$$('.amt'), other=$('#other-amount'), btn=$('#give-btn'), freq='once', val=25;
+  var freq='once', val=25;
   var covLines=$('#cov-lines'), covSum=$('#cov-summary'), covTotal=$('#cov-total');
   covLines.innerHTML=COST.map(function(c,i){return '<li class="rline on" data-k="'+i+'"><div><div class="row"><span class="lbl">'+c[0]+'</span><span class="ramt">$'+c[1]+'.00</span><span class="bar"><i></i></span></div></div></li>';}).join('');
   var bars=$$('#cov-lines .bar i');
   function render(){
     var yearly=freq==='monthly'?val*12:val, whole=Math.floor(yearly/250), rest=yearly-whole*250, left=rest;
-    btn.textContent=val?('Give $'+val+(freq==='monthly'?' a month':'')):'Give';
     covTotal.textContent=money(yearly)+(freq==='monthly'?'/yr':'');
     var covered=[];
     COST.forEach(function(c,i){ var f=whole?1:Math.max(0,Math.min(1,left/c[1])); if(!whole){ left-=Math.min(left,c[1]); } bars[i].style.width=(f*100)+'%'; if(f>=1) covered.push(c[0].toLowerCase()); });
@@ -58,17 +57,11 @@
     else msg='Your $'+val+' goes toward '+COST[0][0].toLowerCase()+'.';
     covSum.textContent=msg;
   }
-  function setAmount(v){ val=v; other.value=''; amts.forEach(function(x){x.setAttribute('aria-pressed',+x.dataset.v===v)}); if(!amts.some(function(x){return +x.dataset.v===v})) other.value=v; render(); }
-  function setFreq(f){ freq=f; $$('.freq button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.f===f)}); render(); }
-  amts.forEach(function(b){b.addEventListener('click',function(){setAmount(+b.dataset.v);});});
-  other.addEventListener('input',function(){var v=other.value.replace(/[^0-9.]/g,'');other.value=v;amts.forEach(function(x){x.setAttribute('aria-pressed','false')});val=Math.round(+v)||0;render();});
-  $$('.freq button').forEach(function(b){b.addEventListener('click',function(){setFreq(b.dataset.f);});});
-  $('#suggest').addEventListener('click',function(){setFreq('monthly');setAmount(21);});
-  $('#trib').addEventListener('change',function(e){$('#trib-name').hidden=!e.target.checked;});
-  $('#donate-form').addEventListener('submit',function(e){e.preventDefault();$('#give-note').textContent=val?'Thank you! On the live site, Donorbox takes it from here. (Mockup: nothing is charged.)':'Pick or enter an amount first.';});
+  function setAmount(v){ val=v; render(); }
+  function setFreq(f){ freq=f; render(); }
   render();
 
-  // "Pick your line" cards and anchors send their amount to the form
+  // "Pick your line" cards and anchors update the receipt and scroll to the form
   var picks=$$('.pick');
   picks.forEach(function(p){p.addEventListener('click',function(){picks.forEach(function(x){x.setAttribute('aria-pressed',x===p)});setFreq('once');setAmount(+p.dataset.v);$('#give').scrollIntoView({behavior:'smooth'});});});
   $$('.anchor').forEach(function(a){a.addEventListener('click',function(){picks.forEach(function(x){x.setAttribute('aria-pressed','false')});setFreq(a.dataset.f);setAmount(+a.dataset.v);$('#give').scrollIntoView({behavior:'smooth'});});});

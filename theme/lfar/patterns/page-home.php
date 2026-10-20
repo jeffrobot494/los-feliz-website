@@ -274,25 +274,9 @@
 <!-- /wp:group -->
 
 <!-- wp:html -->
-<form class="widget" data-anim="slide-right" onsubmit="return false">
-<fieldset>
-<legend>Choose an amount</legend>
-<div class="amounts">
-<button aria-pressed="false" class="amt" data-v="20" type="button">$20</button>
-<button aria-pressed="true" class="amt" data-v="50" type="button">$50</button>
-<button aria-pressed="false" class="amt" data-v="100" type="button">$100</button>
-<button aria-pressed="false" class="amt" data-v="500" type="button">$500</button>
+<div class="widget dbox" data-anim="slide-right">
+<iframe src="https://donorbox.org/embed/los-feliz-animal-rescue-1" name="donorbox" allowpaymentrequest="allowpaymentrequest" seamless="seamless" frameborder="0" scrolling="no" height="900px" width="100%" style="max-width:500px; min-width:250px; max-height:none!important"></iframe>
 </div>
-</fieldset>
-<label class="other" for="other-amount"><span>$</span><input autocomplete="off" id="other-amount" inputmode="decimal" placeholder="Other amount" type="text"/></label>
-<button class="give" id="give" type="submit">Donate $50</button>
-<div class="or">or pay with</div>
-<div class="wallets">
-<button aria-label="Pay with PayPal" class="wallet pp" type="button"><span style="color:#003087">Pay</span><span style="color:#009CDE">Pal</span></button>
-<button aria-label="Pay with Google Pay" class="wallet gp" type="button"><svg aria-hidden="true" height="20" viewbox="0 0 24 24" width="20"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z" fill="#4285F4"></path><path d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z" fill="#34A853"></path><path d="M6.4 14a6 6 0 0 1 0-3.9V7.5H3.1a10 10 0 0 0 0 9z" fill="#FBBC05"></path><path d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.5l3.3 2.6C7.2 7.8 9.4 6 12 6z" fill="#EA4335"></path></svg><span>Pay</span></button>
-</div>
-<div class="secure"><svg aria-hidden="true" viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Secure donation · Tax-deductible</div>
-</form>
 <!-- /wp:html --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>

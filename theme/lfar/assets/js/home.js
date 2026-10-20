@@ -8,12 +8,6 @@
   burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
   menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
 
-  // donate widget
-  var amts=[].slice.call(document.querySelectorAll('.amt')), give=document.getElementById('give'), other=document.getElementById('other-amount');
-  function setLabel(v){give.textContent=v?('Donate $'+v):'Donate';}
-  amts.forEach(function(b){b.addEventListener('click',function(){amts.forEach(function(x){x.setAttribute('aria-pressed',x===b)});other.value='';setLabel(b.dataset.v);});});
-  other.addEventListener('input',function(){var v=other.value.replace(/[^0-9.]/g,'');other.value=v;amts.forEach(function(x){x.setAttribute('aria-pressed','false')});setLabel(v);});
-
   // back to top
   var toTop=document.getElementById('toTop');
   function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
