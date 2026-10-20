@@ -28,3 +28,20 @@
     io.observe(el);
   });
 })();
+
+// About map hero: rotate the neighborhood labels (see about.css). Los Feliz (.anchor) stays.
+(function(){
+  var hero=document.querySelector('.about-map-hero'); if(!hero) return;
+  var chips=[].slice.call(hero.querySelectorAll('.places li:not(.anchor)'));
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){
+    [0,1,4].forEach(function(i){if(chips[i])chips[i].classList.add('on');}); return;
+  }
+  var STEP=2000, SHOW=6000, LOOP=chips.length*STEP;
+  function start(){
+    chips.forEach(function(c,i){
+      function cycle(){c.classList.add('on');setTimeout(function(){c.classList.remove('on');},SHOW);}
+      setTimeout(function(){cycle();setInterval(cycle,LOOP);},1800+i*STEP);
+    });
+  }
+  (function wait(){if(hero.classList.contains('go'))start();else setTimeout(wait,100);})();
+})();

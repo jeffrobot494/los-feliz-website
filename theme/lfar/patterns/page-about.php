@@ -7,27 +7,39 @@
  * Post Types: page
  */
 ?>
-<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"hero about-hero"} -->
-<section class="wp-block-group hero about-hero"><!-- wp:image {"className":"hero-bg"} -->
-<figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/about-hero-bg.webp' ) ); ?>" alt="A volunteer kneeling in a sunny field with a rescued dog"/></figure>
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"hero map-hero about-map-hero"} -->
+<section class="wp-block-group hero map-hero about-map-hero"><!-- wp:group {"className":"map-frame"} -->
+<div class="wp-block-group map-frame"><!-- wp:image {"className":"hero-bg"} -->
+<figure class="wp-block-image hero-bg"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/about-map-bg.webp' ) ); ?>" alt="Illustrated map of Los Feliz and nearby neighborhoods, with neighbors walking dogs, cats on porches, Griffith Observatory and the LA River"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:group {"className":"container"} -->
-<div class="wp-block-group container"><!-- wp:group {"className":"hero-card mission-card"} -->
-<div class="wp-block-group hero-card mission-card"><!-- wp:paragraph {"className":"lfar-w"} -->
-<p class="lfar-w"><span class="eyebrow">About Us</span></p>
-<!-- /wp:paragraph -->
+<!-- wp:html -->
+<ul class="places" aria-hidden="true">
+<li class="anchor" style="left:54%;top:41%">Los Feliz</li>
+<li style="left:34%;top:11%;--i:0">East Hollywood</li>
+<li style="left:79%;top:57%;--i:1">Elysian Valley</li>
+<li style="left:84%;top:11%;--i:2">Historic Filipinotown</li>
+<li class="bl" style="left:22%;top:56.5%;--i:3">Thai Town</li>
+<li style="left:79%;top:23%;--i:4">Cypress Park</li>
+<li style="left:11%;top:14.5%;--i:5">Little Armenia</li>
+<li style="left:93%;top:58%;--i:6">Glassell Park</li>
+<li class="vv" style="left:48%;top:58%;--i:7">Virgil Village</li>
+</ul>
+<!-- /wp:html --></div>
+<!-- /wp:group -->
 
-<!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">We're not a shelter. We're a network of foster homes.</h1>
+<!-- wp:group {"className":"container"} -->
+<div class="wp-block-group container"><!-- wp:group {"className":"hero-card impact-card"} -->
+<div class="wp-block-group hero-card impact-card"><!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading">About Us</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"header-p"} -->
-<p class="header-p">There's no building to visit. When an animal comes to us, Melody and our volunteers find it a foster home in the neighborhood. From there we handle the rest: vet care, the adoption listing, reviewing applications and matching it with the right family.</p>
+<p class="header-p">We're not a shelter. We're a network of foster homes, run by neighbors from East Hollywood to the LA River.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn" href="#facts">How we work</a></p>
+<p class="lfar-a"><a class="btn" href="#melody">Meet our founder</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>

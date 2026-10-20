@@ -13,3 +13,8 @@
 .steps .step { opacity: 1 !important; }
 /* About documents: the text takes the free space so the PDF/Link tag sits on the right, as on the live page. */
 .doc-list .lfar-card > p.lfar-w:has(.lfar-stretch) { flex: 1; min-width: 0; }
+
+/* About map hero: the map and its labels stay pinned inside the 16:9 frame, all labels shown. */
+.map-hero > .map-frame.wp-block { position: absolute !important; margin: 0; }
+.map-frame > figure.hero-bg.wp-block { position: absolute !important; inset: 0; margin: 0; }
+.about-map-hero .places li { opacity: 1 !important; animation: none !important; transform: translate(-50%,-50%) !important; }

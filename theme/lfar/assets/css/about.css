@@ -618,3 +618,23 @@ footer{padding-block:56px 32px}
 }
 figure.hero-bg>img{object-position:50% 35%}
 a:where(.lfar-stretch){color:inherit}
+
+/* ---------- about: neighborhood map hero (20 Oct 2026) ----------
+   Los Feliz stays put; the other 8 labels rotate (about.js adds/removes .on: one starts every 2s, each shows ~6s),
+   so 3 are on screen with it. Left-side labels are --i 0, 3 and 5, so one is always showing.
+   Rotation uses transitions, not an infinite animation: an always-running animation keeps the chip on a GPU layer
+   and its text renders soft. */
+.about-map-hero figure.hero-bg>img{object-position:50% 50%}
+.about-map-hero .places li{font-size:14px;padding:5px 14px 5px 10px;background:var(--white)}
+.about-map-hero .places li.anchor{font-size:16px;padding:7px 18px 7px 13px}
+.about-map-hero.go .places li.anchor{animation:chipIn .6s cubic-bezier(.22,1,.36,1) 1.5s both}
+.about-map-hero .places li:not(.anchor), .about-map-hero.go .places li:not(.anchor){animation:none;opacity:0;transform:translate(-50%,-30%) scale(.85);transition:opacity .6s ease, transform .6s cubic-bezier(.22,1,.36,1)}
+.about-map-hero .places li.on:not(.anchor){opacity:1;transform:translate(-50%,-50%)}
+html:not(.js) .about-map-hero .places li:is([style$="--i:0"],[style$="--i:1"],[style$="--i:4"]){opacity:1;transform:translate(-50%,-50%)}
+/* below 1200px the card covers these two spots */
+@media (max-width:1200px){
+.about-map-hero .places li.vv, .about-map-hero .places li.bl{display:none}
+.about-map-hero .places li.anchor{left:60%!important}
+}
+@media (max-width:991px){.about-map-hero .places li.anchor{display:flex}}
+@media (max-width:767px){.about-map-hero figure.hero-bg>img{object-position:48% 45%}}
