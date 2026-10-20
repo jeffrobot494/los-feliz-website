@@ -570,7 +570,7 @@ h3, .pet-name{font-size:30px}
 .pf-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.22,1,.36,1)}
 .pf-panel.open{grid-template-rows:1fr}
 .pf-panel > div{overflow:hidden;min-width:0}
-.pf-panel .pet-list-head{margin-top:56px}
+.pf-panel pet-scroller{display:block;margin-top:56px}
 .pets.four{grid-template-columns:repeat(4,1fr);gap:40px 24px}
 .pets.four .pet-body h4{font-size:24px}
 .foster-strip{padding-block:76px 80px;text-align:center}
