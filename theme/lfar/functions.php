@@ -136,6 +136,10 @@ add_action(
 		wp_enqueue_script( 'lfar-page', get_theme_file_uri( $js ), array(), lfar_ver( $js ), array( 'in_footer' => true ) );
 		wp_enqueue_style( 'lfar-forms', get_theme_file_uri( 'assets/css/forms.css' ), array( 'lfar-page' ), lfar_ver( 'assets/css/forms.css' ) );
 		wp_enqueue_script( 'lfar-forms', get_theme_file_uri( 'assets/js/forms.js' ), array( 'lfar-page' ), lfar_ver( 'assets/js/forms.js' ), array( 'in_footer' => true ) );
+		// Adopt: Petfinder's pet list widget (the <pet-scroller> element in the "See all adoptable animals" panel).
+		if ( 'adopt' === $key ) {
+			wp_enqueue_script( 'petfinder-pet-scroller', 'https://www.petfinder.com/pet-scroller.bundle.js', array(), null, array( 'in_footer' => true ) );
+		}
 	}
 );
 

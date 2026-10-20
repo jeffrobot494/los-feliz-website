@@ -342,69 +342,13 @@
 
 <!-- wp:group {"className":"pf-panel"} -->
 <div class="wp-block-group pf-panel" id="pf-panel"><!-- wp:group -->
-<div class="wp-block-group"><!-- wp:group {"className":"pet-list-head"} -->
-<div class="wp-block-group pet-list-head"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">All adoptable animals</h3>
-<!-- /wp:heading -->
-
-<!-- wp:html -->
-<div aria-label="Filter animals" class="filters" role="group">
-<button aria-pressed="true" class="chip" data-f="all" type="button">All <span class="n"></span></button>
-<button aria-pressed="false" class="chip" data-f="dog" type="button">Dogs <span class="n"></span></button>
-<button aria-pressed="false" class="chip" data-f="puppy" type="button">Puppies <span class="n"></span></button>
-<button aria-pressed="false" class="chip" data-f="cat" type="button">Cats <span class="n"></span></button>
-</div>
-<!-- /wp:html --></div>
-<!-- /wp:group -->
-
-<!-- wp:html -->
-<div class="pets four" id="pets">
-<article class="pet" data-anim="fade-up" data-kind="dog">
-<a class="thumb" href="#"><span class="tag">Dog</span><img alt="Biscuit, a small tan dog with big ears, held by a volunteer" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-volunteer-holding-a-small-tan-dog.jpg' ) ); ?>"/><span class="overlay-mask">Meet Biscuit</span></a>
-<div class="pet-body">
-<h4>Biscuit</h4>
-<p class="pet-meta">Male · 2 years · Chihuahua mix</p>
-<p>A lap dog through and through. Biscuit is quiet in the house and happiest tucked under a blanket.</p>
-<ul class="goodwith"><li>Apartment friendly</li><li>Good with adults</li></ul>
-<button class="more apply-for" data-pet="Biscuit" data-type="dog" type="button">Apply for Biscuit <i>→</i></button>
-</div>
-</article>
-<article class="pet" data-anim="fade-up" data-kind="puppy">
-<a class="thumb" href="#"><span class="tag">Puppy</span><img alt="Bear, a fluffy black puppy, held close in someone's arms" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-scruffy-black-puppy-held-close-in-someone-s-ar.jpg' ) ); ?>"/><span class="overlay-mask">Meet Bear</span></a>
-<div class="pet-body">
-<h4>Bear</h4>
-<p class="pet-meta">Male · 4 months · Shepherd mix</p>
-<p>Soft, curious and a little shy at first. Bear is learning to walk on a leash and loves a chew toy.</p>
-<ul class="goodwith"><li>Good with dogs</li><li>Good with kids</li></ul>
-<button class="more apply-for" data-pet="Bear" data-type="dog" type="button">Apply for Bear <i>→</i></button>
-</div>
-</article>
-<article class="pet" data-anim="fade-up" data-kind="cat">
-<a class="thumb" href="#"><span class="tag">Cat</span><img alt="Domino, a black and white kitten, held by her foster" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-black-and-white-kitten-held-by-its-foster.jpg' ) ); ?>"/><span class="overlay-mask">Meet Domino</span></a>
-<div class="pet-body">
-<h4>Domino</h4>
-<p class="pet-meta">Female · 3 months · Domestic shorthair</p>
-<p>Found under a porch on Hillhurst. Domino is playful, chatty and already uses the litter box like a pro.</p>
-<ul class="goodwith"><li>Good with cats</li><li>Indoor only</li></ul>
-<button class="more apply-for" data-pet="Domino" data-type="cat" type="button">Apply for Domino <i>→</i></button>
-</div>
-</article>
-<article class="pet" data-anim="fade-up" data-kind="puppy">
-<a class="thumb" href="#"><span class="tag soon">Available soon</span><img alt="Five puppies looking out through the front of a crate" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/five-puppies-looking-out-of-a-crate.jpg' ) ); ?>"/><span class="overlay-mask">Meet the litter</span></a>
-<div class="pet-body">
-<h4>The Porch Five</h4>
-<p class="pet-meta">Litter of 5 · 8 weeks · Mixed breed</p>
-<p>Five siblings who came in together. They'll be ready for homes in October, and you can apply now.</p>
-<ul class="goodwith"><li>Ready in October</li></ul>
-<button class="more apply-for" data-pet="One of the Porch Five" data-type="dog" type="button">Apply for a puppy <i>→</i></button>
-</div>
-</article>
-</div>
+<div class="wp-block-group"><!-- wp:html -->
+<pet-scroller s3Url="https://dbw3zep4prcju.cloudfront.net/" apiBase="https://psl.petfinder.com/graphql" organization='["CA3083"]' status="adoptable" petfinderUrl="https://www.petfinder.com/" hideBreed="true" limit="48" petListTitle="All adoptable animals"></pet-scroller>
 <!-- /wp:html -->
 
 <!-- wp:group {"className":"pf-note lfar-anim-fade-up"} -->
 <div class="wp-block-group pf-note lfar-anim-fade-up"><!-- wp:paragraph -->
-<p><strong>Listings come straight from Petfinder.</strong> This panel is where the full Petfinder embed goes, so it updates on its own whenever an animal is added or adopted.</p>
+<p><strong>Listings come straight from Petfinder.</strong> This list updates on its own whenever an animal is added or adopted.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->

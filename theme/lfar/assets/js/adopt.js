@@ -258,19 +258,6 @@
   var pfBtn=$('#pf-btn'), pfPanel=$('#pf-panel');
   pfBtn.addEventListener('click',function(){var o=pfPanel.classList.toggle('open');pfBtn.setAttribute('aria-expanded',o);pfBtn.firstChild.nodeValue=o?'Hide the full list ':'See all adoptable animals ';});
 
-  // pet filter
-  var pets=$$('#pets .pet'), chips=$$('.chip');
-  chips.forEach(function(c){var f=c.dataset.f;c.querySelector('.n').textContent=pets.filter(function(p){return f==='all'||p.dataset.kind===f||(f==='dog'&&p.dataset.kind==='puppy')}).length;});
-  chips.forEach(function(c){c.addEventListener('click',function(){
-    var f=c.dataset.f; chips.forEach(function(x){x.setAttribute('aria-pressed',x===c)});
-    pets.forEach(function(p){
-      var show=f==='all'||p.dataset.kind===f||(f==='dog'&&p.dataset.kind==='puppy');
-      p.classList.remove('run');p.style.animation='none';
-      if(show){ if(p.hidden){p.classList.add('out');p.hidden=false;void p.offsetWidth;} setTimeout(function(){p.classList.remove('out')},20); }
-      else if(!p.hidden){ p.classList.add('out'); setTimeout(function(){ if(p.classList.contains('out')) p.hidden=true; },280); }
-    });
-  });});
-
   // Happy Tales: each click reveals the next three #happytales posts
   var talesBtn=$('#tales-btn');
   if(talesBtn) talesBtn.addEventListener('click',function(){
