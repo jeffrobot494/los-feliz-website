@@ -77,6 +77,10 @@
     $$('[data-count]').forEach(function(el){ if(el.getBoundingClientRect().top>window.innerHeight) cio.observe(el); });
   }
 
+  // Donorbox resizes its iframe at every step; let it grow but never shrink, so the page doesn't jump around
+  var dbox=document.querySelector('.widget.dbox iframe');
+  if(dbox&&'MutationObserver' in window){var dboxMax=0;new MutationObserver(function(){var h=parseFloat(dbox.style.height)||0;if(h>dboxMax){dboxMax=h;dbox.style.minHeight=h+'px';}}).observe(dbox,{attributes:true,attributeFilter:['style']});}
+
   // back to top
   var toTop=$('#toTop');
   function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
