@@ -1,6 +1,49 @@
 (function(){var p=location.pathname.replace(/\/?$/,'/');[].forEach.call(document.querySelectorAll('#menu a'),function(a){var h;try{h=new URL(a.href).pathname.replace(/\/?$/,'/')}catch(e){return}if(h===p){a.setAttribute('aria-current','page');if(!a.parentNode.classList.contains('nav-donate'))a.classList.add('active');}});})();
 (function(){[].forEach.call(document.querySelectorAll('[class*="lfar-anim-"]'),function(el){var m=el.className.match(/\blfar-anim-([\w-]+)/);if(m&&!el.dataset.anim)el.dataset.anim=m[1];});})();
-(function(){var d=document.documentElement;d.classList.add("js");function go(){var h=document.querySelector(".hero");if(h)h.classList.add("go");}function tryGo(){if(document.visibilityState==="visible"){requestAnimationFrame(function(){setTimeout(go,150)});return true}return false}window.addEventListener("load",function(){if(!tryGo())document.addEventListener("visibilitychange",function v(){if(tryGo())document.removeEventListener("visibilitychange",v)})});setTimeout(go,6000);})();
+(function () {
+  var hero = document.querySelector('.hero');
+  if (!hero) return;
+  var img = hero.querySelector('.hero-bg img');
+  hero.classList.add('image-pending');
+
+  function reveal() {
+    function showPanel() {
+      hero.classList.remove('image-pending');
+      hero.classList.add('go');
+    }
+    // Start the banner only when its image is ready, independently of page load.
+    requestAnimationFrame(function () {
+      if (!img || !img.naturalWidth) {
+        showPanel();
+        return;
+      }
+      hero.classList.add('image-ready');
+      // CSS gives the banner a short head start, then overlaps the panel entrance.
+      // Reduced motion disables both animations and their delay.
+      showPanel();
+    });
+  }
+
+  function ready() {
+    img.removeEventListener('load', ready);
+    img.removeEventListener('error', ready);
+    // A failed image must not hide the page's message.
+    if (img.naturalWidth && typeof img.decode === 'function') {
+      img.decode().then(reveal, reveal);
+    } else {
+      reveal();
+    }
+  }
+
+  if (!img) {
+    reveal();
+  } else if (img.complete) {
+    ready();
+  } else {
+    img.addEventListener('load', ready);
+    img.addEventListener('error', ready);
+  }
+})();
 
 (function(){
   // mobile menu

@@ -112,7 +112,7 @@ h3{font-size:40px;line-height:1.2;color:var(--h3);letter-spacing:-1px;margin-bot
 .widget{justify-self:end;width:100%;max-width:470px;background:var(--white);border-radius:14px;padding:36px 36px 30px;display:flex;flex-direction:column;gap:16px;box-shadow:0 24px 60px rgba(40,0,55,.28);color:#2A2430;font-family:var(--wp--preset--font-family--heading)}
 .widget legend, .widget .w-title{font-size:21px;font-weight:700;color:#2A2430;padding:0;margin-bottom:12px}
 .widget fieldset{border:0;margin:0;padding:0}
-.widget.dbox{display:block;max-width:424px;padding:0;overflow:hidden}
+.widget.dbox{display:block;max-width:424px;margin-inline:auto;padding:0;overflow:hidden}
 .widget.dbox iframe{display:block;width:100%;border:0}
 .amounts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 .amt{height:52px;border:1px solid #DDD3E2;background:var(--white);color:#2A2430;font:700 18px/1 var(--wp--preset--font-family--heading);border-radius:8px;cursor:pointer;transition:border-color .2s ease-in-out,background-color .2s ease-in-out,color .2s ease-in-out,transform .2s ease-in-out}
