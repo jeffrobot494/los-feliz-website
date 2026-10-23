@@ -13,7 +13,8 @@ RUN curl -fsSL -o /usr/local/bin/install-php-extensions \
  && install-php-extensions mysqli gd zip exif intl bcmath opcache imagick
 
 # Apache: pretty permalinks (.htaccess) and the usual modules
-RUN a2enmod rewrite headers expires \
+RUN a2dismod -f mpm_event mpm_worker || true; \
+    a2enmod mpm_prefork rewrite headers expires \
  && sed -ri '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 RUN { \
