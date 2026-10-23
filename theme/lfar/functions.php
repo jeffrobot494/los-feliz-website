@@ -147,6 +147,18 @@ add_action(
 	}
 );
 
+// About, Get Involved, Contact: their scripts mark <html> with .js (hero parts wait for the hero image), but they load
+// in the footer. Set it in the head too, so the no-JS fallback (e.g. About's map labels) never flashes first.
+add_action(
+	'wp_head',
+	function () {
+		if ( in_array( lfar_page_key(), array( 'about', 'get-involved', 'contact' ), true ) ) {
+			wp_print_inline_script_tag( "document.documentElement.classList.add('js');" );
+		}
+	},
+	1
+);
+
 // Donorbox's embed code loads widget.js with paypalExpress="false"; keep that attribute.
 add_filter(
 	'script_loader_tag',
