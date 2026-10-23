@@ -488,7 +488,6 @@ h3, .pet-name{font-size:30px}
 .other-way p{font-size:14.5px;margin:0 0 6px}
 .other-way .more{font-size:13px}
 .menu a.active{background:var(--accent)}
-.tbd{background:#FFF1A8;color:#5A4600;padding:0 5px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .hero.contact-hero{height:600px}
 .contact-hero .hero-bg{background:url("../images/home-hero-bg.webp") 70% 38%/cover no-repeat}
 .contact-hero .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(60,20,70,.35),rgba(60,20,70,0) 60%)}

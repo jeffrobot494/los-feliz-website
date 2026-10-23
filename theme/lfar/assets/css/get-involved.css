@@ -496,7 +496,6 @@ h3, .pet-name{font-size:30px}
 .mockup-key{background:#FFFBEA;border-bottom:1px solid #F2E3A0;color:#5A4600;font-size:14px;line-height:1.5;text-align:center;padding:10px 0}
 .mockup-key p{margin:0}
 .mockup-key strong{font-family:var(--wp--preset--font-family--heading)}
-.tbd{background:#FFF1A8;color:#5A4600;padding:0 5px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .hero.contact-hero{height:600px}
 .contact-hero .hero-bg{background:url("") 70% 38%/cover no-repeat}
 .contact-hero .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(60,20,70,.35),rgba(60,20,70,0) 60%)}
@@ -549,7 +548,6 @@ html{scroll-behavior:auto}
 .gi-hero .hero-bg{background-image:url("../images/get-involved-get-involved-page-gi-hero-hero-bg.jpg")!important;background-position:30% 45%!important}
 .gi-hero .hero-bg::after{background:linear-gradient(90deg,rgba(60,20,70,0) 30%,rgba(60,20,70,.35))!important}
 .gi-hero .container{justify-content:flex-end}
-.gi-hero .hero-chips li .tbd{padding:0 4px}
 .routes .more{margin-top:auto;justify-content:center}
 .route-note{position:relative;z-index:1;text-align:center;margin:44px auto 0;font-size:14.5px;color:#7A7A7A;max-width:60ch}
 .role-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:-20px 0 44px;position:relative;z-index:1}
