@@ -7,6 +7,15 @@ PORT="${PORT:-8080}"
 sed -ri "s/^Listen .*/Listen ${PORT}/" /etc/apache2/ports.conf
 sed -ri "s/<VirtualHost \*:[0-9]+>/<VirtualHost *:${PORT}>/" /etc/apache2/sites-available/000-default.conf
 
+# mod_php needs the prefork MPM, and Apache refuses to start with more than one MPM enabled.
+# On Railway an extra MPM can show up at runtime even when the image only has prefork,
+# so switch the others off every time the container starts.
+a2dismod -q -f mpm_event mpm_worker mpm_itk >/dev/null 2>&1 || true
+rm -f /etc/apache2/mods-enabled/mpm_event.* /etc/apache2/mods-enabled/mpm_worker.* /etc/apache2/mods-enabled/mpm_itk.*
+a2enmod -q mpm_prefork >/dev/null 2>&1 || true
+echo "[lfar] MPMs enabled: $(ls /etc/apache2/mods-enabled | grep '^mpm_.*\.load$' | tr '\n' ' ')"
+apache2ctl -t
+
 if [ -z "${RAILWAY_PUBLIC_DOMAIN:-}" ]; then
   echo "[lfar] RAILWAY_PUBLIC_DOMAIN is not set. Generate a domain for this service in Railway (Settings > Networking), then redeploy." >&2
   exit 1
