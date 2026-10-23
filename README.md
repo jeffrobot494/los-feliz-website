@@ -129,6 +129,12 @@ The theme started as a conversion of `design/final-mockups/` by a script that wa
 last run (commit `a627e69`, still in git history). Nothing is generated from the mockups anymore, so a
 change to a mockup has to be carried into the theme by hand.
 
+## Client preview on Railway
+
+`deploy/railway/` hosts a temporary, always-on copy of the WordPress site for client review: the
+theme from this repo plus the Local site's uploads and database. Run
+`deploy\railway\deploy-preview.ps1` from PowerShell; see `deploy/railway/README.md`.
+
 ## Design mockups and client gallery
 
 `design/` holds the static HTML mockups: open any `.html` file in a browser. `design/final-mockups/`
