@@ -83,10 +83,36 @@ function lfar_ig_section_labels() {
 	);
 }
 
+/**
+ * One-time merge for installs that saved Settings → LFAR Instagram before the
+ * column tags existed. Saved urgent_tags replace the defaults, so #urgentneed
+ * would never match until someone re-saved. Missing event/update lists get the
+ * new defaults. A later save can still remove a tag; this does not put it back.
+ */
+function lfar_ig_migrate_saved_tags( $saved, $defaults ) {
+	if ( (int) get_option( 'lfar_ig_tag_rev' ) >= 2 ) {
+		return $saved;
+	}
+	if ( is_array( $saved ) && $saved ) {
+		foreach ( array( 'event_tags', 'update_tags' ) as $key ) {
+			if ( ! isset( $saved[ $key ] ) || '' === trim( (string) $saved[ $key ] ) ) {
+				$saved[ $key ] = $defaults[ $key ];
+			}
+		}
+		$urgent = lfar_ig_tag_list( isset( $saved['urgent_tags'] ) ? $saved['urgent_tags'] : '' );
+		if ( ! in_array( 'urgentneed', $urgent, true ) ) {
+			$saved['urgent_tags'] = trim( ( isset( $saved['urgent_tags'] ) ? $saved['urgent_tags'] : '' ) . ' urgentneed' );
+		}
+		update_option( 'lfar_ig_settings', $saved, false );
+	}
+	update_option( 'lfar_ig_tag_rev', 2, false );
+	return is_array( $saved ) ? $saved : array();
+}
+
 function lfar_ig_settings() {
 	$d = lfar_ig_default_settings();
 	$s = get_option( 'lfar_ig_settings', array() );
-	$s = is_array( $s ) ? $s : array();
+	$s = lfar_ig_migrate_saved_tags( is_array( $s ) ? $s : array(), $d );
 	$out = array_merge( $d, array_intersect_key( $s, $d ) );
 	foreach ( $d['sections'] as $k => $sec ) {
 		$saved                 = isset( $s['sections'][ $k ] ) && is_array( $s['sections'][ $k ] ) ? $s['sections'][ $k ] : array();
@@ -325,21 +351,22 @@ function lfar_ig_clock_minutes( $hour, $min, $ap ) {
 }
 
 /**
- * When an event caption says the event is over, as a unix timestamp.
+ * Start and end of an event named in a caption.
  *
- * Reads a date out of the caption (the post time is when it was published, not when
- * the event happens). Examples that work: "October 3, 2026", "Oct 3–5, 2026",
- * "Saturday, October 3, 2026 · 11 am – 2 pm", "2026-10-03", "10/3/2026".
- * The latest date wins. The latest clock time that day is the end; with no time, end of that day.
- * A month and day with no year uses the post's year, or the next year if that date already passed.
- * Returns null when the caption has no date — the caller then keeps the newest #event post
- * until a newer #event post replaces it.
+ * The post time is when it was published, not when the event happens.
+ * Examples: "October 3, 2026", "Oct 3–5, 2026", "Saturday, November 14, 2026 · 11 am – 2 pm",
+ * "2026-10-03", "10/3/2026". A month and day with no year uses the post's year, or the
+ * next year if that date already passed. Returns null when the caption has no date.
+ *
+ * 'end' is when the event is over (later clock time, or end of the last day).
+ * 'start' is the first date and the first clock time. 'has_time' is true when a caption
+ * includes a clock time, so the card can show "11:00 am – 2:00 pm" instead of only the end.
  *
  * @param string $caption
  * @param int    $posted_ts
- * @return int|null
+ * @return array{start:int,end:int,has_time:bool}|null
  */
-function lfar_ig_event_end_ts( $caption, $posted_ts ) {
+function lfar_ig_event_window( $caption, $posted_ts ) {
 	$caption = str_replace( array( "–", "—" ), '-', (string) $caption );
 	$months  = array(
 		'january' => 1, 'february' => 2, 'march' => 3, 'april' => 4, 'may' => 5, 'june' => 6,
@@ -350,9 +377,14 @@ function lfar_ig_event_end_ts( $caption, $posted_ts ) {
 	$found = array();
 	if ( preg_match_all( '/\b(january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|jun|jul|aug|sept|sep|oct|nov|dec)\.?\s+(\d{1,2})(?:st|nd|rd|th)?(?:\s*-\s*(\d{1,2})(?:st|nd|rd|th)?)?(?:,?\s+(\d{4}))?/iu', $caption, $mm, PREG_SET_ORDER ) ) {
 		foreach ( $mm as $m ) {
-			$day2    = ( isset( $m[3] ) && '' !== $m[3] ) ? (int) $m[3] : (int) $m[2];
-			$year    = ( isset( $m[4] ) && '' !== $m[4] ) ? (int) $m[4] : 0;
-			$found[] = array( $year, $months[ strtolower( $m[1] ) ], max( (int) $m[2], $day2 ) );
+			$day  = (int) $m[2];
+			$day2 = ( isset( $m[3] ) && '' !== $m[3] ) ? (int) $m[3] : $day;
+			$year = ( isset( $m[4] ) && '' !== $m[4] ) ? (int) $m[4] : 0;
+			$mon  = $months[ strtolower( $m[1] ) ];
+			$found[] = array( $year, $mon, min( $day, $day2 ) );
+			if ( $day2 !== $day ) {
+				$found[] = array( $year, $mon, max( $day, $day2 ) );
+			}
 		}
 	}
 	if ( preg_match_all( '/\b(\d{4})-(\d{2})-(\d{2})\b/', $caption, $mm, PREG_SET_ORDER ) ) {
@@ -375,7 +407,7 @@ function lfar_ig_event_end_ts( $caption, $posted_ts ) {
 
 	$tz     = function_exists( 'wp_timezone' ) ? wp_timezone() : new DateTimeZone( 'America/Los_Angeles' );
 	$posted = ( new DateTimeImmutable( '@' . (int) $posted_ts ) )->setTimezone( $tz );
-	$best   = null;
+	$dates  = array();
 	foreach ( $found as $f ) {
 		$year = $f[0];
 		if ( ! $year ) {
@@ -389,13 +421,19 @@ function lfar_ig_event_end_ts( $caption, $posted_ts ) {
 		if ( ! $dt || (int) $dt->format( 'n' ) !== (int) $f[1] || (int) $dt->format( 'j' ) !== (int) $f[2] ) {
 			continue;
 		}
-		if ( ! $best || $dt > $best ) {
-			$best = $dt;
-		}
+		$dates[] = $dt;
 	}
-	if ( ! $best ) {
+	if ( ! $dates ) {
 		return null;
 	}
+	usort(
+		$dates,
+		function ( $a, $b ) {
+			return $a->getTimestamp() <=> $b->getTimestamp();
+		}
+	);
+	$start_day = $dates[0];
+	$end_day   = $dates[ count( $dates ) - 1 ];
 
 	$minutes = array();
 	if ( preg_match_all( '/\b(\d{1,2})(?::(\d{2}))?\s*(a\.?m\.?|p\.?m\.?)\b/iu', $caption, $tm, PREG_SET_ORDER ) ) {
@@ -406,13 +444,34 @@ function lfar_ig_event_end_ts( $caption, $posted_ts ) {
 			}
 		}
 	}
-	if ( $minutes ) {
-		$end  = max( $minutes );
-		$best = $best->setTime( intdiv( $end, 60 ), $end % 60, 0 );
+	$has_time = (bool) $minutes;
+	if ( count( $minutes ) >= 2 ) {
+		$first = $minutes[0];
+		$last  = $minutes[ count( $minutes ) - 1 ];
+		$start = $start_day->setTime( intdiv( $first, 60 ), $first % 60, 0 );
+		$end   = $end_day->setTime( intdiv( $last, 60 ), $last % 60, 0 );
+		if ( $end < $start ) {
+			$end = $end_day->setTime( 23, 59, 59 );
+		}
+	} elseif ( 1 === count( $minutes ) ) {
+		$only  = $minutes[0];
+		$start = $start_day->setTime( intdiv( $only, 60 ), $only % 60, 0 );
+		$end   = $end_day->setTime( 23, 59, 59 );
 	} else {
-		$best = $best->setTime( 23, 59, 59 );
+		$start = $start_day->setTime( 0, 0, 0 );
+		$end   = $end_day->setTime( 23, 59, 59 );
 	}
-	return $best->getTimestamp();
+	return array(
+		'start'    => $start->getTimestamp(),
+		'end'      => $end->getTimestamp(),
+		'has_time' => $has_time,
+	);
+}
+
+/** @deprecated Use lfar_ig_event_window(). */
+function lfar_ig_event_end_ts( $caption, $posted_ts ) {
+	$window = lfar_ig_event_window( $caption, $posted_ts );
+	return $window ? $window['end'] : null;
 }
 
 /**
@@ -437,7 +496,10 @@ function lfar_ig_events_split( $posts = null ) {
 	$undated  = array();
 	$newest   = null;
 	foreach ( $posts as $p ) {
-		$p['event_end'] = lfar_ig_event_end_ts( $p['caption'], $p['ts'] );
+		$window             = lfar_ig_event_window( $p['caption'], $p['ts'] );
+		$p['event_start']   = $window ? $window['start'] : null;
+		$p['event_end']     = $window ? $window['end'] : null;
+		$p['event_has_time'] = $window ? $window['has_time'] : false;
 		if ( null === $p['event_end'] ) {
 			$undated[] = $p;
 		} elseif ( $p['event_end'] >= $now ) {
@@ -809,6 +871,32 @@ function lfar_ig_news_card( $p, $more ) {
 }
 
 /**
+ * Visitor-facing date line. A range shows the start and the end, not the end alone.
+ *
+ * @param array $p Post with event_start, event_end, event_has_time.
+ */
+function lfar_ig_event_when_text( $p ) {
+	$end   = (int) $p['event_end'];
+	$start = ! empty( $p['event_start'] ) ? (int) $p['event_start'] : $end;
+	$same  = wp_date( 'Ymd', $start ) === wp_date( 'Ymd', $end );
+	$timed = ! empty( $p['event_has_time'] );
+	if ( $timed && $same ) {
+		$from = wp_date( 'g:i a', $start );
+		$to   = wp_date( 'g:i a', $end );
+		// A single clock time is the start. End-of-day is only how we know the event is over.
+		$clock = ( 235959 === (int) wp_date( 'His', $end ) || $from === $to ) ? $from : $from . ' – ' . $to;
+		return wp_date( 'l, F j, Y', $start ) . ' · ' . $clock;
+	}
+	if ( $timed ) {
+		return wp_date( 'l, F j, Y · g:i a', $start ) . ' – ' . wp_date( 'l, F j, Y · g:i a', $end );
+	}
+	if ( ! $same ) {
+		return wp_date( 'F j, Y', $start ) . ' – ' . wp_date( 'F j, Y', $end );
+	}
+	return wp_date( 'l, F j, Y', $start );
+}
+
+/**
  * One homepage column card, or one card on the Events page.
  *
  * @param array  $p      Post, or empty array for a column with nothing in it.
@@ -842,8 +930,7 @@ function lfar_ig_column_card( $p, $column, $past = false ) {
 	$link = esc_url( $p['permalink'] );
 	$when = '';
 	if ( 'event' === $column && ! empty( $p['event_end'] ) ) {
-		$fmt  = ( (int) wp_date( 's', $p['event_end'] ) === 59 ) ? 'l, F j, Y' : 'l, F j, Y · g:i a';
-		$when = '<span>' . $cal . esc_html( wp_date( $fmt, $p['event_end'] ) ) . '</span>';
+		$when = '<span>' . $cal . esc_html( lfar_ig_event_when_text( $p ) ) . '</span>';
 	}
 	$posted = '<span>' . $clock . 'Posted ' . esc_html( wp_date( 'F j, Y', $p['ts'] ) ) . '</span>';
 	$class  = 'news-card col-' . $column . ( ( 'event' === $column && ! $past ) ? ' is-next' : '' );
@@ -940,7 +1027,7 @@ add_filter(
 				if ( ! $cards ) {
 					$cards = lfar_ig_column_card( array(), 'event' );
 				}
-				return '<div class="wp-block-group news-grid events-upcoming" id="upcoming">' . "\n" . $cards . '</div>';
+				return '<div class="wp-block-group news-grid events-upcoming">' . "\n" . $cards . '</div>';
 			}
 			if ( 'core/group' === $name && false !== strpos( $class, ' events-past ' ) ) {
 				$cards = '';
@@ -948,9 +1035,9 @@ add_filter(
 					$cards .= lfar_ig_column_card( $p, 'event', true );
 				}
 				if ( ! $cards ) {
-					return '<div class="wp-block-group news-grid events-past" id="past"></div><p class="feed-note">Past events will collect here.</p>';
+					return '<div class="wp-block-group news-grid events-past"></div><p class="feed-note">Past events will collect here.</p>';
 				}
-				return '<div class="wp-block-group news-grid events-past" id="past">' . "\n" . $cards . '</div>';
+				return '<div class="wp-block-group news-grid events-past">' . "\n" . $cards . '</div>';
 			}
 			return $html;
 		}

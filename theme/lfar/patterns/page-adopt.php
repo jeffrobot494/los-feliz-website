@@ -250,11 +250,11 @@
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
-<h2 class="wp-block-heading">Not ready to adopt? Foster</h2>
+<h2 class="wp-block-heading">Not quite ready to commit to adoption?</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"subhead"} -->
-<p class="subhead">Give an animal a place to stay while they wait for a family. You'll get the company, and we'll take care of the rest.</p>
+<p class="subhead">Check out our foster program. Give an animal a place to stay while they wait for a family.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -273,7 +273,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn btn-light" href="/get-involved/#foster">Foster</a></p>
+<p class="lfar-a"><a class="btn btn-light" href="/get-involved/#foster">Check out our foster program</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->

@@ -33,7 +33,31 @@
 	background: var(--nav, #71018A);
 	color: #fff !important;
 }
-.adopt-now[hidden] { display: none; }
+.adopt-now[hidden] { display: none !important; }
+
+/* The button sits in a strip below the scrolling page, so it never covers copy. */
+.wp-site-blocks {
+	height: calc(100dvh - 72px);
+	overflow: auto;
+}
+@media (max-width: 900px) {
+	.wp-site-blocks { height: calc(100dvh - 64px); }
+	.adopt-now {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 64px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0;
+	}
+	.back-to-top { bottom: 76px !important; }
+}
+body:has(.adopt-now[hidden]) .wp-site-blocks {
+	height: auto;
+	overflow: visible;
+}
 
 /* Photo heroes match the About map header Melody liked (about 460–560px), and grow if the card needs it. */
 @media (min-width: 992px) {
@@ -48,6 +72,23 @@
 		padding-block: 36px;
 	}
 	.hero:not(.map-hero) .hero-card { margin-top: 0; }
+	/* Get Involved's card is the tall one. Cap it with the other shortened headers. */
+	.hero.gi-hero {
+		height: clamp(460px, 30vw, 520px);
+		min-height: 0;
+		max-height: 520px;
+	}
+	.hero.gi-hero .container {
+		min-height: 0;
+		height: 100%;
+		padding-block: 16px;
+	}
+	.gi-hero .hero-card {
+		padding: 28px 36px 22px;
+	}
+	.gi-hero .hero-card h1 { font-size: 42px; margin-bottom: 8px; }
+	.gi-hero .header-p { margin-bottom: 8px; }
+	.gi-hero .hero-chips { margin-bottom: 4px; }
 
 	.header-p,
 	.subhead { font-size: 20px; line-height: 1.55; }

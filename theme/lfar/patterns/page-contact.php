@@ -43,10 +43,6 @@
 <!-- wp:group {"className":"hero-actions"} -->
 <div class="wp-block-group hero-actions"><!-- wp:paragraph {"className":"lfar-a"} -->
 <p class="lfar-a"><a class="btn" href="#message">Send a message</a></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn btn-ghost" href="#help">Found an animal?</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -74,7 +70,7 @@
 
 <!-- wp:details -->
 <details class="wp-block-details"><summary>Can you pick up a stray?</summary><!-- wp:paragraph -->
-<p>Usually not. We don't have staff or vehicles on call. The lost and found page explains how to check for a microchip and who to contact.</p>
+<p>Usually not. We don't have staff or vehicles on call. Send us a message and we'll tell you what we can do.</p>
 <!-- /wp:paragraph --></details>
 <!-- /wp:details -->
 
@@ -141,11 +137,11 @@
 
 <!-- wp:group -->
 <div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Social</h4>
+<h4 class="wp-block-heading">How we reply</h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><span class="small">Direct messages on Instagram and Facebook are checked less often than email.</span></p>
+<p><span class="small">Use the email above or the form. That reaches the whole team.</span></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></li>
 <!-- /wp:group -->

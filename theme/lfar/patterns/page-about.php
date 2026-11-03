@@ -258,6 +258,85 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
+<section class="wp-block-group fw section2" id="partners"><!-- wp:html -->
+<div aria-hidden="true" class="watermark r"></div>
+<!-- /wp:html -->
+
+<!-- wp:group {"className":"container"} -->
+<div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
+<div class="wp-block-group section-heading"><!-- wp:heading -->
+<h2 class="wp-block-heading">Who We Work With</h2>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"logo-group lfar-anim-fade-up"} -->
+<div class="wp-block-group logo-group lfar-anim-fade-up"><!-- wp:heading {"level":3,"className":"group-title"} -->
+<h3 class="wp-block-heading group-title">Community partners</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"group-note"} -->
+<p class="group-note">Vet clinics, other rescues and shelters we work with. <em class="tbd">[Include LA Animal Services if LFAR pulls animals from city shelters.]</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"className":"logos"} -->
+<ul class="wp-block-list logos"><!-- wp:list-item -->
+<li>Vet clinic logo</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Vet clinic logo</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Rescue partner logo</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Rescue partner logo</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Shelter partner logo</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Partner logo</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"logo-group lfar-anim-fade-up"} -->
+<div class="wp-block-group logo-group lfar-anim-fade-up"><!-- wp:heading {"level":3,"className":"group-title"} -->
+<h3 class="wp-block-heading group-title">Supported by</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"group-note"} -->
+<p class="group-note">Foundations, businesses and in-kind donors. <em class="tbd">[Get each one's permission before listing.]</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"className":"logos"} -->
+<ul class="wp-block-list logos"><!-- wp:list-item -->
+<li>Funder logo</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Funder logo</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Business logo</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>In-kind donor logo</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></section>
+<!-- /wp:group -->
+
+
 <!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
 <section class="wp-block-group fw bg-light section2" id="feed"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
