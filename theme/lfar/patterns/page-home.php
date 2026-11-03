@@ -37,7 +37,7 @@
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
-<h2 class="wp-block-heading">Event, updates, and urgent needs</h2>
+<h2 class="wp-block-heading">Events, urgent needs, and updates</h2>
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 

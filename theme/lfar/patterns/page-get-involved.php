@@ -377,10 +377,6 @@
 
 <!-- wp:paragraph -->
 <p>Food, litter, crates and meds, shipped straight to a foster home.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><span class="more"><span class="tbd">[Amazon · Chewy links]</span> <i>→</i></span></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -397,10 +393,6 @@
 
 <!-- wp:paragraph -->
 <p>T-shirts, mugs and stickers from our TeePublic shop. A share of each sale comes to us.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><span class="more">Shop the store <i>→</i></span></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -437,10 +429,6 @@
 
 <!-- wp:paragraph -->
 <p>Ask for gifts to the rescue for your birthday or a milestone. We'll send you photos to share.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><span class="more"><span class="tbd">[How to set one up]</span> <i>→</i></span></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -457,10 +445,6 @@
 
 <!-- wp:paragraph -->
 <p>Many employers match gifts to 501(c)(3)s. Ask your HR team and give them our EIN: 87-4677140.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><span class="more"><span class="tbd">[Confirm we accept]</span></span></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -481,10 +465,6 @@
 
 <!-- wp:paragraph -->
 <p>Some stores give us a small commission when you buy through our links. It costs you nothing extra.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><span class="more"><span class="tbd">[Affiliate programs]</span> <i>→</i></span></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

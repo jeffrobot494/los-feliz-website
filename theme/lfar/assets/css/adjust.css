@@ -35,29 +35,9 @@
 }
 .adopt-now[hidden] { display: none !important; }
 
-/* The button sits in a strip below the scrolling page, so it never covers copy. */
-.wp-site-blocks {
-	height: calc(100dvh - 72px);
-	overflow: auto;
-}
-@media (max-width: 900px) {
-	.wp-site-blocks { height: calc(100dvh - 64px); }
-	.adopt-now {
-		left: 0;
-		right: 0;
-		bottom: 0;
-		height: 64px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 0;
-	}
-	.back-to-top { bottom: 76px !important; }
-}
-body:has(.adopt-now[hidden]) .wp-site-blocks {
-	height: auto;
-	overflow: visible;
-}
+/* The window stays the scroller. This padding is the button height plus its offset,
+   so the copyright line sits above the button and hiding the button does not move the page. */
+body { padding-bottom: 72px; }
 
 /* Photo heroes match the About map header Melody liked (about 460–560px), and grow if the card needs it. */
 @media (min-width: 992px) {
@@ -167,3 +147,11 @@ body:has(.adopt-now[hidden]) .wp-site-blocks {
 
 /* Events / resources heroes use the home rules; keep section headings from colliding with the nav. */
 #upcoming, #past, #lost { scroll-margin-top: 110px; }
+
+/* Get Involved: clear the sticky nav and the jump bar. scroll-margin only, so it does not stack on scroll-padding. */
+#foster, #stories, #signup, #give, #more-ways {
+	scroll-margin-top: 180px;
+}
+@media (max-width: 767px) {
+	#foster, #stories, #signup, #give, #more-ways { scroll-margin-top: 156px; }
+}

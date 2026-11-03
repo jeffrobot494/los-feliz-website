@@ -901,9 +901,10 @@ function lfar_ig_event_when_text( $p ) {
  *
  * @param array  $p      Post, or empty array for a column with nothing in it.
  * @param string $column event | update | urgent.
- * @param bool   $past   Past-events archive (date line, no "next" label).
+ * @param bool   $past    Past-events archive (date line, no "next" label).
+ * @param bool   $is_next True only for the single next event. Later upcoming cards say "Event".
  */
-function lfar_ig_column_card( $p, $column, $past = false ) {
+function lfar_ig_column_card( $p, $column, $past = false, $is_next = true ) {
 	$labels = array(
 		'event'  => array( 'Next event', '' ),
 		'update' => array( 'Update', 'update' ),
@@ -911,6 +912,8 @@ function lfar_ig_column_card( $p, $column, $past = false ) {
 	);
 	if ( $past ) {
 		$labels['event'] = array( 'Past event', '' );
+	} elseif ( 'event' === $column && ! $is_next ) {
+		$labels['event'] = array( 'Event', '' );
 	}
 	$label = $labels[ $column ];
 	$tag   = '<span class="tag' . ( $label[1] ? ' ' . $label[1] : '' ) . '">' . esc_html( $label[0] ) . '</span>';
@@ -933,7 +936,7 @@ function lfar_ig_column_card( $p, $column, $past = false ) {
 		$when = '<span>' . $cal . esc_html( lfar_ig_event_when_text( $p ) ) . '</span>';
 	}
 	$posted = '<span>' . $clock . 'Posted ' . esc_html( wp_date( 'F j, Y', $p['ts'] ) ) . '</span>';
-	$class  = 'news-card col-' . $column . ( ( 'event' === $column && ! $past ) ? ' is-next' : '' );
+	$class  = 'news-card col-' . $column . ( ( 'event' === $column && ! $past && $is_next ) ? ' is-next' : '' );
 	return '<article class="' . esc_attr( $class ) . '" data-anim="fade-up">' . "\n"
 		. '<a class="thumb" href="' . $link . '" target="_blank" rel="noopener">' . $tag
 		. '<img alt="' . esc_attr( $p['parsed']['title'] ) . '" loading="lazy" src="' . esc_url( lfar_ig_img_url( $p ) ) . '"/>'
@@ -1021,8 +1024,8 @@ add_filter(
 			$split = lfar_ig_events_split();
 			if ( 'core/group' === $name && false !== strpos( $class, ' events-upcoming ' ) ) {
 				$cards = '';
-				foreach ( $split['upcoming'] as $p ) {
-					$cards .= lfar_ig_column_card( $p, 'event' );
+				foreach ( $split['upcoming'] as $i => $p ) {
+					$cards .= lfar_ig_column_card( $p, 'event', false, 0 === $i );
 				}
 				if ( ! $cards ) {
 					$cards = lfar_ig_column_card( array(), 'event' );

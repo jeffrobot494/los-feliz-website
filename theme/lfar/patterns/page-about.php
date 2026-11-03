@@ -276,34 +276,8 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"group-note"} -->
-<p class="group-note">Vet clinics, other rescues and shelters we work with. <em class="tbd">[Include LA Animal Services if LFAR pulls animals from city shelters.]</em></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list {"className":"logos"} -->
-<ul class="wp-block-list logos"><!-- wp:list-item -->
-<li>Vet clinic logo</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Vet clinic logo</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Rescue partner logo</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Rescue partner logo</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Shelter partner logo</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Partner logo</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></div>
+<p class="group-note">Vet clinics, other rescues and shelters we work with.</p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"logo-group lfar-anim-fade-up"} -->
@@ -312,26 +286,8 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"group-note"} -->
-<p class="group-note">Foundations, businesses and in-kind donors. <em class="tbd">[Get each one's permission before listing.]</em></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list {"className":"logos"} -->
-<ul class="wp-block-list logos"><!-- wp:list-item -->
-<li>Funder logo</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Funder logo</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Business logo</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>In-kind donor logo</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></div>
+<p class="group-note">Foundations, businesses and in-kind donors.</p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->

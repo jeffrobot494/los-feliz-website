@@ -54,13 +54,13 @@
   burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
   menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
   var nav=$('#navbar'), root=document.documentElement, jb=$('.jumpbar');
-  function sizes(){var n=nav.offsetHeight;root.style.setProperty('--navh',n+'px');root.style.scrollPaddingTop=(n+(jb?jb.offsetHeight:0)+12)+'px';}
+  function sizes(){var n=nav.offsetHeight;root.style.setProperty('--navh',n+'px');root.style.scrollPaddingTop='0px';}
   sizes();window.addEventListener('resize',sizes);window.addEventListener('load',sizes);
 
   // jump bar: highlight the section in view
   var links=$$('.jumpbar a'), secs=links.map(function(a){return $(a.getAttribute('href'))});
   function spy(){
-    var y=nav.offsetHeight+jb.offsetHeight+40, cur=-1;
+    var y=nav.offsetHeight+(jb?jb.offsetHeight:0)+90, cur=-1;
     secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<=y)cur=i;});
     links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
     if(cur>=0){var a=links[cur],ul=a.parentNode.parentNode;if(a.offsetLeft<ul.scrollLeft||a.offsetLeft+a.offsetWidth>ul.scrollLeft+ul.clientWidth)ul.scrollTo({left:a.offsetLeft-20,behavior:'smooth'});}
