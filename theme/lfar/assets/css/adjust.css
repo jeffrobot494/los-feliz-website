@@ -148,21 +148,18 @@ body { padding-bottom: 72px; }
 /* Events / resources heroes use the home rules; keep section headings from colliding with the nav. */
 #upcoming, #past, #lost { scroll-margin-top: 110px; }
 
-/* Get Involved only. Donate also has #give; a global rule pushed /donate/#give below where main lands it.
-   scroll-margin only, so it does not stack on scroll-padding. */
-.lfar-page-get-involved #foster,
-.lfar-page-get-involved #stories,
-.lfar-page-get-involved #signup,
-.lfar-page-get-involved #give,
-.lfar-page-get-involved #more-ways {
-	scroll-margin-top: 180px;
+/* Get Involved only. The heading should land just under the jump bar.
+   scroll-margin is the bar clearance minus that section's own top padding, so a deep link
+   targets the heading rather than leaving a band of empty padding. Donate's #give is not included. */
+.lfar-page-get-involved { --lfar-anchor: 168px; }
+.lfar-page-get-involved :is(#foster, #stories, #signup) {
+	scroll-margin-top: calc(var(--lfar-anchor) - var(--lfar-section));
 }
-@media (max-width: 767px) {
-	.lfar-page-get-involved #foster,
-	.lfar-page-get-involved #stories,
-	.lfar-page-get-involved #signup,
-	.lfar-page-get-involved #give,
-	.lfar-page-get-involved #more-ways { scroll-margin-top: 156px; }
+.lfar-page-get-involved #give {
+	scroll-margin-top: calc(var(--lfar-anchor) - var(--lfar-band));
+}
+.lfar-page-get-involved #more-ways {
+	scroll-margin-top: calc(var(--lfar-anchor) - var(--lfar-space-sm));
 }
 
 /* Sections and cards waiting on Melody. Remove lfar-awaiting from a group once it has entries or a real URL.
@@ -280,14 +277,25 @@ button.give,
 	font-family: var(--wp--preset--font-family--heading);
 	font-weight: 700;
 	font-size: var(--lfar-button);
-	line-height: 1.2;
 	letter-spacing: var(--lfar-track-button);
 }
 .btn,
 .adopt-now,
 button.give,
-.nl-form .btn { text-transform: uppercase; }
+.nl-form .btn {
+	line-height: 1.2;
+	text-transform: uppercase;
+}
 .btn { padding: 12px 22px; }
+/* The open hamburger list needs a 44px row. Do not share the button line-height. */
+.menu a { line-height: 44px; }
+@media (max-width: 991px) {
+	.menu a {
+		font-size: 16px;
+		line-height: 44px;
+		min-height: 44px;
+	}
+}
 .stat-num,
 .eq-total .eq-num {
 	font-family: var(--wp--preset--font-family--heading);
@@ -330,6 +338,7 @@ button.give,
 #donate.section2,
 .mission-band,
 .foster-strip,
+.lfar-page-get-involved #give,
 footer {
 	padding-top: var(--lfar-band);
 	padding-bottom: var(--lfar-band);
@@ -338,6 +347,13 @@ footer { padding-bottom: var(--lfar-space-md); }
 .lfar-page-donate #give { padding-top: 140px; }
 @media (max-width: 767px) {
 	.lfar-page-donate #give { padding-top: 80px; }
+}
+/* Other Ways sits under the #give triangle. A full section pad left the heading stranded. */
+.lfar-page-get-involved #more-ways { padding-top: var(--lfar-space-sm); }
+/* Adjacent sections on the same background read as one band, so keep a single gap. */
+section.bg-light + section.bg-light,
+#partners:not(:has(.logo-group:not(.lfar-awaiting))) + #feed {
+	padding-top: 0;
 }
 
 /* Other Ways: size the row to the cards that are actually showing, and center a single card. */
@@ -350,4 +366,81 @@ footer { padding-bottom: var(--lfar-space-md); }
 #more-ways .give-grid > .other-way {
 	flex: 0 1 340px;
 	max-width: 100%;
+}
+
+/* Body copy uses the scale at every width: 18px from 768 up, 16px below. */
+:is(
+	.news-body p,
+	.story-body p,
+	.story p,
+	.feat-body p,
+	.fact-body p,
+	.faq details p,
+	.ask p,
+	.nl p,
+	.nl-note,
+	.person p,
+	.pf-note p,
+	.ff-points li,
+	.getback li,
+	.form-lead,
+	.other-way p,
+	.meet p,
+	.pet-body p,
+	.choice p
+) {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--lfar-body);
+	font-weight: 400;
+	line-height: var(--lfar-lh-body);
+}
+
+/* Off-scale leftovers mapped to the nearest role. */
+.night-card .eyebrow,
+.eyebrow {
+	font-size: var(--lfar-eyebrow);
+}
+.feat-body .pet-name,
+h3.pet-name {
+	font-size: var(--lfar-h3);
+	line-height: var(--lfar-lh-heading);
+}
+.stories-head .count {
+	font-size: var(--lfar-display);
+	line-height: 1;
+}
+.pf-toggle .btn {
+	font-size: var(--lfar-button);
+	white-space: nowrap;
+	padding: 12px 18px;
+}
+.faq summary {
+	font-size: var(--lfar-body);
+}
+.next-steps strong,
+.stories-sub {
+	font-size: var(--lfar-lead);
+	line-height: var(--lfar-lh-lead);
+}
+.hero-chips li,
+.custom .give-list li,
+.fine,
+.band .fine,
+.more,
+.tales-note,
+.pull cite,
+.places li,
+.about-map-hero .places li,
+.small,
+.reach .small {
+	font-size: var(--lfar-small);
+}
+.tag,
+.feat-tag {
+	font-size: var(--lfar-eyebrow);
+}
+.custom .give-list strong,
+.give-list .tbd {
+	font-size: var(--lfar-h4);
+	line-height: 1.2;
 }
