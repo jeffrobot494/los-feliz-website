@@ -8,10 +8,12 @@
 
   // mobile menu and sticky offsets
   var burger=$('#burger'), menu=$('#menu');
-  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
-  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  if(burger&&menu){
+    burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
+    menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  }
   var nav=$('#navbar'), root=document.documentElement;
-  function sizes(){var n=nav.offsetHeight;root.style.setProperty('--navh',n+'px');root.style.scrollPaddingTop=(n+12)+'px';}
+  function sizes(){if(!nav)return;var n=nav.offsetHeight;root.style.setProperty('--navh',n+'px');root.style.scrollPaddingTop=(n+12)+'px';}
   sizes();window.addEventListener('resize',sizes);window.addEventListener('load',sizes);
 
   // ---------- story: each step adds a line to Pepper's receipt ----------
@@ -24,6 +26,7 @@
     tween=requestAnimationFrame(step);
   }
   function setStep(i){
+    if(!stamp||!totalEl||!miniNum) return;
     if(i===cur) return; var up=i>cur; cur=i; var sum=0;
     steps.forEach(function(s,n){s.classList.toggle('active',n+1===i);});
     rlines.forEach(function(l){ var on=+l.dataset.i<=i; if(on&&!l.classList.contains('on')&&up){l.classList.add('fresh');setTimeout(function(){l.classList.remove('fresh')},1200);} l.classList.toggle('on',on); if(on) sum+=(+l.dataset.v||0); });
@@ -43,6 +46,7 @@
   var COST=[['Food and bedding',10],['Vaccines',25],['Exam and microchip',50],['Spay or neuter surgery',100],['Dewormer, flea care, follow-up',65]];
   var freq='once', val=25;
   var covLines=$('#cov-lines'), covSum=$('#cov-summary'), covTotal=$('#cov-total');
+  if(covLines&&covSum&&covTotal){
   covLines.innerHTML=COST.map(function(c,i){return '<li class="rline on" data-k="'+i+'"><div><div class="row"><span class="lbl">'+c[0]+'</span><span class="ramt">$'+c[1]+'.00</span><span class="bar"><i></i></span></div></div></li>';}).join('');
   var bars=$$('#cov-lines .bar i');
   function render(){
@@ -63,8 +67,10 @@
 
   // "Pick your line" cards and anchors update the receipt and scroll to the form
   var picks=$$('.pick');
-  picks.forEach(function(p){p.addEventListener('click',function(){picks.forEach(function(x){x.setAttribute('aria-pressed',x===p)});setFreq('once');setAmount(+p.dataset.v);$('#give').scrollIntoView({behavior:'smooth'});});});
-  $$('.anchor').forEach(function(a){a.addEventListener('click',function(){picks.forEach(function(x){x.setAttribute('aria-pressed','false')});setFreq(a.dataset.f);setAmount(+a.dataset.v);$('#give').scrollIntoView({behavior:'smooth'});});});
+  function goGive(){var g=$('#give'); if(g) g.scrollIntoView({behavior:'smooth'});}
+  picks.forEach(function(p){p.addEventListener('click',function(){picks.forEach(function(x){x.setAttribute('aria-pressed',x===p)});setFreq('once');setAmount(+p.dataset.v);goGive();});});
+  $$('.anchor').forEach(function(a){a.addEventListener('click',function(){picks.forEach(function(x){x.setAttribute('aria-pressed','false')});setFreq(a.dataset.f);setAmount(+a.dataset.v);goGive();});});
+  }
 
   // count-up
   if('IntersectionObserver' in window){
@@ -83,9 +89,11 @@
 
   // back to top
   var toTop=$('#toTop');
-  function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+  if(toTop){
+    function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+  }
 
   // scroll-in animations (content stays visible if this never runs)
   if(!('IntersectionObserver' in window)) return;

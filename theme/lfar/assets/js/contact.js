@@ -51,15 +51,17 @@
 
   // mobile menu and sticky offsets
   var burger=$('#burger'), menu=$('#menu');
-  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
-  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  if(burger&&menu){
+    burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
+    menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  }
   var nav=$('#navbar'), root=document.documentElement;
-  function sizes(){var n=nav.offsetHeight;root.style.setProperty('--navh',n+'px');root.style.scrollPaddingTop=(n+12)+'px';}
+  function sizes(){if(!nav)return;var n=nav.offsetHeight;root.style.setProperty('--navh',n+'px');root.style.scrollPaddingTop=(n+12)+'px';}
   sizes();window.addEventListener('resize',sizes);window.addEventListener('load',sizes);
 
   // copy email
   var cb=$('#copy-email'), et=$('#email-text');
-  cb.addEventListener('click',function(){
+  if(cb&&et) cb.addEventListener('click',function(){
     function done(){cb.textContent='Copied';setTimeout(function(){cb.textContent='Copy'},1800);}
     function fallback(){var r=document.createRange();r.selectNodeContents(et);var s=window.getSelection();s.removeAllRanges();s.addRange(r);cb.textContent='Selected';setTimeout(function(){cb.textContent='Copy'},1800);}
     try{navigator.clipboard.writeText(et.textContent.trim()).then(done,fallback);}catch(e){fallback();}
@@ -67,9 +69,11 @@
 
   // back to top
   var toTop=$('#toTop');
-  function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+  if(toTop){
+    function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+  }
 
   // scroll-in animations (content stays visible if this never runs)
   if(!('IntersectionObserver' in window)) return;

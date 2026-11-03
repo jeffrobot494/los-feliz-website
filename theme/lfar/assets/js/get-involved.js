@@ -51,33 +51,38 @@
 
   // mobile menu and sticky offsets
   var burger=$('#burger'), menu=$('#menu');
-  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
-  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  if(burger&&menu){
+    burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
+    menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  }
   var nav=$('#navbar'), root=document.documentElement, jb=$('.jumpbar');
-  function sizes(){var n=nav.offsetHeight;root.style.setProperty('--navh',n+'px');root.style.scrollPaddingTop='0px';}
+  function sizes(){if(!nav)return;var n=nav.offsetHeight;root.style.setProperty('--navh',n+'px');root.style.scrollPaddingTop='0px';}
   sizes();window.addEventListener('resize',sizes);window.addEventListener('load',sizes);
 
   // jump bar: highlight the section in view
   var links=$$('.jumpbar a'), secs=links.map(function(a){return $(a.getAttribute('href'))});
   function spy(){
+    if(!nav)return;
     var y=nav.offsetHeight+(jb?jb.offsetHeight:0)+90, cur=-1;
     secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<=y)cur=i;});
     links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
-    if(cur>=0){var a=links[cur],ul=a.parentNode.parentNode;if(a.offsetLeft<ul.scrollLeft||a.offsetLeft+a.offsetWidth>ul.scrollLeft+ul.clientWidth)ul.scrollTo({left:a.offsetLeft-20,behavior:'smooth'});}
+    if(cur>=0){var a=links[cur],ul=a.parentNode&&a.parentNode.parentNode;if(ul&&(a.offsetLeft<ul.scrollLeft||a.offsetLeft+a.offsetWidth>ul.scrollLeft+ul.clientWidth))ul.scrollTo({left:a.offsetLeft-20,behavior:'smooth'});}
   }
   window.addEventListener('scroll',spy,{passive:true});spy();
 
-  // feed: see more
+  // feed: see more. Instagram drops this button when the feed has 3 or fewer posts.
   var sm=$('#see-more');
-  sm.addEventListener('click',function(){var open=sm.getAttribute('aria-expanded')!=='true';
+  if(sm) sm.addEventListener('click',function(){var open=sm.getAttribute('aria-expanded')!=='true';
     $$('.more-post').forEach(function(p){p.hidden=!open;if(open)p.classList.add('run','fade-up');});
     sm.setAttribute('aria-expanded',open);sm.textContent=open?'Show fewer':'See more';});
 
   // back to top
   var toTop=$('#toTop');
-  function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+  if(toTop){
+    function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+  }
 
   // scroll-in animations (content stays visible if this never runs)
   if(!('IntersectionObserver' in window)) return;

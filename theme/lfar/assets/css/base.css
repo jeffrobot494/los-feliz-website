@@ -1,4 +1,52 @@
-/* LFAR base: loaded before each page's mockup CSS. Neutralizes WordPress wrappers so the mockup layout holds. */
+/* LFAR base: loaded before each page's mockup CSS. Neutralizes WordPress wrappers so the mockup layout holds.
+   Spacing and type tokens. Page CSS and adjust.css use these instead of one-off sizes.
+   Desktop body stays 18px. Below 768px the same roles step down together. */
+:root {
+	--lfar-space-2xs: 8px;
+	--lfar-space-xs: 16px;
+	--lfar-space-sm: 24px;
+	--lfar-space-md: 40px;
+	--lfar-space-lg: 64px;
+	--lfar-space-xl: 96px;
+	--lfar-section: var(--lfar-space-xl);
+	--lfar-band: var(--lfar-space-lg);
+	--lfar-container: 1170px;
+	--lfar-gutter: var(--lfar-space-xs);
+	--lfar-measure: 720px;
+	--lfar-h1: 48px;
+	--lfar-h2: 40px;
+	--lfar-h3: 32px;
+	--lfar-h4: 22px;
+	--lfar-lead: 20px;
+	--lfar-body: 18px;
+	--lfar-small: 15px;
+	--lfar-button: 15px;
+	--lfar-eyebrow: 13px;
+	--lfar-display: 64px;
+	--lfar-display-sm: 40px;
+	--lfar-lh-heading: 1.2;
+	--lfar-lh-body: 1.65;
+	--lfar-lh-lead: 1.55;
+	--lfar-track-heading: -0.02em;
+	--lfar-track-button: 0.02em;
+	--lfar-track-eyebrow: 0.08em;
+}
+@media (max-width: 767px) {
+	:root {
+		--lfar-section: var(--lfar-space-lg);
+		--lfar-band: 48px;
+		--lfar-h1: 36px;
+		--lfar-h2: 32px;
+		--lfar-h3: 26px;
+		--lfar-h4: 20px;
+		--lfar-lead: 18px;
+		--lfar-body: 16px;
+		--lfar-small: 14px;
+		--lfar-display: 48px;
+		--lfar-display-sm: 32px;
+	}
+}
+
 .wp-site-blocks { padding: 0; }
 .wp-block-template-part { display: contents; }
 .wp-block-post-content { margin: 0; }
@@ -18,8 +66,8 @@ p.lfar-a.lfar-a { margin: 0; }
 @media (max-width: 600px) { .admin-bar .navbar { top: 0; } }
 
 /* Simple layout for posts, archives and 404 (not part of the mockups) */
-.lfar-plain { padding: 60px 0 80px; }
-.lfar-plain .container { max-width: 900px; }
+.lfar-plain { padding-block: var(--lfar-section); }
+.lfar-plain .container { max-width: var(--lfar-measure); }
 .lfar-plain .wp-block-post-title { margin-bottom: 8px; }
 .lfar-plain .wp-block-post-date { color: var(--h3, #7D7D7D); margin-bottom: 24px; }
 .lfar-plain .wp-block-post-template { list-style: none; padding: 0; margin: 0; }

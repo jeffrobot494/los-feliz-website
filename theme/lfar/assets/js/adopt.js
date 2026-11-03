@@ -7,15 +7,19 @@
 
   // mobile menu
   var burger=$('#burger'), menu=$('#menu');
-  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
-  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  if(burger&&menu){
+    burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
+    menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  }
   var nav=$('#navbar'), root=document.documentElement;
-  function sizes(){var n=nav.offsetHeight;root.style.setProperty('--navh',n+'px');root.style.scrollPaddingTop=(n+12)+'px';}
+  function sizes(){if(!nav)return;var n=nav.offsetHeight;root.style.setProperty('--navh',n+'px');root.style.scrollPaddingTop=(n+12)+'px';}
   sizes();window.addEventListener('resize',sizes);window.addEventListener('load',sizes);
 
   // hero: a busy woman racing past the baker, her kid and her boss
   (function(){
-    var cv=$('#city'), ctx=cv.getContext('2d'), card=$('.night-card');
+    var cv=$('#city'), card=$('.night-card');
+    if(!cv||!card) return;
+    var ctx=cv.getContext('2d');
     var W,H,dpr,s,ox,oy,running=true,prev=0,T=0;
     var SKIN={her:'#E8B48F',baker:'#A8703F',kid:'#E8B48F',boss:'#F0CDB0'};
     var GROUND=490, WALK=532, SPEED=175;
@@ -256,7 +260,7 @@
 
   // Petfinder panel
   var pfBtn=$('#pf-btn'), pfPanel=$('#pf-panel');
-  pfBtn.addEventListener('click',function(){var o=pfPanel.classList.toggle('open');pfBtn.setAttribute('aria-expanded',o);pfBtn.firstChild.nodeValue=o?'Hide the full list ':'See all adoptable animals ';});
+  if(pfBtn&&pfPanel) pfBtn.addEventListener('click',function(){var o=pfPanel.classList.toggle('open');pfBtn.setAttribute('aria-expanded',o);pfBtn.firstChild.nodeValue=o?'Hide the full list ':'See all adoptable animals ';});
 
   // Happy Tales: each click reveals the next three #happytales posts
   var talesBtn=$('#tales-btn');
@@ -272,9 +276,11 @@
 
   // back to top
   var toTop=$('#toTop');
-  function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+  if(toTop){
+    function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+  }
 
   // scroll-in animations (content stays visible if this never runs)
   if(!('IntersectionObserver' in window)) return;

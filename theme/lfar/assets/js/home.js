@@ -48,8 +48,10 @@
 (function(){
   // mobile menu
   var burger=document.getElementById('burger'), menu=document.getElementById('menu');
-  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
-  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  if(burger&&menu){
+    burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Close menu':'Open menu');});
+    menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+  }
 
   // Donorbox resizes its iframe at every step; let it grow but never shrink, so the page doesn't jump around
   var dbox=document.querySelector('.widget.dbox iframe');
@@ -57,9 +59,11 @@
 
   // back to top
   var toTop=document.getElementById('toTop');
-  function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+  if(toTop){
+    function onScroll(){toTop.classList.toggle('show',window.scrollY>500);}
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    toTop.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+  }
 
   // scroll-in animations (content stays visible if this never runs)
   if(!('IntersectionObserver' in window)) return;
