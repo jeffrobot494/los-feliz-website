@@ -270,8 +270,8 @@
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"logo-group lfar-anim-fade-up"} -->
-<div class="wp-block-group logo-group lfar-anim-fade-up"><!-- wp:heading {"level":3,"className":"group-title"} -->
+<!-- wp:group {"className":"logo-group lfar-anim-fade-up lfar-awaiting"} -->
+<div class="wp-block-group logo-group lfar-anim-fade-up lfar-awaiting"><!-- wp:heading {"level":3,"className":"group-title"} -->
 <h3 class="wp-block-heading group-title">Community partners</h3>
 <!-- /wp:heading -->
 
@@ -280,8 +280,8 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"logo-group lfar-anim-fade-up"} -->
-<div class="wp-block-group logo-group lfar-anim-fade-up"><!-- wp:heading {"level":3,"className":"group-title"} -->
+<!-- wp:group {"className":"logo-group lfar-anim-fade-up lfar-awaiting"} -->
+<div class="wp-block-group logo-group lfar-anim-fade-up lfar-awaiting"><!-- wp:heading {"level":3,"className":"group-title"} -->
 <h3 class="wp-block-heading group-title">Supported by</h3>
 <!-- /wp:heading -->
 

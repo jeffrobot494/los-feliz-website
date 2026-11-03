@@ -148,10 +148,27 @@ body { padding-bottom: 72px; }
 /* Events / resources heroes use the home rules; keep section headings from colliding with the nav. */
 #upcoming, #past, #lost { scroll-margin-top: 110px; }
 
-/* Get Involved: clear the sticky nav and the jump bar. scroll-margin only, so it does not stack on scroll-padding. */
-#foster, #stories, #signup, #give, #more-ways {
+/* Get Involved only. Donate also has #give; a global rule pushed /donate/#give below where main lands it.
+   scroll-margin only, so it does not stack on scroll-padding. */
+.lfar-page-get-involved #foster,
+.lfar-page-get-involved #stories,
+.lfar-page-get-involved #signup,
+.lfar-page-get-involved #give,
+.lfar-page-get-involved #more-ways {
 	scroll-margin-top: 180px;
 }
 @media (max-width: 767px) {
-	#foster, #stories, #signup, #give, #more-ways { scroll-margin-top: 156px; }
+	.lfar-page-get-involved #foster,
+	.lfar-page-get-involved #stories,
+	.lfar-page-get-involved #signup,
+	.lfar-page-get-involved #give,
+	.lfar-page-get-involved #more-ways { scroll-margin-top: 156px; }
 }
+
+/* Sections and cards waiting on Melody. Remove lfar-awaiting from a group once it has entries or a real URL.
+   About #partners stays hidden while every .logo-group is awaiting.
+   Get Involved "Other Ways" cards stay in the pattern: wish lists, merch, fundraiser, employer matching, affiliate.
+   The affiliate note stays with them. Donate supplies keeps its Contact us link and is not marked awaiting.
+   Subhead while those cards are hidden: "No cash needed." Restore "No cash needed. Supplies, a fundraiser or a t-shirt all help." with the cards. */
+.lfar-awaiting { display: none; }
+#partners:not(:has(.logo-group:not(.lfar-awaiting))) { display: none; }

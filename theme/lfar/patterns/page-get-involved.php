@@ -360,13 +360,13 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"subhead"} -->
-<p class="subhead">No cash needed. Supplies, a fundraiser or a t-shirt all help.</p>
+<p class="subhead">No cash needed.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"give-grid"} -->
-<div class="wp-block-group give-grid"><!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
+<div class="wp-block-group give-grid"><!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up lfar-awaiting"} -->
+<div class="wp-block-group other-way lfar-card lfar-anim-fade-up lfar-awaiting"><!-- wp:html -->
 <span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="m3.5 6 1 1 2-2M3.5 12l1 1 2-2M3.5 18l1 1 2-2"></path></svg></span>
 <!-- /wp:html -->
 
@@ -381,8 +381,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
+<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up lfar-awaiting"} -->
+<div class="wp-block-group other-way lfar-card lfar-anim-fade-up lfar-awaiting"><!-- wp:html -->
 <span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3c-.5 1.5-2 2.5-4 2.5S8.5 4.5 8 3z"></path></svg></span>
 <!-- /wp:html -->
 
@@ -417,8 +417,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
+<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up lfar-awaiting"} -->
+<div class="wp-block-group other-way lfar-card lfar-anim-fade-up lfar-awaiting"><!-- wp:html -->
 <span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M4 11h16v10H4z"></path><path d="M2 7h20v4H2zM12 7v14"></path><path d="M12 7S10 3 7.5 3a2 2 0 0 0 0 4M12 7s2-4 4.5-4a2 2 0 0 1 0 4"></path></svg></span>
 <!-- /wp:html -->
 
@@ -433,8 +433,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
+<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up lfar-awaiting"} -->
+<div class="wp-block-group other-way lfar-card lfar-anim-fade-up lfar-awaiting"><!-- wp:html -->
 <span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><rect height="13" rx="2" width="18" x="3" y="7"></rect><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"></path></svg></span>
 <!-- /wp:html -->
 
@@ -449,8 +449,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"other-way aff lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way aff lfar-card lfar-anim-fade-up"><!-- wp:html -->
+<!-- wp:group {"className":"other-way aff lfar-card lfar-anim-fade-up lfar-awaiting"} -->
+<div class="wp-block-group other-way aff lfar-card lfar-anim-fade-up lfar-awaiting"><!-- wp:html -->
 <span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg></span>
 <!-- /wp:html -->
 
@@ -470,8 +470,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:paragraph {"className":"aff-note lfar-anim-fade-up"} -->
-<p class="aff-note lfar-anim-fade-up">Links marked <strong>Affiliate</strong> earn the rescue a commission. We label every one.</p>
+<!-- wp:paragraph {"className":"aff-note lfar-anim-fade-up lfar-awaiting"} -->
+<p class="aff-note lfar-anim-fade-up lfar-awaiting">Links marked <strong>Affiliate</strong> earn the rescue a commission. We label every one.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->

@@ -63,6 +63,20 @@ function lfar_page_key( $post_id = 0 ) {
 }
 
 /**
+ * Page key on <body> so shared ids (Donate and Get Involved both use #give) can be styled per page.
+ */
+add_filter(
+	'body_class',
+	function ( $classes ) {
+		$key = lfar_page_key();
+		if ( $key ) {
+			$classes[] = 'lfar-page-' . $key;
+		}
+		return $classes;
+	}
+);
+
+/**
  * Fluent Forms ID for one of the site's forms, found by its title (so it survives a move to production).
  * Rename a form in Fluent Forms? Update the title here too.
  *
