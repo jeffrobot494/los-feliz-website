@@ -13,7 +13,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const LFAR_PAGES = array( 'home', 'about', 'adopt', 'get-involved', 'contact', 'donate' );
+const LFAR_PAGES = array( 'home', 'about', 'adopt', 'get-involved', 'contact', 'donate', 'events', 'resources' );
+
+/**
+ * Stylesheet/script file for a page key. Events reuses Home; Resources reuses Contact.
+ *
+ * @param string $key
+ */
+function lfar_asset_key( $key ) {
+	$map = array(
+		'events'    => 'home',
+		'resources' => 'contact',
+	);
+	if ( isset( $map[ $key ] ) ) {
+		return $map[ $key ];
+	}
+	return $key ? $key : 'home';
+}
 
 // Instagram feed on About, Get Involved and Adopt (Settings → LFAR Instagram).
 require_once get_theme_file_path( 'inc/instagram.php' );
@@ -122,11 +138,13 @@ add_action(
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		$key = lfar_page_key();
-		$css = 'assets/css/' . ( $key ? $key : 'home' ) . '.css';
-		$js  = 'assets/js/' . ( $key ? $key : 'common' ) . '.js';
+		$key  = lfar_page_key();
+		$file = lfar_asset_key( $key );
+		$css  = 'assets/css/' . $file . '.css';
+		$js   = 'assets/js/' . ( $key ? $file : 'common' ) . '.js';
 		wp_enqueue_style( 'lfar-base', get_theme_file_uri( 'assets/css/base.css' ), array(), lfar_ver( 'assets/css/base.css' ) );
 		wp_enqueue_style( 'lfar-page', get_theme_file_uri( $css ), array( 'lfar-base' ), lfar_ver( $css ) );
+		wp_enqueue_style( 'lfar-adjust', get_theme_file_uri( 'assets/css/adjust.css' ), array( 'lfar-page' ), lfar_ver( 'assets/css/adjust.css' ) );
 		// Front end only: the paragraph wrapped around stand-alone links/buttons steps out of the layout,
 		// so the link sits in flex/grid rows exactly as in the mockups. (Kept out of the editor so the block stays selectable.)
 		wp_add_inline_style( 'lfar-base', 'p.lfar-a.lfar-a{display:contents}' );
@@ -175,7 +193,7 @@ add_action(
 	function () {
 		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$key     = $post_id ? lfar_page_key( $post_id ) : '';
-		add_editor_style( array( 'assets/css/base.css', 'assets/css/' . ( $key ? $key : 'home' ) . '.css', 'assets/css/editor.css' ) );
+		add_editor_style( array( 'assets/css/base.css', 'assets/css/' . lfar_asset_key( $key ) . '.css', 'assets/css/adjust.css', 'assets/css/editor.css' ) );
 	}
 );
 
@@ -195,52 +213,68 @@ add_action(
 );
 
 /**
- * One-time setup: create the six pages, make Home the front page, add the News and Happy Tails categories.
+ * Pages the theme expects. Resources stays a draft until its lists are written.
+ * Existing pages are left alone, including a Resources page someone has published.
  *
- * New pages hold a reference to their theme pattern, so they render straight from patterns/page-*.php
- * until someone edits them in the block editor (then the blocks are saved into the page).
- * Re-run by deleting the lfar_seeded option (wp option delete lfar_seeded).
+ * @return array<string,array{0:string,1:string}>
  */
+function lfar_page_defs() {
+	return array(
+		'home'         => array( 'Home', 'publish' ),
+		'about'        => array( 'About', 'publish' ),
+		'adopt'        => array( 'Adopt', 'publish' ),
+		'get-involved' => array( 'Get Involved', 'publish' ),
+		'contact'      => array( 'Contact', 'publish' ),
+		'donate'       => array( 'Donate', 'publish' ),
+		'events'       => array( 'Events', 'publish' ),
+		'resources'    => array( 'Resources', 'draft' ),
+	);
+}
+
+/**
+ * Create any missing pages. A page holds a reference to its theme pattern until
+ * someone saves it in the editor. Re-run by deleting the lfar_pages_v option.
+ */
+function lfar_ensure_pages() {
+	$ids = array();
+	foreach ( lfar_page_defs() as $slug => $info ) {
+		$existing = get_page_by_path( $slug, OBJECT, 'page' );
+		if ( $existing ) {
+			$ids[ $slug ] = $existing->ID;
+			continue;
+		}
+		$ids[ $slug ] = wp_insert_post(
+			array(
+				'post_type'    => 'page',
+				'post_status'  => $info[1],
+				'post_title'   => $info[0],
+				'post_name'    => $slug,
+				'post_content' => '<!-- wp:pattern {"slug":"lfar/page-' . $slug . '"} /-->',
+			)
+		);
+	}
+	if ( ! empty( $ids['home'] ) && ! is_wp_error( $ids['home'] ) && 'page' !== get_option( 'show_on_front' ) ) {
+		update_option( 'show_on_front', 'page' );
+		update_option( 'page_on_front', (int) $ids['home'] );
+	}
+	foreach ( array( 'news' => 'News', 'happy-tails' => 'Happy Tails' ) as $slug => $name ) {
+		if ( ! term_exists( $slug, 'category' ) ) {
+			wp_insert_term( $name, 'category', array( 'slug' => $slug ) );
+		}
+	}
+	update_option( 'lfar_seeded', 1 );
+	update_option( 'lfar_pages_v', 2 );
+}
+
 add_action(
-	'admin_init',
+	'init',
 	function () {
-		if ( get_option( 'lfar_seeded' ) || ! current_user_can( 'manage_options' ) ) {
+		if ( 2 === (int) get_option( 'lfar_pages_v' ) ) {
 			return;
 		}
-		$titles = array(
-			'home'         => 'Home',
-			'about'        => 'About',
-			'adopt'        => 'Adopt',
-			'get-involved' => 'Get Involved',
-			'contact'      => 'Contact',
-			'donate'       => 'Donate',
-		);
-		$ids    = array();
-		foreach ( $titles as $slug => $title ) {
-			$existing = get_page_by_path( $slug );
-			if ( $existing ) {
-				$ids[ $slug ] = $existing->ID;
-				continue;
-			}
-			$ids[ $slug ] = wp_insert_post(
-				array(
-					'post_type'    => 'page',
-					'post_status'  => 'publish',
-					'post_title'   => $title,
-					'post_name'    => $slug,
-					'post_content' => '<!-- wp:pattern {"slug":"lfar/page-' . $slug . '"} /-->',
-				)
-			);
-		}
-		if ( ! empty( $ids['home'] ) && ! is_wp_error( $ids['home'] ) ) {
-			update_option( 'show_on_front', 'page' );
-			update_option( 'page_on_front', (int) $ids['home'] );
-		}
-		foreach ( array( 'news' => 'News', 'happy-tails' => 'Happy Tails' ) as $slug => $name ) {
-			if ( ! term_exists( $slug, 'category' ) ) {
-				wp_insert_term( $name, 'category', array( 'slug' => $slug ) );
-			}
-		}
-		update_option( 'lfar_seeded', 1 );
-	}
+		lfar_ensure_pages();
+		flush_rewrite_rules( false );
+	},
+	20
 );
+

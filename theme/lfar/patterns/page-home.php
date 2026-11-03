@@ -22,38 +22,6 @@
 <p class="header-p">Los Feliz Animal Rescue is dedicated to creating a community full of healthy and happy animals, regardless of species or domestication.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"lead-in"} -->
-<p class="lead-in">We want to accomplish this by:</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:group {"className":"custom"} -->
-<div class="wp-block-group custom"><!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Providing resources to the public, including information on:</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item {"className":"nest"} -->
-<li class="nest"><!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>How to coexist with wildlife</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>What to do when you find a lost or hurt animal</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Free and low cost pet resources</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Supporting independent rescuers by providing a location for them to market their animals, connect with fosters, and borrow equipment as needed.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></div>
-<!-- /wp:group -->
-
 <!-- wp:paragraph {"className":"lfar-a"} -->
 <p class="lfar-a"><a class="btn" href="/about/">About Us</a></p>
 <!-- /wp:paragraph --></div>
@@ -76,8 +44,8 @@
 <!-- wp:group {"className":"news-grid"} -->
 <div class="wp-block-group news-grid"><!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
 <article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
-<a class="thumb" href="#">
-<span class="tag">Event</span>
+<a class="thumb" href="/events/#upcoming">
+<span class="tag">Next event</span>
 <img alt="A volunteer holding a small tan dog" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/a-volunteer-holding-a-small-tan-dog.jpg' ) ); ?>"/>
 <span class="overlay-mask">Event details</span>
 </a>
@@ -100,14 +68,14 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more" href="#">Event details <i>→</i></a></p>
+<p class="lfar-a"><a class="more" href="/events/#upcoming">Event details <i>→</i></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></article>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
 <article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
-<a class="thumb" href="/adopt/#apply-foster">
+<a class="thumb" href="/get-involved/#foster">
 <span class="tag urgent">Urgent need</span>
 <img alt="Five puppies looking out of a crate" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/five-puppies-looking-out-of-a-crate.jpg' ) ); ?>"/>
 <span class="overlay-mask">How to help</span>
@@ -130,18 +98,17 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more" href="/adopt/#apply-foster">How to help <i>→</i></a></p>
+<p class="lfar-a"><a class="more" href="/get-involved/#foster">How to help <i>→</i></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></article>
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"article","className":"news-card lfar-anim-fade-up"} -->
 <article class="wp-block-group news-card lfar-anim-fade-up"><!-- wp:html -->
-<a class="thumb" href="#">
+<div class="thumb">
 <span class="tag update">Update</span>
 <img alt="Three volunteers sitting with a dog" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/three-volunteers-sitting-with-a-dog.jpg' ) ); ?>"/>
-<span class="overlay-mask">See the photos</span>
-</a>
+</div>
 <!-- /wp:html -->
 
 <!-- wp:group {"className":"news-body"} -->
@@ -157,10 +124,6 @@
 
 <!-- wp:paragraph -->
 <p>Thank you to the 14 new volunteers who joined us on Saturday. See the photos and find out when the next orientation is.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more" href="#">See the photos <i>→</i></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></article>
 <!-- /wp:group --></div>
@@ -168,7 +131,7 @@
 
 <!-- wp:group {"className":"news-cta"} -->
 <div class="wp-block-group news-cta"><!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn" href="#">See all events</a></p>
+<p class="lfar-a"><a class="btn" href="/events/">See all events</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>

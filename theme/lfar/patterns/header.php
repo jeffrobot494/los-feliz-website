@@ -42,6 +42,10 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
+<li><a href="/events/">Events</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li><a href="/adopt/">Adopt</a></li>
 <!-- /wp:list-item -->
 
@@ -63,3 +67,7 @@
 <!-- /wp:list --></div>
 <!-- /wp:group --></nav>
 <!-- /wp:group -->
+
+<!-- wp:html -->
+<a class="adopt-now" href="/adopt/#apply">Adopt now</a>
+<!-- /wp:html -->

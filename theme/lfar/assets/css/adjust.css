@@ -1,0 +1,128 @@
+/*
+ * Shared adjustments from the Oct 29, 2026 walkthrough.
+ * Loaded after each page stylesheet.
+ *
+ * Desktop type scale (Comfortaa body, Quicksand headings — unchanged families):
+ *   lead (header-p, subhead): 20px
+ *   body: 18px
+ *   meta / notes: 15px
+ * Mobile sizes stay as each page stylesheet set them. Melody said stacked mobile text already reads fine.
+ */
+
+/* Sticky adoption application. Back-to-top stays on the right. */
+.adopt-now {
+	position: fixed;
+	z-index: 75;
+	left: 18px;
+	bottom: 18px;
+	padding: 12px 22px;
+	background: var(--accent, #B209D7);
+	color: #fff !important;
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 700;
+	font-size: 15px;
+	letter-spacing: .3px;
+	line-height: 1.2;
+	text-transform: uppercase;
+	text-decoration: none;
+	border-radius: var(--blob, 999px);
+	box-shadow: 0 8px 22px rgba(90, 0, 110, .28);
+}
+.adopt-now:hover,
+.adopt-now:focus-visible {
+	background: var(--nav, #71018A);
+	color: #fff !important;
+}
+.adopt-now[hidden] { display: none; }
+
+/* Photo heroes match the About map header Melody liked (about 460–560px), and grow if the card needs it. */
+@media (min-width: 992px) {
+	.hero:not(.map-hero) {
+		height: auto;
+		min-height: clamp(460px, 30vw, 560px);
+	}
+	.hero:not(.map-hero) .container {
+		height: auto;
+		min-height: clamp(460px, 30vw, 560px);
+		align-items: center;
+		padding-block: 36px;
+	}
+	.hero:not(.map-hero) .hero-card { margin-top: 0; }
+
+	.header-p,
+	.subhead { font-size: 20px; line-height: 1.55; }
+	.fw p:not(.header-p):not(.eyebrow):not(.subhead):not(.pet-facts):not(.fine):not(.src):not(.tales-note):not(.feed-note):not(.step-when):not(.mission-text),
+	.news-body p,
+	.story-body p,
+	.fact-body p,
+	.route p,
+	.step p:not(.step-when),
+	.choice p,
+	.custom li,
+	.faq details p,
+	.ask p {
+		font-size: 18px;
+		line-height: 1.65;
+	}
+	.meta,
+	.story-meta,
+	.fine,
+	.src,
+	.tales-note,
+	.feed-note { font-size: 15px; }
+
+	/* Seven nav items: keep them on one row. */
+	.menu a { padding: 0 8px; font-size: 15px; }
+}
+
+/* Adopt or foster explainer. */
+.choice-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+	position: relative;
+	z-index: 1;
+}
+.choice {
+	background: var(--white, #fff);
+	border: 5px solid var(--accent-soft, #E2B4F0);
+	border-radius: 5px;
+	padding: 28px 28px 22px;
+}
+.choice h3 { margin-bottom: 8px; }
+.process-link {
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 700;
+	font-size: 18px;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+.hero-card .process-link { font-size: 18px; }
+@media (max-width: 767px) {
+	.choice-grid { grid-template-columns: 1fr; }
+	.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+	.hero-actions .btn { margin-top: 0; }
+}
+
+/* Homepage columns and the events archive. */
+.news-card.is-next { outline: 3px solid var(--accent, #B209D7); outline-offset: 6px; border-radius: 8px; }
+.thumb-empty {
+	display: grid;
+	place-items: center;
+	background: var(--light, #F5F5F5);
+	min-height: 180px;
+}
+.thumb-empty .tag { position: static; }
+.news-card-empty .news-body { padding-top: 16px; }
+.events-upcoming:has(.news-card-empty:only-child) {
+	grid-template-columns: minmax(0, 420px);
+}
+
+/* Donate: the story steps were spaced 34vh apart. Stack them. */
+.story-sec { padding-block: 48px 64px; }
+.story-sec .step { margin-bottom: 28px; opacity: 1; }
+#donate.section2 { padding-top: 72px; padding-bottom: 64px; }
+#donate .section-heading { margin-bottom: 36px; }
+
+/* Events / resources heroes use the home rules; keep section headings from colliding with the nav. */
+#upcoming, #past, #lost { scroll-margin-top: 110px; }

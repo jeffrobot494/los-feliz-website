@@ -4,7 +4,9 @@
  *
  * Reads LFAR's own Instagram posts through the Instagram API with Facebook login (Graph API),
  * once an hour, and shows them on four pages:
- *   Home          "News and Upcoming Events" cards, and the featured Happy Tale (newest Adopt story)
+ *   Home          three columns: next #event (until that event is over), newest #update, newest urgent need
+ *   Events        upcoming #event posts and a past-events archive
+ *   Home          featured Happy Tale (newest Adopt story)
  *   About         "In the News & Around the Rescue"  (the #feed-grid cards)
  *   Get Involved  "Volunteers in Action"              (the #feed-grid cards)
  *   Adopt         "Happy Endings and Counting"        (the Happy Tales list)
@@ -42,15 +44,14 @@ const LFAR_IG_DL_LIMIT = 25;                  // Images downloaded per update (t
 function lfar_ig_default_settings() {
 	return array(
 		'account_id'  => LFAR_IG_DEFAULT,
-		'urgent_tags' => 'fosterneeded fostersneeded fosterneededasap volunteersneeded volunteerneeded urgent',
+		// Homepage columns. Written without '#'. The event column is not "the latest post":
+		// it keeps the next event until the date in the caption has passed (or, if the caption
+		// has no date, until a newer #event post replaces it).
+		'event_tags'  => 'event events',
+		'update_tags' => 'update news',
+		'urgent_tags' => 'urgentneed urgent fosterneeded fostersneeded fosterneededasap volunteersneeded volunteerneeded',
 		'urgent_days' => 7,
 		'sections'    => array(
-			'home'         => array(
-				'site'     => 'fosterneeded fostersneeded volunteersneeded event',
-				'fallback' => '*',
-				'phrases'  => 0,
-				'max'      => 3,
-			),
 			'about'        => array(
 				'site'     => 'inthenews allstar mission volunteer',
 				'fallback' => '*',
@@ -76,7 +77,6 @@ function lfar_ig_default_settings() {
 /** Section labels for the settings screen. */
 function lfar_ig_section_labels() {
 	return array(
-		'home'         => 'Home page: News and Upcoming Events<br><small style="font-weight:400">(Home\'s featured story is the newest Happy Tale)</small>',
 		'about'        => 'About page: In the News &amp; Around the Rescue',
 		'get-involved' => 'Get Involved page: Volunteers in Action',
 		'adopt'        => 'Adopt page: Happy Tales',
@@ -278,6 +278,259 @@ function lfar_ig_section_posts( $key ) {
 	usort( $primary, $by_date );
 	usort( $second, $by_date );
 	return array_slice( array_merge( $primary, $second ), 0, max( 1, (int) $sec['max'] ) );
+}
+
+/**
+ * Saved posts that carry any of the given tags (space-separated, no '#').
+ * Each item is the stored post plus 'parsed' (title/text).
+ *
+ * @param string $tag_text
+ * @return array<int,array>
+ */
+function lfar_ig_posts_with_tags( $tag_text ) {
+	$want   = lfar_ig_tag_list( $tag_text );
+	$hidden = array_flip( (array) get_option( 'lfar_ig_hidden', array() ) );
+	$out    = array();
+	if ( ! $want ) {
+		return $out;
+	}
+	foreach ( (array) get_option( 'lfar_ig_posts', array() ) as $p ) {
+		if ( isset( $hidden[ $p['id'] ] ) || empty( $p['image'] ) ) {
+			continue;
+		}
+		$tags = lfar_ig_hashtags( $p['caption'] );
+		if ( ! array_intersect( $want, array_keys( $tags ) ) ) {
+			continue;
+		}
+		$p['parsed'] = lfar_ig_parse_caption( $p['caption'] );
+		$out[]       = $p;
+	}
+	return $out;
+}
+
+/** Minutes from midnight for "2 pm" / "11:30 a.m." */
+function lfar_ig_clock_minutes( $hour, $min, $ap ) {
+	$h = (int) $hour;
+	$m = (int) $min;
+	if ( 'pm' === $ap && $h < 12 ) {
+		$h += 12;
+	}
+	if ( 'am' === $ap && 12 === $h ) {
+		$h = 0;
+	}
+	if ( $h > 23 || $m > 59 ) {
+		return null;
+	}
+	return $h * 60 + $m;
+}
+
+/**
+ * When an event caption says the event is over, as a unix timestamp.
+ *
+ * Reads a date out of the caption (the post time is when it was published, not when
+ * the event happens). Examples that work: "October 3, 2026", "Oct 3–5, 2026",
+ * "Saturday, October 3, 2026 · 11 am – 2 pm", "2026-10-03", "10/3/2026".
+ * The latest date wins. The latest clock time that day is the end; with no time, end of that day.
+ * A month and day with no year uses the post's year, or the next year if that date already passed.
+ * Returns null when the caption has no date — the caller then keeps the newest #event post
+ * until a newer #event post replaces it.
+ *
+ * @param string $caption
+ * @param int    $posted_ts
+ * @return int|null
+ */
+function lfar_ig_event_end_ts( $caption, $posted_ts ) {
+	$caption = str_replace( array( "–", "—" ), '-', (string) $caption );
+	$months  = array(
+		'january' => 1, 'february' => 2, 'march' => 3, 'april' => 4, 'may' => 5, 'june' => 6,
+		'july' => 7, 'august' => 8, 'september' => 9, 'october' => 10, 'november' => 11, 'december' => 12,
+		'jan' => 1, 'feb' => 2, 'mar' => 3, 'apr' => 4, 'jun' => 6, 'jul' => 7, 'aug' => 8,
+		'sept' => 9, 'sep' => 9, 'oct' => 10, 'nov' => 11, 'dec' => 12,
+	);
+	$found = array();
+	if ( preg_match_all( '/\b(january|february|march|april|may|june|july|august|september|october|november|december|jan|feb|mar|apr|jun|jul|aug|sept|sep|oct|nov|dec)\.?\s+(\d{1,2})(?:st|nd|rd|th)?(?:\s*-\s*(\d{1,2})(?:st|nd|rd|th)?)?(?:,?\s+(\d{4}))?/iu', $caption, $mm, PREG_SET_ORDER ) ) {
+		foreach ( $mm as $m ) {
+			$day2    = ( isset( $m[3] ) && '' !== $m[3] ) ? (int) $m[3] : (int) $m[2];
+			$year    = ( isset( $m[4] ) && '' !== $m[4] ) ? (int) $m[4] : 0;
+			$found[] = array( $year, $months[ strtolower( $m[1] ) ], max( (int) $m[2], $day2 ) );
+		}
+	}
+	if ( preg_match_all( '/\b(\d{4})-(\d{2})-(\d{2})\b/', $caption, $mm, PREG_SET_ORDER ) ) {
+		foreach ( $mm as $m ) {
+			$found[] = array( (int) $m[1], (int) $m[2], (int) $m[3] );
+		}
+	}
+	if ( preg_match_all( '/\b(\d{1,2})\/(\d{1,2})\/(\d{2,4})\b/', $caption, $mm, PREG_SET_ORDER ) ) {
+		foreach ( $mm as $m ) {
+			$year = (int) $m[3];
+			if ( $year < 100 ) {
+				$year += 2000;
+			}
+			$found[] = array( $year, (int) $m[1], (int) $m[2] ); // US month/day/year.
+		}
+	}
+	if ( ! $found ) {
+		return null;
+	}
+
+	$tz     = function_exists( 'wp_timezone' ) ? wp_timezone() : new DateTimeZone( 'America/Los_Angeles' );
+	$posted = ( new DateTimeImmutable( '@' . (int) $posted_ts ) )->setTimezone( $tz );
+	$best   = null;
+	foreach ( $found as $f ) {
+		$year = $f[0];
+		if ( ! $year ) {
+			$year = (int) $posted->format( 'Y' );
+			$try  = DateTimeImmutable::createFromFormat( '!Y-n-j', $year . '-' . $f[1] . '-' . $f[2], $tz );
+			if ( $try && $try->getTimestamp() < ( (int) $posted_ts - 2 * DAY_IN_SECONDS ) ) {
+				$year++;
+			}
+		}
+		$dt = DateTimeImmutable::createFromFormat( '!Y-n-j', $year . '-' . $f[1] . '-' . $f[2], $tz );
+		if ( ! $dt || (int) $dt->format( 'n' ) !== (int) $f[1] || (int) $dt->format( 'j' ) !== (int) $f[2] ) {
+			continue;
+		}
+		if ( ! $best || $dt > $best ) {
+			$best = $dt;
+		}
+	}
+	if ( ! $best ) {
+		return null;
+	}
+
+	$minutes = array();
+	if ( preg_match_all( '/\b(\d{1,2})(?::(\d{2}))?\s*(a\.?m\.?|p\.?m\.?)\b/iu', $caption, $tm, PREG_SET_ORDER ) ) {
+		foreach ( $tm as $t ) {
+			$min = lfar_ig_clock_minutes( $t[1], ( isset( $t[2] ) && '' !== $t[2] ) ? $t[2] : 0, 'p' === strtolower( $t[3][0] ) ? 'pm' : 'am' );
+			if ( null !== $min ) {
+				$minutes[] = $min;
+			}
+		}
+	}
+	if ( $minutes ) {
+		$end  = max( $minutes );
+		$best = $best->setTime( intdiv( $end, 60 ), $end % 60, 0 );
+	} else {
+		$best = $best->setTime( 23, 59, 59 );
+	}
+	return $best->getTimestamp();
+}
+
+/**
+ * #event posts split into upcoming and past.
+ *
+ * A caption with a date is upcoming until that moment has passed.
+ * A caption with no date stays upcoming only while it is the newest event post
+ * ("until our next event post"). Older undated posts, and dated posts whose
+ * date has passed, are the archive.
+ *
+ * @param array<int,array>|null $posts
+ * @return array{upcoming:array,past:array}
+ */
+function lfar_ig_events_split( $posts = null ) {
+	if ( null === $posts ) {
+		$settings = lfar_ig_settings();
+		$posts    = lfar_ig_posts_with_tags( $settings['event_tags'] );
+	}
+	$now      = time();
+	$dated_up = array();
+	$past     = array();
+	$undated  = array();
+	$newest   = null;
+	foreach ( $posts as $p ) {
+		$p['event_end'] = lfar_ig_event_end_ts( $p['caption'], $p['ts'] );
+		if ( null === $p['event_end'] ) {
+			$undated[] = $p;
+		} elseif ( $p['event_end'] >= $now ) {
+			$dated_up[] = $p;
+		} else {
+			$past[] = $p;
+		}
+		if ( ! $newest || $p['ts'] > $newest['ts'] ) {
+			$newest = $p;
+		}
+	}
+	usort(
+		$dated_up,
+		function ( $a, $b ) {
+			return $a['event_end'] <=> $b['event_end'];
+		}
+	);
+	usort(
+		$past,
+		function ( $a, $b ) {
+			return $b['event_end'] <=> $a['event_end'];
+		}
+	);
+	usort(
+		$undated,
+		function ( $a, $b ) {
+			return $b['ts'] <=> $a['ts'];
+		}
+	);
+	$upcoming = $dated_up;
+	if ( $undated && $newest && null === $newest['event_end'] && $undated[0]['id'] === $newest['id'] ) {
+		$upcoming[] = array_shift( $undated );
+	}
+	foreach ( $undated as $p ) {
+		$past[] = $p;
+	}
+	return array(
+		'upcoming' => $upcoming,
+		'past'     => array_slice( $past, 0, 24 ),
+	);
+}
+
+/**
+ * The three homepage columns. Each value is one post or null.
+ * Event wins over the other columns when a post has more than one of these tags.
+ *
+ * @return array{event:?array,update:?array,urgent:?array}
+ */
+function lfar_ig_home_columns() {
+	$settings = lfar_ig_settings();
+	$events   = lfar_ig_events_split();
+	$event    = $events['upcoming'] ? $events['upcoming'][0] : null;
+	$skip     = $event ? array( $event['id'] => true ) : array();
+
+	$urgent = null;
+	$cutoff = time() - max( 1, (int) $settings['urgent_days'] ) * DAY_IN_SECONDS;
+	$cands  = lfar_ig_posts_with_tags( $settings['urgent_tags'] );
+	usort(
+		$cands,
+		function ( $a, $b ) {
+			return $b['ts'] <=> $a['ts'];
+		}
+	);
+	foreach ( $cands as $p ) {
+		if ( isset( $skip[ $p['id'] ] ) || $p['ts'] < $cutoff ) {
+			continue;
+		}
+		$urgent            = $p;
+		$skip[ $p['id'] ]  = true;
+		break;
+	}
+
+	$update = null;
+	$cands  = lfar_ig_posts_with_tags( $settings['update_tags'] );
+	usort(
+		$cands,
+		function ( $a, $b ) {
+			return $b['ts'] <=> $a['ts'];
+		}
+	);
+	foreach ( $cands as $p ) {
+		if ( isset( $skip[ $p['id'] ] ) ) {
+			continue;
+		}
+		$update = $p;
+		break;
+	}
+
+	return array(
+		'event'  => $event,
+		'update' => $update,
+		'urgent' => $urgent,
+	);
 }
 
 /** Live mode: a token is set and at least one update has succeeded. Until then the mockup samples stay. */
@@ -555,21 +808,63 @@ function lfar_ig_news_card( $p, $more ) {
 		. "</div>\n</article>\n";
 }
 
-/** One card in Home's "News and Upcoming Events" row (mockup markup: tag, date, heading, text, link). */
-function lfar_ig_home_card( $p ) {
-	$tag   = $p['urgent'] ? '<span class="tag urgent">Urgent need</span>' : '<span class="tag update">Update</span>';
+/**
+ * One homepage column card, or one card on the Events page.
+ *
+ * @param array  $p      Post, or empty array for a column with nothing in it.
+ * @param string $column event | update | urgent.
+ * @param bool   $past   Past-events archive (date line, no "next" label).
+ */
+function lfar_ig_column_card( $p, $column, $past = false ) {
+	$labels = array(
+		'event'  => array( 'Next event', '' ),
+		'update' => array( 'Update', 'update' ),
+		'urgent' => array( 'Urgent need', 'urgent' ),
+	);
+	if ( $past ) {
+		$labels['event'] = array( 'Past event', '' );
+	}
+	$label = $labels[ $column ];
+	$tag   = '<span class="tag' . ( $label[1] ? ' ' . $label[1] : '' ) . '">' . esc_html( $label[0] ) . '</span>';
 	$clock = '<svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>';
-	$link  = esc_url( $p['permalink'] );
-	return '<article class="news-card" data-anim="fade-up">' . "\n"
+	$cal   = '<svg viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M16 3v4M8 3v4M3 10h18"></path></svg>';
+	if ( ! $p ) {
+		$empty = array(
+			'event'  => array( 'No upcoming event', 'The next event stays in this column until it is over.' ),
+			'update' => array( 'No update right now', 'A post tagged #update or #news shows here.' ),
+			'urgent' => array( 'No urgent need right now', 'A post tagged #urgentneed shows here.' ),
+		);
+		return '<article class="news-card news-card-empty col-' . esc_attr( $column ) . '">' . "\n"
+			. '<div class="thumb thumb-empty">' . $tag . '</div>' . "\n"
+			. '<div class="news-body"><h4>' . esc_html( $empty[ $column ][0] ) . '</h4>'
+			. '<p>' . esc_html( $empty[ $column ][1] ) . '</p></div></article>' . "\n";
+	}
+	$link = esc_url( $p['permalink'] );
+	$when = '';
+	if ( 'event' === $column && ! empty( $p['event_end'] ) ) {
+		$fmt  = ( (int) wp_date( 's', $p['event_end'] ) === 59 ) ? 'l, F j, Y' : 'l, F j, Y · g:i a';
+		$when = '<span>' . $cal . esc_html( wp_date( $fmt, $p['event_end'] ) ) . '</span>';
+	}
+	$posted = '<span>' . $clock . 'Posted ' . esc_html( wp_date( 'F j, Y', $p['ts'] ) ) . '</span>';
+	$class  = 'news-card col-' . $column . ( ( 'event' === $column && ! $past ) ? ' is-next' : '' );
+	return '<article class="' . esc_attr( $class ) . '" data-anim="fade-up">' . "\n"
 		. '<a class="thumb" href="' . $link . '" target="_blank" rel="noopener">' . $tag
 		. '<img alt="' . esc_attr( $p['parsed']['title'] ) . '" loading="lazy" src="' . esc_url( lfar_ig_img_url( $p ) ) . '"/>'
 		. '<span class="overlay-mask">View post</span></a>' . "\n"
 		. '<div class="news-body">' . "\n"
-		. '<div class="meta"><span>' . $clock . 'Posted ' . esc_html( wp_date( 'F j, Y', $p['ts'] ) ) . '</span></div>' . "\n"
+		. '<div class="meta">' . $when . $posted . '</div>' . "\n"
 		. '<h4>' . esc_html( $p['parsed']['title'] ) . '</h4>' . "\n"
 		. ( $p['parsed']['text'] ? '<p>' . esc_html( $p['parsed']['text'] ) . '</p>' . "\n" : '' )
 		. '<p class="lfar-a"><a class="more" href="' . $link . '" target="_blank" rel="noopener">View on Instagram <i>→</i></a></p>' . "\n"
 		. "</div>\n</article>\n";
+}
+
+/** The three homepage columns, in order: event, update, urgent need. */
+function lfar_ig_home_columns_html() {
+	$cols = lfar_ig_home_columns();
+	return lfar_ig_column_card( $cols['event'], 'event' )
+		. lfar_ig_column_card( $cols['urgent'], 'urgent' )
+		. lfar_ig_column_card( $cols['update'], 'update' );
 }
 
 /** Home's featured Happy Tale (replaces the "Success Story: Pepper" row). */
@@ -610,7 +905,7 @@ add_filter(
 			return $html;
 		}
 		$page = lfar_page_key();
-		if ( ! in_array( $page, array( 'home', 'about', 'get-involved', 'adopt' ), true ) ) {
+		if ( ! in_array( $page, array( 'home', 'about', 'get-involved', 'adopt', 'events' ), true ) ) {
 			return $html;
 		}
 		$name  = isset( $block['blockName'] ) ? $block['blockName'] : '';
@@ -624,19 +919,38 @@ add_filter(
 		$posts = $cache[ $page ];
 
 		if ( 'home' === $page ) {
-			// News and Upcoming Events.
+			// Three columns: next event, update, urgent need. Not the latest three posts.
 			if ( 'core/group' === $name && false !== strpos( $class, ' news-grid ' ) ) {
-				if ( ! $posts ) {
-					return $html;
-				}
-				return '<div class="wp-block-group news-grid">' . "\n" . implode( '', array_map( 'lfar_ig_home_card', $posts ) ) . '</div>';
-			}
-			if ( 'core/paragraph' === $name && false !== strpos( $html, '>See all events<' ) ) {
-				return '<p class="lfar-a"><a class="btn" href="' . esc_url( lfar_ig_profile_url() ) . '" target="_blank" rel="noopener">See more on Instagram</a></p>';
+				return '<div class="wp-block-group news-grid">' . "\n" . lfar_ig_home_columns_html() . '</div>';
 			}
 			// Featured Happy Tale.
 			if ( 'core/group' === $name && false !== strpos( $class, ' row ' ) && false !== strpos( $html, 'Read more Happy Tales' ) && $cache['adopt'] ) {
 				return lfar_ig_home_story( $cache['adopt'][0] );
+			}
+			return $html;
+		}
+
+		if ( 'events' === $page ) {
+			$split = lfar_ig_events_split();
+			if ( 'core/group' === $name && false !== strpos( $class, ' events-upcoming ' ) ) {
+				$cards = '';
+				foreach ( $split['upcoming'] as $p ) {
+					$cards .= lfar_ig_column_card( $p, 'event' );
+				}
+				if ( ! $cards ) {
+					$cards = lfar_ig_column_card( array(), 'event' );
+				}
+				return '<div class="wp-block-group news-grid events-upcoming" id="upcoming">' . "\n" . $cards . '</div>';
+			}
+			if ( 'core/group' === $name && false !== strpos( $class, ' events-past ' ) ) {
+				$cards = '';
+				foreach ( $split['past'] as $p ) {
+					$cards .= lfar_ig_column_card( $p, 'event', true );
+				}
+				if ( ! $cards ) {
+					return '<div class="wp-block-group news-grid events-past" id="past"></div><p class="feed-note">Past events will collect here.</p>';
+				}
+				return '<div class="wp-block-group news-grid events-past" id="past">' . "\n" . $cards . '</div>';
 			}
 			return $html;
 		}
@@ -734,8 +1048,10 @@ add_action(
 		if ( isset( $in['account_id'] ) ) {
 			$settings['account_id'] = preg_replace( '/\D/', '', (string) $in['account_id'] );
 		}
-		if ( isset( $in['urgent_tags'] ) ) {
-			$settings['urgent_tags'] = implode( ' ', lfar_ig_tag_list( $in['urgent_tags'] ) );
+		foreach ( array( 'event_tags', 'update_tags', 'urgent_tags' ) as $tag_key ) {
+			if ( isset( $in[ $tag_key ] ) ) {
+				$settings[ $tag_key ] = implode( ' ', lfar_ig_tag_list( $in[ $tag_key ] ) );
+			}
 		}
 		if ( isset( $in['urgent_days'] ) ) {
 			$settings['urgent_days'] = max( 1, min( 365, (int) $in['urgent_days'] ) );
@@ -752,6 +1068,8 @@ add_action(
 		}
 		if ( ! empty( $in['reset_sections'] ) ) {
 			$settings['sections']    = $d['sections'];
+			$settings['event_tags']  = $d['event_tags'];
+			$settings['update_tags'] = $d['update_tags'];
 			$settings['urgent_tags'] = $d['urgent_tags'];
 			$settings['urgent_days'] = $d['urgent_days'];
 		}
@@ -808,9 +1126,22 @@ function lfar_ig_admin_page() {
 
 	// Where each post currently lands.
 	$where = array();
+	$cols  = lfar_ig_home_columns();
+	foreach ( array( 'event' => 'Home: next event', 'update' => 'Home: update', 'urgent' => 'Home: urgent need' ) as $col => $label ) {
+		if ( ! empty( $cols[ $col ] ) ) {
+			$where[ $cols[ $col ]['id'] ][] = $label;
+		}
+	}
+	$split = lfar_ig_events_split();
+	foreach ( $split['upcoming'] as $p ) {
+		$where[ $p['id'] ][] = 'Events: upcoming';
+	}
+	foreach ( $split['past'] as $p ) {
+		$where[ $p['id'] ][] = 'Events: past';
+	}
 	foreach ( array_keys( $settings['sections'] ) as $k ) {
 		foreach ( lfar_ig_section_posts( $k ) as $p ) {
-			$where[ $p['id'] ][] = array( 'home' => 'Home', 'about' => 'About', 'get-involved' => 'Get Involved', 'adopt' => 'Happy Tales' )[ $k ];
+			$where[ $p['id'] ][] = array( 'about' => 'About', 'get-involved' => 'Get Involved', 'adopt' => 'Happy Tales' )[ $k ];
 		}
 	}
 	$dir = lfar_ig_upload_dir();
@@ -825,7 +1156,7 @@ function lfar_ig_admin_page() {
 			<div class="notice notice-success"><p>Saved.</p></div>
 		<?php endif; ?>
 
-		<p>The site reads LFAR's own Instagram posts every hour and shows them on the About, Get Involved and Adopt pages.
+		<p>The site reads LFAR's own Instagram posts every hour. The homepage keeps three columns — the next <code>#event</code> (until that event is over), the newest <code>#update</code>, and the newest urgent need — and the Events page lists upcoming and past events. About, Get Involved and Adopt keep their own tag lists.
 		Nothing is ever posted to Instagram from here.</p>
 
 		<h2>Status</h2>
@@ -878,9 +1209,33 @@ function lfar_ig_admin_page() {
 				</tr>
 			</table>
 
-			<h2>Which posts go where</h2>
+			<h2>Homepage columns and the Events page</h2>
 			<p>Tags are written without <code>#</code>, separated by spaces; capitalization doesn't matter.
-			<strong>Site tags</strong> are the ones Melody adds on purpose. Those posts come first, newest first.
+			The homepage does not fill a column with whatever was posted last. Each column takes the newest post with its tag.
+			An <strong>event</strong> stays in its column until the date written in the caption has passed
+			(<code>October 3, 2026</code>, <code>Oct 3–5, 2026</code>, <code>11 am – 2 pm</code>, <code>10/3/2026</code>).
+			If the caption has no date, that post stays until a newer event post replaces it, then it moves to the past archive.
+			Put the event date in the caption or the column cannot tell when the event is over.</p>
+			<table class="form-table" role="presentation">
+				<tr>
+					<th scope="row">Event column and Events page</th>
+					<td><input type="text" class="large-text" name="event_tags" value="<?php echo esc_attr( $settings['event_tags'] ); ?>"></td>
+				</tr>
+				<tr>
+					<th scope="row">Update column</th>
+					<td><input type="text" class="large-text" name="update_tags" value="<?php echo esc_attr( $settings['update_tags'] ); ?>"></td>
+				</tr>
+				<tr>
+					<th scope="row">Urgent-need column</th>
+					<td>
+						<p><label>Posts with these tags<br><input type="text" class="large-text" name="urgent_tags" value="<?php echo esc_attr( $settings['urgent_tags'] ); ?>"></label></p>
+						<p><label>are taken out of the column after <input type="number" min="1" max="365" class="small-text" name="urgent_days" value="<?php echo (int) $settings['urgent_days']; ?>"> days.</label></p>
+					</td>
+				</tr>
+			</table>
+
+			<h2>Which posts go where</h2>
+			<p><strong>Site tags</strong> are the ones Melody adds on purpose. Those posts come first, newest first.
 			<strong>Also show</strong> fills the remaining spots, newest first: posts with any of those tags
 			(<code>*</code> means any post).</p>
 			<table class="form-table" role="presentation">
@@ -901,13 +1256,6 @@ function lfar_ig_admin_page() {
 					</td>
 				</tr>
 				<?php endforeach; ?>
-				<tr>
-					<th scope="row">Calls for help</th>
-					<td>
-						<p><label>Posts with these tags<br><input type="text" class="large-text" name="urgent_tags" value="<?php echo esc_attr( $settings['urgent_tags'] ); ?>"></label></p>
-						<p><label>are shown with a yellow tag and taken off the site after <input type="number" min="1" max="365" class="small-text" name="urgent_days" value="<?php echo (int) $settings['urgent_days']; ?>"> days.</label></p>
-					</td>
-				</tr>
 			</table>
 			<p><label><input type="checkbox" name="reset_sections" value="1"> Reset the tag lists above to the theme's defaults</label></p>
 

@@ -42,11 +42,11 @@
 
 <!-- wp:group {"className":"hero-actions"} -->
 <div class="wp-block-group hero-actions"><!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn" href="#signup">Volunteer with us</a></p>
+<p class="lfar-a"><a class="btn" href="#foster">Foster</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn btn-ghost" href="#give">Ways to give</a></p>
+<p class="lfar-a"><a class="btn btn-ghost" href="#signup">Volunteer with us</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -56,13 +56,51 @@
 <!-- wp:html -->
 <nav aria-label="On this page" class="jumpbar">
 <ul>
+<li><a href="#foster">Foster</a></li>
 <li><a href="#stories">Volunteer Stories</a></li>
 <li><a href="#signup">Sign Up</a></li>
 <li><a href="#give">Give</a></li>
-<li><a href="#more-ways">Other Ways to Give</a></li>
 </ul>
 </nav>
 <!-- /wp:html -->
+
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
+<section class="wp-block-group fw bg-light section2" id="foster"><!-- wp:group {"className":"container"} -->
+<div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
+<div class="wp-block-group section-heading"><!-- wp:heading -->
+<h2 class="wp-block-heading">Not ready to adopt? Foster</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"subhead"} -->
+<p class="subhead">Give an animal a place to stay while they wait for a family. You'll get the company, and we'll take care of the rest.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:list {"className":"ff-points lfar-anim-fade-up"} -->
+<ul class="wp-block-list ff-points lfar-anim-fade-up"><!-- wp:list-item -->
+<li>We pay for vet care</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>No upfront costs</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>A weekend or longer</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"className":"app lfar-app lfar-anim-fade-up"} -->
+<div class="wp-block-group app lfar-app lfar-anim-fade-up"><!-- wp:shortcode -->
+[lfar_form name="foster"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="more" href="/adopt/">Back to Adopt <i>→</i></a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></section>
+<!-- /wp:group -->
 
 <!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="stories"><!-- wp:html -->
@@ -233,11 +271,11 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Fostering has its own sign-up on the Adopt page, with everything we cover and how long it lasts.</p>
+<p>Fostering has its own sign-up on this page.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more" href="/adopt/#foster">Go to fostering <i>→</i></a></p>
+<p class="lfar-a"><a class="more" href="#foster">Foster application <i>→</i></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -309,154 +347,6 @@
 <div aria-hidden="true" class="triangle-wrap on-light"><svg class="triangle" preserveaspectratio="none" viewbox="0 0 100 102"><path d="M0 0 L50 100 L100 0 Z"></path></svg></div>
 <!-- /wp:html -->
 
-<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2 tight-top"} -->
-<section class="wp-block-group fw bg-light section2 tight-top" id="more-ways"><!-- wp:html -->
-<div aria-hidden="true" class="watermark r"></div>
-<!-- /wp:html -->
-
-<!-- wp:group {"className":"container"} -->
-<div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
-<div class="wp-block-group section-heading"><!-- wp:heading -->
-<h2 class="wp-block-heading">Other Ways to Give</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"subhead"} -->
-<p class="subhead">No cash needed. Supplies, a fundraiser or a t-shirt all help.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"give-grid"} -->
-<div class="wp-block-group give-grid"><!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="m3.5 6 1 1 2-2M3.5 12l1 1 2-2M3.5 18l1 1 2-2"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Wish lists</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Food, litter, crates and meds, shipped straight to a foster home.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more lfar-stretch" href="#"><span class="tbd">[Amazon · Chewy links]</span> <i>→</i></a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3c-.5 1.5-2 2.5-4 2.5S8.5 4.5 8 3z"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Rescue merch</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>T-shirts, mugs and stickers from our TeePublic shop. A share of each sale comes to us.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more lfar-stretch" href="#">Shop the store <i>→</i></a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M3 8 12 3l9 5v8l-9 5-9-5z"></path><path d="m3 8 9 5 9-5M12 13v8"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Donate supplies</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Have a spare crate or unopened food? We don't have a drop-off, so message us and we'll arrange a pickup.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more lfar-stretch" href="/contact/#message">Contact us <i>→</i></a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M4 11h16v10H4z"></path><path d="M2 7h20v4H2zM12 7v14"></path><path d="M12 7S10 3 7.5 3a2 2 0 0 0 0 4M12 7s2-4 4.5-4a2 2 0 0 1 0 4"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Start a fundraiser</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Ask for gifts to the rescue for your birthday or a milestone. We'll send you photos to share.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more lfar-stretch" href="#"><span class="tbd">[How to set one up]</span> <i>→</i></a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"other-way lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way lfar-card lfar-anim-fade-up"><!-- wp:html -->
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><rect height="13" rx="2" width="18" x="3" y="7"></rect><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Employer matching</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Many employers match gifts to 501(c)(3)s. Ask your HR team and give them our EIN: 87-4677140.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more lfar-stretch" href="#"><span class="tbd">[Confirm we accept]</span></a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"other-way aff lfar-card lfar-anim-fade-up"} -->
-<div class="wp-block-group other-way aff lfar-card lfar-anim-fade-up"><!-- wp:html -->
-<span aria-hidden="true" class="ow-ico"><svg viewbox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:group -->
-<div class="wp-block-group"><!-- wp:paragraph {"className":"lfar-w"} -->
-<p class="lfar-w"><span class="aff-tag">Affiliate</span></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Shop with our partners</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Some stores give us a small commission when you buy through our links. It costs you nothing extra.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more lfar-stretch" href="#"><span class="tbd">[Affiliate programs]</span> <i>→</i></a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:paragraph {"className":"aff-note lfar-anim-fade-up"} -->
-<p class="aff-note lfar-anim-fade-up">Links marked <strong>Affiliate</strong> earn the rescue a commission. We label every one.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></section>
-<!-- /wp:group -->
-
 <!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
 <section class="wp-block-group fw section2" id="faq"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"faq-row"} -->
@@ -518,10 +408,6 @@
 
 <!-- wp:paragraph -->
 <p>New animals, happy endings and urgent needs, on Instagram and Facebook.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="more lfar-stretch" href="#">Instagram · Facebook <i>→</i></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

@@ -19,169 +19,69 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Someone Who Always Has Time for You</h1>
+<h1 class="wp-block-heading">Meet the pets</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"header-p"} -->
-<p class="header-p">Long workdays, packed weekends and a phone that never stops buzzing. It's harder than ever to make time for the connections that recharge us.</p>
+<p class="header-p">See who is looking for a home, or start an application.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"className":"big-stat"} -->
-<div class="wp-block-group big-stat"><!-- wp:paragraph {"className":"lfar-w"} -->
-<p class="lfar-w"><span aria-hidden="true" class="stat-paw"></span><span>Everyone does better with someone to come home to.</span></p>
+<!-- wp:group {"className":"hero-actions"} -->
+<div class="wp-block-group hero-actions"><!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="btn" href="#meet">Meet the pets</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="btn" href="#apply">Adopt now</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn" href="#meet">Meet the pets</a></p>
+<p class="lfar-a"><a class="process-link" href="https://drive.google.com/file/d/18AhJgdD7Ce0bgJVqZKbbEn7ZkSdeEfe5/view" target="_blank" rel="noopener">Read the full adoption details</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw bg-light section2"} -->
-<section class="wp-block-group fw bg-light section2" id="connection"><!-- wp:html -->
-<div aria-hidden="true" class="watermark l"></div>
-<!-- /wp:html -->
-
-<!-- wp:group {"className":"container"} -->
+<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2"} -->
+<section class="wp-block-group fw section2" id="choose"><!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
-<h2 class="wp-block-heading">Connection Recharges Us</h2>
+<h2 class="wp-block-heading">Adopt or foster</h2>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"choice-grid"} -->
+<div class="wp-block-group choice-grid"><!-- wp:group {"tagName":"article","className":"choice"} -->
+<article class="wp-block-group choice"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Adopt</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"className":"subhead"} -->
-<p class="subhead">Feeling close to someone is part of what keeps us going, like good sleep or sunshine.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"tagName":"ul","className":"risks"} -->
-<ul class="wp-block-group risks"><!-- wp:group {"tagName":"li","className":"risk lfar-anim-fade-up"} -->
-<li class="wp-block-group risk lfar-anim-fade-up"><!-- wp:html -->
-<span aria-hidden="true" class="risk-ico"><svg viewbox="0 0 24 24"><path d="M13 2 4.5 13.5H12L11 22l8.5-11.5H12z"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:paragraph {"className":"risk-label"} -->
-<p class="risk-label">More energy</p>
-<!-- /wp:paragraph -->
-
 <!-- wp:paragraph -->
-<p>Time with someone you love is how we refuel after a long week.</p>
-<!-- /wp:paragraph --></li>
-<!-- /wp:group -->
-
-<!-- wp:group {"tagName":"li","className":"risk lfar-anim-fade-up"} -->
-<li class="wp-block-group risk lfar-anim-fade-up"><!-- wp:html -->
-<span aria-hidden="true" class="risk-ico"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2M9 9.5h.01M15 9.5h.01"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:paragraph {"className":"risk-label"} -->
-<p class="risk-label">Less stress</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>A friendly face at the end of the day makes the hard parts easier to shake off.</p>
-<!-- /wp:paragraph --></li>
-<!-- /wp:group -->
-
-<!-- wp:group {"tagName":"li","className":"risk lfar-anim-fade-up"} -->
-<li class="wp-block-group risk lfar-anim-fade-up"><!-- wp:html -->
-<span aria-hidden="true" class="risk-ico"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:paragraph {"className":"risk-label"} -->
-<p class="risk-label">Better days</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>People with close bonds tend to be happier, healthier and more focused.</p>
-<!-- /wp:paragraph --></li>
-<!-- /wp:group --></ul>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"cost-copy lfar-anim-fade-up"} -->
-<div class="wp-block-group cost-copy lfar-anim-fade-up"><!-- wp:paragraph -->
-<p>The catch is that real connection takes time, and time is the one thing busy people are short on.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"turn"} -->
-<p class="turn">Some of the best company fits right into your life.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group --></section>
-<!-- /wp:group -->
-
-<!-- wp:group {"templateLock":"contentOnly","tagName":"section","className":"fw section2 answer"} -->
-<section class="wp-block-group fw section2 answer" id="answer"><!-- wp:html -->
-<div aria-hidden="true" class="watermark r"></div>
-<!-- /wp:html -->
-
-<!-- wp:group {"className":"container"} -->
-<div class="wp-block-group container"><!-- wp:group {"className":"row"} -->
-<div class="wp-block-group row"><!-- wp:group {"className":"sec-image order-img lfar-anim-fade-down"} -->
-<div class="wp-block-group sec-image order-img lfar-anim-fade-down"><!-- wp:image {"className":"border-irregular"} -->
-<figure class="wp-block-image border-irregular"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home-hero-bg.webp' ) ); ?>" alt="A smiling woman in red glasses hugging a spotted puppy"/></figure>
-<!-- /wp:image --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"custom lfar-anim-slide-right"} -->
-<div class="wp-block-group custom lfar-anim-slide-right"><!-- wp:heading {"className":"big"} -->
-<h2 class="wp-block-heading big">The Answer Has Four Legs</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"className":"lede"} -->
-<p class="lede">A rescue animal doesn't need a calendar invite. They're there when you wake up and waiting when you get home, and they make the rest of your day better too.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:group {"tagName":"ul","className":"benefits"} -->
-<ul class="wp-block-group benefits"><!-- wp:group {"tagName":"li"} -->
-<li class="wp-block-group"><!-- wp:html -->
-<span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 9.5V20h13V9.5"></path><path d="M10 20v-5h4v5"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:paragraph {"className":"lfar-w"} -->
-<p class="lfar-w"><span><strong>Someone happy to see you, every day</strong><span>Pets are built-in company, and time with them eases stress and anxiety.</span></span></p>
-<!-- /wp:paragraph --></li>
-<!-- /wp:group -->
-
-<!-- wp:group {"tagName":"li"} -->
-<li class="wp-block-group"><!-- wp:html -->
-<span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3A5.4 5.4 0 0 1 12 6.2a5.4 5.4 0 0 1 9.6 5.5C19.5 16.4 12 21 12 21z"></path><path d="M7 12h2.5l1.5-2.5 2 5 1.5-2.5H17"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:paragraph {"className":"lfar-w"} -->
-<p class="lfar-w"><span><strong>A healthier heart</strong><span>Walking and playing with a pet can lower blood pressure and cholesterol.</span></span></p>
-<!-- /wp:paragraph --></li>
-<!-- /wp:group -->
-
-<!-- wp:group {"tagName":"li"} -->
-<li class="wp-block-group"><!-- wp:html -->
-<span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><circle cx="13" cy="4.5" r="2"></circle><path d="m10 21 2-6 3 3v3M8 12l2.5-4.5 3.5 1.5 2 3M12 15l-1.5-5"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:paragraph {"className":"lfar-w"} -->
-<p class="lfar-w"><span><strong>A reason to get outside every day</strong><span>More walks, more fresh air, more routine.</span></span></p>
-<!-- /wp:paragraph --></li>
-<!-- /wp:group -->
-
-<!-- wp:group {"tagName":"li"} -->
-<li class="wp-block-group"><!-- wp:html -->
-<span aria-hidden="true" class="b-ico"><svg viewbox="0 0 24 24"><circle cx="8" cy="8" r="3"></circle><circle cx="16.5" cy="9" r="2.5"></circle><path d="M2.5 20c.5-3.5 2.8-5.5 5.5-5.5s5 2 5.5 5.5M14 15.2c.8-.5 1.6-.7 2.5-.7 2.3 0 4 1.7 4.5 4.5"></path></svg></span>
-<!-- /wp:html -->
-
-<!-- wp:paragraph {"className":"lfar-w"} -->
-<p class="lfar-w"><span><strong>New friends on the block</strong><span>A dog on a leash starts a lot of conversations.</span></span></p>
-<!-- /wp:paragraph --></li>
-<!-- /wp:group --></ul>
-<!-- /wp:group -->
-
-<!-- wp:paragraph {"className":"src"} -->
-<p class="src">Health benefits as listed by the <a href="https://www.cdc.gov/healthy-pets/about/index.html">CDC, Healthy Pets, Healthy People</a>.</p>
+<p>Give an animal a permanent home.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn" href="#meet">Meet your match</a></p>
-<!-- /wp:paragraph --></div>
+<p class="lfar-a"><a class="btn" href="#apply">Adoption application</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="process-link" href="https://drive.google.com/file/d/18AhJgdD7Ce0bgJVqZKbbEn7ZkSdeEfe5/view" target="_blank" rel="noopener">Read the full adoption details</a></p>
+<!-- /wp:paragraph --></article>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"article","className":"choice"} -->
+<article class="wp-block-group choice"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Foster</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Care for an animal until it finds a home. Fostering is on Get Involved.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"lfar-a"} -->
+<p class="lfar-a"><a class="btn btn-ghost" href="/get-involved/#foster">Foster application</a></p>
+<!-- /wp:paragraph --></article>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>
@@ -261,11 +161,7 @@
 <!-- /wp:html -->
 
 <!-- wp:group {"className":"stories-close lfar-anim-fade-up"} -->
-<div class="wp-block-group stories-close lfar-anim-fade-up"><!-- wp:paragraph -->
-<p>We helped them find the right animal. We'd love to do the same for you.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:html -->
+<div class="wp-block-group stories-close lfar-anim-fade-up"><!-- wp:html -->
 <button class="btn" id="tales-btn" type="button">See more Happy Tales</button>
 <!-- /wp:html -->
 
@@ -310,7 +206,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn" href="#">See all on Petfinder</a></p>
+<p class="lfar-a"><a class="btn" href="https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=CA3083" target="_blank" rel="noopener">See all on Petfinder</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -330,45 +226,15 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"subhead"} -->
-<p class="subhead">One form covers adopting and fostering. Name the animal you have your eye on, or tell us you're not sure yet.</p>
+<p class="subhead">Name the animal you have your eye on, or tell us you're not sure yet.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"className":"apply-wrap"} -->
 <div class="wp-block-group apply-wrap" id="signup"><!-- wp:group {"className":"app lfar-app lfar-anim-fade-up"} -->
-<div class="wp-block-group app lfar-app lfar-anim-fade-up" id="app"><!-- wp:html -->
-<div class="lfar-intent"><fieldset>
-<legend>What would you like to do?</legend>
-<div class="intent-row">
-<label class="intent"><input checked="" id="i-adopt" name="intent" type="radio" value="adopt"/>
-<span class="intent-card">
-<span aria-hidden="true" class="box"><svg viewbox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
-<span aria-hidden="true" class="ico"><svg viewbox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 9.5V20h13V9.5"></path><path d="M12 17.5s-3-1.8-3-3.8a1.6 1.6 0 0 1 3-.8 1.6 1.6 0 0 1 3 .8c0 2-3 3.8-3 3.8z"></path></svg></span>
-<strong>Adopt</strong>
-<small>Give an animal a permanent home</small>
-</span>
-</label>
-<label class="intent"><input id="i-foster" name="intent" type="radio" value="foster"/>
-<span class="intent-card">
-<span aria-hidden="true" class="box"><svg viewbox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
-<span aria-hidden="true" class="ico"><svg viewbox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.6-9.3A5.4 5.4 0 0 1 12 5.2a5.4 5.4 0 0 1 9.6 5.5C19.5 15.4 12 20 12 20z"></path></svg></span>
-<strong>Foster</strong>
-<small>Care for an animal until it finds a home</small>
-</span>
-</label>
-</div>
-</fieldset></div>
-<!-- /wp:html -->
-
-<!-- wp:group {"className":"lfar-form lfar-form-adopt"} -->
+<div class="wp-block-group app lfar-app lfar-anim-fade-up" id="app"><!-- wp:group {"className":"lfar-form lfar-form-adopt"} -->
 <div class="wp-block-group lfar-form lfar-form-adopt"><!-- wp:shortcode -->
 [lfar_form name="adoption"]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"lfar-form lfar-form-foster"} -->
-<div class="wp-block-group lfar-form lfar-form-foster"><!-- wp:shortcode -->
-[lfar_form name="foster"]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
@@ -384,7 +250,7 @@
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
-<h2 class="wp-block-heading">Not Ready to Adopt? Foster a Pup.</h2>
+<h2 class="wp-block-heading">Not ready to adopt? Foster</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"subhead"} -->
@@ -407,7 +273,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn btn-light go-foster" href="#signup">Sign up to foster</a></p>
+<p class="lfar-a"><a class="btn btn-light" href="/get-involved/#foster">Foster</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->

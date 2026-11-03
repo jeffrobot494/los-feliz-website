@@ -12,9 +12,10 @@ development happens on a local WordPress site made with [Local](https://localwp.
 
 ## What the site does
 
-Six main pages (Home, About, Adopt, Get Involved, Contact, Donate), each built from a theme pattern
-(`theme/lfar/patterns/page-*.php`) with its own stylesheet and script (`assets/css/<page>.css`,
-`assets/js/<page>.js`).
+Eight pages. Home, About, Adopt, Get Involved, Contact, Donate, and Events are published.
+Resources is created as a draft and stays out of the menu until its lists are written.
+Each page is a theme pattern (`theme/lfar/patterns/page-*.php`). Events reuses the Home stylesheet;
+Resources reuses Contact. Shared type, hero, and layout adjustments are in `assets/css/adjust.css`.
 
 | Feature | Where it comes from | Where it's edited |
 | --- | --- | --- |
@@ -22,7 +23,7 @@ Six main pages (Home, About, Adopt, Get Involved, Contact, Donate), each built f
 | Forms: adoption, foster, volunteer, contact, newsletter | Fluent Forms, placed with `[lfar_form name="…"]` | Fluent Forms → All Forms |
 | Featured pet (Adopt) | The **Featured pet** block, filled from LFAR's Petfinder listings | Adopt page: click the card → **Choose pet** |
 | Full list of adoptable animals (Adopt) | Petfinder's pet list widget (`<pet-scroller>`, org CA3083) | On Petfinder |
-| News, events, Happy Tales | LFAR's Instagram, read hourly (`inc/instagram.php`) | Settings → LFAR Instagram |
+| Homepage columns and Events | LFAR's Instagram, by hashtag (`inc/instagram.php`) | Settings → LFAR Instagram |
 | Donation form (Home, Donate) | LFAR's Donorbox form, embedded | In Donorbox |
 
 A few things worth knowing before you edit:
@@ -44,6 +45,13 @@ A few things worth knowing before you edit:
   chosen. Once that pet leaves Petfinder's adoptable list, the card shows **Adopted!**.
 - **Never commit the Instagram token.** It lives in the `lfar_ig_token` option, or on production in
   `wp-config.php` as `define( 'LFAR_IG_TOKEN', '…' );`.
+- **Homepage columns follow hashtags, not recency.** `#event` / `#events` is the event column and the
+  Events page. `#update` / `#news` is the update column. `#urgentneed` (and the older foster/volunteer
+  help tags) is the urgent-need column. An event stays on the homepage until the date in the caption
+  has passed (`October 3, 2026`, `Oct 3–5, 2026 · 11 am – 2 pm`, `2026-10-03`, or `10/3/2026`).
+  If the caption has no date, that post stays until a newer event post replaces it. The Graph API
+  already returns captions, so this filtering works with the current connection. Tag lists are edited
+  at Settings → LFAR Instagram. Without a token, the sample cards stay in place.
 
 ## Setting up WordPress locally (for collaborators)
 
@@ -89,9 +97,11 @@ recreate the forms and the Instagram connection yourself.
 
 1. In Local, create a new site (**+** → *Create a new site*) on WordPress 7.1 and note the admin login.
 2. Link the theme as in step 3 of Option A, then activate **LFAR** under Appearance → Themes.
-3. Open the dashboard once as an admin. The theme creates the six pages, makes Home the front page and
+3. Open the site once. The theme creates the pages, makes Home the front page and
    adds the *News* and *Happy Tails* categories (one time only; to run it again:
-   `wp option delete lfar_seeded`).
+   `wp option delete lfar_pages_v`). Resources is a draft. Programs, financials, community
+   partners, and the other sections Melody is waiting on until next year are in
+   `patterns/held-for-later.php` and are not placed on a page.
 4. Install and activate **Fluent Forms** (Plugins → Add New). Then add the five forms with the exact
    titles listed above: either import them (ask the owner for a Fluent Forms → Tools → **Export Forms**
    file and use **Import Forms**), or build them by hand. Until a form exists, editors see
