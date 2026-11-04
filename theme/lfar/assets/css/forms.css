@@ -122,8 +122,19 @@
 .lfar-nl .ff-message-success { margin: 0; padding: 12px 0; border: 0; box-shadow: none; font-weight: 700; color: var(--nav); background: none; }
 @media (max-width: 767px) { .lfar-nl .fluentform .ff-el-group.ff_submit_btn_wrapper { flex: 1 1 100%; } .lfar-nl .fluentform .ff-btn-submit { width: 100%; } }
 
-/* Shown only when Donorbox or Petfinder does not load. */
-.lfar-widget-fallback { margin: 16px 0 0; font-size: var(--lfar-body, 18px); line-height: var(--lfar-lh-body, 1.65); }
+/* Shown only when Donorbox or Petfinder does not load. The Adopt note sits
+   under the button row, not inside it, so the button keeps its own height. */
+.lfar-widget-fallback {
+	display: block;
+	width: 100%;
+	max-width: 36rem;
+	margin: 16px auto 0;
+	text-align: center;
+	font-size: var(--lfar-body, 18px);
+	line-height: var(--lfar-lh-body, 1.65);
+}
 .lfar-widget-fallback[hidden] { display: none; }
+.widget.dbox.is-down { padding: 28px 24px; }
+.widget.dbox.is-down .lfar-widget-fallback { margin: 0; }
 .widget.dbox.is-down iframe { display: none; }
 #pf-panel.is-down pet-scroller { display: none; }

@@ -80,52 +80,68 @@
 	}
 })();
 
-// Donorbox and Petfinder: if the host never answers, offer the same page directly.
+// Donorbox and Petfinder: offer the direct page when the widget never draws.
+// No extra request. Donorbox tells us it loaded by posting its height. Petfinder
+// counts only once pet cards are actually in the widget.
 (function () {
-	function watch(url, box, note) {
-		if (!url || !box || !note) return;
-		var settled = false;
-		function down() {
-			if (settled) return;
-			settled = true;
-			box.classList.add('is-down');
-			note.hidden = false;
-		}
-		function up() {
-			settled = true;
-			box.classList.remove('is-down');
-			note.hidden = true;
-		}
-		var timer = setTimeout(down, 6000);
-		fetch(url, { mode: 'no-cors', cache: 'no-store' }).then(function () {
-			clearTimeout(timer);
-			up();
-		}).catch(function () {
-			clearTimeout(timer);
-			down();
-		});
-	}
-
-	document.querySelectorAll('iframe[src*="donorbox.org"]').forEach(function (frame) {
-		var box = frame.closest('.widget') || frame.parentNode;
+	function noteFor(html) {
 		var note = document.createElement('p');
 		note.className = 'lfar-widget-fallback';
 		note.hidden = true;
-		note.innerHTML = 'The donation form did not load. <a href="https://donorbox.org/los-feliz-animal-rescue-1" target="_blank" rel="noopener">Give on Donorbox</a>.';
+		note.innerHTML = html;
+		return note;
+	}
+	function show(box, note) {
+		if (!note.hidden && box.classList.contains('is-down')) return;
+		box.classList.add('is-down');
+		note.hidden = false;
+	}
+	function hide(box, note) {
+		box.classList.remove('is-down');
+		note.hidden = true;
+	}
+
+	document.querySelectorAll('iframe[name="donorbox"]').forEach(function (frame) {
+		var box = frame.closest('.widget') || frame.parentNode;
+		var note = noteFor('The donation form did not load. <a href="https://donorbox.org/los-feliz-animal-rescue-1" target="_blank" rel="noopener">Give on Donorbox</a>.');
 		box.appendChild(note);
-		watch(frame.src, box, note);
+		var ok = false;
+		function up() { ok = true; hide(box, note); }
+		window.addEventListener('message', function (e) {
+			var data = e.data;
+			if (!data || data.from !== 'dbox') return;
+			if (parseInt(data.height, 10) > 0) up();
+		});
+		frame.addEventListener('error', function () { if (!ok) show(box, note); });
+		setTimeout(function () { if (!ok) show(box, note); }, 8000);
 	});
 
 	var scroller = document.querySelector('pet-scroller');
 	var toggle = document.querySelector('.pf-toggle');
 	var panel = document.getElementById('pf-panel');
 	if (scroller && toggle && panel) {
-		var note = document.createElement('p');
-		note.className = 'lfar-widget-fallback';
-		note.hidden = true;
-		note.innerHTML = 'The pet list did not load. <a href="https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=CA3083" target="_blank" rel="noopener">See adoptable animals on Petfinder</a>.';
-		toggle.appendChild(note);
-		var script = document.querySelector('script[src*="pet-scroller"]');
-		watch(script ? script.src : 'https://www.petfinder.com/pet-scroller.bundle.js', panel, note);
+		var note = noteFor('The pet list did not load. <a href="https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=CA3083" target="_blank" rel="noopener">See adoptable animals on Petfinder</a>.');
+		toggle.insertAdjacentElement('afterend', note);
+		function petsRendered() {
+			var roots = [scroller];
+			if (scroller.shadowRoot) roots.push(scroller.shadowRoot);
+			for (var i = 0; i < roots.length; i++) {
+				var root = roots[i];
+				if (!root.querySelector) continue;
+				if (root.querySelector('img[src], a[href*="petfinder.com/"]')) return true;
+			}
+			return false;
+		}
+		var tries = 0;
+		var timer = setInterval(function () {
+			tries++;
+			if (petsRendered()) {
+				clearInterval(timer);
+				hide(panel, note);
+				return;
+			}
+			if (tries === 16) show(panel, note);
+			if (tries >= 40) clearInterval(timer);
+		}, 500);
 	}
 })();
