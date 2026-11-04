@@ -122,15 +122,41 @@
 	if (scroller && toggle && panel) {
 		var note = noteFor('The pet list did not load. <a href="https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=CA3083" target="_blank" rel="noopener">See adoptable animals on Petfinder</a>.');
 		toggle.insertAdjacentElement('afterend', note);
-		function petsRendered() {
-			var roots = [scroller];
-			if (scroller.shadowRoot) roots.push(scroller.shadowRoot);
-			for (var i = 0; i < roots.length; i++) {
-				var root = roots[i];
-				if (!root.querySelector) continue;
-				if (root.querySelector('img[src], a[href*="petfinder.com/"]')) return true;
+		function eachRoot(fn) {
+			var pending = [scroller];
+			var seen = [];
+			while (pending.length) {
+				var node = pending.shift();
+				if (!node || seen.indexOf(node) !== -1) continue;
+				seen.push(node);
+				fn(node);
+				if (node.shadowRoot) pending.push(node.shadowRoot);
+				if (!node.querySelectorAll) continue;
+				var nested = node.querySelectorAll('*');
+				for (var i = 0; i < nested.length; i++) {
+					if (nested[i].shadowRoot) pending.push(nested[i].shadowRoot);
+				}
 			}
-			return false;
+		}
+		// Branding ("Powered by Petfinder") is not a pet. Only a listing link or a photo from Petfinder's CDN counts.
+		function petsRendered() {
+			var pets = false;
+			var error = false;
+			eachRoot(function (root) {
+				var text = root.textContent || '';
+				if (/unable to reach petfinder/i.test(text)) error = true;
+				if (!root.querySelectorAll) return;
+				var links = root.querySelectorAll('a[href]');
+				for (var i = 0; i < links.length; i++) {
+					var href = links[i].getAttribute('href') || '';
+					if (/\/details(?:[\/?#]|$)/i.test(href)) pets = true;
+				}
+				var imgs = root.querySelectorAll('img[src]');
+				for (var j = 0; j < imgs.length; j++) {
+					if (/cloudfront\.net/i.test(imgs[j].getAttribute('src') || '')) pets = true;
+				}
+			});
+			return pets && !error;
 		}
 		var tries = 0;
 		var timer = setInterval(function () {
@@ -140,7 +166,7 @@
 				hide(panel, note);
 				return;
 			}
-			if (tries === 16) show(panel, note);
+			if (tries >= 16) show(panel, note);
 			if (tries >= 40) clearInterval(timer);
 		}, 500);
 	}
