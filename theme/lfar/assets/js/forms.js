@@ -79,3 +79,53 @@
 		});
 	}
 })();
+
+// Donorbox and Petfinder: if the host never answers, offer the same page directly.
+(function () {
+	function watch(url, box, note) {
+		if (!url || !box || !note) return;
+		var settled = false;
+		function down() {
+			if (settled) return;
+			settled = true;
+			box.classList.add('is-down');
+			note.hidden = false;
+		}
+		function up() {
+			settled = true;
+			box.classList.remove('is-down');
+			note.hidden = true;
+		}
+		var timer = setTimeout(down, 6000);
+		fetch(url, { mode: 'no-cors', cache: 'no-store' }).then(function () {
+			clearTimeout(timer);
+			up();
+		}).catch(function () {
+			clearTimeout(timer);
+			down();
+		});
+	}
+
+	document.querySelectorAll('iframe[src*="donorbox.org"]').forEach(function (frame) {
+		var box = frame.closest('.widget') || frame.parentNode;
+		var note = document.createElement('p');
+		note.className = 'lfar-widget-fallback';
+		note.hidden = true;
+		note.innerHTML = 'The donation form did not load. <a href="https://donorbox.org/los-feliz-animal-rescue-1" target="_blank" rel="noopener">Give on Donorbox</a>.';
+		box.appendChild(note);
+		watch(frame.src, box, note);
+	});
+
+	var scroller = document.querySelector('pet-scroller');
+	var toggle = document.querySelector('.pf-toggle');
+	var panel = document.getElementById('pf-panel');
+	if (scroller && toggle && panel) {
+		var note = document.createElement('p');
+		note.className = 'lfar-widget-fallback';
+		note.hidden = true;
+		note.innerHTML = 'The pet list did not load. <a href="https://www.petfinder.com/search/pets-for-adoption/?shelter_id%5B0%5D=CA3083" target="_blank" rel="noopener">See adoptable animals on Petfinder</a>.';
+		toggle.appendChild(note);
+		var script = document.querySelector('script[src*="pet-scroller"]');
+		watch(script ? script.src : 'https://www.petfinder.com/pet-scroller.bundle.js', panel, note);
+	}
+})();

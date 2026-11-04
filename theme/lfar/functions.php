@@ -33,6 +33,7 @@ function lfar_asset_key( $key ) {
 
 // Instagram feed on About, Get Involved and Adopt (Settings → LFAR Instagram).
 require_once get_theme_file_path( 'inc/instagram.php' );
+require_once get_theme_file_path( 'inc/public.php' );
 
 /**
  * Which mockup a page belongs to, or '' if none.

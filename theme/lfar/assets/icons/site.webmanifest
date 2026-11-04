@@ -1,0 +1,12 @@
+{
+  "name": "Los Feliz Animal Rescue",
+  "short_name": "LFAR",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" }
+  ],
+  "theme_color": "#71018A",
+  "background_color": "#71018A",
+  "display": "standalone",
+  "start_url": "/"
+}

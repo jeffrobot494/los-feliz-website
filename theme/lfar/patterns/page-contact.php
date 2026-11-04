@@ -125,7 +125,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:html -->
-<p class="copy-line"><span class="tbd" id="email-text">hello@losfelizanimalrescue.org</span> <button class="copy" id="copy-email" type="button">Copy</button></p>
+<p class="copy-line"><span class="tbd" id="email-text">info@losfelizanimalrescue.org</span> <button class="copy" id="copy-email" type="button">Copy</button></p>
 <!-- /wp:html --></div>
 <!-- /wp:group --></li>
 <!-- /wp:group -->
