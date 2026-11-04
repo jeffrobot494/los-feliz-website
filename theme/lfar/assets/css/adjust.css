@@ -72,7 +72,18 @@ body { padding-bottom: 72px; }
 
 	.header-p,
 	.subhead { font-size: var(--lfar-lead); line-height: var(--lfar-lh-lead); }
-	.fw p:not(.header-p):not(.eyebrow):not(.subhead):not(.pet-facts):not(.fine):not(.src):not(.tales-note):not(.feed-note):not(.step-when):not(.mission-text),
+	.meta,
+	.story-meta,
+	.fine,
+	.src,
+	.feed-note { font-size: var(--lfar-small); }
+
+	/* Seven nav items: keep them on one row. */
+	.menu a { padding: 0 var(--lfar-space-2xs); font-size: var(--lfar-button); }
+}
+/* Body copy from 768 up. The 992-only block left tablet at the old 16px. */
+@media (min-width: 768px) {
+	.fw p:not(.header-p):not(.eyebrow):not(.subhead):not(.stories-sub):not(.person-role):not(.pet-facts):not(.fine):not(.src):not(.tales-note):not(.feed-note):not(.step-when):not(.mission-text),
 	.news-body p,
 	.story-body p,
 	.fact-body p,
@@ -85,15 +96,6 @@ body { padding-bottom: 72px; }
 		font-size: var(--lfar-body);
 		line-height: var(--lfar-lh-body);
 	}
-	.meta,
-	.story-meta,
-	.fine,
-	.src,
-	.tales-note,
-	.feed-note { font-size: var(--lfar-small); }
-
-	/* Seven nav items: keep them on one row. */
-	.menu a { padding: 0 var(--lfar-space-2xs); font-size: var(--lfar-button); }
 }
 
 /* Adopt or foster explainer. */
@@ -380,6 +382,13 @@ section.bg-light + section.bg-light,
 	.nl p,
 	.nl-note,
 	.person p,
+	.person p:last-child,
+	.reach p,
+	.copy-line,
+	.custom li,
+	.feat-body .custom li,
+	.split .custom li,
+	.step p:not(.step-when),
 	.pf-note p,
 	.ff-points li,
 	.getback li,
@@ -427,7 +436,7 @@ h3.pet-name {
 .fine,
 .band .fine,
 .more,
-.tales-note,
+.ask .more,
 .pull cite,
 .places li,
 .about-map-hero .places li,
@@ -444,3 +453,16 @@ h3.pet-name {
 	font-size: var(--lfar-h4);
 	line-height: 1.2;
 }
+/* Adopt's note uses !important, so the scale has to as well. */
+.tales-note { font-size: var(--lfar-small) !important; }
+/* Roles and step kickers are eyebrows. The body rule is specific enough to catch them otherwise. */
+.person p.person-role,
+.step p.step-when {
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 700;
+	font-size: var(--lfar-eyebrow);
+	letter-spacing: var(--lfar-track-eyebrow);
+	line-height: 1.3;
+	text-transform: uppercase;
+}
+.about-map-hero .places li.anchor { font-size: var(--lfar-small); }
