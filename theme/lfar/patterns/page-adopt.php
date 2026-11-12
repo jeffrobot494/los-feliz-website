@@ -162,7 +162,7 @@
 
 <!-- wp:group {"className":"stories-close lfar-anim-fade-up"} -->
 <div class="wp-block-group stories-close lfar-anim-fade-up"><!-- wp:html -->
-<button class="btn" id="tales-btn" type="button">See more Happy Tales</button>
+<button class="btn" id="tales-btn" type="button">See more Happy Tails</button>
 <!-- /wp:html -->
 
 <!-- wp:paragraph {"className":"tales-note"} -->

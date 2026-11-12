@@ -6,13 +6,13 @@
  * once an hour, and shows them on four pages:
  *   Home          three columns: next #event (until that event is over), newest #update, newest urgent need
  *   Events        upcoming #event posts and a past-events archive
- *   Home          featured Happy Tale (newest Adopt story)
+ *   Home          featured Happy Tail (newest Adopt story)
  *   About         "In the News & Around the Rescue"  (the #feed-grid cards)
  *   Get Involved  "Volunteers in Action"              (the #feed-grid cards)
- *   Adopt         "Happy Endings and Counting"        (the Happy Tales list)
+ *   Adopt         "Happy Endings and Counting"        (the Happy Tails list)
  *
  * Which post goes where: each section has "site tags" (Melody adds one of these on purpose) and
- * "fallback" matches (tags she already uses, plus adoption phrases for Happy Tales). Site-tagged
+ * "fallback" matches (tags she already uses, plus adoption phrases for Happy Tails). Site-tagged
  * posts come first, newest first; fallback matches fill the remaining slots. All lists are edited
  * at Settings → LFAR Instagram, where posts can also be hidden one by one.
  *
@@ -79,7 +79,7 @@ function lfar_ig_section_labels() {
 	return array(
 		'about'        => 'About page: In the News &amp; Around the Rescue',
 		'get-involved' => 'Get Involved page: Volunteers in Action',
-		'adopt'        => 'Adopt page: Happy Tales',
+		'adopt'        => 'Adopt page: Happy Tails',
 	);
 }
 
@@ -229,7 +229,7 @@ function lfar_ig_parse_caption( $caption, $text_max = 160 ) {
 	);
 }
 
-/** Does the caption read like an adoption announcement? (Happy Tales fallback.) */
+/** Does the caption read like an adoption announcement? (Happy Tails fallback.) */
 function lfar_ig_is_adoption_story( $caption ) {
 	$c = mb_strtolower( (string) $caption );
 	if ( preg_match( '/\b(?:has|have|finally)?\s*found\s+(?:his|her|their|a|its)?\s*(?:furever|forever|new|perfect)?\s*(?:home|family)\b/u', $c, $m ) && false === strpos( $m[0], 'foster' ) ) {
@@ -736,7 +736,7 @@ function lfar_ig_fetch( $dl_limit = LFAR_IG_DL_LIMIT ) {
 			'src'       => lfar_ig_image_source( $m ),
 		);
 	}
-	// Older posts outside today's window are kept (Happy Tales history); ones inside it that
+	// Older posts outside today's window are kept (Happy Tails history); ones inside it that
 	// Instagram no longer returns were deleted there, so they go here too.
 	foreach ( $old as $id => $p ) {
 		if ( ! isset( $posts[ $id ] ) && $p['ts'] < $oldest ) {
@@ -957,7 +957,7 @@ function lfar_ig_home_columns_html() {
 		. lfar_ig_column_card( $cols['update'], 'update' );
 }
 
-/** Home's featured Happy Tale (replaces the "Success Story: Pepper" row). */
+/** Home's featured Happy Tail (replaces the "Success Story: Pepper" row). */
 function lfar_ig_home_story( $p ) {
 	$parsed = lfar_ig_parse_caption( $p['caption'], 420 );
 	return '<div class="wp-block-group row"><div class="wp-block-group sec-image order-img" data-anim="fade-down">'
@@ -966,13 +966,13 @@ function lfar_ig_home_story( $p ) {
 		. '<div class="wp-block-group custom" data-anim="slide-right">' . "\n"
 		. '<h3 class="wp-block-heading">' . esc_html( $parsed['title'] ) . '</h3>' . "\n"
 		. ( $parsed['text'] ? '<p>' . esc_html( $parsed['text'] ) . '</p>' . "\n" : '' )
-		. '<p class="lfar-a"><a class="btn" href="/adopt/#stories">Read more Happy Tales</a></p>' . "\n"
+		. '<p class="lfar-a"><a class="btn" href="/adopt/#stories">Read more Happy Tails</a></p>' . "\n"
 		. "</div></div>\n";
 }
 
-/** One Happy Tales story on the Adopt page (same markup as the mockup). */
+/** One Happy Tails story on the Adopt page (same markup as the mockup). */
 function lfar_ig_story( $p, $more ) {
-	$label = $p['label'] ? $p['label'] : 'Happy tale';
+	$label = $p['label'] ? $p['label'] : 'Happy tail';
 	$icon  = '<svg aria-hidden="true" class="ig" viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4.2"></circle><circle class="dot" cx="17.3" cy="6.7" r="1.1"></circle></svg>';
 	return '<li class="story"' . ( $more ? ' hidden=""' : ' data-anim="fade-up"' ) . ">\n"
 		. '<a class="thumb" href="' . esc_url( $p['permalink'] ) . '" target="_blank" rel="noopener"><span class="tag update">' . $icon . esc_html( $label ) . '</span>'
@@ -1013,8 +1013,8 @@ add_filter(
 			if ( 'core/group' === $name && false !== strpos( $class, ' news-grid ' ) ) {
 				return '<div class="wp-block-group news-grid">' . "\n" . lfar_ig_home_columns_html() . '</div>';
 			}
-			// Featured Happy Tale.
-			if ( 'core/group' === $name && false !== strpos( $class, ' row ' ) && false !== strpos( $html, 'Read more Happy Tales' ) && $cache['adopt'] ) {
+			// Featured Happy Tail.
+			if ( 'core/group' === $name && false !== strpos( $class, ' row ' ) && false !== strpos( $html, 'Read more Happy Tails' ) && $cache['adopt'] ) {
 				return lfar_ig_home_story( $cache['adopt'][0] );
 			}
 			return $html;
@@ -1068,7 +1068,7 @@ add_filter(
 		if ( false !== strpos( $html, '>Follow us on Instagram<' ) ) {
 			return str_replace( 'href="#">Follow us on Instagram<', 'href="' . esc_url( lfar_ig_profile_url() ) . '" target="_blank" rel="noopener">Follow us on Instagram<', $html );
 		}
-		// Adopt: Happy Tales.
+		// Adopt: Happy Tails.
 		if ( 'core/html' === $name && false !== strpos( $html, '<ul class="stories">' ) ) {
 			if ( ! $posts ) {
 				return lfar_ig_empty_note();
@@ -1231,7 +1231,7 @@ function lfar_ig_admin_page() {
 	}
 	foreach ( array_keys( $settings['sections'] ) as $k ) {
 		foreach ( lfar_ig_section_posts( $k ) as $p ) {
-			$where[ $p['id'] ][] = array( 'about' => 'About', 'get-involved' => 'Get Involved', 'adopt' => 'Happy Tales' )[ $k ];
+			$where[ $p['id'] ][] = array( 'about' => 'About', 'get-involved' => 'Get Involved', 'adopt' => 'Happy Tails' )[ $k ];
 		}
 	}
 	$dir = lfar_ig_upload_dir();

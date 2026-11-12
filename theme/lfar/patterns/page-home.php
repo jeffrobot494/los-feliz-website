@@ -242,7 +242,7 @@
 <!-- wp:group {"className":"container"} -->
 <div class="wp-block-group container"><!-- wp:group {"className":"section-heading"} -->
 <div class="wp-block-group section-heading"><!-- wp:heading -->
-<h2 class="wp-block-heading">Happy Tales</h2>
+<h2 class="wp-block-heading">Happy Tails</h2>
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
 
@@ -267,7 +267,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"lfar-a"} -->
-<p class="lfar-a"><a class="btn" href="/adopt/#stories">Read more Happy Tales</a></p>
+<p class="lfar-a"><a class="btn" href="/adopt/#stories">Read more Happy Tails</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
