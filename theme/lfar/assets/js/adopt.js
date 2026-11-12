@@ -262,7 +262,7 @@
   var pfBtn=$('#pf-btn'), pfPanel=$('#pf-panel');
   if(pfBtn&&pfPanel) pfBtn.addEventListener('click',function(){var o=pfPanel.classList.toggle('open');pfBtn.setAttribute('aria-expanded',o);pfBtn.firstChild.nodeValue=o?'Hide the full list ':'See all adoptable animals ';});
 
-  // Happy Tales: each click reveals the next three #happytales posts
+  // Happy Tails: each click reveals the next three #happytales posts
   var talesBtn=$('#tales-btn');
   if(talesBtn) talesBtn.addEventListener('click',function(){
     var next=$$('#stories .story[hidden]');

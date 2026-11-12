@@ -13,7 +13,7 @@
     });
   }
 
-  // Adopt: when the last Happy Tales are shown, adopt.js swaps the button for a link; point it at LFAR's Instagram.
+  // Adopt: when the last Happy Tails are shown, adopt.js swaps the button for a link; point it at LFAR's Instagram.
   var stories=document.querySelector('#stories ul.stories[data-ig]');
   var tales=document.getElementById('tales-btn');
   if(stories && tales){
